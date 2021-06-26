@@ -98,6 +98,7 @@ class School_User(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "user_id": self.user_id,
             "school_id": self.school_id
         }
