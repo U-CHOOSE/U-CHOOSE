@@ -2,10 +2,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
-//pages
+//pa
 import LandingPage from "./pages/LandingPage";
 //components
 import Navbar from "./component/navbar";
+
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 
