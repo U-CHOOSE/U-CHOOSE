@@ -1,3 +1,15 @@
 /* 
     General Styles
 */
+.button_violet_large{
+width: 220px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ background: rgba(122, 111, 197, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer
+}
