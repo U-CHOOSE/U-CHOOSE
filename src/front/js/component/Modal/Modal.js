@@ -15,6 +15,8 @@ const Modal = props => {
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
+						<div className="">{props.arrow}</div>
+
 						<h5 className="modal-title" id="exampleModalLabel">
 							<h1>{props.title}</h1>
 							<h4>{props.subtitle}</h4>
@@ -33,6 +35,7 @@ const Modal = props => {
 };
 
 Modal.PropTypes = {
+	arrow: PropTypes.string,
 	title: PropTypes.string,
 	subtitle: PropTypes.subtitle,
 	body: PropTypes.string,

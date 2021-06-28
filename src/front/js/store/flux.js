@@ -1,7 +1,17 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
+		store: {
+			step: 0
+		},
 		actions: {
+			setUpStep: () => {
+				const store = getStore();
+				setStore(store.step + 1);
+			},
+			setDownStep: () => {
+				const store = getStore();
+				setStore(store.step - 1);
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
