@@ -1,16 +1,23 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+// import "bootstrap/dist/css/bootstrap.min.css ";
 
-export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			<a className="btn btn-primary" href="#" role="button">
-				Buscar un centro
-			</a>
-			<a className="btn btn-primary" href="#" role="button">
-				Buscar a un Profesor
-			</a>
-		</p>
-	</footer>
-);
+const Footer = () => {
+	const history = useHistory();
+	return (
+		<footer className="footer mt-auto py-3 text-center">
+			<div onClick={() => history.push("/")}>
+				{" "}
+				<a className="btn btn-primary" href="#" role="button">
+					Buscar un centro
+				</a>
+				<br />
+				<a className="btn btn-primary" href="#" role="button">
+					Buscar a un Profesor
+				</a>
+			</div>
+		</footer>
+	);
+};
 
 export default Footer;
