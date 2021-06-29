@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {},
 		actions: {
-			// Use getActions to call a function within a fuction
+			// Use getActions to call a function within a fuctionfsddsffd
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
