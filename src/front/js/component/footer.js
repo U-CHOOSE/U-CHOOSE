@@ -8,13 +8,13 @@ const Footer = () => {
 		<footer className="footer mt-auto py-3 text-center">
 			<div onClick={() => history.push("/")}>
 				{" "}
-				<a className="btn btn-primary" href="#" role="button">
-					Buscar un centro
-				</a>
+				<button className="btn btn-primary" href="#" role="button">
+					Buscar Centro
+				</button>
 				<br />
-				<a className="btn btn-primary" href="#" role="button">
-					Buscar a un Profesor
-				</a>
+				<button className="btn btn-primary" href="#" role="button">
+					Buscar Profesor
+				</button>
 			</div>
 		</footer>
 	);
