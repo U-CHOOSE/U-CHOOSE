@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return elm;
 				});
 
-				//reset the global store
+				//reset the global store erge
 				setStore({ demo: demo });
 			}
 		}
