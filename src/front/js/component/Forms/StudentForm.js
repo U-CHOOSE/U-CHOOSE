@@ -52,14 +52,14 @@ const StudentForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={() => actions.setUpStep(store.step + 1)}>
+				<button className="" onClick="">
 					Crear Cuenta
 				</button>
 				<button className="" onClick="">
 					Registro con Google
 				</button>
 			</form>
-			{/* {console.log(checked,formData)} */}
+			{/* {console.log(checked,formData)} () => setSteps(steps + 1) */}
 		</>
 	);
 };

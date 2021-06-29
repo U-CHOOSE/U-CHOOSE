@@ -5,6 +5,7 @@ import Modal from "../component/Modal/Modal";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
 // import AiOutlineArrowLeft from "react-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RegisterDesicionPage = () => {
 	const { store, actions } = useContext(Context);
@@ -58,9 +59,12 @@ const RegisterDesicionPage = () => {
 							</form>
 						}
 						footer={
-							<button onClick={() => store.setUpSteps(store.step + 1)} className="button_violet_large">
-								Siguiente
-							</button>
+							<>
+								<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
+									Siguiente
+								</button>
+								<span> No he empezado a estudiar</span>
+							</>
 						}
 					/>
 				) : (
@@ -71,16 +75,16 @@ const RegisterDesicionPage = () => {
 	} else if (steps === 1) {
 		return (
 			<Modal
-				// arrow={<AiOutlineArrowLeft />}
+				// arrow={<FontAwesomeIcon icon="fa-solid fa-arrow-left" />}
 				title="Detalles de tu cuenta"
 				subtitle="¿Cómo quires colaborar con u-choose?"
 				handleClose={() => setShow(false)}
 				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
-				// footer={
-				// 	<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
-				// 		Siguiente
-				// 	</button>
-				// }
+				footer={
+					<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
+						Siguiente
+					</button>
+				}
 			/>
 		);
 	} else if (steps === 2) {
@@ -89,11 +93,11 @@ const RegisterDesicionPage = () => {
 			subtitle="¿Cómo quires colaborar con u-choose?"
 			handleClose={() => setShow(false)}
 			body={checked.student === true ? <StudentForm /> : <TeacherForm />}
-			// footer={
-			// 	<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
-			// 		Siguiente
-			// 	</button>
-			// }
+			footer={
+				<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
+					Siguiente
+				</button>
+			}
 		/>;
 	}
 };

@@ -5,31 +5,17 @@ import PropTypes from "prop-types";
 const Modal = props => {
 	return (
 		<>
-			{/* <div
-				className="modal fade"
-				id="exampleModal"
-				tabIndex="-1"
-				role="dialog"
-				aria-labelledby="exampleModalLabel"
-				aria-hidden="true"> */}
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
-					<div className="modal-header">
-						<div className="">{props.arrow}</div>
-
-						<h5 className="modal-title" id="exampleModalLabel">
-							<h1>{props.title}</h1>
-							<h4>{props.subtitle}</h4>
-						</h5>
-						<button type="button" className="close" aria-label="Close" onClick={props.handleClose}>
-							<span aria-hidden="true">&times;</span>
-						</button>
+					<div className="modal-body">
+						{props.arrow}
+						{props.title}
+						{props.subtitle}
+						{props.body}
+						{props.footer}
 					</div>
-					<div className="modal-body">{props.body}</div>
-					<div className="modal-footer">{props.footer}</div>
 				</div>
 			</div>
-			{/* </div> */}
 		</>
 	);
 };
