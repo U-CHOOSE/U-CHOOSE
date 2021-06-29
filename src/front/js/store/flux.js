@@ -1,3 +1,5 @@
+import { string } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -6,7 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			setUpStep: () => {
 				const store = getStore();
-				setStore(store.step + 1);
+				// setStore(store.step + 1);
+				console.log("store", store);
 			},
 			setDownStep: () => {
 				const store = getStore();
@@ -14,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+				// getActions().changeColor(0, "green");
+				console.log("Esta");
 			},
 
 			getMessage: () => {

@@ -63,7 +63,7 @@ const TeacherForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={() => props.setSteps(steps + 1)}>
+				<button className="" onClick={actions.exampleFunction}>
 					Crear Cuenta
 				</button>
 				<button className="" onClick="">

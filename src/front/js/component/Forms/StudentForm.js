@@ -52,7 +52,7 @@ const StudentForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick="">
+				<button className="" onClick={actions.exampleFunction()}>
 					Crear Cuenta
 				</button>
 				<button className="" onClick="">
