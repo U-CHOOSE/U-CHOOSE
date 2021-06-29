@@ -33,8 +33,8 @@ class Student(db.Model):
     __tablename__ = 'student'
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(120), unique=False, nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship(User)
 
 
     def __repr__(self):
@@ -53,8 +53,8 @@ class Teacher(db.Model):
     full_name = db.Column(db.String(120), unique=False, nullable=False)
     linkedin = db.Column(db.String(120), unique=True, nullable=True)
     type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship(User)
     
 
 
@@ -87,11 +87,10 @@ class School(db.Model):
         }
 class School_User(db.Model):
     __tablename__ = 'school_user'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey('user.id'))
-    school_id = db.Column(db.Integer, ForeignKey('school.id'))
-    user = relationship(User)
-    school = relationship(School)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
+    user = db.relationship(User)
+    school = db.relationship(School)
     
     def __repr__(self):
         return '<School_User %r>' % self.id
@@ -106,16 +105,16 @@ class School_User(db.Model):
 class Review_teacher(db.Model):
     __tablename__ = 'review_teacher'
     id = db.Column(db.Integer, primary_key=True)
-    dynamsim = db.Column(db.Number(5))
-    pasion = db.Column(db.Number(5))
-    practises_example = db.Column(db.Number(5))
-    near = db.Column(db.Number(5))
+    dynamsim = db.Column(db.Integer())
+    pasion = db.Column(db.Integer())
+    practises_example = db.Column(db.Integer())
+    near = db.Column(db.Integer())
     date_teacher = db.Column(db.Date(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     gif = db.Column(db.String(50), unique=False, nullable=True)
 
     # FALTABA MORE_INFO Y GIF(STRING????)
-    # DYNAMSIM, PASION, NEAR... COMO SON VOTADOS PONEMOS TIPO NUMBER???
+    # DYNAMSIM, PASION, NEAR... COMO SON VOTADOS PONEMOS TIPO Integer???
 
 
 
