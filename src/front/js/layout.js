@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
 //pages
 import LandingPage from "./pages/LandingPage";
+import Login from "./pages/Login";
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -23,6 +24,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<LandingPage />
+						</Route>
+						<Route exact path="/login">
+							<Login />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
