@@ -16,7 +16,7 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.id
 
     def serialize(self):
         return {
@@ -28,6 +28,36 @@ class User(db.Model):
             "promo": self.promo
             # do not serialize the password, its a security breach
         }
+
+    @classmethod
+    def get_all(cls):
+        users = cls.query.all()
+
+        return users
+
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id=id).one_or_none()
+        
+        return user
+
+    @classmethod 
+    def delete_all(cls):
+        return cls.query.delete()
+
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        
+        return self
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
+    
 
 class Student(db.Model):
     __tablename__ = 'student'
