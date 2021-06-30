@@ -2,6 +2,7 @@ import React from "react";
 import reviewsImg from "../../../../docs/assets/mockups_reviews.jpg";
 import reviewMetrics from "../../../../docs/assets/review_metrics.png";
 import "../../styles/landingPage.scss";
+
 // import logo from "./Logo.svg";
 // import favicon from "./favicon.png";
 
