@@ -12,8 +12,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    student = db.Column(db.Boolean(), unique=False, nullable=False)
-    teacher = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_student = db.Column(db.Boolean(), unique=False, nullable=False)
     promo = db.Column(db.Boolean(), unique=False, nullable=False)
 
 
@@ -97,6 +96,8 @@ class Student(db.Model):
             "full_name": self.full_name,
             "user_id": self.user_id
         }
+
+    
 
 class Teacher(db.Model):
     __tablename__ = 'teacher'
