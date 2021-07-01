@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
 	const [email, SetEmail] = useState("");
@@ -24,6 +26,8 @@ const Login = () => {
 
 	return (
 		<div>
+			<FontAwesomeIcon icon={faBell} />
+
 			<h1 className="title">Acceder</h1>
 			<form>
 				<div className="form-group">
@@ -41,7 +45,7 @@ const Login = () => {
 						className="form-control"
 						id="exampleInputPassword1"
 						placeholder="Password"
-						onChange={event => SetEmail(event.target.value)}
+						onChange={event => SetPassword(event.target.value)}
 					/>
 				</div>
 				<a className="link" href="#">
