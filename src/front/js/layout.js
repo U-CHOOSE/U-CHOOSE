@@ -5,6 +5,7 @@ import injectContext from "./store/appContext";
 //pages
 import LandingPage from "./pages/LandingPage";
 import RegisterDesicionPage from "./pages/RegisterDesicionPage";
+import Sass from "./pages/Sass";
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -27,6 +28,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/resgisterdesicion">
 							<RegisterDesicionPage />
+						</Route>
+						<Route exact path="/sass">
+							<Sass />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
