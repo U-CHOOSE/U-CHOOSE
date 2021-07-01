@@ -1,5 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.postgresql import VARCHAR, ARRAY
+from sqlalchemy.ext.hybrid import hybrid_property
+from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
@@ -29,6 +32,18 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, password):
+        self._password = generate_password_hash(
+                password, 
+                method='pbkdf2:sha256', 
+                salt_length=16
+            )
+
     @classmethod
     def get_all(cls):
         users = cls.query.all()
@@ -36,8 +51,14 @@ class User(db.Model):
         return users
 
     @classmethod
+    def get_by_email(cls, email):
+        user = cls.query.filter_by(email=email).one_or_none()
+        
+        return user
+
+    @classmethod
     def get_by_id(cls, id):
-        user = cls.query.filter_by(id=id).one_or_none()
+        user = cls.query.get(id)
         
         return user
 
