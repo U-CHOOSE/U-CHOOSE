@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;600&display=swap');
-
+.img1 {
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-bottom: 62px;
+}
 .title {
     margin: auto;
     font-weight: 700;
@@ -16,8 +22,7 @@ p {
     letter-spacing: 0.75px;
     color:#0C0B1A;
     margin: auto;
- }
- 
+}
 .btn-school {
     margin: auto;
     margin-top: 40px;
@@ -44,7 +49,7 @@ p {
     margin-top: 32px;
     
 }
-.img1 {
+.img2 {
     max-width: 100%;
     margin-top: 24px;
     margin-bottom: -25px;
@@ -52,12 +57,11 @@ p {
 .btn-review {
     display: block;
     margin: auto;
-   
 }
 .paragraph {
     margin-bottom: 100px;
 }
-.img2 {
+.img3 {
     display: block;
     width: 90%;
     margin: auto;
