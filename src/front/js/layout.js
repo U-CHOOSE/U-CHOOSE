@@ -2,8 +2,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//Scss
+import "../styles/index.scss";
 //pages
 import LandingPage from "./pages/LandingPage";
+import Sass from "./pages/Sass";
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -23,6 +27,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<LandingPage />
+						</Route>
+						<Route exact path="/sass">
+							<Sass />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

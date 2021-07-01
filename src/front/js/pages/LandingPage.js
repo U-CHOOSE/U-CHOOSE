@@ -1,7 +1,8 @@
 import React from "react";
+import "../../styles/index.scss";
 
 const LandingPage = () => {
-	return <div>Landing Page</div>;
+	return <div />;
 };
 
 export default LandingPage;
