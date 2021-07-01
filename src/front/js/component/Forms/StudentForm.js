@@ -16,7 +16,7 @@ const StudentForm = props => {
 
 	return (
 		<>
-			<form>
+			<div>
 				<input
 					type="text"
 					placeholder="Nombre completo"
@@ -52,13 +52,13 @@ const StudentForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={actions.exampleFunction()}>
+				<button className="" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
-				<button className="" onClick="">
+				<button className="" onClick={() => actions.setUpStep()}>
 					Registro con Google
 				</button>
-			</form>
+			</div>
 			{/* {console.log(checked,formData)} () => setSteps(steps + 1) */}
 		</>
 	);

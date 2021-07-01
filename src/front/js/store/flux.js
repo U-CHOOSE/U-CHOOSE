@@ -8,12 +8,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			setUpStep: () => {
 				const store = getStore();
-				// setStore(store.step + 1);
+				setStore({ step: store.step + 1 });
 				console.log("store", store);
 			},
 			setDownStep: () => {
 				const store = getStore();
-				setStore(store.step - 1);
+				setStore({ step: store.step - 1 });
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

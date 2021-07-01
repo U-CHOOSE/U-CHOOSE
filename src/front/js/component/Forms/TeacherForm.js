@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Forms.scss";
 import PropTypes from "prop-types";
 import { propTypes } from "react-bootstrap/esm/Image";
+import { Context } from "../../store/appContext";
 
 const TeacherForm = props => {
+	const { store, actions } = useContext(Context);
+
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
@@ -16,7 +19,7 @@ const TeacherForm = props => {
 
 	return (
 		<>
-			<form>
+			<div>
 				<input
 					type="text"
 					placeholder="Nombre completo"
@@ -63,13 +66,13 @@ const TeacherForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={actions.exampleFunction}>
+				<button className="" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
-				<button className="" onClick="">
+				<button className="" onClick={() => actions.setUpStep()}>
 					Registro con Linkedin
 				</button>
-			</form>
+			</div>
 			{/* {console.log(checked,formData)} */}
 		</>
 	);

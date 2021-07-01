@@ -15,11 +15,8 @@ const RegisterDesicionPage = () => {
 		student: false,
 		teacher: false
 	});
-	const [steps, setSteps] = useState(0);
-	const max_steps_student = 4;
-	const max_steps_teacher = 3;
 
-	if (steps === 0) {
+	if (store.step === 0) {
 		return (
 			<>
 				<button onClick={() => setShow(!show)}>Modal</button>
@@ -34,7 +31,7 @@ const RegisterDesicionPage = () => {
 									type="radio"
 									value={true}
 									id="student"
-									checked={checked.student}
+									defaultChecked={checked.student}
 									onClick={() =>
 										setChecked({
 											teacher: false,
@@ -46,7 +43,7 @@ const RegisterDesicionPage = () => {
 								<input
 									type="radio"
 									value="teacher"
-									checked={checked.teacher}
+									defaultChecked={checked.teacher}
 									id="teacher"
 									onClick={() =>
 										setChecked({
@@ -60,7 +57,7 @@ const RegisterDesicionPage = () => {
 						}
 						footer={
 							<>
-								<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
+								<button onClick={() => actions.setUpStep()} className="button_violet_large">
 									Siguiente
 								</button>
 								<span> No he empezado a estudiar</span>
@@ -72,7 +69,7 @@ const RegisterDesicionPage = () => {
 				)}
 			</>
 		);
-	} else if (steps === 1) {
+	} else if (store.step === 1) {
 		return (
 			<Modal
 				// arrow={<FontAwesomeIcon icon="fa-solid fa-arrow-left" />}
@@ -80,25 +77,17 @@ const RegisterDesicionPage = () => {
 				subtitle="¿Cómo quires colaborar con u-choose?"
 				handleClose={() => setShow(false)}
 				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
-				footer={
-					<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
-						Siguiente
-					</button>
-				}
 			/>
 		);
-	} else if (steps === 2) {
-		<Modal
-			title={checked.student === true ? <h1>¿Dónde has estudiado </h1> : <h1> ¿Dónde has dado clase?</h1>}
-			subtitle="¿Cómo quires colaborar con u-choose?"
-			handleClose={() => setShow(false)}
-			body={checked.student === true ? <StudentForm /> : <TeacherForm />}
-			footer={
-				<button onClick={() => setSteps(steps + 1)} className="button_violet_large">
-					Siguiente
-				</button>
-			}
-		/>;
+	} else if (store.step === 2) {
+		return (
+			<Modal
+				title={checked.student === true ? <h1>¿Dónde has estudiado </h1> : <h1> ¿Dónde has dado clase?</h1>}
+				subtitle="¿Cómo quires colaborar con u-choose?"
+				handleClose={() => setShow(false)}
+				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
+			/>
+		);
 	}
 };
 
