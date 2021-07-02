@@ -1,7 +1,17 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
+		store: {
+			step: 0
+		},
 		actions: {
+			setUpStep: () => {
+				const store = getStore();
+				setStore({ step: store.step + 1 });
+			},
+			setDownStep: () => {
+				const store = getStore();
+				setStore({ step: store.step - 1 });
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -11,8 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
 					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
+					.then(data => setStore({ message: data.message }));
+				// .catch(error => console.log("Error loading message from backend", error));
 			},
 			changeColor: (index, color) => {
 				//get the store

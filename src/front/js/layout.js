@@ -8,6 +8,7 @@ import "../styles/index.scss";
 //pages
 import LandingPage from "./pages/LandingPage";
 import Sass from "./pages/Sass";
+import RegisterForms from "./pages/RegisterForms";
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -30,6 +31,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/registerforms">
+							<RegisterForms />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
