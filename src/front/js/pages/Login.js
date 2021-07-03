@@ -1,28 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../store/appContext";
 
 const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
-	function login() {
-		fetch("", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				email: email,
-				password: password
-			})
-		})
-			.then(response => response.json())
-			.then(responseJson => {
-				console.log(responseJson);
-				// history.push("/LandingPage");
-				// o buscar profesor
-			});
-	}
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
@@ -58,7 +42,7 @@ const Login = () => {
 					className="btn btn-primary"
 					onClick={event => {
 						event.preventDefault();
-						login();
+						actions.login(email, password);
 					}}>
 					Iniciar sesión
 				</button>
