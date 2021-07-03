@@ -16,7 +16,7 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.id
 
     def serialize(self):
         return {
@@ -93,11 +93,10 @@ class School_User(db.Model):
     school = db.relationship(School)
     
     def __repr__(self):
-        return '<School_User %r>' % self.id
+        return '<School_User %r>' % self.user_id
 
     def serialize(self):
         return {
-            "id": self.id,
             "user_id": self.user_id,
             "school_id": self.school_id
         }
