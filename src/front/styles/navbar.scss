@@ -1,7 +1,9 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 .navbar{
-    width: 100%;
+    
+    justify-content: space-between;
+   
     height: 70px;
     background: linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%); 
 }
@@ -14,3 +16,9 @@
    
 }
 
+.imgLogo{
+    float: right;
+    margin: top 0px;
+    justify-content: space-between;
+    background:rgb(128, 9, 0);
+}
