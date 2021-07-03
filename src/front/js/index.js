@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 
 //include your index.scss file into the bundle
 import "../styles/index.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //import your own components
 import Layout from "./layout";
