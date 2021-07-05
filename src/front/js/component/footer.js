@@ -6,12 +6,24 @@ const Footer = () => {
 	const history = useHistory();
 	return (
 		<footer className="footer mt-auto py-3 text-center">
-			<div onClick={() => history.push("/")}> Listado de Centros</div>
-			<div onClick={() => history.push("/")}> Listado de Profesores</div>
-			<div onClick={() => history.push("/")}> Politicas de Cookies</div>
-			<div onClick={() => history.push("/")}> Terminos de Uso</div>
-			<div onClick={() => history.push("/")}> Politicas de Privacidad</div>
-			<div onClick={() => history.push("/")}> Contactos</div>
+			<div onClick={() => history.push("/")}>
+				{" "}
+				<a href="#">Listado de Centros</a>
+			</div>
+			<div onClick={() => history.push("/")}>
+				<a href="#">Listado de Profesores</a>
+			</div>
+			<div onClick={() => history.push("/")}>
+				{" "}
+				<a href="#">Politicas de Cookies</a>
+			</div>
+			<div onClick={() => history.push("/")}>
+				<a href="#">Politicas de Privacidad</a>
+			</div>
+			<div onClick={() => history.push("/")}>
+				{" "}
+				<a href="#">Contactos</a>
+			</div>
 		</footer>
 	);
 };

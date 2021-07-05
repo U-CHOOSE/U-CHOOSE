@@ -4,7 +4,8 @@ import { useState } from "react";
 // import { IconContainer, MobileMenuIcon } from "react";
 import "../../styles/navbar.scss";
 import logo from "../../../../docs/assets/img/Logo-Icon.jpg";
-
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import barSolid from "../../../../docs/assets/img/bars-solid.svg";
 import Modal from "./Modal/Modal";
 
 const Navbar = () => {
@@ -15,17 +16,12 @@ const Navbar = () => {
 	const [show, setShow] = useState(false);
 	return (
 		<nav className="navbar navbar-light header d-flex justify-content-between bg-light">
-			<div className="container">
-				<a className="navbar-brand" href="/">
-					<img src={logo} alt="" />
-				</a>
-			</div>
-			<div>
-				<button onClick={() => setShow(!show)}>open modal</button>
-				{show ? <Modal body={<h1>Acceder</h1>} /> : ""}
-			</div>
+			<a className="navbar-brand" href="/">
+				<img src={logo} alt="" />
+			</a>
 
-			<div />
+			<button onClick={() => setShow(!show)}> modal</button>
+			{show ? <Modal body={<barSolid />} /> : ""}
 		</nav>
 	);
 };
