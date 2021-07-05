@@ -13,13 +13,18 @@ const TeacherForm = props => {
 		linkedin: "",
 		typeOfteachers: "",
 		password: "",
-		repeatPassword: ""
+		repeatPassword: "",
+		is_student: false
 	});
 	const [checked, setChecked] = useState(true);
 
 	return (
 		<>
 			<div>
+				<div>
+					{" "}
+					<h1>Detalles de cuenta</h1>
+				</div>
 				<input
 					type="text"
 					placeholder="Nombre completo"
@@ -73,13 +78,8 @@ const TeacherForm = props => {
 					Registro con Linkedin
 				</button>
 			</div>
-			{/* {console.log(checked,formData)} */}
 		</>
 	);
-};
-TeacherForm.PropTypes = {
-	steps: propTypes.integer,
-	setSteps: propTypes.integer
 };
 
 export default TeacherForm;

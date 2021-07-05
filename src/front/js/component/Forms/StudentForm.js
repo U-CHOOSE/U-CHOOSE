@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
-import PropTypes from "prop-types";
 import { Context } from "../../store/appContext";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
@@ -10,13 +8,18 @@ const StudentForm = props => {
 		fullname: "",
 		email: "",
 		password: "",
-		repeatPassword: ""
+		repeatPassword: "",
+		is_student: false
 	});
 	const [checked, setChecked] = useState(true);
 
 	return (
 		<>
 			<div>
+				<div>
+					{" "}
+					<h1>Detalles de cuenta</h1>
+				</div>
 				<input
 					type="text"
 					placeholder="Nombre completo"
@@ -59,13 +62,8 @@ const StudentForm = props => {
 					Registro con Google
 				</button>
 			</div>
-			{/* {console.log(checked,formData)} () => setSteps(steps + 1) */}
 		</>
 	);
-};
-StudentForm.PropTypes = {
-	steps: propTypes.integer,
-	setSteps: propTypes.integer
 };
 
 export default StudentForm;
