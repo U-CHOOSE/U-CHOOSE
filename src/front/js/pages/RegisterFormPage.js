@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Modal from "../component/Modal/Modal";
-import Search from "../component/Search/Search";
+// import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
 
-const RegisterDesicionPage = () => {
+const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 	const [show, setShow] = useState(true);
@@ -25,16 +25,33 @@ const RegisterDesicionPage = () => {
 						cross={<div onClick={() => actions.setUpStep()}> X </div>}
 						body={
 							<>
-								<div>
-									<h1>Registro</h1>
-									<h2>¿Cómo quires colaborar con u-choose?</h2>
-								</div>
-								<form>
+								<h1 className="violet_h1_forms">Registro</h1>
+								<h2>¿Cómo quires colaborar con u-choose?</h2>
+
+								{/* <div>
+									<label htmlFor="student">
+										Soy alumno
+										<input
+											type="radio"
+											value={true}
+											id="student"
+											defaultChecked={checked.student}
+											onClick={() =>
+												setChecked({
+													teacher: false,
+													student: !checked.student
+												})
+											}
+										/>
+										<span className="checkmark" />
+									</label>
+								</div> */}
+								<label className="container" htmlFor="student">
 									<input
 										type="radio"
-										value={true}
+										// value={true}
 										id="student"
-										defaultChecked={checked.student}
+										checked={checked.student}
 										onClick={() =>
 											setChecked({
 												teacher: false,
@@ -42,25 +59,44 @@ const RegisterDesicionPage = () => {
 											})
 										}
 									/>
-									<label htmlFor="student">Soy alumno</label>
+									Soy alumno
+								</label>
+								<label className="container" htmlFor="teacher">
 									<input
 										type="radio"
-										value="teacher"
-										defaultChecked={checked.teacher}
+										// value={true}
 										id="teacher"
+										checked={checked.teacher}
 										onClick={() =>
 											setChecked({
-												student: false,
-												teacher: !checked.teacher
+												teacher: !checked.teacher,
+												student: false
 											})
 										}
 									/>
-									<label htmlFor="teacher">Soy professor</label>
-								</form>
-								<button onClick={() => actions.setUpStep()} className="button_violet_large">
+									Soy professor
+								</label>
+								{/* <div>
+									<label htmlFor="teacher">
+										Soy professor
+										<input
+											type="radio"
+											value="teacher"
+											defaultChecked={checked.teacher}
+											id="teacher"
+											onClick={() =>
+												setChecked({
+													student: false,
+													teacher: !checked.teacher
+												})
+											}
+										/>
+									</label>
+								</div> */}
+								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
 									Siguiente
 								</button>
-								<span> No he empezado a estudiar</span>
+								<span className="span_1"> No he empezado a estudiar</span>
 							</>
 						}
 					/>
@@ -175,4 +211,4 @@ const RegisterDesicionPage = () => {
 		);
 };
 
-export default RegisterDesicionPage;
+export default RegisterFormPage;

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
 //pages
 import LandingPage from "./pages/LandingPage";
-import RegisterDesicionPage from "./pages/RegisterDesicionPage";
+import RegisterFormPage from "./pages/RegisterFormPage";
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -25,8 +25,8 @@ const Layout = () => {
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
-						<Route exact path="/registerforms">
-							<RegisterDesicionPage />
+						<Route exact path="/registerformpage">
+							<RegisterFormPage />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
