@@ -11,14 +11,14 @@ const StudentForm = props => {
 		repeatPassword: "",
 		is_student: false
 	});
+
 	const [checked, setChecked] = useState(true);
 
 	return (
 		<>
 			<div>
 				<div>
-					{" "}
-					<h1>Detalles de cuenta</h1>
+					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
 					type="text"
@@ -55,10 +55,10 @@ const StudentForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
-				<button className="" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
 					Registro con Google
 				</button>
 			</div>

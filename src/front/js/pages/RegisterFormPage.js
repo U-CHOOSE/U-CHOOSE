@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Modal from "../component/Modal/Modal";
-// import Search from "../component/Search/Search";
+import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
@@ -22,34 +22,16 @@ const RegisterFormPage = () => {
 				<button onClick={() => setShow(!show)}>Modal</button>
 				{show ? (
 					<Modal
-						cross={<div onClick={() => actions.setUpStep()}> X </div>}
+						cross={<div onClick={() => setShow(!show)}> X </div>}
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
 								<h2>¿Cómo quires colaborar con u-choose?</h2>
 
-								{/* <div>
-									<label htmlFor="student">
-										Soy alumno
-										<input
-											type="radio"
-											value={true}
-											id="student"
-											defaultChecked={checked.student}
-											onClick={() =>
-												setChecked({
-													teacher: false,
-													student: !checked.student
-												})
-											}
-										/>
-										<span className="checkmark" />
-									</label>
-								</div> */}
 								<label className="container" htmlFor="student">
 									<input
 										type="radio"
-										// value={true}
+										value={true}
 										id="student"
 										checked={checked.student}
 										onClick={() =>
@@ -64,7 +46,7 @@ const RegisterFormPage = () => {
 								<label className="container" htmlFor="teacher">
 									<input
 										type="radio"
-										// value={true}
+										value={true}
 										id="teacher"
 										checked={checked.teacher}
 										onClick={() =>
@@ -76,27 +58,10 @@ const RegisterFormPage = () => {
 									/>
 									Soy professor
 								</label>
-								{/* <div>
-									<label htmlFor="teacher">
-										Soy professor
-										<input
-											type="radio"
-											value="teacher"
-											defaultChecked={checked.teacher}
-											id="teacher"
-											onClick={() =>
-												setChecked({
-													student: false,
-													teacher: !checked.teacher
-												})
-											}
-										/>
-									</label>
-								</div> */}
+
 								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
 									Siguiente
 								</button>
-								<span className="span_1"> No he empezado a estudiar</span>
 							</>
 						}
 					/>
@@ -108,7 +73,7 @@ const RegisterFormPage = () => {
 	} else if (store.step === 1) {
 		return (
 			<Modal
-				cross={<div onClick={() => actions.setUpStep()}> X </div>}
+				cross={<div onClick={() => setShow(!show)}> X </div>}
 				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
 				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
 			/>
@@ -116,28 +81,28 @@ const RegisterFormPage = () => {
 	} else if (store.step === 2) {
 		return (
 			<Modal
-				cross={<div onClick={() => actions.setUpStep()}> X </div>}
+				cross={<div onClick={() => setShow(!show)}> X </div>}
 				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
 				body={
 					checked.student === true ? (
-						<>student</>
+						<Search
+							title="¿Dónde has estudiado?"
+							placeholder="Busca un centro"
+							span1="¿No encuentras tu centro?"
+							// data = {
+							// 	//didnt'have he endpoint to recived the data
+							// }
+							span2="Saltar este paso"
+						/>
 					) : (
-						// <Search
-						// 	title="¿Dónde has estudiado?"
-						// 	placeholder="Busca un centro"
-						// 	span="¿No encuentras tu centro?"
-						// 	data = {
-						// 		//didnt'have he endpoint to recived the data
-						// 	}
-						// />
-						<>teacher</>
-						// <Search
-						// title="¿Dónde has dado clase?"
-						// placeholder="Busca un centro"
-						// span="¿No encuentras tu centro?"
-						// data = {
-						// 	//didnt'have he endpoint to recived the data
-						// } />
+						<Search
+							title="¿Dónde has dado clase?"
+							placeholder="Busca un centro"
+							span1="¿No encuentras tu centro?"
+							// data = {
+							// 	//didnt'have he endpoint to recived the data
+							// }
+						/>
 					)
 				}
 			/>
@@ -145,29 +110,27 @@ const RegisterFormPage = () => {
 	} else if (store.step === 3) {
 		return (
 			<Modal
-				cross={<div onClick={() => actions.setUpStep()}> X </div>}
+				cross={<div onClick={() => setShow(!show)}> X </div>}
 				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
 				body={
 					checked.student === true ? (
 						<>
-							student
-							<button onClick={() => actions.setUpStep()} className="button_violet_large">
-								Siguiente
-							</button>
-							{/* <Thanks
+							<Thanks
 								subtitle="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
-										<span onClick={() => history.push("/")}> Ahora no</span>
-										<button onClick={() => history.push("/review")} />
+										<span onClick={() => actions.setUpStep()}> Ahora no</span>
+										<button onClick={() => history.push("/review")} className="button_marino_great">
+											Hacer un review
+										</button>
 									</>
 								}
-							/> */}
+							/>
 						</>
 					) : (
 						<>
 							teacher
-							{/* <Thanks
+							<Thanks
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<>
@@ -175,8 +138,8 @@ const RegisterFormPage = () => {
 										<button onClick={() => history.push("/")}>Volver a la home</button>
 									</>
 								}
-							/> */}
-							<button onClick={() => actions.setUpStep()} className="button_violet_large">
+							/>
+							<button onClick={() => actions.setUpStep()} className="button_violet_great">
 								Siguiente
 							</button>
 						</>
@@ -188,17 +151,22 @@ const RegisterFormPage = () => {
 		return (
 			<>
 				<Modal
-					cross={<div onClick={() => actions.setUpStep()}> X </div>}
+					cross={<div onClick={() => setShow(!show)}> X </div>}
 					arrow={<div onClick={() => actions.setDownStep()}> back </div>}
 					body={
 						<>
-							Only can view the student
 							<Thanks
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<>
-										<button onClick={() => history.push("/searchschools")}>Buscar centros</button>
-										<button onClick={() => history.push("/searchteachers")}>
+										<button
+											onClick={() => history.push("/searchschools")}
+											className="button_violet_great">
+											Buscar centros
+										</button>
+										<button
+											onClick={() => history.push("/searchteachers")}
+											className="button_white_border_violet_great">
 											Buscar professores
 										</button>
 									</>
