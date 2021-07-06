@@ -39,7 +39,7 @@ const Login = () => {
 					/>
 				</div>
 				<a className="link" href="#">
-					¿Olvidaaste tu contraseña?
+					¿Olvidaste tu contraseña?
 				</a>
 				<br />
 

@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			baseURL: "https://3001-tomato-dragon-9ck26zri.ws-eu11.gitpod.io",
+			baseURL: "https://3001-tomato-dragon-9ck26zri.ws-eu11.gitpod.io/api",
 			currentUser: {}
 		},
 
