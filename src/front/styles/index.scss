@@ -1,9 +1,12 @@
+@import "~bootstrap/scss/bootstrap.scss";
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
 /* 
     General Styles
 */
 
-// Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 // colors 
 
@@ -16,8 +19,6 @@ $darkgrey :  rgba(78, 75, 102, 1);
 $gradientVioletMarino : linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%);
 
 // Default tags: 
-
-// h1
 
 @mixin  h1 ($color) {
     color : $color;
@@ -109,20 +110,15 @@ input:focus{
     @include button( rgba(255, 255, 255, 1)
     ,326px ,56px ,$violet);
     border-radius:40px;
-    border: none;
-    
-    
-    
-
+    border: none;      
 }
+
 .button_violet_small{
     @include button( rgba(255, 255, 255, 1)
     ,267px ,56px ,$violet);
-    border: none;
-   
-   
-
+    border: none;     
 }
+
 .button_marino_great{
     @include button( $black
     ,326px ,56px ,$marino);
