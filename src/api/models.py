@@ -17,6 +17,11 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+    
+    @classmethod
+    def get_by_email(cls, email):
+        user = cls.query.filter_by(email=email).one_or_none()
+        return user
 
     def serialize(self):
         return {
@@ -112,11 +117,6 @@ class Review_teacher(db.Model):
     date_teacher = db.Column(db.Date(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     gif = db.Column(db.String(50), unique=False, nullable=True)
-
-    # FALTABA MORE_INFO Y GIF(STRING????)
-    # DYNAMSIM, PASION, NEAR... COMO SON VOTADOS PONEMOS TIPO Integer???
-
-
 
     def __repr__(self):
         return '<User %r>' % self.id
