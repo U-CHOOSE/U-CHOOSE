@@ -1,10 +1,24 @@
+import { string } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
+		store: {
+			step: 0
+		},
 		actions: {
+			setUpStep: () => {
+				const store = getStore();
+				setStore({ step: store.step + 1 });
+				console.log("store", store);
+			},
+			setDownStep: () => {
+				const store = getStore();
+				setStore({ step: store.step - 1 });
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+				// getActions().changeColor(0, "green");
+				console.log("Esta");
 			},
 
 			getMessage: () => {
@@ -18,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//get the store
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index /
+
 				//and change its color
 				const demo = store.demo.map((elm, i) => {
 					if (i === index) elm.background = color;

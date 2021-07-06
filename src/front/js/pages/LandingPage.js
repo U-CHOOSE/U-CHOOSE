@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
 import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
@@ -81,6 +82,7 @@ const LandingPage = () => {
 			</p>
 		</div>
 	);
+
 };
 
 export default LandingPage;
