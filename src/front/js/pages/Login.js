@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
+import "../../styles/login.scss";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 	const [email, SetEmail] = useState("");
@@ -10,25 +13,28 @@ const Login = () => {
 
 	return (
 		<div>
-			<FontAwesomeIcon icon={faBell} />
+			{/* <navbar/> */}
+			<Link className="links" to={"/"}>
+				<FontAwesomeIcon className="icon-x" icon={faTimes} />
+			</Link>
 
 			<h1 className="title">Acceder</h1>
 			<form>
-				<div className="form-group">
+				<div className="form-group ">
 					<input
 						type="email"
-						className="form-control"
+						className="form-control input-email"
 						aria-describedby="emailHelp"
-						placeholder="Enter email"
+						placeholder="Email"
 						onChange={event => SetEmail(event.target.value)}
 					/>
 				</div>
-				<div className="form-input">
+				<div className="form-input contain-input2">
 					<input
 						type="password"
-						className="form-control"
+						className="form-control input-pass"
 						id="exampleInputPassword1"
-						placeholder="Password"
+						placeholder="Contraseña"
 						onChange={event => SetPassword(event.target.value)}
 					/>
 				</div>
@@ -39,7 +45,7 @@ const Login = () => {
 
 				<button
 					type="submit"
-					className="btn btn-primary"
+					className="btn btn-primary btn-login"
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
