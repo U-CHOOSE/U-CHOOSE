@@ -8,10 +8,12 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
+from werkzeug.security import check_password_hash
+from datetime import timedelta
 
 api = Blueprint('api', __name__)
 
+# TODO: Register using User.create_password_hash(password)
 @api.route('/login', methods=['POST'])
 def login():
     email = request.json.get('email', None)
@@ -19,10 +21,10 @@ def login():
 
     if not (email and password):
         return {'error': 'Missing info'}, 400
-
     user = User.get_by_email(email)
-
-    if user and check_password_hash(user.password, password) and user.is_active:
+   
+    # TODO:check password using check_password_hash(user.password, password)
+    if user and (user.password == password) and user.is_active:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
         return {'token': token}, 200
 
