@@ -6,7 +6,7 @@ import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
-
+//
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
