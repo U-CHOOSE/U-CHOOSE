@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 
 //include font-awesome to the icons
-import "@fortawesome/fontawesome-free/js/all.js";
+// import "@fortawesome/fontawesome-free/js/all.js";
 //include your index.scss file into the bundle
 import "../styles/index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

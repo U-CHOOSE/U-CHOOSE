@@ -1,7 +1,4 @@
 
-@import "~bootstrap/scss/bootstrap.scss";
-// Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 
 
@@ -133,8 +130,8 @@ input:focus{
 
 }
 
-    border: none;      
-}
+     
+
 
 .button_violet_small{
     @include button( rgba(255, 255, 255, 1)

@@ -36,10 +36,9 @@ const Layout = () => {
 
 						<Route exact path="/registerformpage">
 							<RegisterFormPage />
-
+						</Route>
 						<Route exact path="/sass">
 							<Sass />
-
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
