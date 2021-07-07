@@ -30,13 +30,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-    # @hybrid_property
-    # def password(self):
-    #     return self._password
-
-    # @password.setter
-    # def password(self, password):
-    #     self._password = generate_password_hash(
+    #   generate_password_hash(
     #             password, 
     #             method='pbkdf2:sha256', 
     #             salt_length=16
