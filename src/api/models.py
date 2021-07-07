@@ -30,17 +30,17 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-    @hybrid_property
-    def password(self):
-        return self._password
+    # @hybrid_property
+    # def password(self):
+    #     return self._password
 
-    @password.setter
-    def password(self, password):
-        self._password = generate_password_hash(
-                password, 
-                method='pbkdf2:sha256', 
-                salt_length=16
-            )
+    # @password.setter
+    # def password(self, password):
+    #     self._password = generate_password_hash(
+    #             password, 
+    #             method='pbkdf2:sha256', 
+    #             salt_length=16
+    #         )
 
     @classmethod
     def get_all(cls):
@@ -83,7 +83,7 @@ class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(120), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship(User)
+    user = db.relationship("User",backref = "student")
 
 
     def __repr__(self):
@@ -96,7 +96,9 @@ class Student(db.Model):
             "user_id": self.user_id
         }
 
-    
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
 
 class Teacher(db.Model):
     __tablename__ = 'teacher'
@@ -105,7 +107,7 @@ class Teacher(db.Model):
     linkedin = db.Column(db.String(120), unique=True, nullable=True)
     type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship(User)
+    user = db.relationship("User")
     
 
 
@@ -118,6 +120,10 @@ class Teacher(db.Model):
             "full_name": self.full_name,
             "user_id": self.user_id
         }
+    
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
 
 class School(db.Model):
     __tablename__ = 'school'
@@ -140,8 +146,8 @@ class School_User(db.Model):
     __tablename__ = 'school_user'
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
-    user = db.relationship(User)
-    school = db.relationship(School)
+    user = db.relationship("User")
+    school = db.relationship("School")
     
     def __repr__(self):
         return '<School_User %r>' % self.id

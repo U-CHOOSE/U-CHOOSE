@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 10ab33d1590d
-Revises: 29f010f7cad4
-Create Date: 2021-06-29 17:46:25.092590
+Revision ID: d33befe87927
+Revises: 
+Create Date: 2021-07-07 20:10:04.301931
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '10ab33d1590d'
-down_revision = '29f010f7cad4'
+revision = 'd33befe87927'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -34,6 +34,17 @@ def upgrade():
     sa.Column('name', sa.String(length=120), nullable=False),
     sa.Column('img_url', sa.String(length=120), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('user',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=120), nullable=False),
+    sa.Column('password', sa.String(length=80), nullable=False),
+    sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.Column('is_student', sa.Boolean(), nullable=False),
+    sa.Column('promo', sa.Boolean(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('password')
     )
     op.create_table('school_user',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -67,6 +78,7 @@ def downgrade():
     op.drop_table('teacher')
     op.drop_table('student')
     op.drop_table('school_user')
+    op.drop_table('user')
     op.drop_table('school')
     op.drop_table('review_teacher')
     # ### end Alembic commands ###

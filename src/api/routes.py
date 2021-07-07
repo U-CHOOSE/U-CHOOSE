@@ -33,10 +33,10 @@ def create_user():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     is_active = request.json.get('is_active', None)
-    is_student = request.json.get('student', None)
+    is_student = request.json.get('is_student', None)
     promo = request.json.get('promo', None)
 
-    if not (email and promo and is_active and password and student ):
+    if (email is None or promo is None or  is_active is None or password is None or is_student is None ):
         return {'error': 'Missing info'}, 400
 
     user = User.get_by_email(email)
