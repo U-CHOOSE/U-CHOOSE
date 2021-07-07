@@ -1,15 +1,21 @@
 import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
-import { Link } from "react-router-dom";
 
 const Login = () => {
+	const history = useHistory();
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
+	const correct_login = () => {
+		if (store.token != "") {
+			return history.push("/");
+		}
+	};
 
 	return (
 		<div>
@@ -49,6 +55,7 @@ const Login = () => {
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
+						correct_login();
 					}}>
 					Iniciar sesión
 				</button>

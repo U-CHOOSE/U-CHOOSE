@@ -1,24 +1,35 @@
+import { Link, useHistory } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
+	const history = useHistory();
 	return {
 		store: {
-			baseURL: "https://3001-tomato-dragon-9ck26zri.ws-eu11.gitpod.io/api",
-			currentUser: {}
+			token: ""
 		},
-
 		actions: {
 			login: (mail, pass) => {
-				fetch(getStore().baseURL.concat("/login"), {
+				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
-					mode: "no-cors",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ email: mail, password: pass })
+					body: JSON.stringify({ email: mail, password: pass }),
+					headers: { "Content-Type": "application/json" }
 				}).then(response => {
 					if (response.ok) {
-						response = response.json();
-						console.log(response);
+						const data = response.json();
+						const store = getStore();
+						console.log(store.token, "store vacio??");
+						console.log(data, "data");
+						setStore({ token: data.token });
+						localStorage.setItem("token", data.token);
+
+						console.log(store.token, "token:data.token");
 					}
 				});
 			},
+			setToken: token => {
+				localStorage.setItem("token", token);
+				setStore({ token: token });
+			},
+
 			getMessage: () => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")

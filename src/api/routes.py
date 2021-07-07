@@ -16,8 +16,9 @@ api = Blueprint('api', __name__)
 # TODO: Register using User.create_password_hash(password)
 @api.route('/login', methods=['POST'])
 def login():
-    email = request.json.get('email', None)
-    password = request.json.get('password', None)
+    payload =(request.get_json(force=True))
+    email = payload.get('email', None)
+    password = payload.get('password', None)
 
     if not (email and password):
         return {'error': 'Missing info'}, 400
@@ -26,6 +27,7 @@ def login():
     # TODO:check password using check_password_hash(user.password, password)
     if user and (user.password == password) and user.is_active:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
+        print(token)
         return {'token': token}, 200
 
     else:
