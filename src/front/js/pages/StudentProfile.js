@@ -7,6 +7,7 @@ const StudentProfile = () => {
 	const [email, setEmail] = useState("");
 	const [teacher, setTeacher] = useState("");
 	const [password, setPassword] = useState("");
+	const [passrepeat, setPassrepeat] = useState("");
 	return (
 		<div>
 			<div className="actions">{/* flecha
@@ -18,26 +19,63 @@ const StudentProfile = () => {
 			</div>
 
 			<div className="contain-inputs">
-				<input
-					type="text"
-					className="form-control input-text"
-					placeholder="Nombre completo"
-					onChange={event => setName(event.target.value)}
-				/>
-				<input
-					type="email"
-					className="form-control input-email"
-					placeholder="Email"
-					onChange={event => setEmail(event.target.value)}
-				/>
-				<input
-					type="text"
-					className="form-control input-text"
-					placeholder="¿De qué eres profesor?"
-					onChange={event => setTeacher(event.target.value)}
-				/>
-				<button className="button1">Mis centros</button>
+				<div>
+					<label className="input">Nombre completo</label>
+					<input
+						type="text"
+						className="form-control input-text input"
+						placeholder=""
+						onChange={event => setName(event.target.value)}
+					/>
+				</div>
+				{/* <div>
+					<label>Email address</label>
+					<input
+						type="text"
+						className="form-control input-text inp"
+						placeholder="Nombre completo"
+						onChange={event => setName(event.target.value)}
+					/>
+				</div>
+				<div>
+					<label>Email address</label>
+					<input
+						type="email"
+						className="form-control input-email inp"
+						placeholder="Email"
+						onChange={event => setEmail(event.target.value)}
+					/>
+				</div>
+				<div>
+					<label>Email address</label>
+					<input
+						type="text"
+						className="form-control input-text inp"
+						placeholder="¿De qué eres profesor?"
+						onChange={event => setTeacher(event.target.value)}
+					/>
+				</div>
+				<div>
+					<label>Email address</label>
+					<input
+						type="password"
+						className="form-control input-password inp"
+						placeholder="contraseña"
+						onChange={event => setPassword(event.target.value)}
+					/>
+				</div>
+				<div>
+					<label>Email address</label>
+					<input
+						type="password"
+						className="inp form-control input-password inp"
+						placeholder="Repetir contraseña"
+						onChange={event => setPassrepeat(event.target.value)}
+					/>
+				</div> */}
 			</div>
+
+			{/* <button className="button1">Guardar</button> */}
 		</div>
 	);
 };
