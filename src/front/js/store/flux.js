@@ -15,13 +15,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => response.json())
 					.catch(error => console.error("Error:", error))
-					.then(response => console.log("Success:", response))
-					.then(data => setStore({ token: data }))
-					.then(data => localStorage.setItem("token", data));
+					.then(responseJson => {
+						setStore({ token: responseJson.token });
+						localStorage.setItem("token", responseJson.token);
+					});
+				const actions = getActions();
+				actions.correct_login();
 			},
-			setToken: token => {
-				localStorage.setItem("token", token);
-				setStore({ token: token });
+
+			correct_login: () => {
+				const store = getStore();
+				if (store.token != "") {
+					return history.push("/");
+				}
 			},
 
 			getMessage: () => {

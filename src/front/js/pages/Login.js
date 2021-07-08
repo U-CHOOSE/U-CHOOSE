@@ -11,11 +11,6 @@ const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
-	const correct_login = () => {
-		if (store.token != "") {
-			return history.push("/");
-		}
-	};
 
 	return (
 		<div>
@@ -55,7 +50,6 @@ const Login = () => {
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
-						correct_login();
 					}}>
 					Iniciar sesión
 				</button>
