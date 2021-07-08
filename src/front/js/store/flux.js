@@ -12,18 +12,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					body: JSON.stringify({ email: mail, password: pass }),
 					headers: { "Content-Type": "application/json" }
-				}).then(response => {
-					if (response.ok) {
-						const data = response.json();
-						const store = getStore();
-						console.log(store.token, "store vacio??");
-						console.log(data, "data");
-						setStore({ token: data.token });
-						localStorage.setItem("token", data.token);
-
-						console.log(store.token, "token:data.token");
-					}
-				});
+				})
+					.then(response => response.json())
+					.catch(error => console.error("Error:", error))
+					.then(response => console.log("Success:", response))
+					.then(data => setStore({ token: data }))
+					.then(data => localStorage.setItem("token", data));
 			},
 			setToken: token => {
 				localStorage.setItem("token", token);
