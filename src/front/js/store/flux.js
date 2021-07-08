@@ -1,10 +1,12 @@
+import { contains } from "jquery";
 import { Link, useHistory } from "react-router-dom";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const history = useHistory();
 	return {
 		store: {
-			token: ""
+			token: "",
+			mal: false
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -14,20 +16,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json" }
 				})
 					.then(response => response.json())
-					.catch(error => console.error("Error:", error))
+					.catch(error => console.error("Error:", error), setStore({ mal: true }))
 					.then(responseJson => {
 						setStore({ token: responseJson.token });
 						localStorage.setItem("token", responseJson.token);
 					});
-				const actions = getActions();
-				actions.correct_login();
-			},
-
-			correct_login: () => {
-				const store = getStore();
-				if (store.token != "") {
-					return history.push("/");
-				}
 			},
 
 			getMessage: () => {

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,24 @@ const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
+
+	useEffect(
+		() => {
+			if (store.token != "" && store.token != undefined) {
+				history.push("/");
+			}
+		},
+		[store.token]
+	);
+	// useEffect(
+	// 	() => {
+	// 		alert("password incorrecto");
+	// 	},
+	// 	[store.mal]
+	// );
+	const isCorrect = () => {
+		if (store.mal == true) return alert("Password incorrecto");
+	};
 
 	return (
 		<div>
@@ -50,6 +68,7 @@ const Login = () => {
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
+						isCorrect();
 					}}>
 					Iniciar sesión
 				</button>
