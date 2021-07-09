@@ -1,4 +1,4 @@
-.button1 {
+.button1, .button2 {
     width: 171px;
     height: 40px;
     font-family: Poppins;
@@ -12,4 +12,56 @@
     background: #7A6FC5;
     border: none;
     border-radius: 40px;
+}
+.button1 {
+    margin-left: 12.14px;
+}
+.img-profile{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-left: 40px;
+    
+}
+.contain1 {
+    margin-bottom: 37.14px;
+    margin-top:6.56px;
+}
+.button2{
+    display: block;
+    margin: auto;
+    margin-top: 57px;
+}
+label {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    color: #6E7191;
+    // margin-left: 28px;
+    margin-left: 47px;
+}
+input[type=text], input[type=email], input[type=password] {
+    width:343px;
+    height: 64px;
+    border-radius:16px;
+    background: #EFF0F7;
+    margin: auto;
+    margin-top: -30px;
+    // margin-left: 16px;
+    
+}
+input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+    color:#14142B;
+    height: 0px;
+    width: 0px;
+    padding-left: 0px; 
+    font-size: 16px;
+    line-height: 28px;
+    font-family: Poppins;
+}
+.contain-inp {
+    margin-bottom: 24px;
 }
