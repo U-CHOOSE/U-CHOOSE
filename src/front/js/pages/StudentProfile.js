@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/studentProfile.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const StudentProfile = () => {
 	const [name, setName] = useState("");
@@ -9,8 +12,11 @@ const StudentProfile = () => {
 	const [passrepeat, setPassrepeat] = useState("");
 	return (
 		<div>
-			<div className="actions">{/* flecha
-				salir */}</div>
+			<div className="actions">
+				<Link className="links" to={"/"}>
+					<FontAwesomeIcon className="icon-x" icon={faTimes} />
+				</Link>
+			</div>
 
 			<div className="contain1">
 				<img
@@ -31,6 +37,7 @@ const StudentProfile = () => {
 						onChange={event => setName(event.target.value)}
 					/>
 				</div>
+				<p>Podrás ocultarlo en tus reviews</p>
 				<div className="contain-inp">
 					<label>Email</label>
 					<input
