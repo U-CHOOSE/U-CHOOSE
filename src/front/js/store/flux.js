@@ -15,8 +15,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({ email: mail, password: pass }),
 					headers: { "Content-Type": "application/json" }
 				})
+					// .then(response => {
+					// 	response.ok ? setStore({ mal: false }) : setStore({ mal: true });
+					// })
 					.then(response => response.json())
-					.catch(error => console.error("Error:", error), setStore({ mal: true }))
+					.catch(error => console.error("Error:", error))
 					.then(responseJson => {
 						setStore({ token: responseJson.token });
 						localStorage.setItem("token", responseJson.token);
