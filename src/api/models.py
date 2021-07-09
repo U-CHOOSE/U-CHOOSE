@@ -6,78 +6,37 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-class User(db.Model):
-    __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=True, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    is_student = db.Column(db.Boolean(), unique=False, nullable=False)
-    promo = db.Column(db.Boolean(), unique=False, nullable=False)
 
-
-
-    def __repr__(self):
-        return '<User %r>' % self.id
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "is_active": self.is_active,
-            "is_student": self.is_student,
-            "promo": self.promo
-            # do not serialize the password, its a security breach
-        }
-
-    #   generate_password_hash(
-    #             password, 
-    #             method='pbkdf2:sha256', 
-    #             salt_length=16
-    #         )
-
+class BaseModel():
     @classmethod
     def get_all(cls):
-        users = cls.query.all()
+        return cls.query.all()
 
-        return users
 
     @classmethod
     def get_by_email(cls, email):
         user = cls.query.filter_by(email=email).one_or_none()
-        
-        return user
 
     @classmethod
-    def get_by_id(cls, id):
-        user = cls.query.get(id)
-        
-        return user
+    def get_one_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+
 
     @classmethod 
     def delete_all(cls):
         return cls.query.delete()
 
 
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-        
-        return self
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-
-    
-
-class Student(db.Model):
+class Student(db.Model,BaseModel):
     __tablename__ = 'student'
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(120), unique=False, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship("User",backref = "student")
+    email =db.Column(db.String(120), nullable=False)
+    password =db.Column(db.String(50), nullable=False)
+    img =  db.Column(db.String(250), nullable=False)
+    is_logged=db.Column(db.Boolean, default=False, nullable=False)
+    promo=db.Column(db.Boolean, default=False, nullable=False)
+    schools = db.relationship('School', backref='student', lazy=True)
 
 
     def __repr__(self):
@@ -87,21 +46,31 @@ class Student(db.Model):
         return {
             "id": self.id,
             "full_name": self.full_name,
-            "user_id": self.user_id
+            "email": self.email,
+            "schools": list(map(lambda x: x.serialize(), self.schools))
+            
         }
 
     def create(self):
         db.session.add(self)
         db.session.commit()
 
-class Teacher(db.Model):
+    def db_delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class Teacher(db.Model,BaseModel):
     __tablename__ = 'teacher'
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(120), unique=False, nullable=False)
-    linkedin = db.Column(db.String(120), unique=True, nullable=True)
+    email =db.Column(db.String(120), nullable=False)
+    password =db.Column(db.String(50), nullable=False)
+    linkedin = db.Column(db.String(120), unique=False, nullable=True)
     type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship("User")
+    is_logged=db.Column(db.Boolean, default=False, nullable=False)
+    promo=db.Column(db.Boolean, default=False, nullable=False)
+    schools = db.relationship('School', backref='teacher', lazy=True)
+
     
 
 
@@ -112,76 +81,105 @@ class Teacher(db.Model):
         return {
             "id": self.id,
             "full_name": self.full_name,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "schools": list(map(lambda x: x.serialize(), self.schools))
         }
     
     def create(self):
         db.session.add(self)
         db.session.commit()
+    def db_delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
-class School(db.Model):
+
+class School(db.Model,BaseModel):
     __tablename__ = 'school'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    img_url = db.Column(db.String(120), unique=False, nullable=False)
+    img= db.Column(db.String(250), unique=False, nullable=False)
+    students = db.Column(db.Integer, db.ForeignKey('student.id'))
+    teachers = db.Column(db.Integer, db.ForeignKey('teacher.id'))
+
+# class School_Student(db.Model,BaseModel):
+#     __tablename__ = 'school'
+#     id = db.Column(db.Integer, primary_key=True)
+#     student_id = db.Column(db.String(120), unique=False, nullable=False)
+#     img= db.Column(db.String(250), unique=False, nullable=False)
+
+#     def __repr__(self):
+#         return '<Favorite_Planets %r>' % self.id
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "user_id": self.user_id,
+#             "planet_id":self.planet_id,
+#             }
+
+# class School_Teacher(db.Model,BaseModel):
+#     __tablename__ = 'school'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(120), unique=False, nullable=False)
+#     img= db.Column(db.String(250), unique=False, nullable=False)
     
 
 
-    def __repr__(self):
-        return '<School %r>' % self.name
+#     def __repr__(self):
+#         return '<School %r>' % self.name
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "img_url": self.img_url
-        }
-class School_User(db.Model):
-    __tablename__ = 'school_user'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
-    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
-    user = db.relationship("User")
-    school = db.relationship("School")
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "name": self.name,
+#             "img_url": self.img_url
+#         }
+# class School_Student(db.Model):
+#     __tablename__ = 'school_user'
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
+#     school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
+#     user = db.relationship("User")
+#     school = db.relationship("School")
     
-    def __repr__(self):
-        return '<School_User %r>' % self.id
+#     def __repr__(self):
+#         return '<School_User %r>' % self.id
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "user_id": self.user_id,
-            "school_id": self.school_id
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "user_id": self.user_id,
+#             "school_id": self.school_id
+#         }
 
-class Review_teacher(db.Model):
-    __tablename__ = 'review_teacher'
-    id = db.Column(db.Integer, primary_key=True)
-    dynamsim = db.Column(db.Integer())
-    pasion = db.Column(db.Integer())
-    practises_example = db.Column(db.Integer())
-    near = db.Column(db.Integer())
-    date_teacher = db.Column(db.Date(), unique=False, nullable=False)
-    more_info = db.Column(db.String(500), unique=False, nullable=True)
-    gif = db.Column(db.String(50), unique=False, nullable=True)
+# class Review_teacher(db.Model):
+#     __tablename__ = 'review_teacher'
+#     id = db.Column(db.Integer, primary_key=True)
+#     dynamsim = db.Column(db.Integer())
+#     pasion = db.Column(db.Integer())
+#     practises_example = db.Column(db.Integer())
+#     near = db.Column(db.Integer())
+#     date_teacher = db.Column(db.Date(), unique=False, nullable=False)
+#     more_info = db.Column(db.String(500), unique=False, nullable=True)
+#     gif = db.Column(db.String(50), unique=False, nullable=True)
 
     # FALTABA MORE_INFO Y GIF(STRING????)
     # DYNAMSIM, PASION, NEAR... COMO SON VOTADOS PONEMOS TIPO Integer???
 
 
 
-    def __repr__(self):
-        return '<User %r>' % self.id
+    # def __repr__(self):
+    #     return '<User %r>' % self.id
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "dynamsim": self.dynamsim,
-            "pasion": self.pasion,
-            "practises_example": self.practises_example,
-            "near": self.near,
-            "date_teacher": self.date_teacher,
-            "more_info": self.more_info,
-            "gif": self.gif,
-            # do not serialize the password, its a security breach
-        }
+    # def serialize(self):
+    #     return {
+    #         "id": self.id,
+    #         "dynamsim": self.dynamsim,
+    #         "pasion": self.pasion,
+    #         "practises_example": self.practises_example,
+    #         "near": self.near,
+    #         "date_teacher": self.date_teacher,
+    #         "more_info": self.more_info,
+    #         "gif": self.gif,
+    #         # do not serialize the password, its a security breach
+    #     }
 
