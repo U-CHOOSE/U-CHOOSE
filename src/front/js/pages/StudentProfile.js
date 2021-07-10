@@ -28,12 +28,12 @@ const StudentProfile = () => {
 			</div>
 
 			<div className="contain-inputs">
-				<div className="contain-inp">
+				<div className="contain-inp input1">
 					<label>Nombre completo</label>
 					<input
 						type="text"
 						className="form-control input"
-						placeholder="eefew"
+						placeholder=""
 						onChange={event => setName(event.target.value)}
 					/>
 				</div>
@@ -42,7 +42,7 @@ const StudentProfile = () => {
 					<label>Email</label>
 					<input
 						type="email"
-						className="form-control input-text inp"
+						className="form-control input-email inp"
 						placeholder="Nombre completo"
 						onChange={event => setEmail(event.target.value)}
 					/>
@@ -51,7 +51,7 @@ const StudentProfile = () => {
 					<label>¿De qué eres profesor?</label>
 					<input
 						type="text"
-						className="form-control input-email inp"
+						className="form-control input-text inp"
 						placeholder="ffdf"
 						onChange={event => setTeacher(event.target.value)}
 					/>

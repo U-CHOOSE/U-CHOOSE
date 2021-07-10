@@ -36,6 +36,7 @@
 .contain1 {
     margin-bottom: 37.14px;
     margin-top:45px;
+    align-items: center;
 }
 .button2{
     display: block;
@@ -65,8 +66,8 @@ input[type=text], input[type=email], input[type=password] {
 }
 input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
     color:#14142B;
-    height: 0px;
-    width: 0px;
+    height: 20px;
+    width: 100%;
     padding-left: 0px; 
     font-size: 16px;
     line-height: 28px;
@@ -75,3 +76,15 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
 .contain-inp {
     margin-bottom: 24px;
 }
+p{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    width:343px;
+    margin: auto;
+}
+.input1 {
+    margin-bottom: 0px;
+}   
