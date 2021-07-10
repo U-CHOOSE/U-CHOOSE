@@ -20,12 +20,17 @@ const Login = () => {
 		},
 		[store.token]
 	);
-	// useEffect(
-	// 	() => {
-	// 		alert("password incorrecto");
-	// 	},
-	// 	[store.mal]
-	// );
+
+	useEffect(
+		() => {
+			if (store.error != "") {
+				alert("error");
+				actions.setError("");
+			}
+		},
+		[store.error]
+	);
+
 	const isCorrect = () => {
 		if (store.mal == true) return alert("Password incorrecto");
 	};

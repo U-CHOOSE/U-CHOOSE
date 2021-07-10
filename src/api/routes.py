@@ -31,7 +31,7 @@ def login():
         return {'token': token}, 200
 
     else:
-        return {'error': 'Some parameter is wrong'}, 400
+        return {'error': 'Email o contraseña incorrecta.'}, 400
 
 
 @api.route('/hello', methods=['POST', 'GET'])

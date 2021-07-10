@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			mal: false
+			error: ""
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -16,14 +16,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json" }
 				})
 					// .then(response => {
-					// 	response.ok ? setStore({ mal: false }) : setStore({ mal: true });
+					// 	if (!response.ok) throw Error(response.status);
+
+					// 	return response;
 					// })
+
 					.then(response => response.json())
-					.catch(error => console.error("Error:", error))
+
 					.then(responseJson => {
-						setStore({ token: responseJson.token });
-						localStorage.setItem("token", responseJson.token);
+						if (responseJson.token) {
+							setStore({ token: responseJson.token });
+							localStorage.setItem("token", responseJson.token);
+							const store = getStore();
+							console.log(store);
+						} else if (responseJson.error) {
+							setStore({ error: responseJson.error });
+							console.log(responseJson.error);
+						}
+					})
+					.catch(error => {
+						// console.error("Error:", error), setStore({ error: error.error });
+						console.error("Error:", error);
 					});
+			},
+
+			setError: error => {
+				setStore({ error: error });
 			},
 
 			getMessage: () => {
