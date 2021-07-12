@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
+
 .navbar{
     
     justify-content: space-between;
@@ -34,8 +35,17 @@ a{
     background:rgb(128, 9, 0);
 }
 
+
+//styles de Modal//
 .modal-body { 
     background: #270ee6;
-    float: lef
+    float: lef;
 
+}
+
+
+.navbar-toggler-icon{
+    inline-size: 32px;
+    background-color: transparent;
+    
 }

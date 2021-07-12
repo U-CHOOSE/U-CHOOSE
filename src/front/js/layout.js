@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import Sass from "./pages/Sass";
 //components
 import Navbar from "./component/navbar";
+import Modal from "./component/Modal/Modal";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 
