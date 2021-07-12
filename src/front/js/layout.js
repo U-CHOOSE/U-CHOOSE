@@ -10,6 +10,8 @@ import RegisterFormPage from "./pages/RegisterFormPage";
 
 import Sass from "./pages/Sass";
 
+import TeacherProfile from "./pages/TeacherProfile";
+
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -39,6 +41,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/teacherprofile">
+							<TeacherProfile />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
