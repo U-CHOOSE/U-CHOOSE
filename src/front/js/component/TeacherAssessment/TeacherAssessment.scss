@@ -1,0 +1,71 @@
+.contain {
+    width: 343px;
+    height: 308px;
+    border: 1px solid black;
+}
+.color1 {
+    width: 14px;
+    height: 17px;
+    background: #A194FF;
+    margin-top: 16px;
+    margin-left: 40px;
+    border-radius: 3px;
+}
+.color2 {
+    width: 14px;
+    height: 17px;
+    background: #A194FF;
+    margin-top: 10px;
+    margin-left: 40px;
+    border-radius: 3px;
+    background: #98FEF6;
+}
+.name {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    color: #4E4B66;
+    margin-top: 16px;
+    margin-left: 6px;
+}
+.others {
+    margin-top: 10px;
+}
+.key {
+    text-align: right;
+    width: 99px;
+    height: 44px; 
+    margin-left: 22px;
+    margin-top: 28px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    color: #4E4B66;
+}
+.value1 {
+    width: 60%;
+    height: 17px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.value2 {
+    width: 20%;
+    height: 17px;
+    background-color: #98FEF6;
+    border-radius: 3px;
+    display: block;
+    margin-top: 4px;
+}
+.contain-values{
+    margin-top: 30px;
+    margin-left: 18px;
+    width: 150px;
+    border: 1px solid blue;
+}
