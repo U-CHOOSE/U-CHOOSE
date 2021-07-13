@@ -1,126 +1,169 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-from sqlalchemy.dialects.postgresql import VARCHAR, ARRAY
-from sqlalchemy.ext.hybrid import hybrid_property
-from werkzeug.security import generate_password_hash
+from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime, Date, Time, Float
+db = SQLAlchemy()
+
 
 db = SQLAlchemy()
 
 
-class BaseModel():
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
-
-
-    @classmethod
-    def get_by_email(cls, email):
-        user = cls.query.filter_by(email=email).one_or_none()
-
-    @classmethod
-    def get_one_by_id(cls,model_id):
-        return cls.query.filter_by(id = model_id).first()
-
-
-    @classmethod 
-    def delete_all(cls):
-        return cls.query.delete()
-
-
-class Student(db.Model,BaseModel):
-    __tablename__ = 'student'
+class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(120), unique=False, nullable=False)
-    email =db.Column(db.String(120), nullable=False)
-    password =db.Column(db.String(50), nullable=False)
-    img =  db.Column(db.String(250), nullable=True)
-    is_logged=db.Column(db.Boolean, default=False, nullable=False)
-    promo=db.Column(db.Boolean, default=False, nullable=False)
-    # schools = db.relationship('School', backref='student', lazy=True)
+    full_name = db.Column(db.VARCHAR, unique=True)
+    email = db.Column(db.VARCHAR, unique=True)
+    _password = db.Column(db.VARCHAR)
+    is_active = db.Column(db.Boolean, default=True)
+    image = db.Column(db.VARCHAR)
+    promo = db.Column(db.Boolean, default=True)
+    is_student = db.Column(db.Boolean)
+    user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
+    user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
 
 
     def __repr__(self):
-        return '<Student %r>' % self.full_name
+        return '<User %r>' % self.email
 
     def serialize(self):
         return {
             "id": self.id,
-            "full_name": self.full_name,
+            "full_name":self.full_name,
+            "is_active": self.is_active,
             "email": self.email,
-            "is_logged": self.is_logged,
-            "promo" : self.promo
-            # "schools": list(map(lambda x: x.serialize(), self.schools))
+            "is_student":self.is_student
             
         }
 
-    def create(self):
-        db.session.add(self)
+    @classmethod
+    def add(cls):
+        user = cls(
+            email = "hola "
+            # email=email, 
+            # _password=_password,
+            # is_student=is_student,
+            # promo=promo,
+            # full_name = full_name, 
+            
+        )
+        db.session.add(user)
         db.session.commit()
+        return user.id
 
-    def db_delete(self):
-        db.session.delete(self)
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first()
+        return user
+    
+
+    @classmethod
+    def update_single_user(cls, user_data, id):
+        user= cls.query.filter_by(id = id).first()
+        for key, value in user_data.items():
+            setattr(user, key, value)
         db.session.commit()
-
-    def set_with_json(self,json):
-        self.full_name = json["full_name"]
-        self.email = json["email"]
-        self.is_logged = json["is_logged"]
-        self.promo = json["promo"]
-        self.password = json ["password"]
-        self.img = json ["img"]
-        # self.schools = json["schools"]
-
-    def put_with_json(self,json):
-        if json["full_name"]:
-            self.name = json["full_name"]
-        if json["password"]:
-            self.eye_color = json["password"]
-        if json["img"]:
-            self.eye_color = json["img"]
+        return user
+    
+    
+    @classmethod
+    def delete(cls, id):
+        target = cls.query.filter_by(id = id).first()    
+        target.is_active=False     
+        db.session.commit()
+        return target
         
         
-        
-
-class Teacher(db.Model,BaseModel):
-    __tablename__ = 'teacher'
+class User_teacher(db.Model):
+    __tablename__ = 'user_teacher'
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(120), unique=False, nullable=False)
-    email =db.Column(db.String(120), nullable=False)
-    password =db.Column(db.String(50), nullable=False)
-    linkedin = db.Column(db.String(120), unique=False, nullable=True)
-    type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
-    is_logged=db.Column(db.Boolean, default=False, nullable=False)
-    promo=db.Column(db.Boolean, default=False, nullable=False)
-    # schools = db.relationship('School', backref='teacher', lazy=True)
-
-
+    type_of_teacher = db.Column(db.VARCHAR)
+    linkedin = db.Column(db.VARCHAR)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    # school_teacher = db.relationship("User_teacher_school",back_populates = "user_teacher")
+            
     def __repr__(self):
-        return '<Teacher %r>' % self.full_name
+        return '<User_teacher %r>' % self.id
 
     def serialize(self):
+        user = User.get_by_id(self.user_id)
         return {
             "id": self.id,
-            "full_name": self.full_name,
-            "user_id": self.user_id
-            # "schools": list(map(lambda x: x.serialize(), self.schools))
+            "user_id":self.user_id,
+            "type_of_teacher": self.type_of_teacher,
+            "linkedin": self.linkedin,
+            "is_student": user.is_student,
+            "email": user.email,
+            "full_name": user.full_name,
+            "is_active": user.is_active,
+            "promo": user.promo
         }
-    
-    def create(self):
+
+    def add(self):
         db.session.add(self)
         db.session.commit()
-    
-    def db_delete(self):
-        db.session.delete(self)
+
+    @classmethod
+    def get_by_user_id(cls, user):
+        user_company = cls.query.filter_by(user_id=user).first()
+        return user_company
+
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first_or_404()
+        return user
+
+    @classmethod    
+    def update_teacher_user(cls, user_data, id):
+        user= cls.query.filter_by(user_id = id).first()
+        user.company_teacher= user_data["teacher_id"]
+        db.session.commit()  
+        return user 
+
+class User_student(db.Model):
+    __tablename__ = 'user_student'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    # school = db.relationship('User_student_school', back_populates="user_student")
+            
+    def __repr__(self):
+        return '<User_teacher %r>' % self.id
+
+    def serialize(self):
+        user = User.get_by_id(self.user_id)
+        return {
+            "id": self.id,
+            "user_id":self.id,
+            "is_student": user.is_student,
+            "email": user.email,
+            "full_name": user.full_name,
+            "is_active": user.is_active,
+            "promo": user.promo
+        }
+
+    def add(self):
+        db.session.add(self)
         db.session.commit()
 
+    @classmethod
+    def get_by_user_id(cls, user):
+        user_company = cls.query.filter_by(user_id=user).first()
+        return user_company
 
-class School(db.Model,BaseModel):
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first_or_404()
+        return user
+
+    @classmethod    
+    def update_teacher_student(cls, user_data, id):
+        user= cls.query.filter_by(user_id = id).first()
+        user.company_teacher= user_data["student_id"]
+        db.session.commit()  
+        return user
+
+class School(db.Model):
     __tablename__ = 'school'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     img = db.Column(db.String(250), unique=False, nullable=False)
-    # students = db.Column(db.Integer, db.ForeignKey('student.id'))
-    # teachers = db.Column(db.Integer, db.ForeignKey('teacher.id'))
 
 
     def __repr__(self):
@@ -130,9 +173,80 @@ class School(db.Model,BaseModel):
         return {
             "id": self.id,
             "name": self.name
-            # "students": list(map(lambda x: x.serialize(), self.students)),
-            # "teachers": list(map(lambda x: x.serialize(), self.teachers))
         }
+
+class User_school(db.Model):
+    __tablename__ = 'user_school'
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
+    school = db.relationship('School', cascade="all, delete", lazy=True)
+    user = db.relationship("User", cascade="all, delete", lazy=True)
+
+
+
+# class User_teacher_school(db.Model):
+#     __tablename__ = 'user_teacher_school'
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_teacher_id = db.Column(db.Integer, db.ForeignKey('User_teacher.id'))
+#     user_teacher = db.relationship("User_student", back_populates="school_teacher")
+
+
+
+# class Teacher(db.Model,BaseModel):
+#     __tablename__ = 'teacher'
+#     id = db.Column(db.Integer, primary_key=True)
+#     full_name = db.Column(db.String(120), unique=False, nullable=False)
+#     email =db.Column(db.String(120), nullable=False)
+#     password =db.Column(db.String(50), nullable=False)
+#     linkedin = db.Column(db.String(120), unique=False, nullable=True)
+#     type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
+#     is_logged=db.Column(db.Boolean, default=False, nullable=False)
+#     promo=db.Column(db.Boolean, default=False, nullable=False)
+#     schools = db.relationship('School', backref='teacher', lazy=True)
+
+
+#     def __repr__(self):
+#         return '<Teacher %r>' % self.full_name
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "full_name": self.full_name,
+#             "email": self.email,
+#             "linkedin": self.linkedin,
+#             "type_of_teacher": self.type_of_teacher,
+#             "promo": self.promo,
+#             "schools": list(map(lambda x: x.serialize(), self.schools))
+#         }
+    
+#     def create(self):
+#         db.session.add(self)
+#         db.session.commit()
+    
+#     def db_delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
+
+
+# class School(db.Model,BaseModel):
+#     __tablename__ = 'school'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(120), unique=False, nullable=False)
+#     img = db.Column(db.String(250), unique=False, nullable=False)
+#     students = db.Column(db.Integer, db.ForeignKey('student.id'))
+#     teachers = db.Column(db.Integer, db.ForeignKey('teacher.id'))
+
+
+#     def __repr__(self):
+#         return '<Teacher %r>' % self.full_name
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "name": self.name,
+#             "students": list(map(lambda x: x.serialize(), self.students)),
+#             "teachers": list(map(lambda x: x.serialize(), self.teachers))
+#         }
 
 # class School_Student(db.Model,BaseModel):
 #     __tablename__ = 'school'
