@@ -86,7 +86,13 @@ def get_one_student(id):
     student = Student.get_one_by_id(id)
     return jsonify(student.serialize()),200 
 
-
+@api.route("/student/<int:id>", methods=['DELETE'])
+def delte_one_student(id):
+    json = request.get_json()
+    student = Student.get_one_by_id(id)
+    db.session.delete(student)
+    db.session.commit()
+    return jsonify(student.serialize(), "msg: Student  deleted"), 201
 # @api.route('/users', methods = ['POST'])
 # def create_user():
 #     full_name = request.json.get('full_name', None)

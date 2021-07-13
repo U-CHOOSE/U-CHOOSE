@@ -79,6 +79,7 @@ class Student(db.Model,BaseModel):
             self.eye_color = json["img"]
         
         
+        
 
 class Teacher(db.Model,BaseModel):
     __tablename__ = 'teacher'
