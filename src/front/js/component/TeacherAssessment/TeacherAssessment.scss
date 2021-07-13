@@ -1,11 +1,13 @@
 .contain {
     width: 343px;
     height: 308px;
-    border: 1px solid black;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
 }
 .color1 {
     width: 14px;
-    height: 17px;
+    height: 15px;
     background: #A194FF;
     margin-top: 16px;
     margin-left: 40px;
@@ -13,9 +15,9 @@
 }
 .color2 {
     width: 14px;
-    height: 17px;
+    height: 15px;
     background: #A194FF;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 40px;
     border-radius: 3px;
     background: #98FEF6;
@@ -28,44 +30,147 @@
     line-height: 22px;
     letter-spacing: 0.25px;
     color: #4E4B66;
-    margin-top: 16px;
+    margin-top: 14px;
     margin-left: 6px;
 }
 .others {
-    margin-top: 10px;
+    margin-top: 3px;
 }
 .key {
     text-align: right;
     width: 99px;
     height: 44px; 
     margin-left: 22px;
-    margin-top: 28px;
+    margin-top: 26px;
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
-    line-height: 22px;
+    line-height: 20px;
     letter-spacing: 0.25px;
     color: #4E4B66;
 }
 .value1 {
-    width: 60%;
-    height: 17px;
+    width: 20%;
+    height: 15px;
     background: #A194FF;
     border-radius: 3px;
     display: block;
 }
 .value2 {
-    width: 20%;
-    height: 17px;
+    width: 100%;
+    height: 15px;
     background-color: #98FEF6;
     border-radius: 3px;
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 .contain-values{
     margin-top: 30px;
     margin-left: 18px;
-    width: 150px;
-    border: 1px solid blue;
+    width: 170px;
+}
+.contain2 {
+    margin-bottom: -23px;
+}
+.contain4 {
+   margin-top: -23px;
+   margin-bottom: -23px;
+}
+.contain-hr {
+    margin-top: -10px;
+}
+hr {
+    width: 220px;
+    height: 16px;
+    margin-right: 30px;
+    border: 1px solid #ECF0F4;
+    display: block;
+}
+.contain-span span {
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    color: #4E4B66;
+}
+.contain-span {
+    width: 140px;
+    display: flex;
+    justify-content: space-between;
+    float: right;
+    margin-top: -15px;
+    margin-right: 32px;
+}
+.estadistic1Purple {
+    width: 20%;
+    height: 15px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic1Blue {
+    width: 20%;
+    height: 15px;
+    background: #98FEF6;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic2Purple {
+    width: 40%;
+    height: 15px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic2Blue {
+    width: 40%;
+    height: 15px;
+    background: #98FEF6;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic3Purple {
+    width: 60%;
+    height: 15px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic3Blue {
+    width: 60%;
+    height: 15px;
+    background: #98FEF6;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic4Purple {
+    width: 80%;
+    height: 15px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic4Blue {
+    width: 80%;
+    height: 15px;
+    background: #98FEF6;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic5Purple {
+    width: 100%;
+    height: 15px;
+    background: #A194FF;
+    border-radius: 3px;
+    display: block;
+}
+.estadistic5Blue {
+    width: 100%;
+    height: 15px;
+    background: #98FEF6;
+    border-radius: 3px;
+    display: block;
 }

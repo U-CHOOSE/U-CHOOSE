@@ -38,7 +38,7 @@ const TeacherProfile = () => {
 				</div>
 			</div>
 			{/* contain 2 */}
-			<div className="contain2">
+			<div className="contain2 mb-5">
 				<h2 className="title2 ml-3" />
 				<TeacherAssessment />
 			</div>
