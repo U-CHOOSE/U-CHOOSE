@@ -13,6 +13,7 @@ const LandingPage = () => {
 		const resizeW = () => setWidth(window.innerWidth);
 
 		window.addEventListener("resize", resizeW); // Update the width on resize
+		console.log(width);
 
 		return () => window.removeEventListener("resize", resizeW);
 	});
