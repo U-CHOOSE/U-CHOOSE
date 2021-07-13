@@ -26,7 +26,7 @@ const TeacherAssessment = props => {
 				<div className="key">Dinamismo en sus clases</div>
 				<div className="contain-values">
 					<span className={dinamismoTeacher} />
-					<span className={dinamismoOthers} />
+					<span className="value2" />
 				</div>
 			</div>
 
