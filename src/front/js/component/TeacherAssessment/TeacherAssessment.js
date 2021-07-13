@@ -12,7 +12,7 @@ const TeacherAssessment = props => {
 	const [involvementOthers, setInvolvementOthers] = useState("");
 
 	// const p = document.getElementById("parrafo");
-	// p.style.backgroundColor = "#FF00FF"; no va
+	// p.style.backgroundColor = "#FF00FF";
 	// p.classList.add("prueba");
 	return (
 		<div className="contain">
@@ -70,6 +70,9 @@ const TeacherAssessment = props => {
 			</div>
 
 			<div>{props.name}</div>
+			<p id="parrafo" style={{ involvementOthers }}>
+				aaaaaaaaaaaaa
+			</p>
 		</div>
 	);
 };

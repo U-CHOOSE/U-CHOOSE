@@ -4,6 +4,7 @@ import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
 import img1 from "../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 import "../../styles/teacherprofile.scss";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
+import Faces from "../component/Faces/Faces";
 
 const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
@@ -41,6 +42,9 @@ const TeacherProfile = () => {
 			<div className="contain2 mb-5">
 				<h2 className="title2 ml-3" />
 				<TeacherAssessment />
+			</div>
+			<div className="mt-5 mb-5">
+				<Faces />
 			</div>
 		</div>
 	);
