@@ -33,10 +33,10 @@ class Student(db.Model,BaseModel):
     full_name = db.Column(db.String(120), unique=False, nullable=False)
     email =db.Column(db.String(120), nullable=False)
     password =db.Column(db.String(50), nullable=False)
-    img =  db.Column(db.String(250), nullable=False)
+    img =  db.Column(db.String(250), nullable=True)
     is_logged=db.Column(db.Boolean, default=False, nullable=False)
     promo=db.Column(db.Boolean, default=False, nullable=False)
-    schools = db.relationship('School', backref='student', lazy=True)
+    # schools = db.relationship('School', backref='student', lazy=True)
 
 
     def __repr__(self):
@@ -47,7 +47,9 @@ class Student(db.Model,BaseModel):
             "id": self.id,
             "full_name": self.full_name,
             "email": self.email,
-            "schools": list(map(lambda x: x.serialize(), self.schools))
+            "is_logged": self.is_logged,
+            "promo" : self.promo
+            # "schools": list(map(lambda x: x.serialize(), self.schools))
             
         }
 
@@ -59,6 +61,25 @@ class Student(db.Model,BaseModel):
         db.session.delete(self)
         db.session.commit()
 
+    def set_with_json(self,json):
+        self.full_name = json["full_name"]
+        self.email = json["email"]
+        self.is_logged = json["is_logged"]
+        self.promo = json["promo"]
+        self.password = json ["password"]
+        self.img = json ["img"]
+        # self.schools = json["schools"]
+
+    def put_with_json(self,json):
+        if json["full_name"]:
+            self.name = json["full_name"]
+        if json["password"]:
+            self.eye_color = json["password"]
+        if json["img"]:
+            self.eye_color = json["img"]
+        
+        
+
 class Teacher(db.Model,BaseModel):
     __tablename__ = 'teacher'
     id = db.Column(db.Integer, primary_key=True)
@@ -69,9 +90,7 @@ class Teacher(db.Model,BaseModel):
     type_of_teacher = db.Column(db.String(120), unique=False, nullable=False)
     is_logged=db.Column(db.Boolean, default=False, nullable=False)
     promo=db.Column(db.Boolean, default=False, nullable=False)
-    schools = db.relationship('School', backref='teacher', lazy=True)
-
-    
+    # schools = db.relationship('School', backref='teacher', lazy=True)
 
 
     def __repr__(self):
@@ -81,13 +100,14 @@ class Teacher(db.Model,BaseModel):
         return {
             "id": self.id,
             "full_name": self.full_name,
-            "user_id": self.user_id,
-            "schools": list(map(lambda x: x.serialize(), self.schools))
+            "user_id": self.user_id
+            # "schools": list(map(lambda x: x.serialize(), self.schools))
         }
     
     def create(self):
         db.session.add(self)
         db.session.commit()
+    
     def db_delete(self):
         db.session.delete(self)
         db.session.commit()
@@ -97,9 +117,21 @@ class School(db.Model,BaseModel):
     __tablename__ = 'school'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    img= db.Column(db.String(250), unique=False, nullable=False)
-    students = db.Column(db.Integer, db.ForeignKey('student.id'))
-    teachers = db.Column(db.Integer, db.ForeignKey('teacher.id'))
+    img = db.Column(db.String(250), unique=False, nullable=False)
+    # students = db.Column(db.Integer, db.ForeignKey('student.id'))
+    # teachers = db.Column(db.Integer, db.ForeignKey('teacher.id'))
+
+
+    def __repr__(self):
+        return '<Teacher %r>' % self.full_name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name
+            # "students": list(map(lambda x: x.serialize(), self.students)),
+            # "teachers": list(map(lambda x: x.serialize(), self.teachers))
+        }
 
 # class School_Student(db.Model,BaseModel):
 #     __tablename__ = 'school'
