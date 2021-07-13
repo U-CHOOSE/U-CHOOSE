@@ -1,6 +1,11 @@
+
+
+
+
 /* 
     General Styles
 */
+
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -109,20 +114,24 @@ input:focus{
     @include button( rgba(255, 255, 255, 1)
     ,326px ,56px ,$violet);
     border-radius:40px;
-    border: none;
     
     
     
 
 }
+
+
+     
+
+
 .button_violet_small{
     @include button( rgba(255, 255, 255, 1)
     ,267px ,56px ,$violet);
-    border: none;
-   
-   
-
+    border: none;     
 }
+
+
+
 .button_marino_great{
     @include button( $black
     ,326px ,56px ,$marino);
@@ -142,12 +151,13 @@ input:focus{
     border: none;
 }
 
+
 .button_white_border_violet_great{   
     @include button( $violet
     ,343px ,56px ,white);
     border: 2px solid $violet;
     box-sizing: border-box;
-    // 326px
+
 }
 
 .button_white_border_violet_small{

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import reviewsImg from "../../../../docs/assets/mockups_reviews.jpg";
-import reviewMetrics from "../../../../docs/assets/review_metrics.png";
-import logo from "../../../../docs/assets/Logo_U-CHOOSE.jpg";
+import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
+import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
+import logo from "../../../../docs/assets/img/Logo_U-CHOOSE .jpg";
 import "../../styles/landingPage.scss";
 
 // import logo from "./Logo.svg";
@@ -14,6 +14,7 @@ const LandingPage = () => {
 
 		window.addEventListener("resize", resizeW); // Update the width on resize
 		console.log(width);
+
 		return () => window.removeEventListener("resize", resizeW);
 	});
 	return (
