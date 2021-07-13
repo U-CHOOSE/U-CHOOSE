@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import "../TeacherAssessment/TeacherAssessment.scss";
 import PropTypes from "prop-types";
 const TeacherAssessment = props => {
-	const [dinamismoTeacher, setDinamismoTeacher] = useState("estadistic1Purple");
-	const [dinamismoOthers, setDinamismoOthers] = useState("estadistic1Blue");
-	const [pasionTeacher, setPasionTeacher] = useState("estadistic2Purple");
-	const [pasionOthers, setPasionOthers] = useState("estadistic2Blue");
-	const [involvementTeacher, setInvolvementTeacher] = useState("estadistic4Purple");
-	const [involvementOthers, setInvolvementOthers] = useState("estadistic4Blue");
+	const [dinamismoTeacher, setDinamismoTeacher] = useState("");
+	const [dinamismoOthers, setDinamismoOthers] = useState("");
+	const [pasionTeacher, setPasionTeacher] = useState("");
+	const [pasionOthers, setPasionOthers] = useState("");
+	const [examplesTeacher, setExamplsTeacher] = useState("");
+	const [examplesOthers, setExamplesOthers] = useState("");
+	const [involvementTeacher, setInvolvementTeacher] = useState("");
+	const [involvementOthers, setInvolvementOthers] = useState("");
 
+	// const p = document.getElementById("parrafo");
+	// p.style.backgroundColor = "#FF00FF"; no va
+	// p.classList.add("prueba");
 	return (
 		<div className="contain">
 			<div className="contain1">
@@ -26,7 +31,7 @@ const TeacherAssessment = props => {
 				<div className="key">Dinamismo en sus clases</div>
 				<div className="contain-values">
 					<span className={dinamismoTeacher} />
-					<span className="value2" />
+					<span className={dinamismoOthers} />
 				</div>
 			</div>
 
@@ -34,7 +39,7 @@ const TeacherAssessment = props => {
 				<div className="key">Pasión por la materia</div>
 				<div className="contain-values">
 					<span className={pasionTeacher}> </span>
-					<span className="value2" />
+					<span className={pasionOthers} />
 				</div>
 			</div>
 
@@ -49,8 +54,8 @@ const TeacherAssessment = props => {
 			<div className="d-flex contain5">
 				<div className="key">Implicación y cercanía</div>
 				<div className="contain-values">
-					<span className="value1"> </span>
-					<span className="value2" />
+					<span className={involvementTeacher}> </span>
+					<span className={involvementOthers} />
 				</div>
 			</div>
 			<div className="contain-hr">
