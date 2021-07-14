@@ -42,6 +42,8 @@ const TeacherProfile = () => {
 			{/* contain 2 */}
 			<div className="contain2 mb-5">
 				<h2 className="title2 ml-3" />
+				{/* T = teacher
+				O = others teachers */}
 				<TeacherAssessment
 					dinamismoT={0.2}
 					dinamismoO={2}
@@ -54,7 +56,7 @@ const TeacherProfile = () => {
 				/>
 			</div>
 			<div className="mt-5 mb-5">
-				<Faces />
+				<Faces face={5.2} />
 			</div>
 		</div>
 	);
