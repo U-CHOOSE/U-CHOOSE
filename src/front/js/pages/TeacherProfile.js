@@ -8,6 +8,7 @@ import Faces from "../component/Faces/Faces";
 
 const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
+	var ola = 3;
 	return (
 		<div>
 			{/* contain 1 */}
@@ -41,7 +42,16 @@ const TeacherProfile = () => {
 			{/* contain 2 */}
 			<div className="contain2 mb-5">
 				<h2 className="title2 ml-3" />
-				<TeacherAssessment />
+				<TeacherAssessment
+					dinamismoT={0}
+					dinamismoO={2}
+					pasionT={3}
+					pasionO={4}
+					exampleT={5}
+					exampleO={6}
+					inolvementT={7}
+					inolvementO={9.5}
+				/>
 			</div>
 			<div className="mt-5 mb-5">
 				<Faces />

@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import "../TeacherAssessment/TeacherAssessment.scss";
 import PropTypes from "prop-types";
+import { propTypes } from "react-bootstrap/esm/Image";
 const TeacherAssessment = props => {
-	const [dinamismoTeacher, setDinamismoTeacher] = useState("");
-	const [dinamismoOthers, setDinamismoOthers] = useState("");
-	const [pasionTeacher, setPasionTeacher] = useState("");
-	const [pasionOthers, setPasionOthers] = useState("");
-	const [examplesTeacher, setExamplsTeacher] = useState("");
-	const [examplesOthers, setExamplesOthers] = useState("");
-	const [involvementTeacher, setInvolvementTeacher] = useState("");
-	const [involvementOthers, setInvolvementOthers] = useState("");
+	const dT = props.dinamismoT * 10;
+	const dO = props.dinamismoO * 10;
+	const pT = props.pasionT * 10;
+	const pO = props.pasionO * 10;
+	const eT = props.exampleT * 10;
+	const eO = props.exampleO * 10;
+	const iT = props.inolvementT * 10;
+	const iO = props.inolvementO * 10;
 
-	// const p = document.getElementById("parrafo");
-	// p.style.backgroundColor = "#FF00FF";
-	// p.classList.add("prueba");
 	return (
 		<div className="contain">
 			<div className="contain1">
@@ -30,32 +28,32 @@ const TeacherAssessment = props => {
 			<div className="d-flex contain2">
 				<div className="key">Dinamismo en sus clases</div>
 				<div className="contain-values">
-					<span className={dinamismoTeacher} />
-					<span className={dinamismoOthers} />
+					<span style={{ width: dT + "%" }} className="value1" />
+					<span style={{ width: dO + "%" }} className="value2" />
 				</div>
 			</div>
 
 			<div className="d-flex contain3">
 				<div className="key">Pasión por la materia</div>
 				<div className="contain-values">
-					<span className={pasionTeacher}> </span>
-					<span className={pasionOthers} />
+					<span style={{ width: pT + "%" }} className="value1" />
+					<span style={{ width: pO + "%" }} className="value2" />
 				</div>
 			</div>
 
 			<div className="d-flex contain4">
 				<div className="key">Ejemplos prácticos</div>
 				<div className="contain-values">
-					<span className="value1"> </span>
-					<span className="value2" />
+					<span style={{ width: eT + "%" }} className="value1" />
+					<span style={{ width: eO + "%" }} className="value2" />
 				</div>
 			</div>
 
 			<div className="d-flex contain5">
 				<div className="key">Implicación y cercanía</div>
 				<div className="contain-values">
-					<span className={involvementTeacher}> </span>
-					<span className={involvementOthers} />
+					<span style={{ width: iT + "%" }} className="value1" />
+					<span style={{ width: iO + "%" }} className="value2" />
 				</div>
 			</div>
 			<div className="contain-hr">
@@ -68,16 +66,18 @@ const TeacherAssessment = props => {
 					<span>5</span>
 				</div>
 			</div>
-
-			<div>{props.name}</div>
-			<p id="parrafo" style={{ involvementOthers }}>
-				aaaaaaaaaaaaa
-			</p>
 		</div>
 	);
 };
 
 TeacherAssessment.propTypes = {
-	name: PropTypes.string
+	dinamismoT: PropTypes.number,
+	dinamismoO: PropTypes.number,
+	pasionT: PropTypes.number,
+	pasionO: PropTypes.number,
+	exampleT: PropTypes.number,
+	exampleO: PropTypes.number,
+	inolvementT: PropTypes.number,
+	inolvementO: PropTypes.number
 };
 export default TeacherAssessment;
