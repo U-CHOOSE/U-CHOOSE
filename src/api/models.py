@@ -34,14 +34,13 @@ class User(db.Model):
         }
 
     @classmethod
-    def add(cls):
+    def add(cls,email,_password,is_student,promo,full_name):
         user = cls(
-            email = "hola "
-            # email=email, 
-            # _password=_password,
-            # is_student=is_student,
-            # promo=promo,
-            # full_name = full_name, 
+            email=email, 
+            _password=_password,
+            is_student=is_student,
+            promo=promo,
+            full_name = full_name, 
             
         )
         db.session.add(user)

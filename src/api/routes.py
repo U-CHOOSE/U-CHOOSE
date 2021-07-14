@@ -29,16 +29,16 @@ def add_user():
     is_student = body.get("is_student", None)
     promo = body.get("promo", None)
 
-    # if not email or not _password or is_student is None:
-    #     return "Missing info", 400
+    if not email or not _password or is_student is None:
+        return "Missing info", 400
 
     password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
     user_id = User.add(
-        # email, 
-        # password_hashed, 
-        # is_student, 
-        # promo,
-        # full_name,
+        email, 
+        password_hashed, 
+        is_student, 
+        promo,
+        full_name,
     )
 
     if is_student:
@@ -56,7 +56,23 @@ def add_user():
     teacher.add()
     return jsonify(teacher.serialize()), 201
 
+@api.route('/user/<int:id>', methods=['GET'])
+# @jwt_required()
+def get_user(id):
+    
+    user = User.get_by_id(id)
+    user_student = User_student.get_by_user_id(user.id)
+    user_teacher = User_teacher.get_by_user_id(user.id)
+    if user.is_active and user.is_student:
 
+        return jsonify(user_student.serialize()), 200
+
+    if user.is_active and user.is_student == False:
+
+        return jsonify(user_teacher.serialize()), 200
+
+
+    return "User didn't exist", 400
 
 
 
