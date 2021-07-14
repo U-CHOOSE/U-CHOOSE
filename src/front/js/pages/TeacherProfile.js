@@ -43,7 +43,7 @@ const TeacherProfile = () => {
 			<div className="contain2 mb-5">
 				<h2 className="title2 ml-3" />
 				<TeacherAssessment
-					dinamismoT={0}
+					dinamismoT={0.2}
 					dinamismoO={2}
 					pasionT={3}
 					pasionO={4}
