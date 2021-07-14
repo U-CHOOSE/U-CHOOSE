@@ -8,11 +8,10 @@ import Faces from "../component/Faces/Faces";
 
 const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
-	var ola = 3;
 	return (
 		<div>
 			{/* contain 1 */}
-			<div className="contain1">
+			<div className="contain1 mt-4">
 				<div className="row">
 					<div className="col-5">
 						<img
@@ -22,18 +21,14 @@ const TeacherProfile = () => {
 						/>
 					</div>
 					<div className="col-7">
-						<div className="d-flex">
-							<img className="imagen" src={img1} />
-							<img className="imagen" src={img1} />
-							<img className="imagen" src={img1} />
-							<img className="imagen" src={img1} />
-							<img className="imagen" src={img1} />
+						<div className="d-flex mt-3 ml-3">
+							<Faces face={10} />
 						</div>
-						<span>{count} reviews</span>
-						<button className="button1">Editar perfil</button>
+						<span className="span-reviews">{count} reviews</span>
+						<button className="button1 mt-2">Editar perfil</button>
 					</div>
 				</div>
-				<h1 className="name ml-3">Lucía Gómez</h1>
+				<h1 className=" name1 ml-3 mt-4">Lucía Gómez</h1>
 				<div className="d-flex ml-3 contain-logo">
 					<h5 className="mr-3">logo</h5>
 					<span>Financial Advisor @ AXA</span>
@@ -41,22 +36,26 @@ const TeacherProfile = () => {
 			</div>
 			{/* contain 2 */}
 			<div className="contain2 mb-5">
-				<h2 className="title2 ml-3" />
-				{/* T = teacher
-				O = others teachers */}
-				<TeacherAssessment
-					dinamismoT={0.2}
-					dinamismoO={2}
-					pasionT={3}
-					pasionO={4}
-					exampleT={5}
-					exampleO={6}
-					inolvementT={7}
-					inolvementO={9.5}
-				/>
+				<h2 className="title2 ml-3">Valoración</h2>
+				<div className="mx-3 mt-3">
+					{/* T = teacher
+					O = others teachers */}
+					<TeacherAssessment
+						dinamismoT={0.2}
+						dinamismoO={2}
+						pasionT={3}
+						pasionO={4}
+						exampleT={5}
+						exampleO={6}
+						inolvementT={7}
+						inolvementO={9.5}
+					/>
+				</div>
 			</div>
-			<div className="mt-5 mb-5">
-				<Faces face={5.2} />
+			<div className="">
+				<h2 className="title2 mb-5">Reviews destacadas</h2>
+				{/* reviews */}
+				<button className="button2">Ver todas las reviews</button>
 			</div>
 		</div>
 	);

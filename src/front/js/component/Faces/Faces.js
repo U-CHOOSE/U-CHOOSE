@@ -20,7 +20,7 @@ import img5full from "../../../../../docs/assets/img/Status=Full, Ranking=5.jpg"
 
 const Faces = props => {
 	let faces = Math.ceil(props.face);
-	switch (0) {
+	switch (faces) {
 		case 0:
 			return (
 				<div className="cont" d-flex>
@@ -112,25 +112,25 @@ const Faces = props => {
 				</div>
 			);
 		case 9:
-			return (className = "cont"(
-				<div d-flex>
+			return (
+				<div className="cont" d-flex>
 					<img className="img" src={img1full} />
 					<img className="img" src={img2full} />
 					<img className="img" src={img3full} />
 					<img className="img" src={img4full} />
 					<img className="img" src={img5half} />
 				</div>
-			));
+			);
 		case 10:
-			return (className = "cont"(
-				<div d-flex>
+			return (
+				<div className="cont" d-flex>
 					<img className="img" src={img1full} />
 					<img className="img" src={img2full} />
 					<img className="img" src={img3full} />
 					<img className="img" src={img4full} />
 					<img className="img" src={img5full} />
 				</div>
-			));
+			);
 		default:
 			return (
 				<div className="cont" d-flex>
