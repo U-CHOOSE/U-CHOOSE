@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User,User_teacher,User_student,School
+from api.models import db,User,User_teacher,User_student,School,User_school
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -54,7 +54,15 @@ def add_user():
         user_id = user_id
     )
     teacher.add()
-    return jsonify(teacher.serialize()), 201
+
+    school = School(
+        name = body.get("name"),
+        user_id = user_id,
+        img = ("img")
+    )
+
+    school.add()
+    return jsonify(teacher.serialize(),school.serialize()), 201
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()

@@ -191,6 +191,11 @@ class School(db.Model):
     def db_post(self):        
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def get_id_from_name(cls, school_name):
+        school = cls.query.filter_by(name=school_name).first()
+        return school.id
         
 class User_school(db.Model):
     __tablename__ = 'user_school'
@@ -215,7 +220,3 @@ class User_school(db.Model):
 
         }
 
-    @classmethod
-    def get_by_user_id(cls, user):
-        user_company = cls.query.filter_by(user_id=user).first()
-        return user_company
