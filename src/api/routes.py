@@ -75,10 +75,46 @@ def get_user(id):
     return "User didn't exist", 400
 
 
+@api.route('/user/<int:id>', methods=['DELETE']) 
+#@jwt_required()
+def delete_one_user(id):
+    user_target = User.query.get(id)
+    user_target = User.delete(id)
+    return jsonify(user_target.serialize(),"Your profile has been deleted"), 202
+
+@api.route('/users', methods=['GET'])
+# @jwt_required()
+def get_all_users():
+    users = User.get_all()
+    users_dic = []
+
+    for user in users :
+        if user.is_active:
+            if user.is_student :
+                user_student = User_student.get_by_user_id(user.id)
+                if user_student:
+                    users_dic.append(user_student.serialize()) 
+
+            else:
+                user_teacher = User_teacher.get_by_user_id(user.id)
+                if user_teacher: 
+                    users_dic.append(user_teacher.serialize())
+
+    return jsonify(users_dic),200
 
 
-
-
+@api.route('/user/<int:id>', methods=['PUT'])
+# @jwt_required()
+def update_users(id):
+    body = request.get_json()
+    user = User.update_single_user(body, id)
+    if user.is_active and user.is_student:
+        user_true = User_student.update_psychologist_user(body, id)
+        return jsonify(user_true.serialize)  
+    if user.is_active and user.is_psychologist == False:
+        user_comp = User_company.update_company_user(body, id)
+        print(user_comp)
+        return jsonify(user_comp.to_dict())
 
 
 

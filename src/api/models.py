@@ -51,7 +51,9 @@ class User(db.Model):
     def get_by_id(cls, id):
         user = cls.query.filter_by(id = id).first()
         return user
-    
+    @classmethod
+    def get_all(cls):
+        cls.query.all()
 
     @classmethod
     def update_single_user(cls, user_data, id):
@@ -181,6 +183,21 @@ class User_school(db.Model):
     school = db.relationship('School', cascade="all, delete", lazy=True)
     user = db.relationship("User", cascade="all, delete", lazy=True)
 
+
+    def __repr__(self):
+        return '<User_school %r>' % self.school_id
+
+    def serialize(self):
+        user = User.get_by_id(self.user_id)
+        school = School.get_by_id(self.school_id)
+        return {
+            "id": self.id,
+            "school_id": self.school_id,
+            "user_id": self.user_id,
+            "full_name": user.full_name,
+            "name":school.name
+
+        }
 
 
 # class User_teacher_school(db.Model):
