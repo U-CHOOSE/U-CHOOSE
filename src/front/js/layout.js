@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
 
+import Login from "./pages/Login";
+
 import RegisterFormPage from "./pages/RegisterFormPage";
 
 import Sass from "./pages/Sass";
@@ -33,7 +35,9 @@ const Layout = () => {
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
-
+						<Route exact path="/login">
+							<Login />
+						</Route>
 						<Route exact path="/registerformpage">
 							<RegisterFormPage />
 						</Route>
