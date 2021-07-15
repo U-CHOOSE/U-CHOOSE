@@ -36,7 +36,8 @@
     line-height: 22px;
     letter-spacing: 0.25px;
     color: #6E7191;
-    margin-left: 16px;
+    display: block;
+    margin: auto;
 }
 .btn-login {
     background: #6DEDE3;
@@ -56,6 +57,7 @@
     margin-top: 56px;
     text-decoration: none;
     color: black;
+    border: none;
 }
 .links { 
     color: black;

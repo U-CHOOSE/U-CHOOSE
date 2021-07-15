@@ -31,10 +31,6 @@ const Login = () => {
 		[store.error]
 	);
 
-	const isCorrect = () => {
-		if (store.mal == true) return alert("Password incorrecto");
-	};
-
 	return (
 		<div>
 			{/* <navbar/> */}
@@ -69,11 +65,10 @@ const Login = () => {
 
 				<button
 					type="submit"
-					className="btn btn-primary btn-login"
+					className=" btn-login"
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
-						isCorrect();
 					}}>
 					Iniciar sesión
 				</button>

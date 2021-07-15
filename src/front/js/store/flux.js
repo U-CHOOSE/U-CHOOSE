@@ -16,12 +16,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({ email: mail, password: pass }),
 					headers: { "Content-Type": "application/json" }
 				})
-					// .then(response => {
-					// 	if (!response.ok) throw Error(response.status);
-
-					// 	return response;
-					// })
-
 					.then(response => response.json())
 
 					.then(responseJson => {
@@ -36,17 +30,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.catch(error => {
-						// console.error("Error:", error), setStore({ error: error.error });
 						console.error("Error:", error);
 					});
 			},
 
 			setError: error => {
 				setStore({ error: error });
-=======
-			step: 0
-		},
-		actions: {
+			},
+
 			setUpStep: () => {
 				const store = getStore();
 				setStore({ step: store.step + 1 });
