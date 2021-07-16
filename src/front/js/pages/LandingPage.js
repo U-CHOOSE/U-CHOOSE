@@ -65,7 +65,7 @@ const LandingPage = () => {
 						Hacer una review
 					</button>
 
-					<h3 className="black_h2 subtitle3 mt-4 mb-3 ">Los presentamos de forma fácil y visual</h3>
+					<h3 className="black_h2 subtitle3-desktop mt-4 mb-3 ">Los presentamos de forma fácil y visual</h3>
 					<img className="img3 mt-5" src={reviewMetrics} />
 				</div>
 

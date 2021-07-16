@@ -83,6 +83,10 @@ p {
 .img2-responsive {
     display: none;
 }
+
+
+
+//Desktop
 @media (min-width: 1000px) {
     .logo {
       width: 20%;
@@ -114,6 +118,53 @@ p {
     }
     .img2 {
         display: none;
+    }
+    .paragraph {
+        width: 379px;
+        height: 204px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 34px;
+        letter-spacing: 0.75px;
+        color: #000000;
+    }
+    .subtitle2 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 36px;
+        text-align: center;
+        letter-spacing: 1px;
+        color: #0C0B1A;
+    }
+    .subtitle3 {
+        width: 379px;
+        height: 38px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 38px;
+        letter-spacing: 0.75px;
+        color: #000000;
+        margin: none;
+    }
+    .btn-review {
+        display: none;
+    }
+    .subtitle3-desktop {
+        width: 379px;
+        height: 64px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 1px;
+        color: #0C0B1A;
     }
     // .btn-school , .btn-teacher  {
     // font-family: Poppins;
