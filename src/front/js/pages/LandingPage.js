@@ -49,24 +49,24 @@ const LandingPage = () => {
 					<h2 className="black_h2 subtitle2 mt-5">¿Cómo funciona?</h2>{" "}
 					<h3 className="black_h2 subtitle3 mt-4">Recogemos datos reales</h3>
 					<img className="img2 mt-2" src={reviewsImg} />
-					<p className="paragraph">
+					<p className="paragraph mb-5">
 						Alumnos y ex alumnos envían <span className="font-weight-bold">reviews verificadas</span> de
 						profesores y en base a los criterios que determinan tu experiencia: la{" "}
 						<span className="font-weight-bold">pasión, ejemplos prácticos, dinamismo</span> e{" "}
-						<span className="font-weight-bold">implicación.</span>
+						<span className="font-weight-bold ">implicación.</span>
 					</p>
 				</div>
 
-				<div className="col-sm-12 col-lg-4">
-					<button type="button" className="button_marino_great btn-review">
+				<div className="col-sm-12 col-lg-4 mt-3">
+					<button type="button" className="button_marino_great btn-review mt-5">
 						Hacer una review
 					</button>
 
-					<h3 className="black_h2 subtitle3 ">Los presentamos de forma fácil y visual</h3>
-					<img className="img3" src={reviewMetrics} />
+					<h3 className="black_h2 subtitle3 mt-4 mb-3 ">Los presentamos de forma fácil y visual</h3>
+					<img className="img3 mt-5" src={reviewMetrics} />
 				</div>
 
-				<div className="col-sm-12 col-lg-4">
+				<div className="col-sm-12 col-lg-4 mt-3">
 					<p className="paragraph2">
 						Validamos y tratamos <span className="font-weight-bold">los datos,</span> para que puedas
 						comparar y evaluar cada centro de un vistazo.
