@@ -34,28 +34,26 @@ const LandingPage = () => {
 						U-Choose te lo hace más fácil gracias a las reviews sobre los profesores.
 					</p>
 					<div className="contain-buttons d-flex flex-column">
-						<button type="button" className="button_violet_great btn-school">
+						<button type="button" className="button_violet_great btn-school mt-3">
 							Buscar un centro
 						</button>
-						<button type="button" className="button_white_border_violet_great btn-teacher ">
+						<button type="button" className="button_white_border_violet_great btn-teacher mt-2 ">
 							Buscar un profesor
 						</button>
 					</div>
-				</div>
-				<div className="col-sm-12 col-lg-6">
-					<img className="img2" src={reviewsImg} />
 				</div>
 			</div>
 
 			<div className="row">
 				<div className="col-sm-12 col-lg-4">
-					<h2 className="black_h2 subtitle2 ">¿Cómo funciona?</h2>{" "}
-					<h3 className="black_h2 subtitle3">Recogemos datos reales</h3>
+					<h2 className="black_h2 subtitle2 mt-5">¿Cómo funciona?</h2>{" "}
+					<h3 className="black_h2 subtitle3 mt-4">Recogemos datos reales</h3>
+					<img className="img2 mt-2" src={reviewsImg} />
 					<p className="paragraph">
 						Alumnos y ex alumnos envían <span className="font-weight-bold">reviews verificadas</span> de
-						profesores y en base a los criterios que determinan tu experiencia: el{" "}
+						profesores y en base a los criterios que determinan tu experiencia: la{" "}
 						<span className="font-weight-bold">pasión, ejemplos prácticos, dinamismo</span> e{" "}
-						<span className="font-weight-bold">implicaicón.</span>
+						<span className="font-weight-bold">implicación.</span>
 					</p>
 				</div>
 
