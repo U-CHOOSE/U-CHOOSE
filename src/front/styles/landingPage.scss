@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;600&display=swap');
+
+
 .img1 {
     max-width: 100%;
     width: 90%;
@@ -21,6 +23,10 @@ p {
     letter-spacing: 0.75px;
     color:#0C0B1A;
     margin: auto;
+}
+.contain-buttons {
+    display: flex;
+    flex-direction: column;
 }
 .btn-school {
     margin: auto;
@@ -48,6 +54,7 @@ p {
 }
 .img2 {
     max-width: 100%;
+    display: block;
     margin: auto;
     
 }
@@ -71,7 +78,60 @@ p {
     width: 80%;
     display: block;
     margin: auto;
-}
 
+}
+.img2-responsive {
+    display: none;
+}
+@media (min-width: 1000px) {
+    .logo {
+      width: 20%;
+      display: none;
+    }
+    .title {
+    width: 514px;
+    height: 150px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 50px;
+    letter-spacing: 1px;
+    }
+    .paragraph1 {
+    width: 514px;
+    height: 96px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.75px;
+    color: #000000;
+    }
+    .img2-responsive {
+        display: block;
+    }
+    .img2 {
+        display: none;
+    }
+    // .btn-school , .btn-teacher  {
+    // font-family: Poppins;
+    // font-style: normal;
+    // font-weight: 600;
+    // font-size: 16px;
+    // line-height: 28px;
+    // text-align: center;
+    // letter-spacing: 0.75px;
+    // width: 219px;
+    // height: 56px;
+    // margin: none;
+    // display: flex;
+    
+    // }
+    // .contain-buttons {
+    //     justify-content: space-between;
+    // } 
+}
 
 

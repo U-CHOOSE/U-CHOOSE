@@ -21,19 +21,19 @@ const LandingPage = () => {
 	return (
 		<div>
 			<div className="row">
-				<div className="col-sm-12 mt-5">
-					<img className="logo" src={logo} />
+				<div className="col-sm-12 mt-5 ">
+					<img className="logo " src={logo} />
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-sm-12 col-lg-6 mt-4">
+				<div className="col-sm-12 col-lg-6 mt-4 ">
 					<h1 className="black_h1 title">Te ayudamos a elegir dónde estudiar </h1>
-					<p className="mt-3">
+					<p className="mt-3 paragraph1">
 						Acertar con tus estudios es difícil.
 						<br />
 						U-Choose te lo hace más fácil gracias a las reviews sobre los profesores.
 					</p>
-					<div className="contain-buttons d-flex flex-column">
+					<div className="contain-buttons d-flex">
 						<button type="button" className="button_violet_great btn-school mt-3">
 							Buscar un centro
 						</button>
@@ -41,6 +41,9 @@ const LandingPage = () => {
 							Buscar un profesor
 						</button>
 					</div>
+				</div>
+				<div className="col-sm-12 col-lg-4">
+					<img className="img2-responsive mt-2" src={reviewsImg} />
 				</div>
 			</div>
 
