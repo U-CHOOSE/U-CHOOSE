@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;600&display=swap');
+
+
 .img1 {
     max-width: 100%;
     width: 90%;
     display: block;
     margin: auto;
-    margin-bottom: 62px;
-    margin-top: 28px;
 }
 .title {
+    display: block;
     margin: auto;
     font-weight: 700;
-    margin-bottom: 16px;
 } 
 p {
     width: 327px;
@@ -24,55 +24,220 @@ p {
     color:#0C0B1A;
     margin: auto;
 }
+.contain-buttons {
+    display: flex;
+    flex-direction: column;
+}
 .btn-school {
     margin: auto;
-    margin-top: 40px;
-    margin-bottom: 13px;
     border: none;
 }
 .btn-teacher {
     margin: auto;
     width: 326px;
-    margin-bottom: 64px;
 }
 .subtitle2 {
-    margin-left: 24px;
     font-weight: 700;
     font-family: Poppins;
     font-style: normal;
     font-size: 32px;
     line-height: 36px;
     letter-spacing: 1px;
+    margin: auto;
 }
 .subtitle3 {
     margin:auto;
+    display: block;
     width: 327px;
     font-weight: 700;
-    margin-top: 32px;
-    
 }
 .img2 {
     max-width: 100%;
-    margin-top: 24px;
-    margin-bottom: -25px;
+    display: block;
+    margin: auto;
 }
 .btn-review {
     display: block;
     margin: auto;
 }
 .paragraph {
-    margin-bottom: 100px;
+    margin: auto;
 }
 .img3 {
     display: block;
     width: 90%;
     margin: auto;
-    margin-top: 50px; 
-    margin-bottom: 10px; 
 }
 .paragraph2 {
-    margin-bottom: 122px;
+    margin: auto;
+}
+.logo {
+    max-width: 100%;
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+.img2-responsive {
+    display: none;
+}
+.paragraph2-desktop {
+    display: none;
+}
+.img3-responsive {
+    display: none;
+}
+.subtitle3-desktop {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    color: #0C0B1A;
 }
 
+
+//Desktop
+@media (min-width: 1000px) {
+    .logo {
+        width: 20%;
+        display: none;
+        }
+    .title {
+        width: 514px;
+        height: 150px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 50px;
+        letter-spacing: 1px;
+    }
+    .paragraph1 {
+        width: 514px;
+        height: 96px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.75px;
+        color: #000000;
+    }
+    .img2-responsive {
+        display: block;
+        width: 450px;
+    }
+    .img2 {
+        display: none;
+    }
+    .paragraph {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 34px;
+        letter-spacing: 0.75px;
+        color: #000000;
+        margin: auto;
+        margin-top: 32px;
+        margin-left: 150px;
+        padding-bottom: 350px;
+    }
+    .subtitle2 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 36px;
+        text-align: center;
+        letter-spacing: 1px;
+        color: #0C0B1A;
+        margin-top: 200px ;
+        margin-left: 150px;
+    }
+    .subtitle3 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 38px;
+        letter-spacing: 0.75px;
+        color: #000000;
+        display: block;
+        margin: auto;
+        margin-top: 64px;
+        margin-left: 150px;
+    }
+    .btn-review {
+        display: none;
+    }
+    .subtitle3-desktop {
+        width: 379px;
+        height: 64px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 1px;
+        color: #0C0B1A;
+        display:block;
+        margin: auto;
+    }
+    .img3-desktop {
+        display: none;
+    }
+    .paragraph2-desktop {
+        width: 379px;
+        height: 102px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 34px;
+        letter-spacing: 0.75px;
+        color: #000000;
+        display: block;
+    }
+    .paragraph2 {
+        display: none;
+    }
+    .img3-responsive {
+        display: block;
+        width: 350px;
+        margin-top: 225px;
+    }
+    .btn-school , .btn-teacher  {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+        letter-spacing: 0.75px;
+        width: 219px;
+        height: 56px;
+        margin: none;
+    
+    }
+    .contain-buttons {
+        width: 450px;
+        display: flex;
+        flex-direction: row;
+        margin-left: 50px;
+    }
+    .col1-desktop {
+        margin-left:100px !important ;
+    }
+    .subtitle3-desktop {
+        padding-top: 70px;
+        padding-left: 30px;
+    }
+    .paragraph2-desktop {
+        padding-top: 80px;
+        margin-left: 50px;
+    }
+}
 
 
