@@ -13,7 +13,7 @@ import RegisterFormPage from "./pages/RegisterFormPage";
 import Sass from "./pages/Sass";
 
 //components
-import Navbar from "./component/navbar";
+import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -30,7 +30,7 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<NavbarComp />
 					<Switch>
 						<Route exact path="/">
 							<LandingPage />
