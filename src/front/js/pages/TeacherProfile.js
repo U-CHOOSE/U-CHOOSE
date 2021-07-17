@@ -5,6 +5,7 @@ import img1 from "../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 import "../../styles/teacherprofile.scss";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import Faces from "../component/Faces/Faces";
+import TopReview from "../component/TopReview/TopReview";
 
 const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
@@ -55,6 +56,7 @@ const TeacherProfile = () => {
 			<div className="">
 				<h2 className="title2 mb-5">Reviews destacadas</h2>
 				{/* reviews */}
+				<TopReview />
 				<button className="button2">Ver todas las reviews</button>
 			</div>
 		</div>
