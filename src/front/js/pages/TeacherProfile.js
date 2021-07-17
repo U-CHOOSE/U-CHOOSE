@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from "react";
-import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
-import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
-import img1 from "../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 import "../../styles/teacherprofile.scss";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import Faces from "../component/Faces/Faces";
 import TopReview from "../component/TopReview/TopReview";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
 
 const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
+	//Component Faces
+	// <Faces face={number} /> 1-10
+
+	//Component TeacherAssessment
+	//<TeacherAssessment
+	// 	dinamismoT={0.2}
+	// 	dinamismoO={2}
+	// 	pasionT={3}
+	// 	pasionO={4}
+	// 	exampleT={5}
+	// 	exampleO={6}
+	// 	inolvementT={7}
+	// 	inolvementO={9.5}
+	// />
+
+	// Number reviewsTeacher
+	// {count} number
+
+	//Component TopReview
+	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
 		<div>
 			{/* contain 1 */}
@@ -31,7 +50,9 @@ const TeacherProfile = () => {
 				</div>
 				<h1 className=" name1 ml-3 mt-4">Lucía Gómez</h1>
 				<div className="d-flex ml-3 contain-logo">
-					<h5 className="mr-3">logo</h5>
+					<h5 className="mr-3">
+						<FontAwesomeIcon className="icon-bag" icon={faSuitcase} />
+					</h5>
 					<span>Financial Advisor @ AXA</span>
 				</div>
 			</div>
@@ -53,10 +74,15 @@ const TeacherProfile = () => {
 					/>
 				</div>
 			</div>
-			<div className="">
+			<div className="mx-auto">
 				<h2 className="title2 mb-5">Reviews destacadas</h2>
 				{/* reviews */}
-				<TopReview />
+				<div className="contain-reviews d-flex">
+					<TopReview faceTopreview={10} valorationTopreview={54} opinionTopreview="hola que tal" />
+					<TopReview faceTopreview={10} valorationTopreview={0} />
+					<TopReview faceTopreview={10} valorationTopreview={100} opinionTopreview="hola que tal" />
+				</div>
+
 				<button className="button2">Ver todas las reviews</button>
 			</div>
 		</div>
