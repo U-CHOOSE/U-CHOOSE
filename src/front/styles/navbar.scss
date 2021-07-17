@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap.scss";
+*
 
 
 .navbar{
@@ -26,26 +27,82 @@ a{
    
 }
 
-.imgLogo{
-    width: 100%;
-    height:70%;
-    float: left;
-    margin: top 0px;
-    justify-content: space-between;
-    background:rgb(128, 9, 0);
+.btnNav{   
+     background: rgba(109, 237, 227, 1);
+     margin: 30px;
+     padding:5px 15px 5px 15px; 
+     color: black;
+     text-align: center;
+     border: none;
+    // border: none;
 }
+    
+    // width: 100%;
+    // height:70%;
+    // float: left;
+    // margin: top 0px;
+    // justify-content: space-between;
+    // background:rgb(128, 9, 0);
 
+    $media-mobile-sm: "only screen and (max-width : 480px)";
+ .dropdown-menu{
+     width:auto;
+    height:auto;
+ }
+
+
+.NavDropdown.Item{
+    color: blueviolet;
+    text-align: center;
+}
 
 //styles de Modal//
 // .modal-body { 
 //     background: #270ee6;
     
 
-@media (max-width: 480px) {
-    .Button1 {
-      display: none;
+@media (max-width: 768px) {
+    .navbar-toggler-icon,dropdown-menu {
+      display: block;
+      
     }
   }
+
+
+  //Responsive
+// @mixin mobile {
+    
+// }
+//   $media only screen and (max-width : 600px);
+
+  @mixin tablet {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media only screen and (min-width: 1000px) {
+      @content;
+      .navbar-toggler-icon,Container,dropdown-menu {
+        display: block;
+        // .dropdown-menu{
+        //     width: 300px;
+        //     height: 400px;
+        // }
+      }
+    }
+
+  }
+  
+  @mixin large {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+
+
+
 
 
 .navbar-toggler-icon{
@@ -61,8 +118,13 @@ a{
 //     }
 }
     
+.dropdown-toggle::after{
+ 
+    content: "" none;
+}
     
+#dropdown-toggle{
+    display:none;
+    content: "" none;
+}
 
-
-    
-    

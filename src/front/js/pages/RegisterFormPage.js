@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Modal from "../component/Modal/Modal";
+import Modal from "../component/Modal/Modal1";
 import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
@@ -26,7 +26,7 @@ const RegisterFormPage = () => {
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
-								<h2>¿Cómo quires colaborar con u-choose?</h2>
+								<h2>¿Cómo quieres colaborar con u-choose?</h2>
 
 								<label className="container" htmlFor="student">
 									<input
