@@ -50,13 +50,11 @@ p {
     display: block;
     width: 327px;
     font-weight: 700;
-    
 }
 .img2 {
     max-width: 100%;
     display: block;
     margin: auto;
-    
 }
 .btn-review {
     display: block;
@@ -78,7 +76,6 @@ p {
     width: 80%;
     display: block;
     margin: auto;
-
 }
 .img2-responsive {
     display: none;
@@ -89,35 +86,43 @@ p {
 .img3-responsive {
     display: none;
 }
-
+.subtitle3-desktop {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    color: #0C0B1A;
+}
 
 
 //Desktop
 @media (min-width: 1000px) {
     .logo {
-      width: 20%;
-      display: none;
-    }
+        width: 20%;
+        display: none;
+        }
     .title {
-    width: 514px;
-    height: 150px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 50px;
-    letter-spacing: 1px;
+        width: 514px;
+        height: 150px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 50px;
+        letter-spacing: 1px;
     }
     .paragraph1 {
-    width: 514px;
-    height: 96px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 32px;
-    letter-spacing: 0.75px;
-    color: #000000;
+        width: 514px;
+        height: 96px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.75px;
+        color: #000000;
     }
     .img2-responsive {
         display: block;
@@ -204,22 +209,17 @@ p {
         margin-top: 225px;
     }
     .btn-school , .btn-teacher  {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 28px;
-    text-align: center;
-    letter-spacing: 0.75px;
-    width: 219px;
-    height: 56px;
-    margin: none;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+        letter-spacing: 0.75px;
+        width: 219px;
+        height: 56px;
+        margin: none;
     
-    }
-    .btn-school {
-        
-    } .btn-teacher {
-        
     }
     .contain-buttons {
         width: 450px;
@@ -229,12 +229,6 @@ p {
     }
     .col1-desktop {
         margin-left:100px !important ;
-    }
-    .col3desktop {
-       
-    }
-    .col4-desktop {
-        
     }
     .subtitle3-desktop {
         padding-top: 70px;
