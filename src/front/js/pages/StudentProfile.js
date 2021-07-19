@@ -39,22 +39,22 @@ const StudentProfile = () => {
 
 	return (
 		<div>
-			<div className="actions">
+			{/* <div className="actions">
 				<Link className="links" to={"/"}>
 					<FontAwesomeIcon className="icon-x" icon={faTimes} />
 				</Link>
-			</div>
+			</div> */}
 
-			<div className="contain1">
+			<div className="student-contain1">
 				<img
 					className="img-profile"
 					src="https://laverdadnoticias.com/__export/1577809178240/sites/laverdad/img/2019/12/31/1465326837-rt-shakira01.jpg_1017309733.jpg"
 					alt="img"
 				/>
-				<button className="button1">Mis centros</button>
+				<button className="student-button1">Mis centros</button>
 			</div>
 
-			<div className="contain-inputs">
+			<div className="contain-inputs ml-3">
 				<div className="contain-inp input1">
 					<label>Nombre completo</label>
 					<input
@@ -64,7 +64,7 @@ const StudentProfile = () => {
 						onChange={event => setName(event.target.value)}
 					/>
 				</div>
-				<p>Podrás ocultarlo en tus reviews</p>
+				<p className="pstudent">Podrás ocultarlo en tus reviews</p>
 				<div className="contain-inp">
 					<label>Email</label>
 					<input
@@ -102,10 +102,11 @@ const StudentProfile = () => {
 					/>
 				</div>
 			</div>
-
-			<button className="button2" onClick={validatePassword}>
-				Guardar
-			</button>
+			<div className="div-button-save ml-3 mt-5">
+				<button className="student-button2" onClick={validatePassword}>
+					Guardar
+				</button>
+			</div>
 		</div>
 	);
 };
