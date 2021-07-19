@@ -7,9 +7,25 @@ import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
 const EditTeacher = () => {
 	const [name, setName] = useState("david");
 	const [email, setEmail] = useState("");
+	const [work, setWork] = useState("");
+	const [linkedin, setLinkedin] = useState("");
 	const [teacher, setTeacher] = useState("");
 	const [password, setPassword] = useState("");
 	const [passrepeat, setPassrepeat] = useState("");
+
+	const passwordOK = () => {
+		if (password != "" || passrepeat != "") {
+			if (password != passrepeat) {
+				return <p className="passOk">Las contraseñas no coinciden</p>;
+			}
+		} else {
+			return "";
+		}
+	};
+	// useEffect(() => {
+	// 	passwordOK;
+	// }, []);
+
 	return (
 		<div>
 			<div className="row">
@@ -31,7 +47,7 @@ const EditTeacher = () => {
 							/>
 						</div>
 						<p className="editP">Podrás ocultarlo en tus reviews</p>
-						<div className="contain-inp">
+						<div className="contain-inp mt-4">
 							<label>Email</label>
 							<input
 								type="email"
@@ -41,7 +57,25 @@ const EditTeacher = () => {
 							/>
 						</div>
 						<div className="contain-inp">
-							<label>¿De qué eres profesor?</label>
+							<label>Empleo actual</label>
+							<input
+								type="text"
+								className="form-control input-text inp"
+								placeholder={work}
+								onChange={event => setWork(event.target.value)}
+							/>
+						</div>
+						<div className="contain-inp">
+							<label>URL de Linkedin</label>
+							<input
+								type="text"
+								className="form-control input-text inp"
+								placeholder={linkedin}
+								onChange={event => setLinkedin(event.target.value)}
+							/>
+						</div>
+						<div className="contain-inp">
+							<label>¿De que eres profesor?</label>
 							<input
 								type="text"
 								className="form-control input-text inp"
@@ -67,6 +101,10 @@ const EditTeacher = () => {
 								onChange={event => setPassrepeat(event.target.value)}
 							/>
 						</div>
+						{passwordOK()}
+					</div>
+					<div className="div-button-save ml-3 mt-5">
+						<button className="button-save">Guardar</button>
 					</div>
 				</div>
 			</div>
