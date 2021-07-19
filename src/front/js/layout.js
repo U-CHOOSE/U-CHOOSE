@@ -12,6 +12,8 @@ import Sass from "./pages/Sass";
 
 import TeacherProfile from "./pages/TeacherProfile";
 
+import EditTeacher from "./pages/EditTeacher";
+
 //components
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
@@ -44,6 +46,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/teacherprofile">
 							<TeacherProfile />
+						</Route>
+						<Route exact path="/teacherprofile/edit">
+							<EditTeacher />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
