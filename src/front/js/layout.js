@@ -16,6 +16,7 @@ import Sass from "./pages/Sass";
 import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
+import SearchTeacher from "./pages/SearchTeacher";
 
 //Scss
 import "../styles/index.scss";
@@ -40,6 +41,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/registerformpage">
 							<RegisterFormPage />
+						</Route>
+						<Route exact path="/searchteacher">
+							<SearchTeacher />
 						</Route>
 						<Route exact path="/sass">
 							<Sass />

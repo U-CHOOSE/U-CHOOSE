@@ -1,6 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
+import "../../styles/searchteacher.scss";
 
+import Search from "../component/Search/Search";
 
-const searchTeacher = () => {
-    <div>search teacher</div>
-}
+const SearchTeacher = () => {
+	return (
+		<div className="contain">
+			<Search title="Buscar un profesor" placeholder="Search" span1="¿No encuentras tu profesor?" />
+		</div>
+	);
+};
+
+export default SearchTeacher;
