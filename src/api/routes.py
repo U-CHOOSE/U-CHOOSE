@@ -83,8 +83,7 @@ def add_user():
 
     school = School(
         name = body.get("name"),
-        user_id = user_id,
-        img = ("img")
+        img = body.get("img")
     )
 
     school.add()

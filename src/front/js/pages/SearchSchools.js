@@ -10,9 +10,9 @@ const SearchSchools = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		fetch("https://3001-rose-condor-6diw23i6.ws-eu11.gitpod.io/api/schools")
+		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
-			.then(data => console.log(data));
+			.then(data => setData(data));
 	}, []);
 	return (
 		<>
@@ -20,7 +20,8 @@ const SearchSchools = () => {
 				title="Buscar un centro "
 				placeholder="Escribe el nombre"
 				span1="¿No encuentras tu centro?"
-				data={[data]}
+				type="schools"
+				data={data}
 			/>
 		</>
 	);

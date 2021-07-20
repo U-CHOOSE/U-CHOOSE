@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
-import PropTypes from "prop-types";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { Context } from "../../store/appContext";
 
 const TeacherForm = props => {
@@ -12,11 +10,36 @@ const TeacherForm = props => {
 		email: "",
 		linkedin: "",
 		typeOfteachers: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		is_student: false
+		promo: null,
+		is_student: true
 	});
 	const [checked, setChecked] = useState(true);
+
+	const body = {
+		fullname: formData.location,
+		email: formData.email,
+		_password: formData.password,
+		promo: formData.promo,
+		is_student: formData.is_student,
+		type_of_teacher: formData.typeOfteachers
+	};
+
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
+
+		fetch("https://3001-silver-swan-5bf5up29.ws-eu11.gitpod.io/api/user", options)
+			.then(res => res.json())
+			.then(json => setFormData(json), console.log(json))
+			.catch(error => console.log(error));
+	};
 
 	return (
 		<>
@@ -41,8 +64,8 @@ const TeacherForm = props => {
 				<input
 					type="text"
 					placeholder="¿De qué eres profesor?"
-					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					value={formData._password}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
 					type="text"
@@ -53,8 +76,8 @@ const TeacherForm = props => {
 				<input
 					type="password"
 					placeholder="Contraseña"
-					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					value={formData._password}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
 					type="password"
@@ -71,7 +94,7 @@ const TeacherForm = props => {
 					de diferetnes centros
 				</span>
 				{props.footer}
-				<button className="" onClick={() => actions.setUpStep()}>
+				<button className="" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<button className="" onClick={() => actions.setUpStep()}>

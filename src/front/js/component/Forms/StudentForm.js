@@ -7,13 +7,13 @@ const StudentForm = props => {
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		promo: null,
-		is_student: false
+		promo: false,
+		is_student: true
 	});
 	const body = {
-		fullname: formData.location,
+		fullname: formData.fullname,
 		email: formData.email,
 		_password: formData.password,
 		promo: formData.promo,
@@ -31,7 +31,7 @@ const StudentForm = props => {
 
 		fetch("https://3001-silver-swan-5bf5up29.ws-eu11.gitpod.io/api/user", options)
 			.then(res => res.json())
-			.then(json => setFormData(json))
+			.then(json => console.log(json))
 			.catch(error => console.log(error));
 	};
 	return (
@@ -58,7 +58,7 @@ const StudentForm = props => {
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
 					type="password"
@@ -69,7 +69,7 @@ const StudentForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.value })} />
+				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.checked })} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferetnes centros
