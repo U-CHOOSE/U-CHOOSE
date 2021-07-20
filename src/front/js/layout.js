@@ -12,6 +12,10 @@ import RegisterFormPage from "./pages/RegisterFormPage";
 
 import Sass from "./pages/Sass";
 
+import StudentProfile from "./pages/StudentProfile";
+
+import MyCenters from "./pages/MyCenters";
+
 //components
 import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
@@ -44,6 +48,12 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/studentprofile">
+							<StudentProfile />
+						</Route>
+						<Route exact path="/studentprofile/mycenters">
+							<MyCenters />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
