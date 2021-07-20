@@ -4,20 +4,40 @@ import "../../styles/reviewteacher.scss";
 import img1 from "../../../../docs/assets/img/Status=Empty, Ranking=1.jpg";
 import img1full from "../../../../docs/assets/img/Status=Full, Ranking=1.jpg";
 import img2 from "../../../../docs/assets/img/Status=Empty, Ranking=2.jpg";
+import img2full from "../../../../docs/assets/img/Status=Full, Ranking=2.jpg";
+import img3 from "../../../../docs/assets/img/Status=Empty, Ranking=3.jpg";
+import img3full from "../../../../docs/assets/img/Status=Full, Ranking=3.jpg";
+import img4 from "../../../../docs/assets/img/Status=Empty, Ranking=4.jpg";
+import img4full from "../../../../docs/assets/img/Status=Full, Ranking=4.jpg";
+import img5 from "../../../../docs/assets/img/Status=Empty, Ranking=5.jpg";
+import img5full from "../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 
 //Dinamism
 const ReviewTeacher3 = () => {
 	const history = useHistory();
 
-	const listUrl = [img1, img2, img1full];
+	const listUrl = [
+		{ img: img1, imgfull: img1full },
+		{ img: img2, imgfull: img2full },
+		{ img: img3, imgfull: img3full },
+		{ img: img4, imgfull: img4full },
+		{ img: img5, imgfull: img5full }
+	];
+
 	// const iterator = listIcons.keys();
 	const listImg = [];
-	const state = 4;
-	const newArray = listUrl.map((url, index) => {
-		if (index < state) {
+	const state = 0;
+	listUrl.map((url, index) => {
+		if (index + 1 > state) {
 			listImg.push(
 				<a key={index}>
-					<img className="icons-review" src={url} />
+					<img className="icons-review" src={url.img} />
+				</a>
+			);
+		} else {
+			listImg.push(
+				<a key={index}>
+					<img className="icons-review" src={url.imgfull} />
 				</a>
 			);
 		}
@@ -34,15 +54,7 @@ const ReviewTeacher3 = () => {
 			</div>
 
 			<h1 className="">Dinamismo en sus clases</h1>
-			<div className="container-icons">
-				{/* <a onClick={clickIcon()}>
-					<img className="icons-review" src={img1} />
-				</a>
-				<a>
-					<img className="icons-review" src={img2} />
-				</a> */}
-				{listImg}
-			</div>
+			<div className="container-icons">{listImg}</div>
 
 			<button
 				className="button_violet_small button__search"
