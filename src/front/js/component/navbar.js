@@ -30,15 +30,15 @@ const NavbarComp = () => {
 					{/* <Nav className="me-auto"> */}
 					<NavDropdown className="navbar-toggler-icon">
 						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/registerformpage")}>
+						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("")}>
+						<NavDropdown.Item href="" onClick={() => history.push("")}>
 							<h4>Centros</h4>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
+						<NavDropdown.Item href="" onClick={() => history.push("")}>
 							<h4>Profesores</h4>
 						</NavDropdown.Item>
 						<br />
