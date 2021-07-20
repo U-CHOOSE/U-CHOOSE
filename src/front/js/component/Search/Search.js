@@ -29,14 +29,15 @@ const Search = props => {
 	];
 	return (
 		<>
-			<h1 className="violet_h1">{props.title}</h1>
+			<h1 className="violet_h1 search-title">{props.title}</h1>
+			<span className="span__"> {props.span_}</span>
 			<input
 				type="text"
 				placeholder={props.placeholder}
 				className="input-searchbar"
 				onChange={e => setSearchItem(e.target.value)}
 			/>
-			<span> {props.span1}</span>
+			<span className="span__1"> {props.span1}</span>
 			{fakeData
 				.filter(v => {
 					if (searchItem === "") {
@@ -48,10 +49,10 @@ const Search = props => {
 				.map((v, i) => {
 					return <div key={i}>{v.name}</div>;
 				})}
-			<button onClick={() => actions.setUpStep()} className="button_violet_small">
+			<button onClick={() => actions.setUpStep()} className="button_violet_small button__search">
 				Siguiente
 			</button>
-			<span className="span_1">{props.span2}</span>
+			<span className="span__2">{props.span2}</span>
 		</>
 	);
 };

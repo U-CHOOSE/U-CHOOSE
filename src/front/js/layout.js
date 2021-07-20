@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
 
-import ReviewTeacher from "./pages/ReviewTeacher";
+import ReviewTeacher from "./pages/ReviewTeacher/ReviewTeacher";
 
 import Sass from "./pages/Sass";
 
