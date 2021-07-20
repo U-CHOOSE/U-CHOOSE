@@ -19,6 +19,9 @@ const ReviewTeacher3 = () => {
 			<a>
 				<img className="icons-review" src={img1} />
 			</a>
+			<a>
+				<img className="icons-review" src={img1} />
+			</a>
 			<button
 				className="button_violet_small button__search"
 				onClick={() => history.push("/reviewteacher/id/university/pasion")}>
