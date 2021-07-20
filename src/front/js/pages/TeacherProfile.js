@@ -5,8 +5,10 @@ import Faces from "../component/Faces/Faces";
 import TopReview from "../component/TopReview/TopReview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
+import { Link, useHistory } from "react-router-dom";
 
 const TeacherProfile = () => {
+	const history = useHistory();
 	const [count, setCount] = useState(0);
 	//Component Faces
 	// <Faces face={number} /> 1-10
@@ -45,7 +47,9 @@ const TeacherProfile = () => {
 							<Faces face={10} />
 						</div>
 						<span className="span-reviews">{count} reviews</span>
-						<button className="button1 mt-2">Editar perfil</button>
+						<button className="button1 mt-2" onClick={() => history.push("teacherprofile/edit")}>
+							Editar perfil
+						</button>
 					</div>
 				</div>
 				<h1 className=" name1 ml-3 mt-4">Lucía Gómez</h1>
