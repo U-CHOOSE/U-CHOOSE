@@ -17,9 +17,9 @@ const ReviewTeacher1 = () => {
 	];
 
 	return (
-		<div className="mx-auto">
+		<div className="mx-auto reviewTeacher1">
 			<h1 className="violet_h1 search-title">Buscar profesor</h1>
-			<span className="span__">¿Qué profesor quieres evaluar?</span>
+			<span className="span__ ">¿Qué profesor quieres evaluar?</span>
 			<input
 				type="text"
 				placeholder="Buscar un profesor"

@@ -29,7 +29,6 @@ const Search = props => {
 	];
 	return (
 		<>
-
 			<h1 className="violet_h1 search-title">{props.title}</h1>
 			<span className="span__"> {props.span_}</span>
 			<input
