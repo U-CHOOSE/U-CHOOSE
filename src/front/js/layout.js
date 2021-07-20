@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
 import SearchSchools from "./pages/SearchSchools";
+import SearchTeachers from "./pages/SearchTeachers";
 import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
@@ -30,11 +31,9 @@ import ReviewTeacher9 from "./pages/ReviewTeacher9";
 
 import Sass from "./pages/Sass";
 
-
 import StudentProfile from "./pages/StudentProfile";
 
 import MyCenters from "./pages/MyCenters";
-
 
 //components
 import NavbarComp from "./component/navbar";
@@ -59,7 +58,9 @@ const Layout = () => {
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
-
+						<Route exact path="/searchteachers">
+							<SearchTeachers />
+						</Route>
 						<Route exact path="/login">
 							<Login />
 						</Route>
@@ -103,13 +104,12 @@ const Layout = () => {
 
 						<Route exact path="/searchschools">
 							<SearchSchools />
-					</Route>
+						</Route>
 						<Route exact path="/studentprofile">
 							<StudentProfile />
 						</Route>
 						<Route exact path="/studentprofile/mycenters">
 							<MyCenters />
-
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
