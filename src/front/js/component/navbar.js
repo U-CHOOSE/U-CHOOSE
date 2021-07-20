@@ -1,11 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-
+import { BsBuilding } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../../docs/assets/img/Logo-icon.png";
+import logo from "../../../front/img/Logo-icon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import barSolid from "../../../../docs/assets/img/bars-solid.svg";
+// import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";
 
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
@@ -35,11 +36,16 @@ const NavbarComp = () => {
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("")}>
+							<BsBuilding />
 							<h4>Centros</h4>
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
-							<h4>Profesores</h4>
+							<h4>
+								{" "}
+								<BsFillPersonFill />
+								Profesores{" "}
+							</h4>
 						</NavDropdown.Item>
 						<br />
 						<Button className="btnNav" onClick={() => history.push("")}>

@@ -1,16 +1,23 @@
 
 
 .violet_h1_forms{
-    
+padding: 0px;
 color : rgba(122, 111, 197, 1);
 width: 333px;
 height: 36px;
+margin:0px;
 font-family: Poppins;
 font-style: normal;
 font-weight: bold;
 font-size: 32px;
-line-height: 36px;
 text-align: center;
+
+
+}
+
+
+h1{
+    text-align: center;
 }
 
 h2{
@@ -50,6 +57,9 @@ letter-spacing: 0.75px;
 color: #4E4B66;
 }
 
-.register{
-    margin-top: 118px;
+.button_violet_small {
+    margin: 0px 120px 40px 100px;
+    margin-left: 120px;
+    margin-top: 30px; 
+    align-content: center;
 }

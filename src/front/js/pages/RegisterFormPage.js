@@ -6,6 +6,7 @@ import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
+import registerDesicionPage from "../../styles/registerDesicionPage.scss";
 
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
@@ -22,7 +23,12 @@ const RegisterFormPage = () => {
 				<button onClick={() => setShow(!show)}>Modal</button>
 				{show ? (
 					<Modal
-						cross={<div onClick={() => setShow(!show)}> X </div>}
+						cross={
+							<div className="text-right w-100" onClick={() => setShow(!show)}>
+								{" "}
+								X{" "}
+							</div>
+						}
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>

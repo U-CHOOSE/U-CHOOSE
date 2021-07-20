@@ -48,24 +48,25 @@ a{
  .dropdown-menu{
      width:auto;
     height:auto;
+    overflow-wrap: normal;
  }
 
 
-.NavDropdown.Item{
-    color: blueviolet;
-    text-align: center;
-}
+// .NavDropdown.Item{
+//     color: blueviolet;
+//     text-align: center;
+// }
 
 //styles de Modal//
 // .modal-body { 
 //     background: #270ee6;
     
 
-@media (max-width: 768px) {
-    .navbar-toggler-icon,dropdown-menu {
+// @media (max-width: 768px) 
+    .navbar-toggler-icon {
       display: block;
       
-    }
+    
   }
 
 
