@@ -46,7 +46,8 @@ const Search = props => {
 	console.log(data);
 	return (
 		<>
-			<h1 className="violet_h1">{props.title}</h1>
+			<h1 className="violet_h1 search-title">{props.title}</h1>
+			<span className="span__"> {props.span_}</span>
 			<input
 				type="text"
 				placeholder={props.placeholder}
@@ -69,7 +70,7 @@ const Search = props => {
 			<button onClick={() => actions.setUpStep()} className="button_violet_small">
 				Siguiente
 			</button>
-			<span className="span_1">{props.span2}</span>
+			<span className="span__2">{props.span2}</span>
 		</>
 	);
 };

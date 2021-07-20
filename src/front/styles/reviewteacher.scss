@@ -1,0 +1,79 @@
+.button__search {
+    background: #6DEDE3;
+    color: black;
+    margin-top: 50px;
+    margin-bottom:50px;
+}
+.span__ {
+    width: 350px;
+    padding-left: 50px;
+    margin-top: -20px;
+}
+.input-searchbar {
+    margin-top: 70px;
+}
+.input-searchbar::placeholder {
+    width: 80%;
+}
+.reviewTeacher2 span {
+    width: 320px;
+    height: 56px;
+    text-align: center;
+    margin: auto;
+    margin-left: -30px;
+    margin-top: -30px;
+}
+.reviewTeacher3 h1, .reviewTeacher8 h1 {
+    width: 333px;
+    height: 72px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #00C4B5;
+}
+.reviewTeacher3 div span {
+    display: block;
+}
+.reviewTeacher8 textarea {
+    width: 343px;
+    height: 161px;
+    background: #EFF0F7;
+    border: none;
+    border-radius: 16px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color: #A0A3BD;
+}
+.options {
+    width: 343px;
+    height: 56px;
+    background: #EFF0F7;
+    border-radius: 15px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color: #0C0B1A;
+
+}
+.reviewTeacher1 span {
+    margin-top: -50px;
+}
+.reviewTeacher1 .input-searchbar {
+    margin-top:40px;
+}
+.icons-review {
+    width: 45.84px;
+    height: 43.63px;
+    cursor: pointer;
+}

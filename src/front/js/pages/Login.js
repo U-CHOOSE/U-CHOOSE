@@ -38,12 +38,12 @@ const Login = () => {
 				<FontAwesomeIcon className="icon-x" icon={faTimes} />
 			</Link>
 
-			<h1 className="title">Acceder</h1>
+			<h1 className="title_login">Acceder</h1>
 			<form>
 				<div className="form-group ">
 					<input
 						type="email"
-						className="form-control input-email"
+						className="form-control input__email mt-5"
 						aria-describedby="emailHelp"
 						placeholder="Email"
 						onChange={event => SetEmail(event.target.value)}
@@ -52,7 +52,7 @@ const Login = () => {
 				<div className="form-input contain-input2">
 					<input
 						type="password"
-						className="form-control input-pass"
+						className="form-control input-pass mt-3"
 						id="exampleInputPassword1"
 						placeholder="Contraseña"
 						onChange={event => SetPassword(event.target.value)}
