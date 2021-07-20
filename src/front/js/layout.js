@@ -10,7 +10,11 @@ import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
 
-import ReviewTeacher from "./pages/ReviewTeacher/ReviewTeacher";
+import ReviewTeacher1 from "./pages/ReviewTeacher1";
+
+import ReviewTeacher2 from "./pages/ReviewTeacher2";
+
+import ReviewTeacher3 from "./pages/ReviewTeacher3";
 
 import Sass from "./pages/Sass";
 
@@ -44,7 +48,13 @@ const Layout = () => {
 							<RegisterFormPage />
 						</Route>
 						<Route exact path="/reviewteacher">
-							<ReviewTeacher />
+							<ReviewTeacher1 />
+						</Route>
+						<Route exact path="/reviewteacher/id">
+							<ReviewTeacher2 />
+						</Route>
+						<Route exact path="/reviewteacher/:id/:university">
+							<ReviewTeacher3 />
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
