@@ -6,7 +6,33 @@ from api.models import db,User,User_teacher,User_student,School,User_school
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from werkzeug.security import check_password_hash
+from datetime import timedelta
+
 api = Blueprint('api', __name__)
+
+# TODO: Register using User.create_password_hash(password)
+@api.route('/login', methods=['POST'])
+def login():
+    payload =(request.get_json(force=True))
+    email = payload.get('email', None)
+    password = payload.get('password', None)
+
+    if not (email and password):
+        return {'error': 'Missing info'}, 400
+    user = User.get_by_email(email)
+   
+    # TODO:check password using check_password_hash(user.password, password)
+    if user and (user.password == password) and user.is_active:
+        token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
+        print(token)
+        return {'token': token}, 200
+
+    else:
+        return {'error': 'Email o contraseña incorrecta.'}, 400
 
 
 @api.route('/hello', methods=['POST', 'GET'])

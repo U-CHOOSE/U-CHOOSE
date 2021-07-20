@@ -2,13 +2,25 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
-import RegisterDesicionPage from "./pages/RegisterDesicionPage";
+
+
+import Login from "./pages/Login";
+
+import RegisterFormPage from "./pages/RegisterFormPage";
+
+import Sass from "./pages/Sass";
+
+
 //components
-import Navbar from "./component/navbar";
+import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
+
+//Scss
+import "../styles/index.scss";
 
 //create your first component
 const Layout = () => {
@@ -20,13 +32,21 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<NavbarComp />
 					<Switch>
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
-						<Route exact path="/resgisterdesicion">
-							<RegisterDesicionPage />
+
+						<Route exact path="/login">
+							<Login />
+						</Route>
+						<Route exact path="/registerformpage">
+							<RegisterFormPage />
+						</Route>
+						<Route exact path="/sass">
+							<Sass />
+
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

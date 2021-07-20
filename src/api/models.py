@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime, Date, Time, Float
 db = SQLAlchemy()
+
 
 
 db = SQLAlchemy()
@@ -23,6 +25,8 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.email
+
+    
 
     def serialize(self):
         return {
@@ -179,6 +183,7 @@ class School(db.Model):
             "name": self.name
         }
 
+
     @classmethod
     def get_all(cls):
         schools = cls.query.all()
@@ -203,6 +208,7 @@ class User_school(db.Model):
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
     school = db.relationship('School', cascade="all, delete", lazy=True)
     user = db.relationship("User", cascade="all, delete", lazy=True)
+
 
 
     def __repr__(self):
