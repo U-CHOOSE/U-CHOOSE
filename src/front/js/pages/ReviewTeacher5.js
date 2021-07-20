@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "../../styles/reviewteacher.scss";
-//Dinamism
-const ReviewTeacher3 = () => {
+
+const ReviewTeacher5 = () => {
 	const history = useHistory();
 	return (
 		<div className="reviewTeacher3 mx-auto">
@@ -10,18 +10,18 @@ const ReviewTeacher3 = () => {
 				<img alt="foto" />
 				<div>
 					<span>nameteacher</span>
-					<span>nameUniversity</span>
+					<span>nameEstudios</span>
 				</div>
 			</div>
 
-			<h1 className="">Dinamismo en sus clases</h1>
+			<h1 className="">Utiliza ejemplos prácticos</h1>
 			<button
 				className="button_violet_small button__search"
-				onClick={() => history.push("/reviewteacher/id/university/pasion")}>
+				onClick={() => history.push("/reviewteacher/id/university/pasion/examples/implication")}>
 				Siguiente
 			</button>
 		</div>
 	);
 };
 
-export default ReviewTeacher3;
+export default ReviewTeacher5;
