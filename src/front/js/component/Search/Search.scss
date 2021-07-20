@@ -1,0 +1,65 @@
+
+.search-title {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #7A6FC5;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom:20px ;
+}
+input[type=text]::placeholder {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color: #A0A3BD;
+    padding-left: 20px;
+}
+.data {
+    margin-left: 16px;
+}
+.span__1, .span__2, .span__ {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+    color: #6E7191;
+    margin-left: 16px;
+    margin-bottom: 20px;
+}
+.input-searchbar {
+    display: block;
+    margin: auto;
+}
+.button1 {
+    width: 200px;
+    height: 56px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: #F7F7FC;
+    background: #7A6FC5;
+    border: none;
+    border-radius: 40px;
+    display: block;
+    margin: 50px auto;
+}
+.button__search {
+    display: block;
+    margin: auto;
+}
