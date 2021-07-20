@@ -9,11 +9,31 @@ const StudentForm = props => {
 		email: "",
 		password: "",
 		repeatPassword: "",
+		promo: null,
 		is_student: false
 	});
-
+	const body = {
+		fullname: formData.location,
+		email: formData.email,
+		_password: formData.password,
+		promo: formData.promo,
+		is_student: formData.is_student
+	};
 	const [checked, setChecked] = useState(true);
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
 
+		fetch("https://3001-silver-swan-5bf5up29.ws-eu11.gitpod.io/api/user", options)
+			.then(res => res.json())
+			.then(json => setFormData(json))
+			.catch(error => console.log(error));
+	};
 	return (
 		<>
 			<div>
@@ -49,13 +69,14 @@ const StudentForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.value })} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferetnes centros
 				</span>
+				{console.log(formData)}
 				{props.footer}
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
