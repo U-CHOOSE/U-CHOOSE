@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: ""
 		},
 		actions: {
+
 			login: (mail, pass) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
@@ -48,6 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ step: store.step - 1 });
 			},
 			// Use getActions to call a function within a fuction
+
 			exampleFunction: () => {
 				// getActions().changeColor(0, "green");
 				console.log("Esta");
