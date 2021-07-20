@@ -29,6 +29,7 @@ const Search = props => {
 	];
 	return (
 		<>
+
 			<h1 className="violet_h1 search-title">{props.title}</h1>
 			<span className="span__"> {props.span_}</span>
 			<input
@@ -37,6 +38,7 @@ const Search = props => {
 				className="input-searchbar"
 				onChange={e => setSearchItem(e.target.value)}
 			/>
+
 			<span className="span__1"> {props.span1}</span>
 			{fakeData
 				.filter(v => {
@@ -47,10 +49,15 @@ const Search = props => {
 					}
 				})
 				.map((v, i) => {
-					return <div key={i}>{v.name}</div>;
+					return (
+						<div className="data" key={i}>
+							{v.name}
+						</div>
+					);
 				})}
+
 			<button onClick={() => actions.setUpStep()} className="button_violet_small button__search">
-				Siguiente
+				{props.button}
 			</button>
 			<span className="span__2">{props.span2}</span>
 		</>

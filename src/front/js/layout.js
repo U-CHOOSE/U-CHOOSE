@@ -30,6 +30,10 @@ import ReviewTeacher9 from "./pages/ReviewTeacher9";
 
 import Sass from "./pages/Sass";
 
+import StudentProfile from "./pages/StudentProfile";
+
+import MyCenters from "./pages/MyCenters";
+
 //components
 import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
@@ -53,6 +57,7 @@ const Layout = () => {
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
+
 						<Route exact path="/login">
 							<Login />
 						</Route>
@@ -92,6 +97,12 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/studentprofile">
+							<StudentProfile />
+						</Route>
+						<Route exact path="/studentprofile/mycenters">
+							<MyCenters />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
