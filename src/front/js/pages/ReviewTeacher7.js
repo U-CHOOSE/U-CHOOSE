@@ -4,11 +4,17 @@ import "../../styles/reviewteacher.scss";
 
 const ReviewTeacher7 = () => {
 	const history = useHistory();
-	const option = () => {
-		for (let i = 1900; i < 2021; i++) {
-			return <option value={i}>{i}</option>;
+	var today = new Date();
+	var year = today.getFullYear();
+
+	const optionDropdown = () => {
+		let listOption = [];
+		for (let i = year; i >= 1950; i--) {
+			listOption.push(<option value={i}>{i}</option>);
 		}
+		return listOption;
 	};
+	const option = optionDropdown();
 	return (
 		<div className="reviewTeacher3 mx-auto">
 			<div className="d-flex">
@@ -21,13 +27,8 @@ const ReviewTeacher7 = () => {
 
 			<h1 className="">¿Cuando tuviste clase?</h1>
 			<div className="dropdown">
-				<select name="year">
-					{/* {for (var i=1990; i<2021; i++ )} */}
-					{option()}
-					{/* <option value="1990">1990</option>
-					<option value="2000">2000</option>
-					<option value="2010">2010</option>
-					<option value="2020">2020</option> */}
+				<select name="year" className="options">
+					{option}
 				</select>
 			</div>
 			<button
