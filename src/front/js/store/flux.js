@@ -7,10 +7,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			error: ""
+			error: "",
+			step: 0
 		},
 		actions: {
-
 			login: (mail, pass) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
