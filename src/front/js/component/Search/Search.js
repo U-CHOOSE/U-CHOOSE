@@ -5,6 +5,7 @@ import { Context } from "../../store/appContext";
 const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const { store, actions } = useContext(Context);
+
 	const fakeData = [
 		{
 			name: "franc",
@@ -37,7 +38,7 @@ const Search = props => {
 				onChange={e => setSearchItem(e.target.value)}
 			/>
 			<span> {props.span1}</span>
-			{fakeData
+			{props.data
 				.filter(v => {
 					if (searchItem === "") {
 						return v;

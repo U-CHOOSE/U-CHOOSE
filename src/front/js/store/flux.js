@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			error: ""
+			// schools: []
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -37,6 +38,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setError: error => {
 				setStore({ error: error });
 			},
+			// get_all: type => {
+			// 	fetch(process.env.BACKEND_URL + type + "/")
+			// 		.then(res => res.json())
+			// 		.then(data => console.log(data))
+			// 		.catch(error => console.log(error));
+			// },
 
 			setUpStep: () => {
 				const store = getStore();

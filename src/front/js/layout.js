@@ -5,7 +5,7 @@ import injectContext from "./store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
-
+import SearchSchools from "./pages/SearchSchools";
 import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
@@ -44,6 +44,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/searchschools">
+							<SearchSchools />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
