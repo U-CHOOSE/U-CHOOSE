@@ -7,8 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			error: ""
-			// schools: []
+			error: "",
+			// schools: [],
+			step: 0
 		},
 		actions: {
 			login: (mail, pass) => {
