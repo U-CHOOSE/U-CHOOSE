@@ -16,11 +16,7 @@ const CardReviewTeacher = props => {
 			<h1 className="">{props.title}</h1>
 			<div className="body_card">{props.body}</div>
 
-			<button
-				className="button_card"
-				onClick={() => {
-					props.onClick;
-				}}>
+			<button className="button_card" onClick={props.onClick}>
 				{props.button}
 			</button>
 		</div>
