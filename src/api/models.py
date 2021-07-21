@@ -201,10 +201,11 @@ class School(db.Model):
         
 class User_school(db.Model):
     __tablename__ = 'user_school'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
-    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
     school = db.relationship('School', cascade="all, delete", lazy=True)
-    # user = db.relationship("User", cascade="all, delete", lazy=True)
+    user = db.relationship("User", cascade="all, delete", lazy=True)
 
 
 
@@ -223,3 +224,6 @@ class User_school(db.Model):
 
         }
 
+    def add(self):
+        db.session.add(self)
+        db.session.commit()

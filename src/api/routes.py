@@ -72,7 +72,7 @@ def add_user():
             user_id=user_id
         )
         student.add()
-        return jsonify(student.serialize()), 201
+        return jsonify({"body": student.serialize()}), 201
 
     teacher =  User_teacher(
         linkedin = body.get("linkedin"),
@@ -81,10 +81,7 @@ def add_user():
     )
     teacher.add()
 
-
-
-    school.add()
-    return jsonify(teacher.serialize()), 201
+    return jsonify({"body" : teacher.serialize()}), 201
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()
@@ -167,12 +164,25 @@ def add_school():
 
 
 
-# @api.route('/user', methods=['POST'])
-# def add_user():
-#     body = request.get_json()
-#     print(body)
-#     full_name = body.get("full_name", None)
-#     email = body.get("email", None)
+@api.route('/user/school', methods=['POST'])
+def add_school_to_user():
+    body = request.get_json()
+    print(body)
+    user_id = body.get("user_id", None)
+    school_id = body.get("school_id", None)
+    
+    # if user_id or school_id is None : 
+    #     return jsonify("Do not have a school or user"),400
+    
+
+    user_school = User_school(
+       user_id = user_id,
+       school_id = school_id
+    )
+    print("schhol" , user_school)
+    user_add = user_school.add()
+    print("add" , user_add)
+    return jsonify(user_add.serialize()),201
     
 
 

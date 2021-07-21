@@ -45,9 +45,8 @@ const Search = props => {
 					.map((v, i) => {
 						return <div key={i}>{v[attribute]}</div>;
 					})}
-			<button onClick={() => actions.setUpStep()} className="button_violet_small">
-				Siguiente
-			</button>
+
+			{props.button}
 			<span className="span__2">{props.span2}</span>
 		</>
 	);

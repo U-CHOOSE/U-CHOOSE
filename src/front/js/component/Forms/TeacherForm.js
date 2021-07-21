@@ -12,18 +12,19 @@ const TeacherForm = props => {
 		typeOfteachers: "",
 		_password: "",
 		repeatPassword: "",
-		promo: null,
-		is_student: true
+		promo: false,
+		is_student: false
 	});
 	const [checked, setChecked] = useState(true);
 
 	const body = {
-		fullname: formData.location,
+		full_name: formData.fullname,
 		email: formData.email,
-		_password: formData.password,
+		_password: formData._password,
 		promo: formData.promo,
 		is_student: formData.is_student,
-		type_of_teacher: formData.typeOfteachers
+		type_of_teacher: formData.typeOfteachers,
+		linkedin: formData.linkedin
 	};
 
 	const handleCreate = () => {
@@ -35,9 +36,18 @@ const TeacherForm = props => {
 			body: JSON.stringify(body)
 		};
 
-		fetch("https://3001-silver-swan-5bf5up29.ws-eu11.gitpod.io/api/user", options)
-			.then(res => res.json())
-			.then(json => setFormData(json), console.log(json))
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => console.log(json))
 			.catch(error => console.log(error));
 	};
 
@@ -64,14 +74,14 @@ const TeacherForm = props => {
 				<input
 					type="text"
 					placeholder="¿De qué eres profesor?"
-					value={formData._password}
-					onChange={e => setFormData({ ...formData, _password: e.target.value })}
+					value={formData.typeOfteachers}
+					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
 					type="text"
 					placeholder="¿URL Linkedin...?"
-					value={formData.typeOfteachers}
-					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
+					value={formData.linkedin}
+					onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
 				/>
 				<input
 					type="password"
@@ -88,7 +98,7 @@ const TeacherForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.checked })} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferetnes centros
