@@ -23,9 +23,10 @@ const TeacherForm = props => {
 			<div>
 				<div>
 					{" "}
-					<h1>Detalles de cuenta</h1>
+					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -72,7 +73,7 @@ const TeacherForm = props => {
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
-					de diferetnes centros
+					de diferentes centros
 				</span>
 				{props.footer}
 				<button className="" onClick={() => actions.setUpStep()}>

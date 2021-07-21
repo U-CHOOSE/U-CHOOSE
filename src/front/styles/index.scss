@@ -62,6 +62,7 @@ input[type=text]{
     background: $greyInputs;
     height: 64px;
     width: 343px;
+    box-sizing: border-box;
     border-radius: 16px;
     border: none
 }
@@ -70,6 +71,7 @@ input[type=password]{
     margin-bottom: 15px;
     height: 64px;
     width: 343px;
+    box-sizing: border-box;
     border-radius: 16px;
     border: none
 }
@@ -85,10 +87,11 @@ input::placeholder{
     color: rgba(160, 163, 189, 1);
     height: 28px;
     width: 141px;
-    padding-left: 64px; 
+    padding-left: 10px; 
     font-size: 16px;
     line-height: 28px;
     font-family: Poppins;
+    // box-sizing: content-box;
 }
 
 input:focus{
