@@ -14,9 +14,9 @@ class User(db.Model):
     full_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
-    is_active = db.Column(db.Boolean, default=True)
+    # is_active = db.Column(db.Boolean, default=True)
     image = db.Column(db.VARCHAR)
-    promo = db.Column(db.Boolean, default=True)
+    promo = db.Column(db.Boolean, default=False)
     is_student = db.Column(db.Boolean)
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
@@ -32,7 +32,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "full_name":self.full_name,
-            "is_active": self.is_active,
             "email": self.email,
             "is_student":self.is_student
             
@@ -100,7 +99,6 @@ class User_teacher(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "is_active": user.is_active,
             "promo": user.promo
         }
 
@@ -142,7 +140,6 @@ class User_student(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "is_active": user.is_active,
             "promo": user.promo
         }
 
@@ -171,7 +168,7 @@ class School(db.Model):
     __tablename__ = 'school'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    img = db.Column(db.String(250), unique=False, nullable=False)
+    img = db.Column(db.String, unique=False, nullable=False)
 
 
     def __repr__(self):
@@ -193,7 +190,7 @@ class School(db.Model):
         self.name = json["name"]
         self.img = json["img"]
     
-    def db_post(self):        
+    def add(self):
         db.session.add(self)
         db.session.commit()
 
@@ -204,10 +201,11 @@ class School(db.Model):
         
 class User_school(db.Model):
     __tablename__ = 'user_school'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
-    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
     school = db.relationship('School', cascade="all, delete", lazy=True)
-    user = db.relationship("User", cascade="all, delete", lazy=True)
+    # user = db.relationship("User", cascade="all, delete", lazy=True)
 
 
 
@@ -226,3 +224,6 @@ class User_school(db.Model):
 
         }
 
+    def add(self):
+        db.session.add(self)
+        db.session.commit()

@@ -1,4 +1,4 @@
-import { contains } from "jquery";
+import { contains, data } from "jquery";
 import { Link, useHistory } from "react-router-dom";
 import { string } from "prop-types";
 
@@ -8,6 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			error: "",
+			schools: [],
+			teachers: [],
 			step: 0
 		},
 		actions: {
@@ -37,6 +39,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setError: error => {
 				setStore({ error: error });
+			},
+			get_all: type => {
+				fetch(process.env.BACKEND_URL + type + "/")
+					.then(res => res.json())
+					.then(data => setStore({ [type]: data }))
+					.catch(error => console.log(error));
 			},
 
 			setUpStep: () => {

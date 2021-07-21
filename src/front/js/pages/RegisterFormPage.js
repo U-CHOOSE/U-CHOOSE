@@ -16,6 +16,33 @@ const RegisterFormPage = () => {
 		teacher: false
 	});
 
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: JSON.parse(localStorage.getItem("id_user")),
+				school_id: 2
+			})
+		};
+
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => localStorage.setItem("id_user", json.body.user_id))
+			.catch(error => console.log(error));
+	};
+
 	if (store.step === 0) {
 		return (
 			<>
@@ -93,6 +120,11 @@ const RegisterFormPage = () => {
 							// 	//didnt'have he endpoint to recived the data
 							// }
 							span2="Saltar este paso"
+							button={
+								<button onClick={handleCreate} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					) : (
 						<Search
@@ -102,6 +134,11 @@ const RegisterFormPage = () => {
 							// data = {
 							// 	//didnt'have he endpoint to recived the data
 							// }
+							button={
+								<button onClick={() => actions.setUpStep()} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					)
 				}
