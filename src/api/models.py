@@ -228,5 +228,18 @@ class User_school(db.Model):
         db.session.add(self)
         db.session.commit()
 
-        
-    # class review
+
+# class Review_teacher(db.Model):
+#     __tablename__ = 'review_teacher'
+#     id = db.Column(db.Integer, primary_key=True)
+#     dynamsim = db.Column(db.Integer())
+#     pasion = db.Column(db.Integer())
+#     practises_example = db.Column(db.Integer())
+#     near = db.Column(db.Integer())
+#     date_teacher = db.Column(db.Date(), unique=False, nullable=False)
+#     more_info = db.Column(db.String(500), unique=False, nullable=True)
+#     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
+#     user_teacher = db.relationship(User_teacher)
+
+#     def __repr__(self):
+#         return '<Review_teacher %r>' % self.id
