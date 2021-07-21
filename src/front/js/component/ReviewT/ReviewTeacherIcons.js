@@ -12,7 +12,7 @@ import img4full from "../../../../../docs/assets/img/Status=Full, Ranking=4.jpg"
 import img5 from "../../../../../docs/assets/img/Status=Empty, Ranking=5.jpg";
 import img5full from "../../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 
-const ReviewT = () => {
+const ReviewTeacherIcons = () => {
 	const listUrl = [
 		{ img: img1, imgfull: img1full },
 		{ img: img2, imgfull: img2full },
@@ -48,4 +48,4 @@ const ReviewT = () => {
 	);
 };
 
-export default ReviewT;
+export default ReviewTeacherIcons;

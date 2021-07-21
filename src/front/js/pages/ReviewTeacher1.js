@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/reviewteacher.scss";
-// import ReviewT from "../component/ReviewT/ReviewT";
+import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
+import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
 
 const ReviewTeacher1 = () => {
 	const [searchItem, setSearchItem] = useState("");
@@ -16,7 +17,7 @@ const ReviewTeacher1 = () => {
 		}
 	];
 
-	if (step == 0) {
+	if (step == 1) {
 		return (
 			<div className="mx-auto reviewTeacher1">
 				<h1 className="violet_h1 search-title">Buscar profesor</h1>
@@ -56,9 +57,8 @@ const ReviewTeacher1 = () => {
 		);
 	} else if (step == 3) {
 		return (
-			<div>
-				{/* <ReviewT /> */}
-				<h1>holaaaa</h1>
+			<div className="mx-auto">
+				<CardReviewTeacher title="titleeee" body={<ReviewTeacherIcons />} />
 			</div>
 		);
 	} else {
