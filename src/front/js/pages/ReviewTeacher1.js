@@ -58,12 +58,28 @@ const ReviewTeacher1 = () => {
 	} else if (step == 3) {
 		return (
 			<div className="mx-auto">
-				<CardReviewTeacher title="titleeee" body={<ReviewTeacherIcons />} />
+				<CardReviewTeacher
+					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					title="Dinamismo en sus clases"
+					name="Marta Diaz"
+					nameUniversity="4Geeks Academy"
+					body={<ReviewTeacherIcons />}
+					button="Siguiente"
+				/>
 			</div>
 		);
+	} else if (step == 4) {
+		return <div>4444444444</div>;
 	} else {
 		return <div>noooooooo</div>;
 	}
+	// title: PropTypes.string,
+	// srcImg: PropTypes.string,
+	// name: PropTypes.string,
+	// nameUniversity: PropTypes.string,
+	// body: PropTypes.string,
+	// onClick: PropTypes.string,
+	// button: PropTypes.string
 };
 
 export default ReviewTeacher1;

@@ -1,0 +1,65 @@
+.card_reviewTeacher div .img-teacher {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+}
+.card_reviewTeacher {
+    margin-top: 80px;
+    // border: 1px solid blue;
+    
+}
+.card_reviewTeacher div span {
+    display: block;
+    margin-left: 30px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+    color: #6E7191;
+}
+.card_reviewTeacher h1 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #00C4B5;
+    margin: auto;
+    margin-top: 60px;
+    width: 333px;
+    height: 72px;
+}
+.body_card {
+    margin-top: 16px;
+}
+.button_card {
+    background: #6DEDE3;
+    border-radius: 40px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: #0C0B1A;
+    width: 200px;
+    height: 56px;
+    border: none;
+    display: block;
+    margin: auto;
+    margin-top: 110px;
+    margin-bottom: 55px;
+}
+.icons-review{
+    width: 50px !important;
+    height: 50px !important;
+}
+.container-icons {
+    display: flex;
+    justify-content: center;
+}

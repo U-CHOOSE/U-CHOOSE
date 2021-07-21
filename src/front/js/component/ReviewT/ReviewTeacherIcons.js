@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import "./ReviewT.scss";
+import "./ReviewT.scss";
 
 import img1 from "../../../../../docs/assets/img/Status=Empty, Ranking=1.jpg";
 import img1full from "../../../../../docs/assets/img/Status=Full, Ranking=1.jpg";
@@ -32,6 +32,7 @@ const ReviewTeacherIcons = () => {
 		}
 		listImg.push(
 			<a
+				className="button_icon"
 				onClick={() => {
 					setState(index + 1);
 				}}
@@ -43,7 +44,7 @@ const ReviewTeacherIcons = () => {
 
 	return (
 		<div>
-			<div className="container-icons">{listImg}</div>
+			<div className="container-icons d-flex mx-auto">{listImg}</div>
 		</div>
 	);
 };

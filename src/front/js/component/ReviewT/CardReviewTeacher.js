@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import "./ReviewT.scss";
 
 const CardReviewTeacher = props => {
 	return (
 		<div className="card_reviewTeacher mx-auto">
-			<div className="d-flex">
-				<img src={props.srcImg} />
+			<div className="d-flex ">
+				<img className="img-teacher" src={props.srcImg} />
 				<div>
 					<span>{props.name}</span>
 					<span>{props.nameUniversity}</span>
@@ -13,10 +14,10 @@ const CardReviewTeacher = props => {
 			</div>
 
 			<h1 className="">{props.title}</h1>
-			<div>{props.body}</div>
+			<div className="body_card">{props.body}</div>
 
 			<button
-				className="button_violet_small button__search"
+				className="button_card"
 				onClick={() => {
 					props.onClick;
 				}}>
@@ -32,7 +33,7 @@ CardReviewTeacher.propTypes = {
 	name: PropTypes.string,
 	nameUniversity: PropTypes.string,
 	body: PropTypes.string,
-	onClick: PropTypes.string,
+	onClick: PropTypes,
 	button: PropTypes.string
 };
 
