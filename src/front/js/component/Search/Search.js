@@ -14,28 +14,6 @@ const Search = props => {
 		[props.data]
 	);
 
-	const fakeData = [
-		{
-			name: "franc",
-			age: 18
-		},
-		{
-			name: "francisco",
-			age: 18
-		},
-		{
-			name: "Jordi",
-			age: 20
-		},
-		{
-			name: "Albert",
-			age: 25
-		},
-		{
-			name: "Marc",
-			age: 18
-		}
-	];
 	let attribute = "full_name";
 
 	if (props.type === "schools") {

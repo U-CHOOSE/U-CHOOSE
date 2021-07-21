@@ -34,11 +34,11 @@ const NavbarComp = () => {
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="" onClick={() => history.push("")}>
+						<NavDropdown.Item href="" onClick={() => history.push("/searchschools")}>
 							<h4>Centros</h4>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="" onClick={() => history.push("")}>
+						<NavDropdown.Item href="" onClick={() => history.push("/searchteachers")}>
 							<h4>Profesores</h4>
 						</NavDropdown.Item>
 						<br />

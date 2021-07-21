@@ -81,13 +81,10 @@ def add_user():
     )
     teacher.add()
 
-    school = School(
-        name = body.get("name"),
-        img = body.get("img")
-    )
+
 
     school.add()
-    return jsonify(teacher.serialize(),school.serialize()), 201
+    return jsonify(teacher.serialize()), 201
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()
@@ -170,7 +167,12 @@ def add_school():
 
 
 
-
+# @api.route('/user', methods=['POST'])
+# def add_user():
+#     body = request.get_json()
+#     print(body)
+#     full_name = body.get("full_name", None)
+#     email = body.get("email", None)
     
 
 

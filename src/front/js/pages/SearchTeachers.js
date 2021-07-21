@@ -12,9 +12,9 @@ const SearchTeachers = () => {
 	return (
 		<>
 			<Search
-				title="Buscar un centro "
-				placeholder="Escribe el nombre"
-				span1="¿No encuentras tu centro?"
+				title="Buscar un professor"
+				placeholder="Search"
+				span1="¿No encuentras tu professor?"
 				type="user"
 				data={data}
 			/>

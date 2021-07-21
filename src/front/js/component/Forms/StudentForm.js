@@ -13,9 +13,9 @@ const StudentForm = props => {
 		is_student: true
 	});
 	const body = {
-		fullname: formData.fullname,
+		full_name: formData.fullname,
 		email: formData.email,
-		_password: formData.password,
+		_password: formData._password,
 		promo: formData.promo,
 		is_student: formData.is_student
 	};
@@ -29,8 +29,17 @@ const StudentForm = props => {
 			body: JSON.stringify(body)
 		};
 
-		fetch("https://3001-silver-swan-5bf5up29.ws-eu11.gitpod.io/api/user", options)
-			.then(res => res.json())
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
 			.then(json => console.log(json))
 			.catch(error => console.log(error));
 	};

@@ -1,4 +1,3 @@
-import { faStarAndCrescent } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router";
 import Search from "../component/Search/Search";
@@ -12,7 +11,8 @@ const SearchSchools = () => {
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
-			.then(data => setData(data));
+			.then(data => setData(data))
+			.catch(err => console.log(err));
 	}, []);
 	return (
 		<>
