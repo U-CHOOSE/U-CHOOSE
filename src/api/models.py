@@ -205,7 +205,7 @@ class User_school(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
     school = db.relationship('School', cascade="all, delete", lazy=True)
-    user = db.relationship("User", cascade="all, delete", lazy=True)
+    # user = db.relationship("User", cascade="all, delete", lazy=True)
 
 
 

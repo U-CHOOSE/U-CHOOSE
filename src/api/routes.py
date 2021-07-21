@@ -45,7 +45,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/user', methods=['POST'])
+@api.route('/user', methods=['POST' , 'PUT'])
 def add_user():
     body = request.get_json()
     print(body)
