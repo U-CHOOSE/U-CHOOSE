@@ -7,6 +7,7 @@ import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
 import registerDesicionPage from "../../styles/registerDesicionPage.scss";
+import { BsBoxArrowInLeft } from "react-icons/bs";
 
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
@@ -26,7 +27,9 @@ const RegisterFormPage = () => {
 						cross={
 							<div className="text-right w-100" onClick={() => setShow(!show)}>
 								{" "}
-								X{" "}
+								<button type="button" className="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>{" "}
 							</div>
 						}
 						body={
@@ -79,16 +82,25 @@ const RegisterFormPage = () => {
 	} else if (store.step === 1) {
 		return (
 			<Modal
-				cross={<div onClick={() => setShow(!show)}> X </div>}
-				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
+				cross={<div onClick={() => setShow(!show)}> </div>}
+				arrow={
+					<div onClick={() => actions.setDownStep()}>
+						{" "}
+						<BsBoxArrowInLeft />{" "}
+					</div>
+				}
 				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
 			/>
 		);
 	} else if (store.step === 2) {
 		return (
 			<Modal
-				cross={<div onClick={() => setShow(!show)}> X </div>}
-				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
+				cross={<div onClick={() => setShow(!show)} />}
+				arrow={
+					<div onClick={() => actions.setDownStep()}>
+						<BsBoxArrowInLeft />{" "}
+					</div>
+				}
 				body={
 					checked.student === true ? (
 						<Search
@@ -116,8 +128,13 @@ const RegisterFormPage = () => {
 	} else if (store.step === 3) {
 		return (
 			<Modal
-				cross={<div onClick={() => setShow(!show)}> X </div>}
-				arrow={<div onClick={() => actions.setDownStep()}> back </div>}
+				cross={<div onClick={() => setShow(!show)}> </div>}
+				arrow={
+					<div onClick={() => actions.setDownStep()}>
+						{" "}
+						<BsBoxArrowInLeft />
+					</div>
+				}
 				body={
 					checked.student === true ? (
 						<>
