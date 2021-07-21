@@ -24,23 +24,25 @@ const ReviewTeacher3 = () => {
 		{ img: img5, imgfull: img5full }
 	];
 
-	// const iterator = listIcons.keys();
 	const listImg = [];
-	const state = 0;
+	const [state, setState] = useState(0);
+
 	listUrl.map((url, index) => {
+		let icon = "";
 		if (index + 1 > state) {
-			listImg.push(
-				<a key={index}>
-					<img className="icons-review" src={url.img} />
-				</a>
-			);
+			icon = url.img;
 		} else {
-			listImg.push(
-				<a key={index}>
-					<img className="icons-review" src={url.imgfull} />
-				</a>
-			);
+			icon = url.imgfull;
 		}
+		listImg.push(
+			<a
+				onClick={() => {
+					setState(index + 1);
+				}}
+				key={index}>
+				<img className="icons-review" src={icon} />
+			</a>
+		);
 	});
 
 	return (
