@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/reviewteacher.scss";
 import img1 from "../../../../docs/assets/img/Status=Empty, Ranking=1.jpg";
 import img1full from "../../../../docs/assets/img/Status=Full, Ranking=1.jpg";
