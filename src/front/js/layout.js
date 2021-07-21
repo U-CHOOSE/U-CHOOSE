@@ -10,23 +10,7 @@ import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
 
-import ReviewTeacher1 from "./pages/ReviewTeacher1";
-
-import ReviewTeacher2 from "./pages/ReviewTeacher2";
-
-import ReviewTeacher3 from "./pages/ReviewTeacher3";
-
-import ReviewTeacher4 from "./pages/ReviewTeacher4";
-
-import ReviewTeacher5 from "./pages/ReviewTeacher5";
-
-import ReviewTeacher6 from "./pages/ReviewTeacher6";
-
-import ReviewTeacher7 from "./pages/ReviewTeacher7";
-
-import ReviewTeacher8 from "./pages/ReviewTeacher8";
-
-import ReviewTeacher9 from "./pages/ReviewTeacher9";
+import ReviewTeacher from "./pages/ReviewTeacher";
 
 import Sass from "./pages/Sass";
 
@@ -65,35 +49,7 @@ const Layout = () => {
 							<RegisterFormPage />
 						</Route>
 						<Route exact path="/reviewteacher">
-							<ReviewTeacher1 />
-						</Route>
-						<Route exact path="/reviewteacher/id">
-							<ReviewTeacher2 />
-						</Route>
-						<Route exact path="/reviewteacher/:id/:university">
-							<ReviewTeacher3 />
-						</Route>
-						<Route exact path="/reviewteacher/:id/:university/pasion">
-							<ReviewTeacher4 />
-						</Route>
-						<Route exact path="/reviewteacher/:id/:university/pasion/examples">
-							<ReviewTeacher5 />
-						</Route>
-						<Route exact path="/reviewteacher/:id/:university/pasion/examples/implication">
-							<ReviewTeacher6 />
-						</Route>
-						<Route exact path="/reviewteacher/:id/:university/pasion/examples/implication/year">
-							<ReviewTeacher7 />
-						</Route>
-						<Route
-							exact
-							path="/reviewteacher/:id/:university/pasion/examples/implication/year/anythingelse">
-							<ReviewTeacher8 />
-						</Route>
-						<Route
-							exact
-							path="/reviewteacher/:id/:university/pasion/examples/implication/year/anythingelse/send">
-							<ReviewTeacher9 />
+							<ReviewTeacher />
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
