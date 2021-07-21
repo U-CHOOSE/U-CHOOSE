@@ -58,6 +58,7 @@ $gradientVioletMarino : linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%);
 
 input[type=text]{
     font-style:normal;
+    margin-bottom: 15px;
     background: $greyInputs;
     height: 64px;
     width: 343px;
@@ -66,6 +67,7 @@ input[type=text]{
 }
 input[type=password]{
     background: $greyInputs;
+    margin-bottom: 15px;
     height: 64px;
     width: 343px;
     border-radius: 16px;
@@ -73,6 +75,7 @@ input[type=password]{
 }
 input[type=email]{
     background: $greyInputs;
+    margin-bottom: 15px;
     height: 64px;
     width: 343px;
     border-radius: 16px;
@@ -95,6 +98,7 @@ input:focus{
     color: $color;
     height: $height;
     width:$width;
+    margin-bottom: 15px;
     background-color: $background-color;
     border-radius: 40px;
     font-weight: 600;

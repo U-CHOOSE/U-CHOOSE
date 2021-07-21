@@ -32,7 +32,7 @@ const StudentForm = props => {
 				<br />
 
 				<input
-					className="mx-auto w-100 "
+					className=" margin: 13px 12px 12px 10px w-100 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -40,6 +40,7 @@ const StudentForm = props => {
 				/>
 				<br />
 				<input
+					className=" w-100 "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
@@ -47,6 +48,7 @@ const StudentForm = props => {
 				/>
 				<br />
 				<input
+					className=" margin: 13px 12px 12px 10px w-100 "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}

@@ -31,7 +31,9 @@ const TeacherForm = props => {
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
+				<br />
 				<span>Podras ocultarlo en tus reviews</span>
+				<br />
 				<input
 					type="text"
 					placeholder="Email"
@@ -64,7 +66,9 @@ const TeacherForm = props => {
 				/>
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-				<span>Acepto los términso y condiciones</span>
+				<br />
+				<span>Acepto los terminos y condiciones</span>
+				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
