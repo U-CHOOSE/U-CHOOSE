@@ -227,3 +227,6 @@ class User_school(db.Model):
     def add(self):
         db.session.add(self)
         db.session.commit()
+
+        
+    # class review
