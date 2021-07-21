@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "../../styles/reviewteacher.scss";
 import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
-import { useHistory } from "react-router";
 
-const ReviewTeacher1 = () => {
+const ReviewTeacher = () => {
 	const [searchItem, setSearchItem] = useState("");
 	const [step, setStep] = useState(1);
 	const fakeData = [
@@ -167,4 +166,4 @@ const ReviewTeacher1 = () => {
 	}
 };
 
-export default ReviewTeacher1;
+export default ReviewTeacher;
