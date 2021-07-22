@@ -116,7 +116,6 @@ def get_all_users():
     users_dic = []
 
     for user in users :
-        if user.is_active:
             if user.is_student :
                 user_student = User_student.get_by_user_id(user.id)
                 if user_student:
@@ -186,6 +185,13 @@ def add_school_to_user():
     
 
 
-
+# user_teacher
+@api.route('/user_teachers',methods=['GET'])
+def get_all_teachers():
+    teachers = User_teacher.get_all()
+    teacher_dic = []
+    for teacher in teachers:
+        teacher_dic.append(teacher.serialize())
+    return jsonify(teacher_dic), 200
 
     

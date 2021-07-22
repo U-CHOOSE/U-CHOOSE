@@ -123,6 +123,11 @@ class User_teacher(db.Model):
         db.session.commit()  
         return user 
 
+    @classmethod
+    def get_all(cls):
+        users = cls.query.all()
+        return users
+
 class User_student(db.Model):
     __tablename__ = 'user_student'
     id = db.Column(db.Integer, primary_key=True)

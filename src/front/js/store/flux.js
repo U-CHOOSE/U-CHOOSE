@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: "",
 			schools: [],
 			teachers: [],
-			step: 0
+			step: 0,
+			stateReviewTeacher: 0
 		},
 		actions: {
 			login: (mail, pass) => {

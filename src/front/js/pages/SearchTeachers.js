@@ -5,7 +5,7 @@ const SearchTeachers = () => {
 	const [data, setData] = useState("");
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user")
+		fetch(process.env.BACKEND_URL + "/user_teachers")
 			.then(res => res.json())
 			.then(data => setData(data));
 	}, []);
