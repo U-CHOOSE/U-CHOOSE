@@ -17,7 +17,7 @@ const StudentProfile = () => {
 			console.log("passrepeat", { passrepeat });
 		}
 	};
-
+	//
 	const updateData = () => {
 		fetch("http://localhost:3005/users/1", {
 			method: "PUT",
