@@ -183,6 +183,20 @@ def add_school_to_user():
     user_add = user_school.add()
     print("add" , user_add)
     return jsonify(user_add.serialize()),201
+
+
+@api.route('/review', methods=['POST'])
+def add_review_to_teacher():
+    body = request.get_json()
+    print(body)
+    teacher_id = body.get("user_id", None)
+    dynamsim = body.get("dynamsim", None)
+    pasion = body.get("pasion", None)
+    practises_example = body.get("practises_example", None)
+    near = body.get("near", None)
+    date_teacher = body.get("date_teacher", None)
+    more_info = body.get("more_info", None)
+
     
 
 
