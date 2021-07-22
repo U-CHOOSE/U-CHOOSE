@@ -1,5 +1,6 @@
 import React from "react";
 import "../Forms/Forms.scss";
+
 const Thanks = props => {
 	return (
 		<>

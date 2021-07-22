@@ -7,13 +7,42 @@ const StudentForm = props => {
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		is_student: false
+		promo: false,
+		is_student: true
 	});
-
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password,
+		promo: formData.promo,
+		is_student: formData.is_student
+	};
 	const [checked, setChecked] = useState(true);
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
 
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => localStorage.setItem("id_user", json.body.user_id))
+			.catch(error => console.log(error));
+	};
 	return (
 		<>
 			<div>
@@ -38,7 +67,7 @@ const StudentForm = props => {
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
 					type="password"
@@ -49,13 +78,14 @@ const StudentForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.checked })} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferetnes centros
 				</span>
+				{console.log(formData)}
 				{props.footer}
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>

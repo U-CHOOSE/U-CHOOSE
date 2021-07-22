@@ -5,8 +5,13 @@ import injectContext from "./store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
+import SearchSchools from "./pages/SearchSchools";
+import SearchTeachers from "./pages/SearchTeachers";
+import Login from "./pages/Login";
 
 import RegisterFormPage from "./pages/RegisterFormPage";
+
+import ReviewTeacher from "./pages/ReviewTeacher";
 
 import Sass from "./pages/Sass";
 
@@ -14,8 +19,13 @@ import TeacherProfile from "./pages/TeacherProfile";
 
 import EditTeacher from "./pages/EditTeacher";
 
+import StudentProfile from "./pages/StudentProfile";
+
+import MyCenters from "./pages/MyCenters";
+
+
 //components
-import Navbar from "./component/navbar";
+import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -32,14 +42,22 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<NavbarComp />
 					<Switch>
 						<Route exact path="/">
 							<LandingPage />
 						</Route>
-
+						<Route exact path="/searchteachers">
+							<SearchTeachers />
+						</Route>
+						<Route exact path="/login">
+							<Login />
+						</Route>
 						<Route exact path="/registerformpage">
 							<RegisterFormPage />
+						</Route>
+						<Route exact path="/reviewteacher">
+							<ReviewTeacher />
 						</Route>
 						<Route exact path="/sass">
 							<Sass />
@@ -49,6 +67,15 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/teacherprofile/edit">
 							<EditTeacher />
+             </Route>
+						<Route exact path="/searchschools">
+							<SearchSchools />
+						</Route>
+						<Route exact path="/studentprofile">
+							<StudentProfile />
+						</Route>
+						<Route exact path="/studentprofile/mycenters">
+						 <MyCenters />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Modal from "../component/Modal/Modal";
+import Modal from "../component/Modal/Modal1";
 import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
@@ -16,6 +16,33 @@ const RegisterFormPage = () => {
 		teacher: false
 	});
 
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: JSON.parse(localStorage.getItem("id_user")),
+				school_id: 2
+			})
+		};
+
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => localStorage.setItem("id_user", json.body.user_id))
+			.catch(error => console.log(error));
+	};
+
 	if (store.step === 0) {
 		return (
 			<>
@@ -26,7 +53,7 @@ const RegisterFormPage = () => {
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
-								<h2>¿Cómo quires colaborar con u-choose?</h2>
+								<h2>¿Cómo quieres colaborar con u-choose?</h2>
 
 								<label className="container" htmlFor="student">
 									<input
@@ -93,6 +120,11 @@ const RegisterFormPage = () => {
 							// 	//didnt'have he endpoint to recived the data
 							// }
 							span2="Saltar este paso"
+							button={
+								<button onClick={handleCreate} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					) : (
 						<Search
@@ -102,6 +134,11 @@ const RegisterFormPage = () => {
 							// data = {
 							// 	//didnt'have he endpoint to recived the data
 							// }
+							button={
+								<button onClick={() => actions.setUpStep()} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					)
 				}
