@@ -15,7 +15,7 @@ const RegisterFormPage = () => {
 		student: false,
 		teacher: false
 	});
-//
+	//
 	const handleCreate = () => {
 		const options = {
 			method: "POST",

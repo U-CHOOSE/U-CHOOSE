@@ -29,7 +29,10 @@ const LandingPage = () => {
 							onClick={() => history.push("/searchschools")}>
 							Buscar un centro
 						</button>
-						<button type="button" className="button_white_border_violet_great btn-teacher mt-3 ">
+						<button
+							type="button"
+							className="button_white_border_violet_great btn-teacher mt-3 "
+							onClick={() => history.push("/searchteachers")}>
 							Buscar un profesor
 						</button>
 					</div>
