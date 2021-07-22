@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router";
 import Search from "../component/Search/Search";
 import { Context } from "../store/appContext";
 
 const SearchSchools = () => {
 	const [data, setData] = useState("");
 	const { store, actions } = useContext(Context);
-	const params = useParams();
+	const handleKeyPress = e => {
+		if (e.key === "Enter" && e.target.value !== "") {
+			alert("Hola");
+			actions.setUpStep();
+		}
+	};
 
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
@@ -22,6 +26,7 @@ const SearchSchools = () => {
 				span1="¿No encuentras tu centro?"
 				type="schools"
 				data={data}
+				onKeyPress={handleKeyPress}
 			/>
 		</>
 	);

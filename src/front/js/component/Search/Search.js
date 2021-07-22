@@ -31,6 +31,7 @@ const Search = props => {
 				placeholder={props.placeholder}
 				className="input-searchbar"
 				onChange={e => setSearchItem(e.target.value)}
+				onKeyPress={props.onKeyPress}
 			/>
 			<span> {props.span1}</span>
 			{data &&

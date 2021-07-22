@@ -15,7 +15,11 @@ const RegisterFormPage = () => {
 		student: false,
 		teacher: false
 	});
+
 	//
+	console.log(store.teachers);
+	console.log(store.schools);
+	// console.log(data);
 	const handleCreate = () => {
 		const options = {
 			method: "POST",
@@ -116,9 +120,8 @@ const RegisterFormPage = () => {
 							title="¿Dónde has estudiado?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							// data = {
-							// 	//didnt'have he endpoint to recived the data
-							// }
+							data={data}
+							type="schools"
 							span2="Saltar este paso"
 							button={
 								<button onClick={handleCreate} className="button_violet_small">

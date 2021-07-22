@@ -64,6 +64,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Esta");
 			},
 
+			get_all_schools: () => {
+				fetch(process.env.BACKEND_URL + "/schools")
+					.then(resp => resp.json())
+					.then(data => setStore({ schools: data }));
+			},
+			get_all_teachers: () => {
+				fetch(process.env.BACKEND_URL + "/user_teachers")
+					.then(resp => resp.json())
+					.then(data => setStore({ teachers: data }));
+			},
+
 			getMessage: () => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
