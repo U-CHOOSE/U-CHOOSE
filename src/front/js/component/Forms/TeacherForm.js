@@ -36,30 +36,35 @@ const TeacherForm = props => {
 				<span>Podras ocultarlo en tus reviews</span>
 				<br />
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="¿De qué eres profesor?"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, password: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="¿URL Linkedin...?"
 					value={formData.typeOfteachers}
 					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, password: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -70,16 +75,19 @@ const TeacherForm = props => {
 				<br />
 				<span>Acepto los terminos y condiciones</span>
 				<br />
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<input className="check" type="checkbox" onChange={e => setChecked(e.target.checked)} />
+
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
 				</span>
+
 				{props.footer}
-				<button className="" onClick={() => actions.setUpStep()}>
+
+				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
-				<button className="" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
 					Registro con Linkedin
 				</button>
 			</div>

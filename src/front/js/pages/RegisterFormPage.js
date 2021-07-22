@@ -36,7 +36,7 @@ const RegisterFormPage = () => {
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
 
-								<h2>¿Cómo quieres colaborar con u-choose?</h2>
+								<h5>¿Cómo quieres colaborar con u-choose?</h5>
 
 								<label className="container" htmlFor="student">
 									<input
@@ -140,6 +140,7 @@ const RegisterFormPage = () => {
 					checked.student === true ? (
 						<>
 							<Thanks
+								className=" Thanks1"
 								subtitle="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>

@@ -36,8 +36,10 @@ const NavbarComp = () => {
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("")}>
-							<BsBuilding />
-							<h4>Centros</h4>
+							<div className="d-flex justify-content-around ">
+								<BsBuilding />
+								<h4>Centros</h4>
+							</div>
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>

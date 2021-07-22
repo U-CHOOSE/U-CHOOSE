@@ -21,7 +21,7 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100 "
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -55,16 +55,15 @@ const StudentForm = props => {
 					onChange={e => setFormData({ ...formData, repeat: e.target.value })}
 				/>
 
-				<pre-wrap>
-					<input className="paddi" type="checkbox" onChange={e => setChecked(e.target.checked)} />
-					Acepto los términos y condiciones
-				</pre-wrap>
-
-				<pre-wrap>
-					<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<br />
+				<span>Acepto los terminos y condiciones</span>
+				<br />
+				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
-					de diferetnes centros
-				</pre-wrap>
+					de diferentes centros
+				</span>
 
 				{props.footer}
 
