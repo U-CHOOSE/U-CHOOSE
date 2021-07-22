@@ -51,7 +51,7 @@
     height: 56px;
     display: block;
     margin: auto;
-    margin-top: 57px;
+    margin-top: 10px;
     
 }
 .contain-inp label {
@@ -94,6 +94,8 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
     font-size: 14px;
     line-height: 22px;
     width:343px;
+    margin-left: 10px;
+    margin-bottom: -65px;
 }
 .input1 {
     margin-bottom: 0px;
@@ -104,4 +106,13 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
 .div-button-save button {
     display: block;
     margin: auto;
+}
+.card__student__profile {
+    width: 370px;
+    margin: auto;
+}
+.passOk {
+    color: red;
+    margin-top: -20px;
+    margin-bottom: -60px;
 }

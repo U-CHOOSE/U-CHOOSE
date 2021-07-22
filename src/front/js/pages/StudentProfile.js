@@ -7,17 +7,21 @@ import { Link } from "react-router-dom";
 const StudentProfile = () => {
 	const [name, setName] = useState("david");
 	const [email, setEmail] = useState("");
-	const [teacher, setTeacher] = useState("");
+	// const [teacher, setTeacher] = useState("");
 	const [password, setPassword] = useState("");
 	const [passrepeat, setPassrepeat] = useState("");
-	const validatePassword = () => {
-		if ({ password } != { passrepeat }) {
-			alert("Las contraseñas no son iguales");
-			console.log("password", { password });
-			console.log("passrepeat", { passrepeat });
-		}
-	};
+
 	//
+	// useEffect(() => {
+	// 	fetch(process.env.BACKEND_URL + "/user/<int:id>")
+	// 		.then(res => res.json())
+	// 		.then(data => {
+	// 			console.log(data);
+	// 			setName(data.full_name)
+	// 			setEmail(data.email)
+	// 		})
+	// }, []);
+
 	const updateData = () => {
 		fetch("http://localhost:3005/users/1", {
 			method: "PUT",
@@ -25,9 +29,9 @@ const StudentProfile = () => {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				lastName: "{name}",
-				Email: "{email}",
-				especialidad: "{teacher}",
+				full_name: "{name}",
+				email: "{email}",
+				// especialidad: "{teacher}",
 				password: "{password}"
 			})
 		})
@@ -37,14 +41,18 @@ const StudentProfile = () => {
 			});
 	};
 
-	return (
-		<div>
-			{/* <div className="actions">
-				<Link className="links" to={"/"}>
-					<FontAwesomeIcon className="icon-x" icon={faTimes} />
-				</Link>
-			</div> */}
+	const passwordOK = () => {
+		if (password != "" || passrepeat != "") {
+			if (password != passrepeat) {
+				return <p className="passOk">Las contraseñas no coinciden</p>;
+			}
+		} else {
+			return "";
+		}
+	};
 
+	return (
+		<div className="card__student__profile">
 			<div className="student-contain1">
 				<img
 					className="img-profile"
@@ -74,7 +82,7 @@ const StudentProfile = () => {
 						onChange={event => setEmail(event.target.value)}
 					/>
 				</div>
-				<div className="contain-inp">
+				{/* <div className="contain-inp">
 					<label>¿De qué eres profesor?</label>
 					<input
 						type="text"
@@ -82,7 +90,7 @@ const StudentProfile = () => {
 						placeholder={teacher}
 						onChange={event => setTeacher(event.target.value)}
 					/>
-				</div>
+				</div> */}
 				<div className="contain-inp">
 					<label>Contraseña</label>
 					<input
@@ -102,11 +110,8 @@ const StudentProfile = () => {
 					/>
 				</div>
 			</div>
-			<div className="div-button-save ml-3 mt-5">
-				<button className="student-button2" onClick={validatePassword}>
-					Guardar
-				</button>
-			</div>
+			{passwordOK()}
+			<button className="student-button2">Guardar</button>
 		</div>
 	);
 };
