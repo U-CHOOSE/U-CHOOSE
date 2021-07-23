@@ -84,6 +84,8 @@ class User_teacher(db.Model):
     type_of_teacher = db.Column(db.VARCHAR)
     linkedin = db.Column(db.VARCHAR)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    review_teacher = db.relationship("Review_teacher")
+
     # school_teacher = db.relationship("User_teacher_school",back_populates = "user_teacher")
             
     def __repr__(self):
@@ -236,7 +238,7 @@ class Review_teacher(db.Model):
     pasion = db.Column(db.Integer())
     practises_example = db.Column(db.Integer())
     near = db.Column(db.Integer())
-    date_teacher = db.Column(db.Date(), unique=False, nullable=False)
+    date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship(User_teacher)

@@ -10,7 +10,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import check_password_hash
-from datetime import timedelta
+from datetime import timedelta, date
+
 
 api = Blueprint('api', __name__)
 
@@ -199,7 +200,7 @@ def add_review_to_teacher():
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
     
-    review = teacher_id, dynamsim, pasion, practises_example, near, date_teacher, more_info
+    review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
 
     Review_teacher.add(review)
     # return jsonify({"hola": "si"})
@@ -209,8 +210,7 @@ def add_review_to_teacher():
 @api.route('/reviews', methods=['GET'])
 def get_all_review_to_teacher():
     
-    print(body)
-
+    
     reviews = Review_teacher.get_all()
     review_dic = []
     for review in reviews:
@@ -219,10 +219,9 @@ def get_all_review_to_teacher():
     
 
 @api.route('/review/<int:teacher_id>', methods=['GET'])
-def get_review_to_teacher():
+def get_review_to_teacher(teacher_id):
     
     reviews = Review_teacher.get_by_id(teacher_id)
-
     return jsonify(reviews.serialize()), 200
 
 
