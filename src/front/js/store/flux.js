@@ -6,8 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			error: "",
-			schools: [],
-			teachers: [],
+			// schools: [],
+			// teachers: [],
 			step: 0,
 			stateReviewTeacher: 0
 		},
@@ -62,16 +62,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Esta");
 			},
 
-			get_all_schools: () => {
-				fetch(process.env.BACKEND_URL + "/schools")
-					.then(resp => resp.json())
-					.then(data => setStore({ schools: data }));
-			},
-			get_all_teachers: () => {
-				fetch(process.env.BACKEND_URL + "/user_teachers")
-					.then(resp => resp.json())
-					.then(data => setStore({ teachers: data }));
-			},
+			// get_all_schools: () => {
+			// 	fetch(process.env.BACKEND_URL + "/schools")
+			// 		.then(resp => resp.json())
+			// 		.then(data => setStore({ schools: data }));
+			// },
+			// get_all_teachers: () => {
+			// 	fetch(process.env.BACKEND_URL + "/user_teachers")
+			// 		.then(resp => resp.json())
+			// 		.then(data => setStore({ teachers: data }));
+			// },
 
 			getMessage: () => {
 				// fetching data from the backend

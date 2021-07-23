@@ -11,15 +11,21 @@ const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 	const [show, setShow] = useState(true);
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/schools")
+			.then(res => res.json())
+			.then(data => setData(data))
+			.catch(err => console.log(err));
+	}, []);
 	const [checked, setChecked] = useState({
 		student: false,
 		teacher: false
 	});
 
 	//
-	console.log(store.teachers);
-	console.log(store.schools);
-	// console.log(data);
+
+	console.log(data);
 	const handleCreate = () => {
 		const options = {
 			method: "POST",
