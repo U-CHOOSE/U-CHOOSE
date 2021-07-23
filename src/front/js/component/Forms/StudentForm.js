@@ -40,7 +40,11 @@ const StudentForm = props => {
 				console.log(status);
 				return res.json();
 			})
-			.then(json => localStorage.setItem("id_user", json.body.user_id))
+			.then(json => {
+				localStorage.setItem("id_user", json.body.user_id);
+				localStorage.setItem("email", json.body.email);
+				localStorage.setItem("password", json.body._password);
+			})
 			.catch(error => console.log(error));
 	};
 	return (

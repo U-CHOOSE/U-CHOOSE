@@ -20,7 +20,7 @@ class User(db.Model):
     is_student = db.Column(db.Boolean)
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
-    user_school = db.relationship("User_school", cascade="all, delete", lazy=True)
+    school = db.relationship("School", secondary="user_school")
 
 
     def __repr__(self):
@@ -125,6 +125,11 @@ class User_teacher(db.Model):
         db.session.commit()  
         return user 
 
+    @classmethod
+    def get_all(cls):
+        users = cls.query.all()
+        return users
+
 class User_student(db.Model):
     __tablename__ = 'user_student'
     id = db.Column(db.Integer, primary_key=True)
@@ -171,6 +176,7 @@ class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     img = db.Column(db.String, unique=False, nullable=False)
+    user = db.relationship("User", secondary="user_school")
 
 
     def __repr__(self):
@@ -182,7 +188,11 @@ class School(db.Model):
             "name": self.name
         }
 
-
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first()
+        return user
+        
     @classmethod
     def get_all(cls):
         schools = cls.query.all()
@@ -206,10 +216,12 @@ class User_school(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
-    school = db.relationship('School', cascade="all, delete", lazy=True)
-    # user = db.relationship("User", cascade="all, delete", lazy=True)
+    school = db.relationship('School', backref=db.backref("user_school", cascade="all, delete-orphan"))
+    user = db.relationship("User", backref=db.backref("user_school", cascade="all, delete-orphan"))
 
 
+#   user = relationship(User, backref=backref("orders", cascade="all, delete-orphan"))
+#     product = relationship(Product, backref=backref("orders", cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<User_school %r>' % self.school_id

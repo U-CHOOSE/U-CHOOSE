@@ -6,7 +6,7 @@ const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const { store, actions } = useContext(Context);
 	const [data, setData] = useState([]);
-
+	const [select, setSelect] = useState("");
 	useEffect(
 		() => {
 			setData(props.data);
@@ -31,9 +31,11 @@ const Search = props => {
 				placeholder={props.placeholder}
 				className="input-searchbar"
 				onChange={e => setSearchItem(e.target.value)}
+				onKeyPress={props.onKeyPress}
 			/>
 			<span> {props.span1}</span>
-			{data &&
+
+			{data && select === "" ? (
 				data
 					.filter(v => {
 						if (searchItem === "") {
@@ -43,8 +45,19 @@ const Search = props => {
 						}
 					})
 					.map((v, i) => {
-						return <div key={i}>{v[attribute]}</div>;
-					})}
+						return (
+							<li key={i}>
+								<div>
+									{" "}
+									<div onClick={() => setSelect(v.name)}>{v[attribute]}</div>
+									<div>X</div>
+								</div>
+							</li>
+						);
+					})
+			) : (
+				<div>{select}</div>
+			)}
 
 			{props.button}
 			<span className="span__2">{props.span2}</span>

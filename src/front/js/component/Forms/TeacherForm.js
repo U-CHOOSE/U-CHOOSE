@@ -31,6 +31,8 @@ const TeacherForm = props => {
 		const options = {
 			method: "POST",
 			headers: {
+				mode: "no-cors",
+				"Access-Control-Allow-Origin": "*",
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(body)
