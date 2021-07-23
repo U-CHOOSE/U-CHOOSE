@@ -84,6 +84,8 @@ class User_teacher(db.Model):
     type_of_teacher = db.Column(db.VARCHAR)
     linkedin = db.Column(db.VARCHAR)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    review_teacher = db.relationship("Review_teacher")
+
     # school_teacher = db.relationship("User_teacher_school",back_populates = "user_teacher")
             
     def __repr__(self):
@@ -227,3 +229,49 @@ class User_school(db.Model):
     def add(self):
         db.session.add(self)
         db.session.commit()
+
+
+class Review_teacher(db.Model):
+    __tablename__ = 'review_teacher'
+    id = db.Column(db.Integer, primary_key=True)
+    dynamsim = db.Column(db.Integer())
+    pasion = db.Column(db.Integer())
+    practises_example = db.Column(db.Integer())
+    near = db.Column(db.Integer())
+    date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
+    more_info = db.Column(db.String(500), unique=False, nullable=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
+    user_teacher = db.relationship(User_teacher)
+
+    def __repr__(self):
+        return '<Review_teacher %r>' % self.id
+    
+    def serialize(self):
+        return {
+            "teacher_id": self.teacher_id,
+            "dynamsim": self.dynamsim,
+            "pasion": self.pasion,
+            "practises_example": self.practises_example,
+            "near": self.near,
+            "date_teacher": self.date_teacher,
+            "more_info": self.more_info,
+            # si quiero traer el nombre de teacher??
+        }
+        
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_all(cls):
+        review_teachers = cls.query.all()
+        return review_teachers
+
+    @classmethod
+    def get_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+    
+    @classmethod
+    def get_by_id(cls, id):
+        reviews = cls.query.filter_by(id = id).first_or_404()
+        return reviews
