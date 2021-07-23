@@ -216,18 +216,14 @@ def get_all_review_to_teacher():
     for review in reviews:
         review_dic.append(review.serialize())
     return jsonify(review_dic), 200
+    
 
-@api.route('/reviews', methods=['GET'])
+@api.route('/review/<int:teacher_id>', methods=['GET'])
 def get_review_to_teacher():
     
-    print(body)
+    reviews = Review_teacher.get_by_id(teacher_id)
 
-    reviews = Review_teacher.get_all()
-    review_dic = []
-    for review in reviews:
-        review_dic.append(review.serialize())
-    return jsonify(review_dic), 200
-
+    return jsonify(reviews.serialize()), 200
 
 
 

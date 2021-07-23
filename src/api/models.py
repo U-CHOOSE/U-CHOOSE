@@ -265,4 +265,11 @@ class Review_teacher(db.Model):
         review_teachers = cls.query.all()
         return review_teachers
 
-     
+    @classmethod
+    def get_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+    
+    @classmethod
+    def get_by_id(cls, id):
+        reviews = cls.query.filter_by(id = id).first_or_404()
+        return reviews
