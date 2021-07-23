@@ -58,6 +58,7 @@ const Layout = () => {
 						<Route exact path="/reviewteacher">
 							<ReviewTeacher />
 						</Route>
+
 						<Route exact path="/sass">
 							<Sass />
 						</Route>
@@ -67,6 +68,7 @@ const Layout = () => {
 						<Route exact path="/teacherprofile/edit">
 							<EditTeacher />
 						</Route>
+
 						<Route exact path="/searchschools">
 							<SearchSchools />
 						</Route>

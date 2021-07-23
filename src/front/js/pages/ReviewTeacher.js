@@ -16,6 +16,20 @@ const ReviewTeacher = () => {
 			age: 18
 		}
 	];
+	GET;
+
+	// POST
+	// var data = {username: 'example'};
+
+	// fetch(process.env.BACKEND_URL + "/review" , {
+	// method: 'POST',
+	// body: JSON.stringify(data), // data can be `string` or {object}!
+	// headers:{
+	// 	'Content-Type': 'application/json'
+	// }
+	// }).then(res => res.json())
+	// .catch(error => console.error('Error:', error))
+	// .then(response => console.log('Success:', response));
 
 	if (step == 1) {
 		return (

@@ -1,14 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Search from "../component/Search/Search";
+import { Context } from "../store/appContext";
 
 const SearchTeachers = () => {
+	const { actions } = useContext(Context);
 	const [data, setData] = useState("");
+	const handleKeyPress = e => {
+		if (e.key === "Enter" && e.target.value !== "") {
+			alert("Hola");
+			actions.setUpStep();
+		}
+	};
+	useEffect(
+		() => {
+			fetch(process.env.BACKEND_URL + "/user_teachers")
+				.then(res => res.json())
+				.then(data => setData(data));
+		},
+		[!data]
+	);
+	console.log(data);
 
-	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user")
-			.then(res => res.json())
-			.then(data => setData(data));
-	}, []);
+	// const handleTeacherFindId = () => {
+	// 	fetch(process.env.BACKEND_URL + "/user_teachers")
+	// }
 	return (
 		<>
 			<Search
@@ -17,6 +32,7 @@ const SearchTeachers = () => {
 				span1="¿No encuentras tu professor?"
 				type="user"
 				data={data}
+				onKeyPress={handleKeyPress}
 			/>
 		</>
 	);

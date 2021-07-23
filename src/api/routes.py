@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User,User_teacher,User_student,School,User_school
+from api.models import db,User,User_teacher,User_student,School,User_school,Review_teacher
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -10,7 +10,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import check_password_hash
-from datetime import timedelta
+from datetime import timedelta, date
+
 
 api = Blueprint('api', __name__)
 
@@ -47,41 +48,58 @@ def handle_hello():
 
 @api.route('/user', methods=['POST' , 'PUT'])
 def add_user():
-    body = request.get_json()
-    print(body)
-    full_name = body.get("full_name", None)
-    email = body.get("email", None)
-    _password = body.get("_password", None)
-    is_student = body.get("is_student", None)
-    promo = body.get("promo", None)
+    
+    if request.method == 'POST':
+        body = request.get_json()
+        print(body)
+        full_name = body.get("full_name", None)
+        email = body.get("email", None)
+        _password = body.get("_password", None)
+        is_student = body.get("is_student", None)
+        promo = body.get("promo", None)
 
-    if not email or not _password or is_student is None:
-        return "Missing info", 400
+        if not email or not _password or is_student is None:
+            return "Missing info", 400
 
-    password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
-    user_id = User.add(
-        email, 
-        password_hashed, 
-        is_student, 
-        promo,
-        full_name,
-    )
-
-    if is_student:
-        student =  User_student(
-            user_id=user_id
+        password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
+        user_id = User.add(
+            email, 
+            password_hashed, 
+            is_student, 
+            promo,
+            full_name,
         )
-        student.add()
-        return jsonify({"body": student.serialize()}), 201
 
-    teacher =  User_teacher(
-        linkedin = body.get("linkedin"),
-        type_of_teacher = body.get("type_of_teacher"),
-        user_id = user_id
-    )
-    teacher.add()
+        if is_student:
+            student =  User_student(
+                user_id=user_id
+            )
+            student.add()
+            return jsonify({"body": student.serialize()}), 201
 
-    return jsonify({"body" : teacher.serialize()}), 201
+        teacher =  User_teacher(
+            linkedin = body.get("linkedin"),
+            type_of_teacher = body.get("type_of_teacher"),
+            user_id = user_id
+        )
+        teacher.add()
+        return jsonify({"teacher": teacher.serialize()}), 201
+
+    elif request.method == 'PUT':
+        body = request.get_json()
+        school_id = body.get("school_id", None)
+        user_id = body.get("user_id", None)
+        
+        user_school =  User_school(
+            school_id = school_id,
+            user_id = user_id
+        )
+        user_school.add()
+
+        return jsonify({"school": user_school.serialize()}), 201
+    
+
+    
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()
@@ -116,7 +134,6 @@ def get_all_users():
     users_dic = []
 
     for user in users :
-        if user.is_active:
             if user.is_student :
                 user_student = User_student.get_by_user_id(user.id)
                 if user_student:
@@ -183,9 +200,53 @@ def add_school_to_user():
     user_add = user_school.add()
     print("add" , user_add)
     return jsonify(user_add.serialize()),201
+
+
+@api.route('/review', methods=['POST'])
+def add_review_to_teacher():
+    body = request.get_json()
+    print(body)
+
+    
+    teacher_id = body.get("user_id", None),
+    dynamsim = body.get("dynamsim", None),
+    pasion = body.get("pasion", None),
+    practises_example = body.get("practises_example", None),
+    near = body.get("near", None),
+    date_teacher = body.get("date_teacher", None),
+    more_info = body.get("more_info", None)
+    
+    review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
+
+    Review_teacher.add(review)
+    # return jsonify({"hola": "si"})
+ 
+    return jsonify(review.serialize()),201
+
+@api.route('/reviews', methods=['GET'])
+def get_all_review_to_teacher():
+    
+    
+    reviews = Review_teacher.get_all()
+    review_dic = []
+    for review in reviews:
+        review_dic.append(review.serialize())
+    return jsonify(review_dic), 200
     
 
+@api.route('/review/<int:teacher_id>', methods=['GET'])
+def get_review_to_teacher(teacher_id):
+    
+    reviews = Review_teacher.get_by_id(teacher_id)
+    return jsonify(reviews.serialize()), 200
 
-
+# user_teacher
+@api.route('/user_teachers',methods=['GET'])
+def get_all_teachers():
+    teachers = User_teacher.get_all()
+    teacher_dic = []
+    for teacher in teachers:
+        teacher_dic.append(teacher.serialize())
+    return jsonify(teacher_dic), 200
 
     
