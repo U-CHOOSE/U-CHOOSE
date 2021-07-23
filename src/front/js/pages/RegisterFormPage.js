@@ -146,9 +146,7 @@ const RegisterFormPage = () => {
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							// data = {
-							// 	//didnt'have he endpoint to recived the data
-							// }
+							data={{ data }}
 							button={
 								<button onClick={() => actions.setUpStep()} className="button_violet_small">
 									Siguiente
