@@ -259,3 +259,10 @@ class Review_teacher(db.Model):
     def add(self):
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_all(cls):
+        review_teachers = cls.query.all()
+        return review_teachers
+
+     

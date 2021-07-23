@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User,User_teacher,User_student,School,User_school
+from api.models import db,User,User_teacher,User_student,School,User_school,Review_teacher
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -189,15 +189,44 @@ def add_school_to_user():
 def add_review_to_teacher():
     body = request.get_json()
     print(body)
-    teacher_id = body.get("user_id", None)
-    dynamsim = body.get("dynamsim", None)
-    pasion = body.get("pasion", None)
-    practises_example = body.get("practises_example", None)
-    near = body.get("near", None)
-    date_teacher = body.get("date_teacher", None)
-    more_info = body.get("more_info", None)
 
     
+    teacher_id = body.get("user_id", None),
+    dynamsim = body.get("dynamsim", None),
+    pasion = body.get("pasion", None),
+    practises_example = body.get("practises_example", None),
+    near = body.get("near", None),
+    date_teacher = body.get("date_teacher", None),
+    more_info = body.get("more_info", None)
+    
+    review = teacher_id, dynamsim, pasion, practises_example, near, date_teacher, more_info
+
+    Review_teacher.add(review)
+    # return jsonify({"hola": "si"})
+ 
+    return jsonify(review.serialize()),201
+
+@api.route('/reviews', methods=['GET'])
+def get_all_review_to_teacher():
+    
+    print(body)
+
+    reviews = Review_teacher.get_all()
+    review_dic = []
+    for review in reviews:
+        review_dic.append(review.serialize())
+    return jsonify(review_dic), 200
+
+@api.route('/reviews', methods=['GET'])
+def get_review_to_teacher():
+    
+    print(body)
+
+    reviews = Review_teacher.get_all()
+    review_dic = []
+    for review in reviews:
+        review_dic.append(review.serialize())
+    return jsonify(review_dic), 200
 
 
 
