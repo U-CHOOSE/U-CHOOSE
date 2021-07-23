@@ -186,7 +186,11 @@ class School(db.Model):
             "name": self.name
         }
 
-
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first()
+        return user
+        
     @classmethod
     def get_all(cls):
         schools = cls.query.all()

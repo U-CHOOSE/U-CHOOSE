@@ -26,9 +26,9 @@ const RegisterFormPage = () => {
 	//
 
 	console.log(data);
-	const handleCreate = () => {
+	const handlePut = () => {
 		const options = {
-			method: "POST",
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json"
 			},
@@ -53,6 +53,10 @@ const RegisterFormPage = () => {
 			})
 			.then(json => localStorage.setItem("id_user", json.body.user_id))
 			.catch(error => console.log(error));
+	};
+
+	const isLoged = () => {
+		actions.login(email, password);
 	};
 
 	if (store.step === 0) {
@@ -132,7 +136,7 @@ const RegisterFormPage = () => {
 							type="schools"
 							span2="Saltar este paso"
 							button={
-								<button onClick={handleCreate} className="button_violet_small">
+								<button onClick={handlePut} className="button_violet_small">
 									Siguiente
 								</button>
 							}
