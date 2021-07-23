@@ -1,6 +1,4 @@
-import { contains, data } from "jquery";
 import { Link, useHistory } from "react-router-dom";
-import { string } from "prop-types";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const history = useHistory();

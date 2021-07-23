@@ -81,13 +81,14 @@ def add_user():
     )
     teacher.add() 
 
-    user_school =  User_school(
-        school_id = school_id,
-        user_id = user_id
-    )
-    user_school.add()
+    # user_school =  User_school(
+    #     school_id = school_id,
+    #     user_id = user_id
+    # )
+    # user_school.add()
+    # user_school.serialize()
 
-    return jsonify({"body teacher" : teacher.serialize()}, "body school" : user_school.serialize()), 201
+    return jsonify({"body": teacher.serialize()}), 201
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()

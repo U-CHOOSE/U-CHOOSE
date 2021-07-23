@@ -34,6 +34,8 @@ const RegisterFormPage = () => {
 
 		fetch(process.env.BACKEND_URL + "/user", options)
 			.then(res => {
+				console.log(res);
+
 				if (res.status === 201) {
 					alert("ok");
 					actions.setUpStep();
