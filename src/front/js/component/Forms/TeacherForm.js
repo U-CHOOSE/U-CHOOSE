@@ -3,7 +3,7 @@ import "./Forms.scss";
 import PropTypes from "prop-types";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { Context } from "../../store/appContext";
-
+import { AiFillLinkedin } from "react-icons/ai";
 const TeacherForm = props => {
 	const { store, actions } = useContext(Context);
 
@@ -88,7 +88,7 @@ const TeacherForm = props => {
 					Crear Cuenta
 				</button>
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
-					Registro con Linkedin
+					Registro con Linkedin <img className="AiFillLinkedin" src="AiFillLinkedin" />
 				</button>
 			</div>
 		</>

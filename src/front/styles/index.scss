@@ -150,8 +150,16 @@ input:focus{
 }
 .button_white_border_violet_small{
     @include button( $violet
-    ,190px ,40px ,white);
+    ,267px ,56px ,white);
     border: 2px solid $violet;
     box-sizing: border-box;
 }
 
+.btnGroup{  
+    align-content: center;
+}
+
+// .titleSearch{
+//     color: chartreuse;
+//     font-size: 50px;
+// }
