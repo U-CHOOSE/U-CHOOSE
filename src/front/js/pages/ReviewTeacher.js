@@ -19,6 +19,7 @@ const ReviewTeacher = () => {
 			age: 18
 		}
 	];
+	const [selectOption, setTSelectOption] = useState(0);
 
 	// POST;
 	var data = {
@@ -155,7 +156,11 @@ const ReviewTeacher = () => {
 		};
 		const option = optionDropdown();
 		console.log(store.reviews);
-		let opcionEscogida = option.selected;
+
+		const captureYear = e => {
+			setTSelectOption(e.target.value);
+		};
+
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
@@ -165,7 +170,7 @@ const ReviewTeacher = () => {
 					nameUniversity="4Geeks Academy"
 					body={
 						<div className="dropdown">
-							<select name="year" className="options" value={option}>
+							<select name="year" className="options" onChange={captureYear}>
 								<option value="" disabled selected>
 									Año
 								</option>
@@ -176,7 +181,6 @@ const ReviewTeacher = () => {
 					button="Siguiente"
 					onClick={() => setStep(8)}
 				/>
-				{console.log(opcionEscogida)}
 			</div>
 		);
 	} else if (step == 8) {
