@@ -155,6 +155,7 @@ const ReviewTeacher = () => {
 		};
 		const option = optionDropdown();
 		console.log(store.reviews);
+		let opcionEscogida = option.selected;
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
@@ -164,7 +165,10 @@ const ReviewTeacher = () => {
 					nameUniversity="4Geeks Academy"
 					body={
 						<div className="dropdown">
-							<select name="year" className="options">
+							<select name="year" className="options" value={option}>
+								<option value="" disabled selected>
+									Año
+								</option>
 								{option}
 							</select>
 						</div>
@@ -172,6 +176,7 @@ const ReviewTeacher = () => {
 					button="Siguiente"
 					onClick={() => setStep(8)}
 				/>
+				{console.log(opcionEscogida)}
 			</div>
 		);
 	} else if (step == 8) {
