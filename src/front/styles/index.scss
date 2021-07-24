@@ -58,21 +58,26 @@ $gradientVioletMarino : linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%);
 
 input[type=text]{
     font-style:normal;
+    margin-bottom: 15px;
     background: $greyInputs;
     height: 64px;
     width: 343px;
+    box-sizing: border-box;
     border-radius: 16px;
     border: none
 }
 input[type=password]{
     background: $greyInputs;
+    margin-bottom: 15px;
     height: 64px;
     width: 343px;
+    box-sizing: border-box;
     border-radius: 16px;
     border: none
 }
 input[type=email]{
     background: $greyInputs;
+    margin-bottom: 15px;
     height: 64px;
     width: 343px;
     border-radius: 16px;
@@ -82,10 +87,11 @@ input::placeholder{
     color: rgba(160, 163, 189, 1);
     height: 28px;
     width: 141px;
-    padding-left: 64px; 
-    font-size: 16px;
+    padding-left: 10px; 
+    font-size: 12px;
     line-height: 28px;
     font-family: Poppins;
+    // box-sizing: content-box;
 }
 
 input:focus{
@@ -95,6 +101,7 @@ input:focus{
     color: $color;
     height: $height;
     width:$width;
+    margin-bottom: 15px;
     background-color: $background-color;
     border-radius: 40px;
     font-weight: 600;
@@ -143,8 +150,29 @@ input:focus{
 }
 .button_white_border_violet_small{
     @include button( $violet
-    ,190px ,40px ,white);
+    ,267px ,56px ,white);
     border: 2px solid $violet;
     box-sizing: border-box;
 }
 
+.btnGroup{  
+    align-content: center;
+}
+
+// .titleSearch{
+//     color: chartreuse;
+//     font-size: 50px;
+// }
+
+
+.Linkedin{
+    width: 20px;
+}
+
+BsBoxArrowInLeft{
+    width: 100px;
+}
+
+.google{
+    width: 20px;  
+}

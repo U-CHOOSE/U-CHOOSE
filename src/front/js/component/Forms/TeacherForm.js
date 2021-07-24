@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
+import { AiFillLinkedin } from "react-icons/ai";
+import Linkedin from "../../../img/Linkedin.png";
 
 const TeacherForm = props => {
 	const { store, actions } = useContext(Context);
@@ -58,40 +60,48 @@ const TeacherForm = props => {
 			<div>
 				<div>
 					{" "}
-					<h1>Detalles de cuenta</h1>
+					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
+				<br />
 				<span>Podras ocultarlo en tus reviews</span>
+				<br />
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="¿De qué eres profesor?"
 					value={formData.typeOfteachers}
 					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="¿URL Linkedin...?"
 					value={formData.linkedin}
 					onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="password"
 					placeholder="Contraseña"
 					value={formData._password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
+					className="mx-auto w-100"
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -99,18 +109,23 @@ const TeacherForm = props => {
 				/>
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.checked })} />
+
+				<span>Acepto los terminos y condiciones</span>
+				<br />
+				<input className="check" type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
-					de diferetnes centros
+					de diferentes centros
 				</span>
+				<br />
 				{props.footer}
-				<button className="" onClick={handleCreate}>
+
+				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
-				<button className="" onClick={() => actions.setUpStep()}>
-					Registro con Linkedin
+				<br />
+				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
+					Registro con <img className="Linkedin " src={Linkedin} />
 				</button>
 			</div>
 		</>
