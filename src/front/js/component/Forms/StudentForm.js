@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
+import google from "../../../img/google.png";
 
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
@@ -72,7 +73,7 @@ const StudentForm = props => {
 				</button>
 
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
-					Registro con Google
+					Registro con <img className="google" src={google} />
 				</button>
 			</div>
 		</>

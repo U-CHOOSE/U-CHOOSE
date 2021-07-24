@@ -43,11 +43,10 @@ const NavbarComp = () => {
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
-							<h4>
-								
+							<div className="d-flex justify-content-around ">
 								<BsFillPersonFill />
-								Profesores{" "
-							</h4>
+								<h4>Profesores</h4>
+							</div>
 						</NavDropdown.Item>
 						<br />
 						<Button className="btnNav" onClick={() => history.push("")}>

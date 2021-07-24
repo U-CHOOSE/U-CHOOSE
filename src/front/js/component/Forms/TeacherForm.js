@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { Context } from "../../store/appContext";
 import { AiFillLinkedin } from "react-icons/ai";
+import Linkedin from "../../../img/Linkedin.png";
+
 const TeacherForm = props => {
 	const { store, actions } = useContext(Context);
 
@@ -89,7 +91,7 @@ const TeacherForm = props => {
 				</button>
 				<br />
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
-					Registro con Linkedin <img className="AiFillLinkedin" src="" />
+					Registro con <img className="Linkedin " src={Linkedin} />
 				</button>
 			</div>
 		</>
