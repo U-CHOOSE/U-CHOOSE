@@ -45,6 +45,7 @@ const Search = props => {
 						}
 					})
 					.map((v, i) => {
+						console.log(v, i);
 						return (
 							<li key={i}>
 								<div>
