@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
+
 	const [searchItem, setSearchItem] = useState("");
 	const [step, setStep] = useState(1);
 	const fakeData = [
@@ -19,6 +20,8 @@ const ReviewTeacher = () => {
 			age: 18
 		}
 	];
+
+	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
 
 	// POST;
@@ -179,8 +182,12 @@ const ReviewTeacher = () => {
 						</div>
 					}
 					button="Siguiente"
-					onClick={() => setStep(8)}
+					onClick={() => {
+						actions.setReview("date_teacher", selectOption);
+						setStep(8);
+					}}
 				/>
+				{console.log(selectOption)}
 			</div>
 		);
 	} else if (step == 8) {
