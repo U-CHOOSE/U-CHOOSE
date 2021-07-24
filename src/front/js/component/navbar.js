@@ -31,7 +31,7 @@ const NavbarComp = () => {
 						<Nav className="me-auto"> */}
 					<NavDropdown className="navbar-toggler-icon">
 						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/registerformpage")}>
+						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
@@ -47,6 +47,7 @@ const NavbarComp = () => {
 								<BsFillPersonFill />
 								<h4>Profesores</h4>
 							</div>
+
 						</NavDropdown.Item>
 						<br />
 						<Button className="btnNav" onClick={() => history.push("")}>

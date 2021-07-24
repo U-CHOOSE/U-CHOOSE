@@ -1,6 +1,4 @@
-import { contains } from "jquery";
 import { Link, useHistory } from "react-router-dom";
-import { string } from "prop-types";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const history = useHistory();
@@ -8,7 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			error: "",
-			step: 0
+			// schools: [],
+			// teachers: [],
+			step: 0,
+			stateReviewTeacher: 0
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -38,6 +39,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setError: error => {
 				setStore({ error: error });
 			},
+			get_all: type => {
+				fetch(process.env.BACKEND_URL + type + "/")
+					.then(res => res.json())
+					.then(data => setStore({ [type]: data }))
+					.catch(error => console.log(error));
+			},
 
 			setUpStep: () => {
 				const store = getStore();
@@ -54,6 +61,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// getActions().changeColor(0, "green");
 				console.log("Esta");
 			},
+
+			// get_all_schools: () => {
+			// 	fetch(process.env.BACKEND_URL + "/schools")
+			// 		.then(resp => resp.json())
+			// 		.then(data => setStore({ schools: data }));
+			// },
+			// get_all_teachers: () => {
+			// 	fetch(process.env.BACKEND_URL + "/user_teachers")
+			// 		.then(resp => resp.json())
+			// 		.then(data => setStore({ teachers: data }));
+			// },
 
 			getMessage: () => {
 				// fetching data from the backend

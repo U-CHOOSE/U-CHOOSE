@@ -13,10 +13,53 @@ const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 	const [show, setShow] = useState(true);
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/schools")
+			.then(res => res.json())
+			.then(data => setData(data))
+			.catch(err => console.log(err));
+	}, []);
 	const [checked, setChecked] = useState({
 		student: false,
 		teacher: false
 	});
+
+	//
+
+	console.log(data);
+	const handlePut = () => {
+		const options = {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: JSON.parse(localStorage.getItem("id_user")),
+				school_id: 2
+			})
+		};
+
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				console.log(res);
+
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => localStorage.setItem("id_user", json.body.user_id))
+			.catch(error => console.log(error));
+	};
+
+	const isLoged = () => {
+		actions.login(email, password);
+	};
 
 	if (store.step === 0) {
 		return (
@@ -108,10 +151,14 @@ const RegisterFormPage = () => {
 							title="¿Dónde has estudiado?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							// data = {
-							// 	//didnt'have he endpoint to recived the data
-							// }
+							data={data}
+							type="schools"
 							span2="Saltar este paso"
+							button={
+								<button onClick={handlePut} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					) : (
 						<Search
@@ -119,9 +166,12 @@ const RegisterFormPage = () => {
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							// data = {
-							// 	//didnt'have he endpoint to recived the data
-							// }
+							data={{ data }}
+							button={
+								<button onClick={() => actions.setUpStep()} className="button_violet_small">
+									Siguiente
+								</button>
+							}
 						/>
 					)
 				}

@@ -8,13 +8,46 @@ const StudentForm = props => {
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		is_student: false
+		promo: false,
+		is_student: true
 	});
-
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password,
+		promo: formData.promo,
+		is_student: formData.is_student
+	};
 	const [checked, setChecked] = useState(true);
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
 
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => {
+				localStorage.setItem("id_user", json.body.user_id);
+				localStorage.setItem("email", json.body.email);
+				localStorage.setItem("password", json.body._password);
+			})
+			.catch(error => console.log(error));
+	};
 	return (
 		<>
 			<div>
@@ -45,7 +78,7 @@ const StudentForm = props => {
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 
 				<input
@@ -58,6 +91,7 @@ const StudentForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 
+
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
@@ -69,6 +103,7 @@ const StudentForm = props => {
 				{props.footer}
 
 				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+
 					Crear Cuenta
 				</button>
 

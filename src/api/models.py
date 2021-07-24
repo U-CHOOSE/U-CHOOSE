@@ -14,13 +14,13 @@ class User(db.Model):
     full_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
-    is_active = db.Column(db.Boolean, default=True)
+    # is_active = db.Column(db.Boolean, default=True)
     image = db.Column(db.VARCHAR)
-    promo = db.Column(db.Boolean, default=True)
+    promo = db.Column(db.Boolean, default=False)
     is_student = db.Column(db.Boolean)
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
-    user_school = db.relationship("User_school", cascade="all, delete", lazy=True)
+    school = db.relationship("School", secondary="user_school")
 
 
     def __repr__(self):
@@ -32,7 +32,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "full_name":self.full_name,
-            "is_active": self.is_active,
             "email": self.email,
             "is_student":self.is_student
             
@@ -85,6 +84,8 @@ class User_teacher(db.Model):
     type_of_teacher = db.Column(db.VARCHAR)
     linkedin = db.Column(db.VARCHAR)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    review_teacher = db.relationship("Review_teacher")
+
     # school_teacher = db.relationship("User_teacher_school",back_populates = "user_teacher")
             
     def __repr__(self):
@@ -100,7 +101,6 @@ class User_teacher(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "is_active": user.is_active,
             "promo": user.promo
         }
 
@@ -125,6 +125,11 @@ class User_teacher(db.Model):
         db.session.commit()  
         return user 
 
+    @classmethod
+    def get_all(cls):
+        users = cls.query.all()
+        return users
+
 class User_student(db.Model):
     __tablename__ = 'user_student'
     id = db.Column(db.Integer, primary_key=True)
@@ -142,7 +147,6 @@ class User_student(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "is_active": user.is_active,
             "promo": user.promo
         }
 
@@ -171,7 +175,8 @@ class School(db.Model):
     __tablename__ = 'school'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    img = db.Column(db.String(250), unique=False, nullable=False)
+    img = db.Column(db.String, unique=False, nullable=False)
+    user = db.relationship("User", secondary="user_school")
 
 
     def __repr__(self):
@@ -183,7 +188,11 @@ class School(db.Model):
             "name": self.name
         }
 
-
+    @classmethod
+    def get_by_id(cls, id):
+        user = cls.query.filter_by(id = id).first()
+        return user
+        
     @classmethod
     def get_all(cls):
         schools = cls.query.all()
@@ -193,7 +202,7 @@ class School(db.Model):
         self.name = json["name"]
         self.img = json["img"]
     
-    def db_post(self):        
+    def add(self):
         db.session.add(self)
         db.session.commit()
 
@@ -204,12 +213,15 @@ class School(db.Model):
         
 class User_school(db.Model):
     __tablename__ = 'user_school'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
-    school_id = db.Column(db.Integer, db.ForeignKey('school.id'),primary_key=True)
-    school = db.relationship('School', cascade="all, delete", lazy=True)
-    user = db.relationship("User", cascade="all, delete", lazy=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    school_id = db.Column(db.Integer, db.ForeignKey('school.id'))
+    school = db.relationship('School', backref=db.backref("user_school", cascade="all, delete-orphan"))
+    user = db.relationship("User", backref=db.backref("user_school", cascade="all, delete-orphan"))
 
 
+#   user = relationship(User, backref=backref("orders", cascade="all, delete-orphan"))
+#     product = relationship(Product, backref=backref("orders", cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<User_school %r>' % self.school_id
@@ -226,3 +238,52 @@ class User_school(db.Model):
 
         }
 
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+class Review_teacher(db.Model):
+    __tablename__ = 'review_teacher'
+    id = db.Column(db.Integer, primary_key=True)
+    dynamsim = db.Column(db.Integer())
+    pasion = db.Column(db.Integer())
+    practises_example = db.Column(db.Integer())
+    near = db.Column(db.Integer())
+    date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
+    more_info = db.Column(db.String(500), unique=False, nullable=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
+    user_teacher = db.relationship(User_teacher)
+
+    def __repr__(self):
+        return '<Review_teacher %r>' % self.id
+    
+    def serialize(self):
+        return {
+            "teacher_id": self.teacher_id,
+            "dynamsim": self.dynamsim,
+            "pasion": self.pasion,
+            "practises_example": self.practises_example,
+            "near": self.near,
+            "date_teacher": self.date_teacher,
+            "more_info": self.more_info,
+            # si quiero traer el nombre de teacher??
+        }
+        
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_all(cls):
+        review_teachers = cls.query.all()
+        return review_teachers
+
+    @classmethod
+    def get_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+    
+    @classmethod
+    def get_by_id(cls, id):
+        reviews = cls.query.filter_by(id = id).first_or_404()
+        return reviews

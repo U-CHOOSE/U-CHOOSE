@@ -8,12 +8,14 @@ const Search = props => {
 
 	return (
 		<>
-			<h1 className="violet_h1">{props.title}</h1>
+			<h1 className="violet_h1 search-title">{props.title}</h1>
+			<span className="span__"> {props.span_}</span>
 			<input
 				type="text"
 				placeholder={props.placeholder}
 				className="input-searchbar"
 				onChange={e => setSearchItem(e.target.value)}
+				onKeyPress={props.onKeyPress}
 			/>
 			<span> {props.span1}</span>
 
@@ -21,6 +23,7 @@ const Search = props => {
 				Siguiente
 			</button>
 			<span className="span_1">{props.span2}</span>
+
 		</>
 	);
 };
