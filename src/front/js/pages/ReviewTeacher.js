@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../styles/reviewteacher.scss";
 import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
+import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 const ReviewTeacher = () => {
+	const { store, actions } = useContext(Context);
 	const [searchItem, setSearchItem] = useState("");
 	const [step, setStep] = useState(1);
 	const fakeData = [
@@ -16,20 +19,29 @@ const ReviewTeacher = () => {
 			age: 18
 		}
 	];
-	GET;
 
-	// POST
-	// var data = {username: 'example'};
-
-	// fetch(process.env.BACKEND_URL + "/review" , {
-	// method: 'POST',
-	// body: JSON.stringify(data), // data can be `string` or {object}!
-	// headers:{
-	// 	'Content-Type': 'application/json'
-	// }
-	// }).then(res => res.json())
-	// .catch(error => console.error('Error:', error))
-	// .then(response => console.log('Success:', response));
+	// POST;
+	var data = {
+		teacher_id: 1,
+		dynamsim: 4,
+		pasion: 5,
+		practises_example: 5,
+		near: 3,
+		date_teacher: 2000,
+		more_info: "mas infooo"
+	};
+	const sendReview = () => {
+		fetch(process.env.BACKEND_URL + "/review", {
+			method: "POST",
+			body: JSON.stringify(data), // data can be `string` or {object}!
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(res => res.json())
+			.catch(error => console.error("Error:", error))
+			.then(response => console.log("Success:", response));
+	};
 
 	if (step == 1) {
 		return (
@@ -54,7 +66,12 @@ const ReviewTeacher = () => {
 					.map((v, i) => {
 						return <div key={i}>{v.name}</div>;
 					})}
-				<button className="button_violet_small button__search" onClick={() => setStep(2)}>
+				<button
+					className="button_violet_small button__search"
+					onClick={() => {
+						sendReview();
+						setStep(2);
+					}}>
 					Siguiente
 				</button>
 			</div>
@@ -77,7 +94,7 @@ const ReviewTeacher = () => {
 					title="Dinamismo en sus clases"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={3} />}
 					button="Siguiente"
 					onClick={() => setStep(4)}
 				/>
@@ -91,7 +108,7 @@ const ReviewTeacher = () => {
 					title="Pasión por la materia"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={4} />}
 					button="Siguiente"
 					onClick={() => setStep(5)}
 				/>
@@ -105,7 +122,7 @@ const ReviewTeacher = () => {
 					title="Utiliza ejemplos prácticos"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={5} />}
 					button="Siguiente"
 					onClick={() => setStep(6)}
 				/>
@@ -119,7 +136,7 @@ const ReviewTeacher = () => {
 					title="Implicación y cercanía"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={6} />}
 					button="Siguiente"
 					onClick={() => setStep(7)}
 				/>
@@ -137,6 +154,7 @@ const ReviewTeacher = () => {
 			return listOption;
 		};
 		const option = optionDropdown();
+		console.log(store.reviews);
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
@@ -179,5 +197,4 @@ const ReviewTeacher = () => {
 		);
 	}
 };
-
 export default ReviewTeacher;

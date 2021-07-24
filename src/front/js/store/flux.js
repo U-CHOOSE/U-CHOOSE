@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: "",
 			schools: [],
 			teachers: [],
-			step: 0
+			step: 0,
+			reviews: {}
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -35,6 +36,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.error("Error:", error);
 					});
+			},
+
+			setReview: (skill, value) => {
+				let reviews = getStore().reviews;
+				let updateReviews = { ...reviews, [skill]: value };
+				setStore({ reviews: updateReviews });
 			},
 
 			setError: error => {
