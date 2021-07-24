@@ -55,7 +55,14 @@ class User(db.Model):
     def get_by_id(cls, id):
         user = cls.query.filter_by(id = id).first()
         return user
-        
+
+
+    @classmethod
+    def get_by_email(cls, email):
+        user = cls.query.filter_by(email = email).first()
+        return user
+
+
     @classmethod
     def get_all(cls):
         users = cls.query.all()

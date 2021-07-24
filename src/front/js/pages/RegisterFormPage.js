@@ -34,7 +34,7 @@ const RegisterFormPage = () => {
 			},
 			body: JSON.stringify({
 				user_id: JSON.parse(localStorage.getItem("id_user")),
-				school_id: 2
+				school_id: 1
 			})
 		};
 
