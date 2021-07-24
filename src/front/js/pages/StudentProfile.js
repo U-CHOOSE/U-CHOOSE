@@ -36,28 +36,25 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user", options).then(res => {
-			console.log(res);
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				console.log(res);
 
-			if (res.status === 201) {
-				alert("ok");
-				actions.setUpStep();
-			} else {
-				alert("failed to fetch");
-			}
-			console.log(status);
-			return res.json();
-		});
+				if (res.status === 201 && _password === repeatPassword) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => setFormData(json))
+			.catch(error => console.log(error));
 	};
 
 	return (
 		<div>
-			{/* <div className="actions">
-				<Link className="links" to={"/"}>
-					<FontAwesomeIcon className="icon-x" icon={faTimes} />
-				</Link>
-			</div> */}
-
 			<div className="student-contain1">
 				<img
 					className="img-profile"

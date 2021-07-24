@@ -7,6 +7,12 @@ const Search = props => {
 	const { store, actions } = useContext(Context);
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
+
+	const handelSelect = item => {
+		setSelect(props.type === "schools" ? item.name : item.full_name);
+		localStorage.setItem("selected_item", JSON.stringify(item));
+	};
+
 	useEffect(
 		() => {
 			setData(props.data);
@@ -18,8 +24,6 @@ const Search = props => {
 
 	if (props.type === "schools") {
 		attribute = "name";
-	} else {
-		attribute = "full_name";
 	}
 	console.log(data);
 	return (
@@ -35,7 +39,7 @@ const Search = props => {
 			/>
 			<span> {props.span1}</span>
 
-			{data && select === "" ? (
+			{data && select === "" && searchItem !== "" ? (
 				data
 					.filter(v => {
 						if (searchItem === "") {
@@ -45,12 +49,12 @@ const Search = props => {
 						}
 					})
 					.map((v, i) => {
-						console.log(v, i);
+						console.log(select);
 						return (
 							<li key={i}>
 								<div>
 									{" "}
-									<div onClick={() => setSelect(v.name)}>{v[attribute]}</div>
+									<div onClick={() => handelSelect(v)}>{v[attribute]}</div>
 									<div>X</div>
 								</div>
 							</li>

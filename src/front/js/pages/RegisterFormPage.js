@@ -27,6 +27,7 @@ const RegisterFormPage = () => {
 
 	console.log(data);
 	const handlePut = () => {
+		console.log();
 		const options = {
 			method: "PUT",
 			headers: {
@@ -34,7 +35,7 @@ const RegisterFormPage = () => {
 			},
 			body: JSON.stringify({
 				user_id: JSON.parse(localStorage.getItem("id_user")),
-				school_id: 1
+				school_id: JSON.parse(localStorage.getItem("selected_item")).id
 			})
 		};
 
@@ -134,9 +135,10 @@ const RegisterFormPage = () => {
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							data={{ data }}
+							data={data}
+							type="schools"
 							button={
-								<button onClick={() => actions.setUpStep()} className="button_violet_small">
+								<button onClick={handlePut} className="button_violet_small">
 									Siguiente
 								</button>
 							}
