@@ -56,7 +56,7 @@ const StudentForm = props => {
 				/>
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-				<br />
+
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
