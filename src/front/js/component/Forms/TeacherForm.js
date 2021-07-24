@@ -72,7 +72,7 @@ const TeacherForm = props => {
 				/>
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-				<br />
+
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input className="check" type="checkbox" onChange={e => setChecked(e.target.checked)} />
@@ -81,14 +81,15 @@ const TeacherForm = props => {
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
 				</span>
-
+				<br />
 				{props.footer}
 
 				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
+				<br />
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
-					Registro con Linkedin <img className="AiFillLinkedin" src="AiFillLinkedin" />
+					Registro con Linkedin <img className="AiFillLinkedin" src="" />
 				</button>
 			</div>
 		</>

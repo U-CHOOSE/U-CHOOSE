@@ -44,9 +44,9 @@ const NavbarComp = () => {
 						<br />
 						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
 							<h4>
-								{" "}
+								
 								<BsFillPersonFill />
-								Profesores{" "}
+								Profesores{" "
 							</h4>
 						</NavDropdown.Item>
 						<br />
