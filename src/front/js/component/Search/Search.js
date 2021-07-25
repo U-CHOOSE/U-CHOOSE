@@ -5,6 +5,7 @@ import { Context } from "../../store/appContext";
 const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const { store, actions } = useContext(Context);
+
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
 
@@ -26,6 +27,8 @@ const Search = props => {
 		attribute = "name";
 	}
 	console.log(data);
+
+
 	return (
 		<>
 			<h1 className="violet_h1 search-title">{props.title}</h1>
@@ -71,6 +74,7 @@ const Search = props => {
 
 			{props.button}
 			<span className="span__2">{props.span2}</span>
+
 		</>
 	);
 };

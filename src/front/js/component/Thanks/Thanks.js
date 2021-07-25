@@ -1,11 +1,12 @@
 import React from "react";
 import "../Forms/Forms.scss";
+import registro_ok from "../../../../front/img/registro_ok.png";
 
 const Thanks = props => {
 	return (
 		<>
 			<div>
-				<img src="" className="" />
+				<img className="registroOk" src={registro_ok} />
 			</div>
 			<div>
 				{" "}

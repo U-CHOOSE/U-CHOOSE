@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
+import google from "../../../img/google.png";
 
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
@@ -54,13 +55,18 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
+					className="mx-auto w-100"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
+				<br />
 				<span>Podras ocultarlo en tus reviews</span>
+				<br />
+
 				<input
+					className=" margin: 13px 12px 12px 10px w-100 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -68,12 +74,15 @@ const StudentForm = props => {
 				/>
 
 				<input
+					className=" w-100 "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
+
 				<input
+					className=" w-100 "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -81,19 +90,23 @@ const StudentForm = props => {
 				/>
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-				<span>Acepto los términso y condiciones</span>
-				<input type="checkbox" onChange={e => setFormData({ ...formData, promo: e.target.checked })} />
+
+				<span>Acepto los terminos y condiciones</span>
+				<br />
+				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
-					de diferetnes centros
+					de diferentes centros
 				</span>
-				{console.log(formData)}
+
 				{props.footer}
-				<button className="button_violet_great" onClick={handleCreate}>
+
+				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
 					Crear Cuenta
 				</button>
+
 				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
-					Registro con Google
+					Registro con <img className="google" src={google} />
 				</button>
 			</div>
 		</>
