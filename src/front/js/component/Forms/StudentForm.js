@@ -11,14 +11,16 @@ const StudentForm = props => {
 		_password: "",
 		repeatPassword: "",
 		promo: false,
-		is_student: true
+		is_student: true,
+		sign_completed: false
 	});
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
 		_password: formData._password,
 		promo: formData.promo,
-		is_student: formData.is_student
+		is_student: formData.is_student,
+		sign_completed: formData.sign_completed
 	};
 	const [checked, setChecked] = useState(true);
 	const handleCreate = () => {
@@ -101,7 +103,7 @@ const StudentForm = props => {
 
 				{props.footer}
 
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 

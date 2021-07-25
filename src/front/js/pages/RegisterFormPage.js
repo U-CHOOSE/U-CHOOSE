@@ -37,7 +37,8 @@ const RegisterFormPage = () => {
 			},
 			body: JSON.stringify({
 				user_id: JSON.parse(localStorage.getItem("id_user")),
-				school_id: JSON.parse(localStorage.getItem("selected_item")).id
+				school_id: JSON.parse(localStorage.getItem("selected_item")).id,
+				sign_completed: true
 			})
 		};
 

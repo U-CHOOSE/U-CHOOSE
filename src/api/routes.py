@@ -59,6 +59,8 @@ def add_user():
         _password = body.get("_password", None)
         is_student = body.get("is_student", None)
         promo = body.get("promo", None)
+        sign_completed = body.get("sign_completed", None)
+
 
         if not email or not _password or is_student is None:
             return "Missing info", 400

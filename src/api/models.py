@@ -21,6 +21,7 @@ class User(db.Model):
     image = db.Column(db.VARCHAR)
     promo = db.Column(db.Boolean, default=False)
     is_student = db.Column(db.Boolean)
+    sign_completed = db.Column(db.Boolean,default=False)
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
     school = db.relationship("School", secondary="user_school")
@@ -36,18 +37,20 @@ class User(db.Model):
             "id": self.id,
             "full_name":self.full_name,
             "email": self.email,
-            "is_student":self.is_student
+            "is_student":self.is_student,
+            "sign_completed":self.sign_completed
             
         }
 
     @classmethod
-    def add(cls,email,_password,is_student,promo,full_name):
+    def add(cls,email,_password,is_student,promo,full_name,sign_completed):
         user = cls(
             email=email, 
             _password=_password,
             is_student=is_student,
             promo=promo,
-            full_name = full_name, 
+            full_name = full_name,
+            sign_completed = sign_completed
             
         )
         db.session.add(user)
