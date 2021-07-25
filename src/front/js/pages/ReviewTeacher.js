@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../../styles/reviewteacher.scss";
 import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
+	const [teacher, setTeacher] = useState("");
 	//search
 	const [searchTeacher, setSearchTeacher] = useState("");
 	const [step, setStep] = useState(1);
@@ -38,12 +39,22 @@ const ReviewTeacher = () => {
 	// POST;
 
 	// GET
-	const showTeachers = () => {
-		fetch(process.env.BACKEND_URL + "/schools")
+	// const showTeachers = () => {
+	// 	fetch(process.env.BACKEND_URL + "/users")
+	// 		.then(res => res.json())
+	// 		// .then(data => setData(data))
+	// 		.then(data => console.log(data))
+	// 		.catch(err => console.log(err));
+	// };
+
+	useEffect(() => {
+		console.log("holaaaaaaaaaaa");
+		fetch(process.env.BACKEND_URL + "/users")
 			.then(res => res.json())
-			.then(data => setData(data))
+			// .then(data => setTeacher(data))
+			.then(data => console.log(data))
 			.catch(err => console.log(err));
-	};
+	}, []);
 
 	const sendReview = () => {
 		fetch(process.env.BACKEND_URL + "/review", {
@@ -72,9 +83,9 @@ const ReviewTeacher = () => {
 				{/* <span className="span__1"> {props.span1}</span> */}
 				{fakeData
 					.filter(v => {
-						if (searchItem === "") {
+						if (searchTeacher === "") {
 							return v;
-						} else if (v.name.toLowerCase().includes(searchItem.toLowerCase())) {
+						} else if (v.name.toLowerCase().includes(searchTeacher.toLowerCase())) {
 							return v;
 						}
 					})
