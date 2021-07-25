@@ -47,7 +47,6 @@ const NavbarComp = () => {
 								<BsFillPersonFill />
 								<h4>Profesores</h4>
 							</div>
-
 						</NavDropdown.Item>
 						<br />
 						<Button className="btnNav" onClick={() => history.push("")}>

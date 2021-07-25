@@ -23,7 +23,6 @@ const Search = props => {
 				Siguiente
 			</button>
 			<span className="span_1">{props.span2}</span>
-
 		</>
 	);
 };

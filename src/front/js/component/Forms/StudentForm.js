@@ -91,7 +91,6 @@ const StudentForm = props => {
 
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 
-
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
@@ -103,7 +102,6 @@ const StudentForm = props => {
 				{props.footer}
 
 				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
-
 					Crear Cuenta
 				</button>
 

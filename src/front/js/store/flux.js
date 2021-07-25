@@ -10,7 +10,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			teachers: [],
 			step: 0,
 			reviews: {}
-
 		},
 		actions: {
 			login: (mail, pass) => {
