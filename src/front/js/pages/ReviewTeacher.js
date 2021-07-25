@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../../styles/reviewteacher.scss";
 import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
+import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 const ReviewTeacher = () => {
-	const [searchItem, setSearchItem] = useState("");
+	const { store, actions } = useContext(Context);
+	const [teacher, setTeacher] = useState("");
+	//search
+	const [searchTeacher, setSearchTeacher] = useState("");
 	const [step, setStep] = useState(1);
 	const fakeData = [
 		{
@@ -16,20 +21,53 @@ const ReviewTeacher = () => {
 			age: 18
 		}
 	];
-	GET;
 
-	// POST
-	// var data = {username: 'example'};
+	//dropdown date_teacher=selectOption
+	const [selectOption, setTSelectOption] = useState(0);
+	//textaerea
+	const [moreInfo, setTMoreInfo] = useState("Comienza a escribir");
 
-	// fetch(process.env.BACKEND_URL + "/review" , {
-	// method: 'POST',
-	// body: JSON.stringify(data), // data can be `string` or {object}!
-	// headers:{
-	// 	'Content-Type': 'application/json'
-	// }
-	// }).then(res => res.json())
-	// .catch(error => console.error('Error:', error))
-	// .then(response => console.log('Success:', response));
+	// var data = {
+	// 	teacher_id: 1,
+	// 	dynamsim: 4,
+	// 	pasion: 5,
+	// 	practises_example: 5,
+	// 	near: 3,
+	// 	date_teacher: 2000,
+	// 	more_info: "mas infooo"
+	// };
+	// POST;
+
+	// GET
+	// const showTeachers = () => {
+	// 	fetch(process.env.BACKEND_URL + "/users")
+	// 		.then(res => res.json())
+	// 		// .then(data => setData(data))
+	// 		.then(data => console.log(data))
+	// 		.catch(err => console.log(err));
+	// };
+
+	useEffect(() => {
+		console.log("holaaaaaaaaaaa");
+		fetch(process.env.BACKEND_URL + "/users")
+			.then(res => res.json())
+			// .then(data => setTeacher(data))
+			.then(data => console.log(data))
+			.catch(err => console.log(err));
+	}, []);
+
+	const sendReview = () => {
+		fetch(process.env.BACKEND_URL + "/review", {
+			method: "POST",
+			body: JSON.stringify(store.reviews), // data can be `string` or {object}!
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(res => res.json())
+			.catch(error => console.error("Error:", error))
+			.then(response => console.log("Success:", response));
+	};
 
 	if (step == 1) {
 		return (
@@ -40,21 +78,26 @@ const ReviewTeacher = () => {
 					type="text"
 					placeholder="Buscar un profesor"
 					className="input-searchbar"
-					onChange={e => setSearchItem(e.target.value)}
+					onChange={e => setSearchTeacher(e.target.value)}
 				/>
 				{/* <span className="span__1"> {props.span1}</span> */}
 				{fakeData
 					.filter(v => {
-						if (searchItem === "") {
+						if (searchTeacher === "") {
 							return v;
-						} else if (v.name.toLowerCase().includes(searchItem.toLowerCase())) {
+						} else if (v.name.toLowerCase().includes(searchTeacher.toLowerCase())) {
 							return v;
 						}
 					})
 					.map((v, i) => {
 						return <div key={i}>{v.name}</div>;
 					})}
-				<button className="button_violet_small button__search" onClick={() => setStep(2)}>
+				<button
+					className="button_violet_small button__search"
+					onClick={() => {
+						actions.setReview("teacher_id", 1);
+						setStep(2);
+					}}>
 					Siguiente
 				</button>
 			</div>
@@ -77,7 +120,7 @@ const ReviewTeacher = () => {
 					title="Dinamismo en sus clases"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={3} />}
 					button="Siguiente"
 					onClick={() => setStep(4)}
 				/>
@@ -91,7 +134,7 @@ const ReviewTeacher = () => {
 					title="Pasión por la materia"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={4} />}
 					button="Siguiente"
 					onClick={() => setStep(5)}
 				/>
@@ -105,7 +148,7 @@ const ReviewTeacher = () => {
 					title="Utiliza ejemplos prácticos"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={5} />}
 					button="Siguiente"
 					onClick={() => setStep(6)}
 				/>
@@ -119,7 +162,7 @@ const ReviewTeacher = () => {
 					title="Implicación y cercanía"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<ReviewTeacherIcons />}
+					body={<ReviewTeacherIcons step={6} />}
 					button="Siguiente"
 					onClick={() => setStep(7)}
 				/>
@@ -137,6 +180,12 @@ const ReviewTeacher = () => {
 			return listOption;
 		};
 		const option = optionDropdown();
+		console.log(store.reviews);
+
+		const captureYear = e => {
+			setTSelectOption(e.target.value);
+		};
+
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
@@ -146,14 +195,21 @@ const ReviewTeacher = () => {
 					nameUniversity="4Geeks Academy"
 					body={
 						<div className="dropdown">
-							<select name="year" className="options">
+							<select name="year" className="options" onChange={captureYear}>
+								<option value="" disabled selected>
+									Año
+								</option>
 								{option}
 							</select>
 						</div>
 					}
 					button="Siguiente"
-					onClick={() => setStep(8)}
+					onClick={() => {
+						actions.setReview("date_teacher", selectOption);
+						setStep(8);
+					}}
 				/>
+				{console.log(selectOption)}
 			</div>
 		);
 	} else if (step == 8) {
@@ -164,9 +220,14 @@ const ReviewTeacher = () => {
 					title="¿Algo más?"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<textarea placeholder="Comienza a escribir" />}
+					body={<textarea onChange={e => setTMoreInfo(e.target.value)} placeholder={moreInfo} />}
 					button="Enviar Review"
-					onClick={() => setStep(9)}
+					onClick={() => {
+						actions.setReview("more_info", moreInfo);
+						setStep(9);
+						sendReview();
+						console.log(store.reviews);
+					}}
 				/>
 			</div>
 		);
@@ -179,5 +240,4 @@ const ReviewTeacher = () => {
 		);
 	}
 };
-
 export default ReviewTeacher;

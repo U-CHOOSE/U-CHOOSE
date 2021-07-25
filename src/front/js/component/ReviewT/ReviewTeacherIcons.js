@@ -12,7 +12,9 @@ import img4full from "../../../../../docs/assets/img/Status=Full, Ranking=4.jpg"
 import img5 from "../../../../../docs/assets/img/Status=Empty, Ranking=5.jpg";
 import img5full from "../../../../../docs/assets/img/Status=Full, Ranking=5.jpg";
 
-const ReviewTeacherIcons = () => {
+import { Context } from "../../store/appContext";
+const ReviewTeacherIcons = props => {
+	const { actions } = useContext(Context);
 	const listUrl = [
 		{ img: img1, imgfull: img1full },
 		{ img: img2, imgfull: img2full },
@@ -22,6 +24,7 @@ const ReviewTeacherIcons = () => {
 	];
 	const listImg = [];
 	const [state, setState] = useState(0);
+	let steep = props.step;
 
 	listUrl.map((url, index) => {
 		let icon = "";
@@ -35,6 +38,15 @@ const ReviewTeacherIcons = () => {
 				className="button_icon"
 				onClick={() => {
 					setState(index + 1);
+					if (steep == 3) {
+						actions.setReview("dynamsim", state);
+					} else if (steep == 4) {
+						actions.setReview("pasion", state);
+					} else if (steep == 5) {
+						actions.setReview("practises_example", state);
+					} else if (steep == 6) {
+						actions.setReview("near", state);
+					}
 				}}
 				key={index}>
 				<img className="icons-review" src={icon} />
@@ -43,9 +55,11 @@ const ReviewTeacherIcons = () => {
 	});
 
 	return (
-		<div>
-			<div className="container-icons d-flex mx-auto">{listImg}</div>
-		</div>
+		<>
+			<div>
+				<div className="container-icons d-flex mx-auto">{listImg}</div>
+			</div>
+		</>
 	);
 };
 

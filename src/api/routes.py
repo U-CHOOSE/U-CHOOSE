@@ -218,8 +218,8 @@ def add_review_to_teacher():
     
     review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
 
-    Review_teacher.add(review)
-    # return jsonify({"hola": "si"})
+    review.add()
+   
  
     return jsonify(review.serialize()),201
 
