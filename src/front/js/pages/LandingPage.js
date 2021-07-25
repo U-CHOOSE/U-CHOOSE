@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import reviewsImg from "../../img/mockups_reviews.jpg";
-import reviewMetrics from "../../img/review_metrics.png";
-import logo from "../../img/Logo_U-CHOOSE.jpg";
+import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
+import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
+import logo from "../../../../docs/assets/img/Logo_U-CHOOSE.jpg";
 import "../../styles/landingPage.scss";
 import { useHistory } from "react-router";
 

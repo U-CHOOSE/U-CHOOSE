@@ -65,7 +65,6 @@ const RegisterFormPage = () => {
 	if (store.step === 0) {
 		return (
 			<>
-
 				{/* <button onClick={() => setShow(!show)}>Modal</button> */}
 				<h1 className="violet_h1_forms">Registro</h1>
 				<h2>¿Cómo quieres colaborar con u-choose?</h2>
@@ -80,7 +79,6 @@ const RegisterFormPage = () => {
 								teacher: false,
 								student: !checked.student
 							})
-
 						}
 					/>
 					Soy alumno

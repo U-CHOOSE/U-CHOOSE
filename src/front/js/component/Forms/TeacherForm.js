@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
 import { AiFillLinkedin } from "react-icons/ai";
-import Linkedin from "../../../img/Linkedin.png";
+import Linkedin from "../../../../../docs/assets/img/Linkedin.png";
 
 const TeacherForm = props => {
 	const { store, actions } = useContext(Context);

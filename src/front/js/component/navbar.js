@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../front/img/Logo-icon.png";
+import logo from "../../../../docs/assets/img/Logo-icon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";

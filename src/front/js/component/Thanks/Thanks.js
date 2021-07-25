@@ -1,6 +1,6 @@
 import React from "react";
 import "../Forms/Forms.scss";
-import registro_ok from "../../../../front/img/registro_ok.png";
+import registro_ok from "../../../../../docs/assets/img/registro_ok.png";
 
 const Thanks = props => {
 	return (

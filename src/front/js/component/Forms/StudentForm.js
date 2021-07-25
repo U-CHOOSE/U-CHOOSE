@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
-import google from "../../../img/google.png";
+import google from "../../../../../docs/assets/img/google.png";
 
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);

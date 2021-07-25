@@ -28,7 +28,6 @@ const Search = props => {
 	}
 	console.log(data);
 
-
 	return (
 		<>
 			<h1 className="violet_h1 search-title">{props.title}</h1>
@@ -74,7 +73,6 @@ const Search = props => {
 
 			{props.button}
 			<span className="span__2">{props.span2}</span>
-
 		</>
 	);
 };
