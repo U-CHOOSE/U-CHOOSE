@@ -12,7 +12,7 @@ const Search = props => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 	};
-
+	//
 	useEffect(
 		() => {
 			setData(props.data);
