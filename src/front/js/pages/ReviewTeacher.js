@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
-
-	const [searchItem, setSearchItem] = useState("");
+	//search
+	const [searchTeacher, setSearchTeacher] = useState("");
 	const [step, setStep] = useState(1);
 	const fakeData = [
 		{
@@ -23,21 +23,32 @@ const ReviewTeacher = () => {
 
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
+	//textaerea
+	const [moreInfo, setTMoreInfo] = useState("Comienza a escribir");
 
+	// var data = {
+	// 	teacher_id: 1,
+	// 	dynamsim: 4,
+	// 	pasion: 5,
+	// 	practises_example: 5,
+	// 	near: 3,
+	// 	date_teacher: 2000,
+	// 	more_info: "mas infooo"
+	// };
 	// POST;
-	var data = {
-		teacher_id: 1,
-		dynamsim: 4,
-		pasion: 5,
-		practises_example: 5,
-		near: 3,
-		date_teacher: 2000,
-		more_info: "mas infooo"
+
+	// GET
+	const showTeachers = () => {
+		fetch(process.env.BACKEND_URL + "/schools")
+			.then(res => res.json())
+			.then(data => setData(data))
+			.catch(err => console.log(err));
 	};
+
 	const sendReview = () => {
 		fetch(process.env.BACKEND_URL + "/review", {
 			method: "POST",
-			body: JSON.stringify(data), // data can be `string` or {object}!
+			body: JSON.stringify(store.reviews), // data can be `string` or {object}!
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -56,7 +67,7 @@ const ReviewTeacher = () => {
 					type="text"
 					placeholder="Buscar un profesor"
 					className="input-searchbar"
-					onChange={e => setSearchItem(e.target.value)}
+					onChange={e => setSearchTeacher(e.target.value)}
 				/>
 				{/* <span className="span__1"> {props.span1}</span> */}
 				{fakeData
@@ -73,7 +84,7 @@ const ReviewTeacher = () => {
 				<button
 					className="button_violet_small button__search"
 					onClick={() => {
-						sendReview();
+						actions.setReview("teacher_id", 1);
 						setStep(2);
 					}}>
 					Siguiente
@@ -198,9 +209,14 @@ const ReviewTeacher = () => {
 					title="¿Algo más?"
 					name="Marta Diaz"
 					nameUniversity="4Geeks Academy"
-					body={<textarea placeholder="Comienza a escribir" />}
+					body={<textarea onChange={e => setTMoreInfo(e.target.value)} placeholder={moreInfo} />}
 					button="Enviar Review"
-					onClick={() => setStep(9)}
+					onClick={() => {
+						actions.setReview("more_info", moreInfo);
+						setStep(9);
+						sendReview();
+						console.log(store.reviews);
+					}}
 				/>
 			</div>
 		);
