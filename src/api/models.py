@@ -14,6 +14,7 @@ class User(db.Model):
     full_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
+    img = db.Column(db.VARCHAR,nullable=True)
     # is_active = db.Column(db.Boolean, default=True)
     image = db.Column(db.VARCHAR)
     promo = db.Column(db.Boolean, default=False)
@@ -192,7 +193,8 @@ class School(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name
+            "name": self.name,
+            "img": self.img
         }
 
     @classmethod
@@ -240,8 +242,8 @@ class User_school(db.Model):
             "id": self.id,
             "school_id": self.school_id,
             "user_id": self.user_id,
-            "full_name": user.full_name,
-            "name":school.name
+            # "full_name": user.full_name,
+            # "name":school.name
 
         }
 

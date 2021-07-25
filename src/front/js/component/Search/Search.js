@@ -50,12 +50,17 @@ const Search = props => {
 					})
 					.map((v, i) => {
 						console.log(select);
+						console.log(data.img);
 						return (
 							<li key={i}>
 								<div>
-									{" "}
-									<div onClick={() => handelSelect(v)}>{v[attribute]}</div>
-									<div>X</div>
+									<div onClick={() => handelSelect(v)} className="image_name_container">
+										<div className="img_container">
+											<img src={v.img} alt="img" />
+										</div>
+										<div className="name_container">{v[attribute]}</div>
+									</div>
+									{/* <div>X</div> */}
 								</div>
 							</li>
 						);
