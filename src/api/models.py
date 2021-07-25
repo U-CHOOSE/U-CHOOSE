@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime, Date, Time, Float
 db = SQLAlchemy()
 
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 db = SQLAlchemy()
 
