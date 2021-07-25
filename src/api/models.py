@@ -160,7 +160,8 @@ class User_student(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "promo": user.promo
+            "promo": user.promo,
+            "image" : user.image
         }
 
     def add(self):

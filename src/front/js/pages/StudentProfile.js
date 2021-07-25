@@ -1,31 +1,33 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/studentProfile.scss";
 
+import { BsPlusCircle } from "react-icons/bs";
 const StudentProfile = () => {
 	const [formData, setFormData] = useState({
 		full_name: "",
 		email: "",
 		_password: "",
-		repeatPassword: ""
+		repeatPassword: "",
 	});
 
+	const [data, setData] = useState("");
+	const user_id = localStorage.getItem("id_user");
+
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/user" + user_id)
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				console.log(json);
+			});
+	}, []);
+	console.log(user_id);
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
 		_password: formData._password
 	};
 
-	// const [name, setName] = useState("david");
-	// const [email, setEmail] = useState("");
-	// const [teacher, setTeacher] = useState("");
-	// const [password, setPassword] = useState("");
-	// const [passrepeat, setPassrepeat] = useState("");
-	// const validatePassword = () => {
-	// 	if ({ password } != { passrepeat }) {
-	// 		alert("Las contraseñas no son iguales");
-	// 		console.log("password", { password });
-	// 		console.log("passrepeat", { passrepeat });
-	// 	}
 	// };
 	const handlePut = () => {
 		const options = {
@@ -52,17 +54,21 @@ const StudentProfile = () => {
 			.then(json => setFormData(json))
 			.catch(error => console.log(error));
 	};
-
+	console.log(data);
 	return (
 		<div>
-			<div className="student-contain1">
-				<img
-					className="img-profile"
-					src="https://laverdadnoticias.com/__export/1577809178240/sites/laverdad/img/2019/12/31/1465326837-rt-shakira01.jpg_1017309733.jpg"
-					alt="img"
-				/>
-				<button className="student-button1">Mis centros</button>
-			</div>
+			{data.img == null ? (
+				<div className="student-contain1">
+					<div onClick={} ><BsPlusCircle /></div>
+					
+					<button className="student-button1">Mis centros</button>
+				</div>
+			) : (
+				<div className="student-contain1">
+					<img className="img-profile" src={data.image} alt="img" />
+					<button className="student-button1">Mis centros</button>
+				</div>
+			)}
 
 			<div className="contain-inputs ml-3">
 				<div className="contain-inp input1">
@@ -70,7 +76,7 @@ const StudentProfile = () => {
 					<input
 						type="text"
 						className="form-control input"
-						placeholder={name}
+						placeholder={data.full_name}
 						value={formData.fullname}
 						onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 					/>
@@ -80,20 +86,13 @@ const StudentProfile = () => {
 					<label>Email</label>
 					<input
 						type="email"
+						placeholder={data.email}
 						className="form-control input-email inp"
 						value={formData.email}
 						onChange={e => setFormData({ ...formData, email: e.target.value })}
 					/>
 				</div>
-				{/* <div className="contain-inp">
-					<label>¿De qué eres profesor?</label>
-					<input
-						type="text"
-						className="form-control input-text inp"
-						placeholder={teacher}
-						
-					/>
-				</div> */}
+
 				<div className="contain-inp">
 					<label>Contraseña</label>
 					<input
@@ -110,8 +109,8 @@ const StudentProfile = () => {
 						type="password"
 						className="form-control input-password inp"
 						placeholder="passrepeat"
-						value={formData.password}
-						onChange={e => setFormData({ ...formData, _password: e.target.value })}
+						value={formData.repeatPassword}
+						onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
 					/>
 				</div>
 			</div>

@@ -9,7 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			schools: [],
 			teachers: [],
 			step: 0,
-			reviews: {}
+			reviews: {},
+			users: []
 		},
 		actions: {
 			login: (mail, pass) => {
