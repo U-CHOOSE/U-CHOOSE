@@ -37,8 +37,8 @@ import "./Modal.scss";
 const Modal = props => {
 	return (
 		<>
-			<div className="modal-dialog" role="document">
-				<div className="modal-content">
+			<div className="modal-dialog border-0" role="document">
+				<div className="modal-content border-0">
 					<div className="cross">{props.cross}</div>
 					<div className="arrow">{props.arrow}</div>
 					{props.body}

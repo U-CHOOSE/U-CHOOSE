@@ -48,41 +48,58 @@ def handle_hello():
 
 @api.route('/user', methods=['POST' , 'PUT'])
 def add_user():
-    body = request.get_json()
-    print(body)
-    full_name = body.get("full_name", None)
-    email = body.get("email", None)
-    _password = body.get("_password", None)
-    is_student = body.get("is_student", None)
-    promo = body.get("promo", None)
+    
+    if request.method == 'POST':
+        body = request.get_json()
+        print(body)
+        full_name = body.get("full_name", None)
+        email = body.get("email", None)
+        _password = body.get("_password", None)
+        is_student = body.get("is_student", None)
+        promo = body.get("promo", None)
 
-    if not email or not _password or is_student is None:
-        return "Missing info", 400
+        if not email or not _password or is_student is None:
+            return "Missing info", 400
 
-    password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
-    user_id = User.add(
-        email, 
-        password_hashed, 
-        is_student, 
-        promo,
-        full_name,
-    )
-
-    if is_student:
-        student =  User_student(
-            user_id=user_id
+        password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
+        user_id = User.add(
+            email, 
+            password_hashed, 
+            is_student, 
+            promo,
+            full_name,
         )
-        student.add()
-        return jsonify({"body": student.serialize()}), 201
 
-    teacher =  User_teacher(
-        linkedin = body.get("linkedin"),
-        type_of_teacher = body.get("type_of_teacher"),
-        user_id = user_id
-    )
-    teacher.add()
+        if is_student:
+            student =  User_student(
+                user_id=user_id
+            )
+            student.add()
+            return jsonify({"body": student.serialize()}), 201
 
-    return jsonify({"body" : teacher.serialize()}), 201
+        teacher =  User_teacher(
+            linkedin = body.get("linkedin"),
+            type_of_teacher = body.get("type_of_teacher"),
+            user_id = user_id
+        )
+        teacher.add()
+        return jsonify({"teacher": teacher.serialize()}), 201
+
+    elif request.method == 'PUT':
+        body = request.get_json()
+        school_id = body.get("school_id", None)
+        user_id = body.get("user_id", None)
+        
+        user_school =  User_school(
+            school_id = school_id,
+            user_id = user_id
+        )
+        user_school.add()
+
+        return jsonify({"school": user_school.serialize()}), 201
+    
+
+    
 
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()
@@ -117,7 +134,6 @@ def get_all_users():
     users_dic = []
 
     for user in users :
-        if user.is_active:
             if user.is_student :
                 user_student = User_student.get_by_user_id(user.id)
                 if user_student:
@@ -224,6 +240,13 @@ def get_review_to_teacher(teacher_id):
     reviews = Review_teacher.get_by_id(teacher_id)
     return jsonify(reviews.serialize()), 200
 
-
+# user_teacher
+@api.route('/user_teachers',methods=['GET'])
+def get_all_teachers():
+    teachers = User_teacher.get_all()
+    teacher_dic = []
+    for teacher in teachers:
+        teacher_dic.append(teacher.serialize())
+    return jsonify(teacher_dic), 200
 
     

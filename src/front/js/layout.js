@@ -15,6 +15,10 @@ import ReviewTeacher from "./pages/ReviewTeacher";
 
 import Sass from "./pages/Sass";
 
+import TeacherProfile from "./pages/TeacherProfile";
+
+import EditTeacher from "./pages/EditTeacher";
+
 import StudentProfile from "./pages/StudentProfile";
 
 import MyCenters from "./pages/MyCenters";
@@ -54,8 +58,15 @@ const Layout = () => {
 						<Route exact path="/reviewteacher">
 							<ReviewTeacher />
 						</Route>
+
 						<Route exact path="/sass">
 							<Sass />
+						</Route>
+						<Route exact path="/teacherprofile">
+							<TeacherProfile />
+						</Route>
+						<Route exact path="/teacherprofile/edit">
+							<EditTeacher />
 						</Route>
 
 						<Route exact path="/searchschools">
