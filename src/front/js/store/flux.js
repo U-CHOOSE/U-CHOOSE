@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: (mail, pass) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
-					body: JSON.stringify({ email: mail, password: pass }),
+					body: JSON.stringify({ email: mail, _password: pass }),
 					headers: { "Content-Type": "application/json" }
 				})
 					.then(response => response.json())

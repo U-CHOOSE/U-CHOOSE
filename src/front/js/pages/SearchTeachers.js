@@ -8,7 +8,6 @@ const SearchTeachers = () => {
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
 			alert("Hola");
-			actions.setUpStep();
 		}
 	};
 	useEffect(

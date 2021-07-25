@@ -15,7 +15,10 @@ const SearchSchools = () => {
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
-			.then(data => setData(data))
+			.then(json => {
+				setData(json);
+				localStorage.setItem("school_id", json.body.id);
+			})
 			.catch(err => console.log(err));
 	}, []);
 	return (

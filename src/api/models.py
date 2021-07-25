@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime, Date, Time, Float
 db = SQLAlchemy()
 
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 db = SQLAlchemy()
 
@@ -14,6 +16,7 @@ class User(db.Model):
     full_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
+    img = db.Column(db.VARCHAR,nullable=True)
     # is_active = db.Column(db.Boolean, default=True)
     image = db.Column(db.VARCHAR)
     promo = db.Column(db.Boolean, default=False)
@@ -55,7 +58,14 @@ class User(db.Model):
     def get_by_id(cls, id):
         user = cls.query.filter_by(id = id).first()
         return user
-        
+
+
+    @classmethod
+    def get_by_email(cls, email):
+        user = cls.query.filter_by(email = email).first()
+        return user
+
+
     @classmethod
     def get_all(cls):
         users = cls.query.all()
@@ -185,7 +195,8 @@ class School(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name
+            "name": self.name,
+            "img": self.img
         }
 
     @classmethod
@@ -233,8 +244,8 @@ class User_school(db.Model):
             "id": self.id,
             "school_id": self.school_id,
             "user_id": self.user_id,
-            "full_name": user.full_name,
-            "name":school.name
+            # "full_name": user.full_name,
+            # "name":school.name
 
         }
 

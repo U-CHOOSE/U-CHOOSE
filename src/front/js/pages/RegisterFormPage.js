@@ -29,6 +29,7 @@ const RegisterFormPage = () => {
 
 	console.log(data);
 	const handlePut = () => {
+		console.log();
 		const options = {
 			method: "PUT",
 			headers: {
@@ -36,7 +37,7 @@ const RegisterFormPage = () => {
 			},
 			body: JSON.stringify({
 				user_id: JSON.parse(localStorage.getItem("id_user")),
-				school_id: 2
+				school_id: JSON.parse(localStorage.getItem("selected_item")).id
 			})
 		};
 
@@ -64,63 +65,45 @@ const RegisterFormPage = () => {
 	if (store.step === 0) {
 		return (
 			<>
-				<button onClick={() => setShow(!show)}>Modal</button>
-				{show ? (
-					<Modal
-						cross={
-							<div className="text-right w-100" onClick={() => setShow(!show)}>
-								{" "}
-								<button type="button" className="close" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>{" "}
-							</div>
-						}
-						body={
-							<>
-								<h1 className="violet_h1_forms">Registro</h1>
 
-								<h5>¿Cómo quieres colaborar con u-choose?</h5>
+				{/* <button onClick={() => setShow(!show)}>Modal</button> */}
+				<h1 className="violet_h1_forms">Registro</h1>
+				<h2>¿Cómo quieres colaborar con u-choose?</h2>
+				<label className="container" htmlFor="student">
+					<input
+						type="radio"
+						value={true}
+						id="student"
+						checked={checked.student}
+						onClick={() =>
+							setChecked({
+								teacher: false,
+								student: !checked.student
+							})
 
-								<label className="container" htmlFor="student">
-									<input
-										type="radio"
-										value={true}
-										id="student"
-										checked={checked.student}
-										onClick={() =>
-											setChecked({
-												teacher: false,
-												student: !checked.student
-											})
-										}
-									/>
-									Soy alumno
-								</label>
-								<label className="container" htmlFor="teacher">
-									<input
-										type="radio"
-										value={true}
-										id="teacher"
-										checked={checked.teacher}
-										onClick={() =>
-											setChecked({
-												teacher: !checked.teacher,
-												student: false
-											})
-										}
-									/>
-									Soy professor
-								</label>
-
-								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
-									Siguiente
-								</button>
-							</>
 						}
 					/>
-				) : (
-					""
-				)}
+					Soy alumno
+				</label>
+				<label className="container" htmlFor="teacher">
+					<input
+						type="radio"
+						value={true}
+						id="teacher"
+						checked={checked.teacher}
+						onClick={() =>
+							setChecked({
+								teacher: !checked.teacher,
+								student: false
+							})
+						}
+					/>
+					Soy professor
+				</label>
+				<button onClick={() => actions.setUpStep()} className="button_violet_small register">
+					Siguiente
+				</button>
+				: ""
 			</>
 		);
 	} else if (store.step === 1) {
@@ -166,9 +149,10 @@ const RegisterFormPage = () => {
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
-							data={{ data }}
+							data={data}
+							type="schools"
 							button={
-								<button onClick={() => actions.setUpStep()} className="button_violet_small">
+								<button onClick={handlePut} className="button_violet_small">
 									Siguiente
 								</button>
 							}

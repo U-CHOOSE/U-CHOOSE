@@ -5,11 +5,9 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db,User,User_teacher,User_student,School,User_school,Review_teacher
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-from werkzeug.security import check_password_hash
 from datetime import timedelta, date
 
 
@@ -20,14 +18,18 @@ api = Blueprint('api', __name__)
 def login():
     payload =(request.get_json(force=True))
     email = payload.get('email', None)
-    password = payload.get('password', None)
+    password = payload.get('_password', None)
+    print(password)
 
     if not (email and password):
         return {'error': 'Missing info'}, 400
+    
     user = User.get_by_email(email)
-   
+    password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+    valid_password = check_password_hash(user._password,password_hashed) 
+    print(user._password,valid_password)
     # TODO:check password using check_password_hash(user.password, password)
-    if user and (user.password == password) and user.is_active:
+    if valid_password:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
         print(token)
         return {'token': token}, 200
