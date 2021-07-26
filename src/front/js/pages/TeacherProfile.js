@@ -20,6 +20,7 @@ const TeacherProfile = () => {
 				console.log(json);
 			});
 	}, []);
+	
 	//Component Faces
 	// <Faces face={number} /> 1-10
 
