@@ -11,6 +11,7 @@ const ReviewTeacher = () => {
 
 	const [step, setStep] = useState(1);
 	const [dateUser, setDateUser] = useState({});
+	const [dateSchool, setDateSchool] = useState({});
 
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
@@ -39,6 +40,12 @@ const ReviewTeacher = () => {
 			.then(res => res.json())
 			.then(request => setDateUser(request));
 	};
+
+	// const getSchool= () => {
+	// 	fetch(process.env.BACKEND_URL + "/school/{data.user_id")
+	// 		.then(res => res.json())
+	// 		.then(request => setDateSchool(request));
+	// };
 
 	const sendReview = () => {
 		fetch(process.env.BACKEND_URL + "/review", {
@@ -73,8 +80,9 @@ const ReviewTeacher = () => {
 						setStep(2);
 						console.log("data", data);
 						console.log("id", store.idTeacher);
-						actions.setReview("teacher_id", store.idTeacher);
+
 						getUser();
+						console.log("datos user", dateUser);
 					}}>
 					Siguiente
 				</button>
@@ -85,12 +93,13 @@ const ReviewTeacher = () => {
 			<div className=" reviewTeacher2">
 				<h1 className="violet_h1 search-title">Buscar profesor</h1>
 				<span className="span__ ">¿En qué centro tuviste clase con {data.full_name}?</span>
-				<div className="cont_name_img d-flex" >
+				<div className="cont_name_img d-flex">
 					<img src={dateUser.image} />
 					<div>
 						<span>{dateUser.full_name}</span>
 						<span>{data.type_of_teacher}</span>
 					</div>
+					<div>{/* {dateSchool.name} */}</div>
 				</div>
 				<button className="button_violet_small button__search" onClick={() => setStep(3)}>
 					Siguiente

@@ -204,6 +204,12 @@ def add_school_to_user():
     return jsonify(user_add.serialize()),201
 
 
+# @api.route('/school/<int:user_id>', methods=['GET'])
+# def get_school_to_user(user_id):
+#     school = School.get_by_id(user_id)
+#     return jsonify(school.serialize()), 200
+
+
 @api.route('/review', methods=['POST'])
 def add_review_to_teacher():
     body = request.get_json()

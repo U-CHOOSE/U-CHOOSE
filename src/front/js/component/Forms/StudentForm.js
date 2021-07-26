@@ -101,11 +101,11 @@ const StudentForm = props => {
 
 				{props.footer}
 
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 
-				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={handleCreate}>
 					Registro con <img className="google" src={google} />
 				</button>
 			</div>
