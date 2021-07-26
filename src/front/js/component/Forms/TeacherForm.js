@@ -15,7 +15,8 @@ const TeacherForm = props => {
 		_password: "",
 		repeatPassword: "",
 		promo: false,
-		is_student: false
+		is_student: false,
+		sign_completed: false
 	});
 	const [checked, setChecked] = useState(true);
 
@@ -26,7 +27,8 @@ const TeacherForm = props => {
 		promo: formData.promo,
 		is_student: formData.is_student,
 		type_of_teacher: formData.typeOfteachers,
-		linkedin: formData.linkedin
+		linkedin: formData.linkedin,
+		sign_completed: formData.sign_completed
 	};
 
 	const handleCreate = () => {

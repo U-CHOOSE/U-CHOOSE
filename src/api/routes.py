@@ -10,6 +10,9 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from datetime import timedelta, date
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 api = Blueprint('api', __name__)
 
@@ -59,6 +62,8 @@ def add_user():
         _password = body.get("_password", None)
         is_student = body.get("is_student", None)
         promo = body.get("promo", None)
+        sign_completed = body.get("sign_completed", None)
+
 
         if not email or not _password or is_student is None:
             return "Missing info", 400
@@ -70,6 +75,7 @@ def add_user():
             is_student, 
             promo,
             full_name,
+            sign_completed
         )
 
         if is_student:
@@ -89,6 +95,7 @@ def add_user():
 
     elif request.method == 'PUT':
         body = request.get_json()
+        img = body.get("img", None)
         school_id = body.get("school_id", None)
         user_id = body.get("user_id", None)
         
@@ -98,11 +105,23 @@ def add_user():
         )
         user_school.add()
 
+    
         return jsonify({"school": user_school.serialize()}), 201
     
 
     
+# @api.route("/user/<int:id>",methods=['PUT'])
+# # @jwt_required()
+# def update_one_user(id):
+#     json = request.get_json()
+#     user = User.get_by_id(id)
+#     print(user)
+#     user.put_with_json(json)
+#     print(people)
+#     db.session.commit()
+#     return jsonify(user.serialize()) ,201
 
+    
 @api.route('/user/<int:id>', methods=['GET'])
 # @jwt_required()
 def get_user(id):
@@ -111,8 +130,13 @@ def get_user(id):
     user_student = User_student.get_by_user_id(user.id)
     user_teacher = User_teacher.get_by_user_id(user.id)
     if user.is_student:
+
+
         return jsonify(user_student.serialize()), 200
+
     if user.is_student == False:
+
+
         return jsonify(user_teacher.serialize()), 200
     return "User didn't exist", 400
 
@@ -254,3 +278,26 @@ def get_all_teachers():
     return jsonify(teacher_dic), 200
 
     
+
+
+# image 
+
+@api.route('/profilepicture/<int:id>', methods=['POST'])
+def update_profile_picture(id):
+    print(request.files,"FILES")
+    if 'profile_picture' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_picture'])
+        # fetch for the user
+        user = User.get_by_id(id)
+        # update the user with the given cloudinary image URL
+        user.img = result['secure_url']
+        print(result['secure_url'], "RESULT")
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(user.serialize()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+
+

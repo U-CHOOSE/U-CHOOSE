@@ -12,7 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			reviews: {},
 			idTeacher: 0,
 			userId: 0,
-			userImg: ""
+			userImg: "",
+			users: []
+
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -83,17 +85,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// getActions().changeColor(0, "green");
 				console.log("Esta");
 			},
-
-			// get_all_schools: () => {
-			// 	fetch(process.env.BACKEND_URL + "/schools")
-			// 		.then(resp => resp.json())
-			// 		.then(data => setStore({ schools: data }));
-			// },
-			// get_all_teachers: () => {
-			// 	fetch(process.env.BACKEND_URL + "/user_teachers")
-			// 		.then(resp => resp.json())
-			// 		.then(data => setStore({ teachers: data }));
-			// },
+			get_img: img => {
+				console.log(img, "image llegando al flux");
+				let body;
+				body = new FormData();
+				body.append("profile_picture", img[0]);
+				fetch(process.env.BACKEND_URL.concat("/profilepicture/", localStorage.getItem("id_user")), {
+					body: body,
+					method: "POST"
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error("I can't upload picture!");
+						}
+						return response.json();
+						console.log(response);
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
 
 			getMessage: () => {
 				// fetching data from the backend
