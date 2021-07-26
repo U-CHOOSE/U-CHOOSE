@@ -10,17 +10,48 @@ import { useHistory } from "react-router-dom";
 const TeacherProfile = () => {
 	const history = useHistory();
 	const [count, setCount] = useState(0);
-	const [data, setData] = useState("");
+	const [data, setData] = useState({});
+	const [userTeacher, setUserTeacher] = useState("");
 	const user_id = localStorage.getItem("id_user");
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		fetch(process.env.BACKEND_URL + "/user/" + 2)
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log(json);
+				console.log("json", json);
+				console.log("DataUser", data);
+				// console.log("id", data.id);
 			});
 	}, []);
-	
+
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/review/" + data.id)
+			.then(res => res.json())
+			.then(json => {
+				// console.log("item", json);
+				// console.log("userTeacher", userTeacher);
+			});
+	}, []);
+
+	// useEffect(() => {
+	// 	fetch(process.env.BACKEND_URL + "/user_teachers")
+	// 		.then(res => res.json())
+	// 		.then(json => {
+	// 			json.map(item => {
+	// 				if (item.id == user_id) {
+	// 					setUserTeacher(json);
+	// 				}
+	// 			});
+	// 			console.log(userTeacher);
+	// 		});
+	// }, []);
+
+	// fetch(process.env.BACKEND_URL + "/user/" + user_id)
+
+	// let sum = dataReview.dynamsim + dataReview.pasion + dataReview.practises_example + dataReview.near;
+	// let avg = sum / 4;
+	// console.log("avg", avg);
+
 	//Component Faces
 	// <Faces face={number} /> 1-10
 
@@ -42,7 +73,7 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div>
+		<div className="card__teacherprofile">
 			{/* contain 1 */}
 			<div className="contain1 mt-4">
 				<div className="row">
