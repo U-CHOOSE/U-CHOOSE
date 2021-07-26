@@ -62,6 +62,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ step: store.step - 1 });
 			},
+
+			loadData: () => {
+				const token = localStorage.getItem("token");
+				const user_id = localStorage.getItem("id_user");
+				setStore({ token: token, user_id: user_id });
+			},
+			getToken: () => {
+				const store = getStore();
+				return store.token;
+			},
+			isLogged: () => {
+				const store = getStore();
+				console.log(store);
+				console.log(!!store.token && store.token !== "");
+				return !!store.token && store.token !== "";
+			},
 			// Use getActions to call a function within a fuction
 
 			exampleFunction: () => {

@@ -14,11 +14,11 @@ const Login = () => {
 
 	useEffect(
 		() => {
-			if (store.token != "" && store.token != undefined) {
+			if (actions.isLogged()) {
 				history.push("/");
 			}
 		},
-		[store.token]
+		[actions.isLogged()]
 	);
 
 	useEffect(

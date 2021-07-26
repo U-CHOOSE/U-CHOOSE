@@ -16,7 +16,7 @@ import cloudinary.api
 
 api = Blueprint('api', __name__)
 
-# TODO: Register using User.create_password_hash(password)
+
 @api.route('/login', methods=['POST'])
 def login():
     payload =(request.get_json(force=True))
@@ -28,9 +28,10 @@ def login():
         return {'error': 'Missing info'}, 400
     
     user = User.get_by_email(email)
-    password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
-    valid_password = check_password_hash(user._password,password_hashed) 
-    print(user._password,valid_password)
+    # password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+    print(user._password,password)
+    valid_password = check_password_hash(user._password,password) 
+    
     # TODO:check password using check_password_hash(user.password, password)
     if valid_password:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
@@ -110,22 +111,23 @@ def add_user():
     
 
     
-# @api.route("/user/<int:id>",methods=['PUT'])
-# # @jwt_required()
-# def update_one_user(id):
-#     json = request.get_json()
-#     user = User.get_by_id(id)
-#     print(user)
-#     user.put_with_json(json)
-#     print(people)
-#     db.session.commit()
-#     return jsonify(user.serialize()) ,201
+@api.route("/user/<int:id>",methods=['PUT'])
+# @jwt_required()
+def update_one_user(id):
+    json = request.get_json()
+    user = User.get_by_id(id)
+    print(user)
+    user.put_with_json(json)
+    print(user)
+    db.session.commit()
+    return jsonify(user.serialize()) ,201
 
     
-@api.route('/user/<int:id>', methods=['GET'])
-# @jwt_required()
-def get_user(id):
-    
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    identity = get_jwt_identity()
+    print(identity)
     user = User.get_by_id(id)
     user_student = User_student.get_by_user_id(user.id)
     user_teacher = User_teacher.get_by_user_id(user.id)
@@ -168,18 +170,7 @@ def get_all_users():
     return jsonify(users_dic),200
 
 
-@api.route('/user/<int:id>', methods=['PUT'])
-# @jwt_required()
-def update_users(id):
-    body = request.get_json()
-    user = User.update_single_user(body, id)
-    if user.is_active and user.is_student:
-        user_true = User_student.update_psychologist_user(body, id)
-        return jsonify(user_true.serialize)  
-    if user.is_active and user.is_psychologist == False:
-        user_comp = User_company.update_company_user(body, id)
-        print(user_comp)
-        return jsonify(user_comp.to_dict())
+
 
 # schools
 @api.route('/schools',methods=['GET'])
@@ -293,4 +284,13 @@ def update_profile_picture(id):
         raise APIException('Missing profile_image on the FormData')
 
 
+#user_school
 
+
+@api.route('/user_schools',methods=['GET'])
+def get_all_user_schools():
+    teachers = User_school.query.all()
+    teacher_dic = []
+    for teacher in teachers:
+        teacher_dic.append(teacher.serialize())
+    return jsonify(teacher_dic), 200
