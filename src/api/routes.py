@@ -110,17 +110,13 @@ def get_user(id):
     user = User.get_by_id(id)
     user_student = User_student.get_by_user_id(user.id)
     user_teacher = User_teacher.get_by_user_id(user.id)
-    if user.is_active and user.is_student:
-
+    if user.is_student:
         return jsonify(user_student.serialize()), 200
-
-    if  user.is_student == False:
-
+    if user.is_student == False:
         return jsonify(user_teacher.serialize()), 200
-
-
     return "User didn't exist", 400
 
+    
 
 @api.route('/user/<int:id>', methods=['DELETE']) 
 #@jwt_required()

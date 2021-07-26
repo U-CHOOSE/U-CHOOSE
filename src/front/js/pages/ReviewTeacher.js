@@ -33,9 +33,11 @@ const ReviewTeacher = () => {
 		},
 		[!data]
 	);
+	const userId = store.userId;
+	console.log("teacher id", userId);
 
 	const getUser = () => {
-		fetch(process.env.BACKEND_URL + `/user/}`)
+		fetch(process.env.BACKEND_URL + "/user/" + userId)
 			.then(res => res.json())
 			.then(request => setDateUser(request));
 	};
@@ -76,31 +78,27 @@ const ReviewTeacher = () => {
 				<button
 					className="button_violet_small button__search"
 					onClick={() => {
-						// console.log("dtaID", item.id);
-						// console.log(select);
 						console.log("userID" + store.userId);
 						console.log("idtecher", store.idTeacher);
-						// actions.setReview("teacher_id", store.idTeacher);
-						// setStep(2);
-						// console.log("id", store.idTeacher);
-
-						// // getUser();
-						// console.log("datos user", dateUser);
+						getUser();
+						actions.setReview("teacher_id", store.idTeacher);
+						setStep(2);
 					}}>
 					Siguiente
 				</button>
 			</div>
 		);
 	} else if (step == 2) {
+		console.log("dateUser", dateUser);
 		return (
 			<div className=" reviewTeacher2">
 				<h1 className="violet_h1 search-title">Buscar profesor</h1>
-				<span className="span__ ">¿En qué centro tuviste clase con {data.full_name}?</span>
+				<span className="span__ ">¿En qué centro tuviste clase con {dateUser.full_name}?</span>
 				<div className="cont_name_img d-flex">
-					<img src={dateUser.image} />
+					<img src={dateUser.img} />
 					<div>
 						<span>{dateUser.full_name}</span>
-						<span>{data.type_of_teacher}</span>
+						<span>{dateUser.type_of_teacher}</span>
 					</div>
 					<div>{/* {dateSchool.name} */}</div>
 				</div>

@@ -11,7 +11,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			step: 0,
 			reviews: {},
 			idTeacher: 0,
-			userId: 0
+			userId: 0,
+			userImg: ""
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -48,6 +49,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					idTeacher: idTeacher,
 					userId: userID
+				});
+			},
+
+			setImg: img => {
+				setStore({
+					userImg: img
 				});
 			},
 
