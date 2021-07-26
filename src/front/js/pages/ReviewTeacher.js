@@ -10,6 +10,7 @@ const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
 
 	const [step, setStep] = useState(1);
+	const [dateUser, setDateUser] = useState({});
 
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
@@ -32,6 +33,12 @@ const ReviewTeacher = () => {
 		[!data]
 	);
 	console.log(data);
+
+	const getUser = () => {
+		fetch(process.env.BACKEND_URL + "/user/{data.user_id")
+			.then(res => res.json())
+			.then(request => setDateUser(request));
+	};
 
 	const sendReview = () => {
 		fetch(process.env.BACKEND_URL + "/review", {
@@ -67,6 +74,7 @@ const ReviewTeacher = () => {
 						console.log("data", data);
 						console.log("id", store.idTeacher);
 						actions.setReview("teacher_id", store.idTeacher);
+						getUser();
 					}}>
 					Siguiente
 				</button>
@@ -74,9 +82,16 @@ const ReviewTeacher = () => {
 		);
 	} else if (step == 2) {
 		return (
-			<div className="mx-auto reviewTeacher2">
+			<div className=" reviewTeacher2">
 				<h1 className="violet_h1 search-title">Buscar profesor</h1>
-				<span className="span__ ">¿En qué centro tuviste clase con Lucía?</span>
+				<span className="span__ ">¿En qué centro tuviste clase con {data.full_name}?</span>
+				<div className="cont_name_img d-flex" >
+					<img src={dateUser.image} />
+					<div>
+						<span>{dateUser.full_name}</span>
+						<span>{data.type_of_teacher}</span>
+					</div>
+				</div>
 				<button className="button_violet_small button__search" onClick={() => setStep(3)}>
 					Siguiente
 				</button>
