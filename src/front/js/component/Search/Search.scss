@@ -63,3 +63,22 @@ input[type=text]::placeholder {
     display: block;
     margin: auto;
 }
+.container___search {
+    width: 360px;
+    height: 500px;
+    border: 1px solid red;
+}
+.image_name_container {
+    
+    width: 343px;
+    height: 64px;
+    background: #EFF0F7;
+    border-radius: 16px;
+    display: block;
+    margin: auto;
+}
+.name_container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}

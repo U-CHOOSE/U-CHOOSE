@@ -131,15 +131,16 @@ def get_user(id):
     user_teacher = User_teacher.get_by_user_id(user.id)
     if user.is_student:
 
+
         return jsonify(user_student.serialize()), 200
 
     if user.is_student == False:
 
+
         return jsonify(user_teacher.serialize()), 200
-
-
     return "User didn't exist", 400
 
+    
 
 @api.route('/user/<int:id>', methods=['DELETE']) 
 #@jwt_required()
@@ -223,13 +224,19 @@ def add_school_to_user():
     return jsonify(user_add.serialize()),201
 
 
+# @api.route('/school/<int:user_id>', methods=['GET'])
+# def get_school_to_user(user_id):
+#     school = School.get_by_id(user_id)
+#     return jsonify(school.serialize()), 200
+
+
 @api.route('/review', methods=['POST'])
 def add_review_to_teacher():
     body = request.get_json()
     print(body)
 
     
-    teacher_id = body.get("user_id", None),
+    teacher_id = body.get("teacher_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
     practises_example = body.get("practises_example", None),

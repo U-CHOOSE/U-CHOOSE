@@ -9,19 +9,29 @@
     padding-left: 50px;
     margin-top: -20px;
 }
-.input-searchbar {
+.contain__search .input-searchbar {
     margin-top: 70px;
 }
-.input-searchbar::placeholder {
+.contain__search .input-searchbar::placeholder {
     width: 80%;
 }
-.reviewTeacher2 span {
+.reviewTeacher2 {
+    width: 360px;
+    display: block;
+    margin: auto;
+    border: 1px solid red;
+}
+.reviewTeacher2 .span__ {
     width: 320px;
     height: 56px;
     text-align: center;
+    display: block;
     margin: auto;
-    margin-left: -30px;
-    margin-top: -30px;
+   
+}
+.reviewTeacher2 .button__search {
+    display: block;
+    margin: auto;
 }
 
 .step-8 textarea {
@@ -88,5 +98,33 @@
     letter-spacing: 0.75px;
     color: #4E4B66;
     margin-top: 25px;
+}
+.contain__search .search-title {
+    width: 333px;
+    height: 36px;
+    margin-bottom: 24px;
+    
+}
+.contain__search  .container___search .span__ {
+    display: block;
+    margin-left: -20px !important;
+
+}
+.contain__search .container___search .input-searchbar {
+    margin-top: 80px;
+}
+.contain__search .container___search .span__{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: #4E4B66;
+    display: block;
+    margin: auto;
+
+
 }
 
