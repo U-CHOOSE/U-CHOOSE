@@ -210,7 +210,7 @@ def add_review_to_teacher():
     print(body)
 
     
-    teacher_id = body.get("user_id", None),
+    teacher_id = body.get("teacher_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
     practises_example = body.get("practises_example", None),

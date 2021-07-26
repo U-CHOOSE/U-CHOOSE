@@ -4,57 +4,34 @@ import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
+import Search from "../component/Search/Search";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
-	const [teacher, setTeacher] = useState("");
-	//search
-	const [searchTeacher, setSearchTeacher] = useState("");
+
 	const [step, setStep] = useState(1);
-	const fakeData = [
-		{
-			name: "franc",
-			age: 18
-		},
-		{
-			name: "francisco",
-			age: 18
-		}
-	];
 
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
 	//textaerea
 	const [moreInfo, setTMoreInfo] = useState("Comienza a escribir");
 
-	// var data = {
-	// 	teacher_id: 1,
-	// 	dynamsim: 4,
-	// 	pasion: 5,
-	// 	practises_example: 5,
-	// 	near: 3,
-	// 	date_teacher: 2000,
-	// 	more_info: "mas infooo"
-	// };
-	// POST;
-
-	// GET
-	// const showTeachers = () => {
-	// 	fetch(process.env.BACKEND_URL + "/users")
-	// 		.then(res => res.json())
-	// 		// .then(data => setData(data))
-	// 		.then(data => console.log(data))
-	// 		.catch(err => console.log(err));
-	// };
-
-	useEffect(() => {
-		console.log("holaaaaaaaaaaa");
-		fetch(process.env.BACKEND_URL + "/users")
-			.then(res => res.json())
-			// .then(data => setTeacher(data))
-			.then(data => console.log(data))
-			.catch(err => console.log(err));
-	}, []);
+	//search
+	const [data, setData] = useState("");
+	const handleKeyPress = e => {
+		if (e.key === "Enter" && e.target.value !== "") {
+			alert("Hola");
+		}
+	};
+	useEffect(
+		() => {
+			fetch(process.env.BACKEND_URL + "/user_teachers")
+				.then(res => res.json())
+				.then(data => setData(data));
+		},
+		[!data]
+	);
+	console.log(data);
 
 	const sendReview = () => {
 		fetch(process.env.BACKEND_URL + "/review", {
@@ -70,33 +47,26 @@ const ReviewTeacher = () => {
 	};
 
 	if (step == 1) {
+		console.log("data", data);
 		return (
-			<div className="mx-auto reviewTeacher1">
-				<h1 className="violet_h1 search-title">Buscar profesor</h1>
-				<span className="span__ ">¿Qué profesor quieres evaluar?</span>
-				<input
-					type="text"
+			<div className="contain__search mx-auto">
+				<Search
+					title="Buscar un profesor"
 					placeholder="Buscar un profesor"
-					className="input-searchbar"
-					onChange={e => setSearchTeacher(e.target.value)}
+					span_="¿Que profesor quieres evaluar?"
+					type="teacher"
+					data={data}
+					onKeyPress={handleKeyPress}
 				/>
-				{/* <span className="span__1"> {props.span1}</span> */}
-				{fakeData
-					.filter(v => {
-						if (searchTeacher === "") {
-							return v;
-						} else if (v.name.toLowerCase().includes(searchTeacher.toLowerCase())) {
-							return v;
-						}
-					})
-					.map((v, i) => {
-						return <div key={i}>{v.name}</div>;
-					})}
+
 				<button
 					className="button_violet_small button__search"
 					onClick={() => {
-						actions.setReview("teacher_id", 1);
+						actions.setReview("teacher_id", data.teacher_id);
 						setStep(2);
+						console.log("data", data);
+						console.log("id", store.idTeacher);
+						actions.setReview("teacher_id", store.idTeacher);
 					}}>
 					Siguiente
 				</button>

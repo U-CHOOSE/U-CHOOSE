@@ -9,7 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			schools: [],
 			teachers: [],
 			step: 0,
-			reviews: {}
+			reviews: {},
+			idTeacher: 0
 		},
 		actions: {
 			login: (mail, pass) => {
@@ -40,6 +41,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let reviews = getStore().reviews;
 				let updateReviews = { ...reviews, [skill]: value };
 				setStore({ reviews: updateReviews });
+			},
+			setId: id => {
+				const store = getStore();
+				setStore({ idTeacher: id });
 			},
 
 			setError: error => {
