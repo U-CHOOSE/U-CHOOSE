@@ -1,11 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
-
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, DateTime, Date, Time, Float
 db = SQLAlchemy()
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
 
 db = SQLAlchemy()
 
@@ -16,11 +13,11 @@ class User(db.Model):
     full_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
-    img = db.Column(db.VARCHAR,nullable=True)
+    img = db.Column(db.VARCHAR,nullable=True,default="https://res.cloudinary.com/braulg/image/upload/v1624454265/airfaohxepd3ncf5tnlf.png")
     # is_active = db.Column(db.Boolean, default=True)
-    image = db.Column(db.VARCHAR)
     promo = db.Column(db.Boolean, default=False)
     is_student = db.Column(db.Boolean)
+    sign_completed = db.Column(db.Boolean,default=False)
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
     school = db.relationship("School", secondary="user_school")
@@ -36,23 +33,32 @@ class User(db.Model):
             "id": self.id,
             "full_name":self.full_name,
             "email": self.email,
-            "is_student":self.is_student
+            "is_student":self.is_student,
+            "sign_completed":self.sign_completed,
+            "img":self.img
             
         }
 
     @classmethod
-    def add(cls,email,_password,is_student,promo,full_name):
+    def add(cls,email,_password,is_student,promo,full_name,sign_completed):
         user = cls(
             email=email, 
             _password=_password,
             is_student=is_student,
             promo=promo,
-            full_name = full_name, 
+            full_name = full_name,
+            sign_completed = sign_completed
             
         )
         db.session.add(user)
         db.session.commit()
         return user.id
+
+    @classmethod
+    def add_img(self):
+        db.session.add(self)
+        db.session.commit()
+
 
     @classmethod
     def get_by_id(cls, id):
@@ -157,7 +163,8 @@ class User_student(db.Model):
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
-            "promo": user.promo
+            "promo": user.promo,
+            "img" : user.img
         }
 
     def add(self):

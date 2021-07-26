@@ -15,7 +15,8 @@ const TeacherForm = props => {
 		_password: "",
 		repeatPassword: "",
 		promo: false,
-		is_student: false
+		is_student: false,
+		sign_completed: false
 	});
 	const [checked, setChecked] = useState(true);
 
@@ -26,7 +27,8 @@ const TeacherForm = props => {
 		promo: formData.promo,
 		is_student: formData.is_student,
 		type_of_teacher: formData.typeOfteachers,
-		linkedin: formData.linkedin
+		linkedin: formData.linkedin,
+		sign_completed: formData.sign_completed
 	};
 
 	const handleCreate = () => {
@@ -120,11 +122,11 @@ const TeacherForm = props => {
 				<br />
 				{props.footer}
 
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<br />
-				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={handleCreate}>
 					Registro con <img className="Linkedin " src={Linkedin} />
 				</button>
 			</div>
