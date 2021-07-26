@@ -11,46 +11,35 @@ const TeacherProfile = () => {
 	const history = useHistory();
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
-	const [userTeacher, setUserTeacher] = useState("");
+	const [review, setReview] = useState("");
 	const user_id = localStorage.getItem("id_user");
+	const teacher_id = localStorage.getItem("teacher_id");
+	let teacherId = 2;
+	// console.log(user_id.id);
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + 2)
+		fetch(process.env.BACKEND_URL + "/user/" + user_id)
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log("json", json);
-				console.log("DataUser", data);
-				// console.log("id", data.id);
+				console.log("json1", json);
 			});
 	}, []);
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/review/" + data.id)
+		fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
 			.then(res => res.json())
 			.then(json => {
-				// console.log("item", json);
+				console.log("json2", json);
+				setReview(json);
 				// console.log("userTeacher", userTeacher);
 			});
 	}, []);
 
-	// useEffect(() => {
-	// 	fetch(process.env.BACKEND_URL + "/user_teachers")
-	// 		.then(res => res.json())
-	// 		.then(json => {
-	// 			json.map(item => {
-	// 				if (item.id == user_id) {
-	// 					setUserTeacher(json);
-	// 				}
-	// 			});
-	// 			console.log(userTeacher);
-	// 		});
-	// }, []);
-
 	// fetch(process.env.BACKEND_URL + "/user/" + user_id)
 
-	// let sum = dataReview.dynamsim + dataReview.pasion + dataReview.practises_example + dataReview.near;
-	// let avg = sum / 4;
-	// console.log("avg", avg);
+	let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
+	let avg = sum / 4;
+	console.log("avg", avg);
 
 	//Component Faces
 	// <Faces face={number} /> 1-10
