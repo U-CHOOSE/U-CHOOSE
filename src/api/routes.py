@@ -114,7 +114,7 @@ def get_user(id):
 
         return jsonify(user_student.serialize()), 200
 
-    if user.is_active and user.is_student == False:
+    if  user.is_student == False:
 
         return jsonify(user_teacher.serialize()), 200
 

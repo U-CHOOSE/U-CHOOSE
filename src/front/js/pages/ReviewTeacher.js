@@ -33,14 +33,14 @@ const ReviewTeacher = () => {
 		},
 		[!data]
 	);
-	console.log(data);
 
 	const getUser = () => {
-		fetch(process.env.BACKEND_URL + "/user/{data.user_id")
+		fetch(process.env.BACKEND_URL + `/user/}`)
 			.then(res => res.json())
 			.then(request => setDateUser(request));
 	};
-
+	console.log(data, "data");
+	console.log(store.userId);
 	// const getSchool= () => {
 	// 	fetch(process.env.BACKEND_URL + "/school/{data.user_id")
 	// 		.then(res => res.json())
@@ -76,13 +76,16 @@ const ReviewTeacher = () => {
 				<button
 					className="button_violet_small button__search"
 					onClick={() => {
-						actions.setReview("teacher_id", data.teacher_id);
-						setStep(2);
-						console.log("data", data);
-						console.log("id", store.idTeacher);
+						// console.log("dtaID", item.id);
+						// console.log(select);
+						console.log("userID" + store.userId);
+						console.log("idtecher", store.idTeacher);
+						// actions.setReview("teacher_id", store.idTeacher);
+						// setStep(2);
+						// console.log("id", store.idTeacher);
 
-						getUser();
-						console.log("datos user", dateUser);
+						// // getUser();
+						// console.log("datos user", dateUser);
 					}}>
 					Siguiente
 				</button>

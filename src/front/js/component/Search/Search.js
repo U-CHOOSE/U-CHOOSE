@@ -13,8 +13,9 @@ const Search = props => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
-			console.log("item", item);
-			props.type === "teacher" ? actions.setId(item.id) : "";
+			console.log("itemid", item.id);
+
+			props.type === "teacher" ? actions.setId(item.id, item.user_id) : "";
 		}
 	};
 	//
@@ -56,7 +57,7 @@ const Search = props => {
 							}
 						})
 						.map((v, i) => {
-							console.log(select);
+							console.log("select", select);
 							console.log(data.img);
 							return (
 								<div key={i}>
@@ -80,7 +81,7 @@ const Search = props => {
 				) : (
 					<div>{select}</div>
 				)}
-				{console.log(select)}
+				{console.log("select", select)}
 
 				{props.button}
 				<span className="span__2">{props.span2}</span>
