@@ -14,7 +14,6 @@ class User(db.Model):
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
     img = db.Column(db.VARCHAR,nullable=True,default="https://res.cloudinary.com/braulg/image/upload/v1624454265/airfaohxepd3ncf5tnlf.png")
-    # is_active = db.Column(db.Boolean, default=True)
     promo = db.Column(db.Boolean, default=False)
     is_student = db.Column(db.Boolean)
     sign_completed = db.Column(db.Boolean,default=False)
@@ -29,13 +28,16 @@ class User(db.Model):
     
 
     def serialize(self):
+        user_teacher = User_teacher.get_by_id(self.id)
         return {
             "id": self.id,
             "full_name":self.full_name,
             "email": self.email,
             "is_student":self.is_student,
             "sign_completed":self.sign_completed,
-            "img":self.img
+            "img":self.img,
+            "type_of_teacher": user_teacher.type_of_teacher,
+            "linkedin": user_teacher.linkedin,
             
         }
 
@@ -53,6 +55,17 @@ class User(db.Model):
         db.session.add(user)
         db.session.commit()
         return user.id
+
+
+    # def put_with_json(self,json):
+    #     if json["full_name"]:
+    #         self.full_name = json["full_name"]
+    #     if json["email"]:
+    #         self.email = json["email"]
+    #     if json["password"]:
+    #         self.password = json["password"]
+
+
 
     @classmethod
     def add_img(self):
@@ -114,6 +127,8 @@ class User_teacher(db.Model):
             "user_id":self.user_id,
             "type_of_teacher": self.type_of_teacher,
             "linkedin": self.linkedin,
+            "sign_completed": user.sign_completed,
+            "img":user.img,
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,

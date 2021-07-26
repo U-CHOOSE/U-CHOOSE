@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/studentProfile.scss";
-import { BsPlusCircle } from "react-icons/bs";
 import { Context } from "../store/appContext";
 
 const StudentProfile = () => {
 	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
-		full_name: "",
+		fullname: "",
 		email: "",
+		linkedin: "",
+		typeOfteachers: "",
 		_password: "",
 		repeatPassword: ""
 	});

@@ -5,11 +5,21 @@ import Faces from "../component/Faces/Faces";
 import TopReview from "../component/TopReview/TopReview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const TeacherProfile = () => {
 	const history = useHistory();
 	const [count, setCount] = useState(0);
+	const [data, setData] = useState("");
+	const user_id = localStorage.getItem("id_user");
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				console.log(json);
+			});
+	}, []);
 	//Component Faces
 	// <Faces face={number} /> 1-10
 
@@ -36,11 +46,7 @@ const TeacherProfile = () => {
 			<div className="contain1 mt-4">
 				<div className="row">
 					<div className="col-5">
-						<img
-							className="img-profile"
-							src="https://laverdadnoticias.com/__export/1577809178240/sites/laverdad/img/2019/12/31/1465326837-rt-shakira01.jpg_1017309733.jpg"
-							alt="img"
-						/>
+						<img className="img-profile" src={data.img} alt="img" />
 					</div>
 					<div className="col-7">
 						<div className="d-flex mt-3 ml-3">
@@ -52,12 +58,12 @@ const TeacherProfile = () => {
 						</button>
 					</div>
 				</div>
-				<h1 className=" name1 ml-3 mt-4">Lucía Gómez</h1>
+				<h1 className=" name1 ml-3 mt-4">{data.full_name}</h1>
 				<div className="d-flex ml-3 contain-logo">
 					<h5 className="mr-3">
 						<FontAwesomeIcon className="icon-bag" icon={faSuitcase} />
 					</h5>
-					<span>Financial Advisor @ AXA</span>
+					<span>{data.type_of_teacher}</span>
 				</div>
 			</div>
 			{/* contain 2 */}
