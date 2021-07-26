@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/studentProfile.scss";
-
 import { BsPlusCircle } from "react-icons/bs";
+import { Context } from "../store/appContext";
+
 const StudentProfile = () => {
+	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		full_name: "",
 		email: "",
 		_password: "",
-		repeatPassword: "",
+		repeatPassword: ""
 	});
 
+	const [img, setImg] = useState("");
 	const [data, setData] = useState("");
 	const user_id = localStorage.getItem("id_user");
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user" + user_id)
+		fetch(process.env.BACKEND_URL + "/user/" + user_id)
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
@@ -57,18 +60,19 @@ const StudentProfile = () => {
 	console.log(data);
 	return (
 		<div>
-			{data.img == null ? (
-				<div className="student-contain1">
-					<div onClick={} ><BsPlusCircle /></div>
-					
-					<button className="student-button1">Mis centros</button>
-				</div>
-			) : (
-				<div className="student-contain1">
-					<img className="img-profile" src={data.image} alt="img" />
-					<button className="student-button1">Mis centros</button>
-				</div>
-			)}
+			<input
+				type="file"
+				onChange={e => {
+					setImg(e.target.files);
+				}}
+			/>
+			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
+
+			<div className="student-contain1">
+				<img className="img-profile" src={data.img} alt="img" />
+
+				<button className="student-button1">Mis centros</button>
+			</div>
 
 			<div className="contain-inputs ml-3">
 				<div className="contain-inp input1">
