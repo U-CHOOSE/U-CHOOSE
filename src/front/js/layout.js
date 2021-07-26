@@ -8,7 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import SearchSchools from "./pages/SearchSchools";
 import SearchTeachers from "./pages/SearchTeachers";
 import Login from "./pages/Login";
-
+import MyCenters from "./pages/MyCenters";
 import RegisterFormPage from "./pages/RegisterFormPage";
 
 import ReviewTeacher from "./pages/ReviewTeacher";
@@ -20,8 +20,6 @@ import TeacherProfile from "./pages/TeacherProfile";
 import EditTeacher from "./pages/EditTeacher";
 
 import StudentProfile from "./pages/StudentProfile";
-
-import MyCenters from "./pages/MyCenters";
 
 //components
 import NavbarComp from "./component/navbar";
@@ -68,6 +66,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/teacherprofile/edit">
 							<EditTeacher />
+						</Route>
+						<Route exact path="/mycenters">
+							<MyCenters />
 						</Route>
 
 						<Route exact path="/searchschools">

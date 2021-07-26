@@ -6,7 +6,6 @@ import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
-import registerDesicionPage from "../../styles/registerDesicionPage.scss";
 import { BsBoxArrowInLeft } from "react-icons/bs";
 
 const RegisterFormPage = () => {

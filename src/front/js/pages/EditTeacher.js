@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/editTeacher.scss";
 import { Context } from "../store/appContext";
 
 const EditTeacher = () => {
-	const { actions } = useContext(Context);
+	const history = useHistory();
+	const { actions, store } = useContext(Context);
 	const [formData, setFormData] = useState({
 		full_name: "",
 		email: "",
@@ -15,17 +17,24 @@ const EditTeacher = () => {
 
 	const [img, setImg] = useState("");
 	const [data, setData] = useState("");
-	const user_id = localStorage.getItem("id_user");
+
+	const token = store.token;
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
 				console.log(json);
 			});
 	}, []);
-	console.log(user_id);
+	console.log(token);
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
@@ -73,7 +82,9 @@ const EditTeacher = () => {
 			<div className="student-contain1">
 				<img className="img-profile" src={data.img} alt="img" />
 
-				<button className="student-button1">Mis centros</button>
+				<button className="student-button1" onClick={history.push("/mycenters")}>
+					Mis centros
+				</button>
 			</div>
 
 			<div className="contain-inputs ml-3">

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/studentProfile.scss";
 import { Context } from "../store/appContext";
 
 const StudentProfile = () => {
-	const { actions } = useContext(Context);
+	const history = useHistory();
+	const { actions, store } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
@@ -18,7 +20,14 @@ const StudentProfile = () => {
 	const user_id = localStorage.getItem("id_user");
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
@@ -42,7 +51,7 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user", options)
+		fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
 			.then(res => {
 				console.log(res);
 

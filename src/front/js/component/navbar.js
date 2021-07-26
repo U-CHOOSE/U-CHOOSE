@@ -8,16 +8,19 @@ import logo from "../../../../docs/assets/img/Logo-icon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";
-
+import { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 
 import { Link } from "react";
 
 const NavbarComp = () => {
+	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
 	const [show, setShow] = useState(false);
 
+	console.log(actions);
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
@@ -49,9 +52,13 @@ const NavbarComp = () => {
 							</div>
 						</NavDropdown.Item>
 						<br />
-						<Button className="btnNav" onClick={() => history.push("")}>
-							Mi perfil
-						</Button>
+						{actions.isLogged() ? (
+							<Button className="btnNav" onClick={() => history.push("")}>
+								Mi perfil
+							</Button>
+						) : (
+							<div>login</div>
+						)}
 					</NavDropdown>
 					{/* </Nav>
 					</Navbar.Collapse>{" "} */}
