@@ -62,7 +62,6 @@ const Search = props => {
 										</div>
 										<div className="name_container">{v[attribute]}</div>
 									</div>
-									{/* <div>X</div> */}
 								</div>
 							</li>
 						);

@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 
 const SearchSchools = () => {
 	const [data, setData] = useState("");
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
 			alert("Hola");
@@ -17,7 +17,7 @@ const SearchSchools = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				localStorage.setItem("school_id", json.body.id);
+				// localStorage.setItem("school_id", json.body.id);
 			})
 			.catch(err => console.log(err));
 	}, []);

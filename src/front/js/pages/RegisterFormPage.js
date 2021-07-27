@@ -16,7 +16,7 @@ const RegisterFormPage = () => {
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
-			.then(data => setData(data))
+			.then(data => setData("schools", data))
 			.catch(err => console.log(err));
 	}, []);
 	const [checked, setChecked] = useState({

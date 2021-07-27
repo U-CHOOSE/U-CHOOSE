@@ -1,6 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
 
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
 	const history = useHistory();
 	return {
 		store: {
@@ -69,8 +69,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: token, user_id: user_id });
 			},
 			getToken: () => {
-				const store = getStore();
-				return store.token;
+				const token = localStorage.getItem("token");
+				return token;
 			},
 			isLogged: () => {
 				const store = getStore();

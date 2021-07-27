@@ -111,11 +111,12 @@ def add_user():
     
 
     
-@api.route("/user/<int:id>",methods=['PUT'])
-# @jwt_required()
+@api.route("/user",methods=['PUT'])
+@jwt_required()
 def update_one_user(id):
-    json = request.get_json()
-    user = User.get_by_id(id)
+    identity = get_jwt_identity()
+    json = request.get_json(identity)
+    user = User.get_by_id(identity)
     print(user)
     user.put_with_json(json)
     print(user)
@@ -127,8 +128,7 @@ def update_one_user(id):
 @jwt_required()
 def get_user():
     identity = get_jwt_identity()
-    print(identity)
-    user = User.get_by_id(id)
+    user = User.get_by_id(identity)
     user_student = User_student.get_by_user_id(user.id)
     user_teacher = User_teacher.get_by_user_id(user.id)
     if user.is_student:
@@ -143,15 +143,16 @@ def get_user():
     return "User didn't exist", 400
 
 
-@api.route('/user/<int:id>', methods=['DELETE']) 
-#@jwt_required()
-def delete_one_user(id):
-    user_target = User.query.get(id)
-    user_target = User.delete(id)
+@api.route('/user', methods=['DELETE']) 
+@jwt_required()
+def delete_one_user():
+    identity = get_jwt_identity()
+    user_target = User.query.get(identity)
+    user_target = User.delete(identity)
     return jsonify(user_target.serialize(),"Your profile has been deleted"), 202
 
 @api.route('/users', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_all_users():
     users = User.get_all()
     users_dic = []
@@ -266,18 +267,20 @@ def get_all_teachers():
 
 # image 
 
-@api.route('/profilepicture/<int:id>', methods=['POST'])
-def update_profile_picture(id):
+@api.route('/profilepicture', methods=['POST'])
+@jwt_required()
+def update_profile_picture():
     print(request.files,"FILES")
     if 'profile_picture' in request.files:
         # upload file to uploadcare
+        identity = get_jwt_identity()
         result = cloudinary.uploader.upload(request.files['profile_picture'])
         # fetch for the user
-        user = User.get_by_id(id)
+        user = User.get_by_id(identity)
         # update the user with the given cloudinary image URL
         user.img = result['secure_url']
         print(result['secure_url'], "RESULT")
-        db.session.add(user)
+        # db.session.add(user)
         db.session.commit()
         return jsonify(user.serialize()), 200
     else:
