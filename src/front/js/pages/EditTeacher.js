@@ -33,7 +33,6 @@ const EditTeacher = () => {
 		_password: formData._password
 	};
 
-	// };
 	const handlePut = () => {
 		const options = {
 			method: "PUT",
@@ -84,7 +83,9 @@ const EditTeacher = () => {
 					id="upload-photo"
 				/>
 
-				<button className="student-button1">Mis centros</button>
+				<button className="student-button1" onClick={() => history.push("/mycenters")}>
+					Mis centros
+				</button>
 			</div>
 
 			<div className="contain-inputs ml-3">

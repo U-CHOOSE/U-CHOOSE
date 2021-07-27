@@ -20,9 +20,6 @@ const SearchTeachers = () => {
 	);
 	console.log(data);
 
-	// const handleTeacherFindId = () => {
-	// 	fetch(process.env.BACKEND_URL + "/user_teachers")
-	// }
 	return (
 		<>
 			<Search

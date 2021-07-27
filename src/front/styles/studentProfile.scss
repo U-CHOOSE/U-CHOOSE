@@ -126,18 +126,11 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
 //  .button_img{
 //      display: none;
 //  }
-.contain-student-prifle {
-    width: 360px;
-    display: block;
-    margin: auto;
 
-}
-.container-buttons {
-    display: block;
-}
-.container-buttons .b2 {
-    margin-top: 10px;
-}
-.in-pass {
-    margin-top: -80px;
+
+
+.form_container{
+    width: 60%;
+    height: fit-content;
+
 }

@@ -13,7 +13,7 @@ const Search = props => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
-			console.log("item", item);
+			console.log("item", item.id);
 
 			props.type === "teacher" ? (actions.setId(item.id, item.user_id), actions.setImg(item.img)) : "";
 		}

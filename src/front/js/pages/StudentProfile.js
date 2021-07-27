@@ -68,7 +68,9 @@ const StudentProfile = () => {
 	};
 	return (
 		<div>
-			<div className="contain-student-prifle">
+
+			<div className="form_container">
+
 				<div className="student-contain1">
 					<label htmlFor="upload-photo">
 						<img className="img-profile" src={store.userImg} alt="img" />
@@ -82,15 +84,15 @@ const StudentProfile = () => {
 						id="upload-photo"
 					/>
 
-					<div className="container-buttons">
-						<button className="student-button1" onClick={() => history.push("/mycenters")}>
-							Mis centros
-						</button>
-						<button className="student-button1 b2" onClick={handlePutImage}>
-							{" "}
-							Cambiar imagen
-						</button>
-					</div>
+
+					<button className="student-button1" onClick={() => history.push("/mycenters")}>
+						Mis centros
+					</button>
+					{/* <button className="student-button1" onClick={handlePutImage}>
+					{" "}
+					Cambiar imagen
+				</button> */}
+
 				</div>
 
 				<div className="contain-inputs ml-3">
@@ -105,7 +107,9 @@ const StudentProfile = () => {
 						/>
 					</div>
 					<p className="pstudent">Podrás ocultarlo en tus reviews</p>
-					<div className="contain-inp in-pass">
+
+					<div className="contain-inp">
+
 						<label>Email</label>
 						<input
 							type="email"
@@ -116,11 +120,12 @@ const StudentProfile = () => {
 						/>
 					</div>
 
-					<div className="contain-inp ">
+					<div className="contain-inp">
 						<label>Contraseña</label>
 						<input
 							type="password"
-							className="form-control input-text inp "
+							className="form-control input-text inp"
+
 							placeholder="password"
 							value={formData._password}
 							onChange={e => setFormData({ ...formData, _password: e.target.value })}
