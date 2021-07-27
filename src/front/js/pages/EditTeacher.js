@@ -63,6 +63,14 @@ const EditTeacher = () => {
 
 	return (
 		<div>
+			<input
+				type="file"
+				onChange={e => {
+					setImg(e.target.files);
+				}}
+			/>
+			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
+
 			<div className="student-contain1">
 				<label htmlFor="upload-photo">
 					<img className="img-profile" src={data.img} alt="img" />

@@ -53,7 +53,11 @@ const TeacherForm = props => {
 				console.log(status);
 				return res.json();
 			})
-			.then(json => console.log(json))
+			.then(json => {
+				console.log(json.teacher.user_id);
+				localStorage.setItem("id_user", json.teacher.user_id);
+				localStorage.setItem("teacher_id", json.teacher.id);
+			})
 			.catch(error => console.log(error));
 	};
 
