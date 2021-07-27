@@ -4,11 +4,9 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-<<<<<<< HEAD
-import imgIcon from "../../img/imgIcon.png";
-=======
-import logo from "../../../../docs/assets/img/Logo-icon.png";
->>>>>>> 6298f372e450b4323529e142b8ca1909905ef8d7
+
+import logo from "../../../../docs/assets/img/imgIcon.png";
+
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";
@@ -39,14 +37,14 @@ const NavbarComp = () => {
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("")}>
+						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/searchschools")}>
 							<div className="d-flex justify-content-around ">
 								<BsBuilding />
 								<h4>Centros</h4>
 							</div>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
+						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("searchteachers")}>
 							<div className="d-flex justify-content-around ">
 								<BsFillPersonFill />
 								<h4>Profesores</h4>

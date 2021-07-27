@@ -28,7 +28,10 @@ class User(db.Model):
     
 
     def serialize(self):
-        user_teacher = User_teacher.get_by_id(self.id)
+        print(self.id, "id")
+        user_teacher = User_teacher.get_by_user_id(self.id)
+        print("ffsdfd")
+        print(user_teacher)
         return {
             "id": self.id,
             "full_name":self.full_name,
@@ -57,13 +60,13 @@ class User(db.Model):
         return user.id
 
 
-    # def put_with_json(self,json):
-    #     if json["full_name"]:
-    #         self.full_name = json["full_name"]
-    #     if json["email"]:
-    #         self.email = json["email"]
-    #     if json["password"]:
-    #         self.password = json["password"]
+    def put_with_json(self,json):
+        if json["full_name"] is not None:
+            self.full_name = json["full_name"]
+        if json["email"] is not None:
+            self.email = json["email"]
+        if json["_password"] is not None:
+            self._password = json["_password"]
 
 
 
@@ -146,7 +149,7 @@ class User_teacher(db.Model):
 
     @classmethod
     def get_by_id(cls, id):
-        user = cls.query.filter_by(id = id).first_or_404()
+        user = cls.query.filter_by(id = id).first()
         return user
 
     @classmethod    
@@ -155,6 +158,13 @@ class User_teacher(db.Model):
         user.company_teacher= user_data["teacher_id"]
         db.session.commit()  
         return user 
+
+    def put_with_json_teacher(self,json):
+        if json["linkedin"]:
+            self.linkedin = json["linkedin"]
+        if json["type_of_teacher"]:
+            self.type_of_teacher = json["type_of_teacher"]
+        
 
     @classmethod
     def get_all(cls):

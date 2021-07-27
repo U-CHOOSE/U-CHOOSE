@@ -66,9 +66,10 @@ const RegisterFormPage = () => {
 	if (store.step === 0) {
 		return (
 			<>
-<<<<<<< HEAD
-				{/* <button onClick={() => setShow(!show)} /> */}
-				{show ? (
+
+				{/* <button onClick={() => setShow(!show)} />
+ 				{show ? (
+
 					<Modal
 						cross={
 							<div className="text-right w-100" onClick={() => setShow(!show)}>
@@ -82,8 +83,9 @@ const RegisterFormPage = () => {
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
 
+
 								<h4 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h4>
-=======
+
 
 // 				<button onClick={() => setShow(!show)} />
 // 				{show ? (
@@ -99,7 +101,6 @@ const RegisterFormPage = () => {
 // 						body={
 // 							<>
 // 								<h1 className="violet_h1_forms">Registro</h1>
->>>>>>> 6298f372e450b4323529e142b8ca1909905ef8d7
 
 // 								<h5>¿Cómo quieres colaborar con u-choose?</h5>
 
@@ -134,11 +135,45 @@ const RegisterFormPage = () => {
 // 									Soy profesor
 // 								</label>
 
-// 								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
-// 									Siguiente
-// 								</button>
-// 							</>
 
+								<h5>¿Cómo quieres colaborar con u-choose?</h5>
+
+
+								<label className="container" htmlFor="student">
+									<input
+										type="radio"
+										value={true}
+										id="student"
+										checked={checked.student}
+										onClick={() =>
+											setChecked({
+												teacher: false,
+												student: !checked.student
+											})
+										}
+									/>
+									Soy alumno
+								</label>
+								<label className="container" htmlFor="teacher">
+									<input
+										type="radio"
+										value={true}
+										id="teacher"
+										checked={checked.teacher}
+										onClick={() =>
+											setChecked({
+												teacher: !checked.teacher,
+												student: false
+											})
+										}
+									/>
+									Soy profesor
+								</label>
+
+								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
+									Siguiente
+								</button>
+							</> */}
 				{/* <button onClick={() => setShow(!show)}>Modal</button> */}
 				<h1 className="violet_h1_forms">Registro</h1>
 				<h2>¿Cómo quieres colaborar con u-choose?</h2>
@@ -168,7 +203,6 @@ const RegisterFormPage = () => {
 								teacher: !checked.teacher,
 								student: false
 							})
-
 						}
 					/>
 					Soy professor

@@ -86,7 +86,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			get_img: img => {
 				console.log(img, "image llegando al flux");
+				// setStore({ userImg: img });
 				let body;
+
 				body = new FormData();
 				body.append("profile_picture", img[0]);
 				fetch(process.env.BACKEND_URL.concat("/profilepicture/", localStorage.getItem("id_user")), {
@@ -98,7 +100,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							throw Error("I can't upload picture!");
 						}
 						return response.json();
-						console.log(response);
+						console.log(userImg);
+					})
+					.then(data => {
+						console.log("data1", data);
+						setStore({ userImg: data });
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
