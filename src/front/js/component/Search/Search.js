@@ -35,8 +35,7 @@ const Search = props => {
 
 	return (
 		<>
-
-// 			<h1 className="violet_h1">{props.title}</h1>
+			{/* // 			<h1 className="violet_h1">{props.title}</h1>
 // 			<input
 // 				type="text"
 // 				placeholder={props.placeholder}
@@ -48,7 +47,7 @@ const Search = props => {
 // 			<button onClick={() => actions.setUpStep()} className="btnSearch">
 // 				Siguiente
 // 			</button>
-// 			<span className="span_1">{props.span2}</span>
+// 			<span className="span_1">{props.span2}</span> */}
 
 			<div className="container___search">
 				<h1 className="violet_h1 search-title mb-5">{props.title}</h1>
@@ -101,7 +100,6 @@ const Search = props => {
 				{props.button}
 				<span className="span__2">{props.span2}</span>
 			</div>
-
 		</>
 	);
 };
