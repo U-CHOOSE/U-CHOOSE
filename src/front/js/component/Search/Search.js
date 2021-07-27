@@ -35,6 +35,20 @@ const Search = props => {
 
 	return (
 		<>
+			{/* // 			<h1 className="violet_h1">{props.title}</h1>
+// 			<input
+// 				type="text"
+// 				placeholder={props.placeholder}
+// 				className="input-searchbar"
+// 				onChange={e => setSearchItem(e.target.value)}
+// 			/>
+// 			<span> {props.span1}</span>
+
+// 			<button onClick={() => actions.setUpStep()} className="btnSearch">
+// 				Siguiente
+// 			</button>
+// 			<span className="span_1">{props.span2}</span> */}
+
 			<div className="container___search">
 				<h1 className="violet_h1 search-title mb-5">{props.title}</h1>
 				<span className="span__"> {props.span_}</span>
