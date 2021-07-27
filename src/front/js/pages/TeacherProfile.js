@@ -11,7 +11,7 @@ const TeacherProfile = () => {
 	const history = useHistory();
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
-	const [review, setReview] = useState("");
+	const [review, setReview] = useState([]);
 	const user_id = localStorage.getItem("id_user");
 	const teacher_id = localStorage.getItem("teacher_id");
 	let teacherId = 2;
@@ -35,11 +35,31 @@ const TeacherProfile = () => {
 			});
 	}, []);
 
-	// fetch(process.env.BACKEND_URL + "/user/" + user_id)
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/reviews")
+			.then(res => res.json())
+			.then(json => {
+				console.log("json2", json);
+				setReview(json);
+				// console.log("userTeacher", userTeacher);
+			});
+	}, []);
 
-	let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
-	let avg = sum / 4;
-	console.log("avg", avg);
+	let dynamsim = 0;
+	let pasion = 0;
+	let near = 0;
+	for (let i = 0; i <= review.length; i++) {
+		if (i.teacher_id === teacher_id) {
+			dynamsim = i.dynamsim + dynamsim;
+			pasion = i.pasion + pasion;
+			near = i.near + near;
+		}
+	}
+
+	// console.log(""pasion);
+	// let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
+	// let avg = sum / 4;
+	// console.log("avg", avg);
 
 	//Component Faces
 	// <Faces face={number} /> 1-10
