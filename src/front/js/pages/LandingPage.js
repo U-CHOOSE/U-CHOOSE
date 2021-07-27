@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import reviewsImg from "../../img/mockups_reviews.jpg";
-import reviewMetrics from "../../img/review_metrics.png";
-import logo from "../../img/Logo_U-CHOOSE.jpg";
+import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
+import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
+import logo from "../../../../docs/assets/img/Logo_U-CHOOSE.jpg";
 import "../../styles/landingPage.scss";
+import { useHistory } from "react-router";
 
 const LandingPage = () => {
+	const history = useHistory();
 	return (
 		<div>
 			<div className="row">
@@ -21,10 +23,16 @@ const LandingPage = () => {
 						U-Choose te lo hace más fácil gracias a las reviews sobre los profesores.
 					</p>
 					<div className="contain-buttons">
-						<button type="button" className="button_violet_great btn-school mt-3">
+						<button
+							type="button"
+							className="button_violet_great btn-school mt-3"
+							onClick={() => history.push("/searchschools")}>
 							Buscar un centro
 						</button>
-						<button type="button" className="button_white_border_violet_great btn-teacher mt-3 ">
+						<button
+							type="button"
+							className="button_white_border_violet_great btn-teacher mt-3 "
+							onClick={() => history.push("/searchteachers")}>
 							Buscar un profesor
 						</button>
 					</div>
@@ -33,7 +41,7 @@ const LandingPage = () => {
 					<img className="img2-responsive mt-2" src={reviewsImg} />
 				</div>
 			</div>
-
+			{/*  */}
 			<div className="row">
 				<div className="col-sm-12 col-lg-4 col3desktop">
 					<h2 className="black_h2 subtitle2 mt-5">¿Cómo funciona?</h2>{" "}

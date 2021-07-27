@@ -1,0 +1,93 @@
+.imagen {
+    width: 27px;
+    height: 27px;
+    
+}
+.img-profile{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-left: 40px;
+}
+.button1 {
+    width: 171px;
+    height: 40px;
+    border-radius: 40px;
+    border: 2px solid #7A6FC5;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: #7A6FC5;
+    margin-left: 15px;
+}
+.name1 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 1px;
+    color: #0C0B1A;
+}
+.contain-logo span {
+    width: 216px;
+    height: 28px;
+    left: 56px;
+    top: 371px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color: #0C0B1A;
+}
+.title2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 1px;
+    color: #7A6FC5;
+    margin-left: 18px;
+    display:inline-block;
+    margin-top: 64px;
+    text-align: left;
+}
+.span-reviews {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: 0.75px;
+    color: #7A6FC5;
+    margin-left: 20px;
+}
+.button2 {
+    background: #7A6FC5;
+    border-radius: 40px;
+    width: 343px;
+    height: 56px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.75px;
+    color: #FFFFFF;
+    border: none;
+    display: block;
+    margin: auto;
+    margin-top: 32px;
+    margin-bottom: 73px;
+}
+.contain-reviews {
+    justify-content: space-between;
+}

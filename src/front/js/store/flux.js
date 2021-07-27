@@ -1,6 +1,4 @@
-import { contains } from "jquery";
 import { Link, useHistory } from "react-router-dom";
-import { string } from "prop-types";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const history = useHistory();
@@ -8,13 +6,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			error: "",
-			step: 0
+			schools: [],
+			teachers: [],
+			step: 0,
+			reviews: {},
+			idTeacher: 0,
+			userId: 0,
+			userImg: "",
+			users: []
 		},
 		actions: {
 			login: (mail, pass) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
-					body: JSON.stringify({ email: mail, password: pass }),
+					body: JSON.stringify({ email: mail, _password: pass }),
 					headers: { "Content-Type": "application/json" }
 				})
 					.then(response => response.json())
@@ -35,8 +40,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			setReview: (skill, value) => {
+				let reviews = getStore().reviews;
+				let updateReviews = { ...reviews, [skill]: value };
+				setStore({ reviews: updateReviews });
+			},
+			//id teacher + id user +
+			setId: (idTeacher, userID) => {
+				setStore({
+					idTeacher: idTeacher,
+					userId: userID
+				});
+			},
+
+			setImg: img => {
+				setStore({
+					userImg: img
+				});
+			},
+
 			setError: error => {
 				setStore({ error: error });
+			},
+			get_all: type => {
+				fetch(process.env.BACKEND_URL + type + "/")
+					.then(res => res.json())
+					.then(data => setStore({ [type]: data }))
+					.catch(error => console.log(error));
 			},
 
 			setUpStep: () => {
@@ -53,6 +83,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				// getActions().changeColor(0, "green");
 				console.log("Esta");
+			},
+			get_img: img => {
+				console.log(img, "image llegando al flux");
+				let body;
+				body = new FormData();
+				body.append("profile_picture", img[0]);
+				fetch(process.env.BACKEND_URL.concat("/profilepicture/", localStorage.getItem("id_user")), {
+					body: body,
+					method: "POST"
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error("I can't upload picture!");
+						}
+						return response.json();
+						console.log(response);
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			},
 
 			getMessage: () => {

@@ -1,5 +1,6 @@
 
-.search-title {
+
+.title1 {
     font-family: Poppins;
     font-style: normal;
     font-weight: bold;
@@ -25,7 +26,7 @@ input[type=text]::placeholder {
 .data {
     margin-left: 16px;
 }
-.span__1, .span__2, .span__ {
+.span1 {
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
@@ -58,27 +59,4 @@ input[type=text]::placeholder {
     border-radius: 40px;
     display: block;
     margin: 50px auto;
-}
-.button__search {
-    display: block;
-    margin: auto;
-}
-.container___search {
-    width: 360px;
-    height: 500px;
-    border: 1px solid red;
-}
-.image_name_container {
-    
-    width: 343px;
-    height: 64px;
-    background: #EFF0F7;
-    border-radius: 16px;
-    display: block;
-    margin: auto;
-}
-.name_container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
 }
