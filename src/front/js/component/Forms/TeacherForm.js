@@ -1,10 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
-import PropTypes from "prop-types";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { Context } from "../../store/appContext";
 import { AiFillLinkedin } from "react-icons/ai";
-import Linkedin from "../../../img/Linkedin.png";
+import Linkedin from "../../../../../docs/assets/img/Linkedin.png";
 
 const TeacherForm = props => {
 	const { store, actions } = useContext(Context);
@@ -14,11 +12,50 @@ const TeacherForm = props => {
 		email: "",
 		linkedin: "",
 		typeOfteachers: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		is_student: false
+		promo: false,
+		is_student: false,
+		sign_completed: false
 	});
 	const [checked, setChecked] = useState(true);
+
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password,
+		promo: formData.promo,
+		is_student: formData.is_student,
+		type_of_teacher: formData.typeOfteachers,
+		linkedin: formData.linkedin,
+		sign_completed: formData.sign_completed
+	};
+
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				mode: "no-cors",
+				"Access-Control-Allow-Origin": "*",
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
+
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => console.log(json))
+			.catch(error => console.log(error));
+	};
 
 	return (
 		<>
@@ -48,22 +85,22 @@ const TeacherForm = props => {
 					className="mx-auto w-100"
 					type="text"
 					placeholder="¿De qué eres profesor?"
-					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
-				/>
-				<input
-					className="mx-auto w-100"
-					type="text"
-					placeholder="¿URL Linkedin...?"
 					value={formData.typeOfteachers}
 					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
 					className="mx-auto w-100"
+					type="text"
+					placeholder="¿URL Linkedin...?"
+					value={formData.linkedin}
+					onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
+				/>
+				<input
+					className="mx-auto w-100"
 					type="password"
 					placeholder="Contraseña"
-					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					value={formData._password}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
 					className="mx-auto w-100"
@@ -78,7 +115,6 @@ const TeacherForm = props => {
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input className="check" type="checkbox" onChange={e => setChecked(e.target.checked)} />
-
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
@@ -86,11 +122,11 @@ const TeacherForm = props => {
 				<br />
 				{props.footer}
 
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<br />
-				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={handleCreate}>
 					Registro con <img className="Linkedin " src={Linkedin} />
 				</button>
 			</div>

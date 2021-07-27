@@ -1,20 +1,55 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
-import google from "../../../img/google.png";
+import google from "../../../../../docs/assets/img/google.png";
 
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
-		password: "",
+		_password: "",
 		repeatPassword: "",
-		is_student: false
+		promo: false,
+		is_student: true,
+		sign_completed: false
 	});
-
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password,
+		promo: formData.promo,
+		is_student: formData.is_student,
+		sign_completed: formData.sign_completed
+	};
 	const [checked, setChecked] = useState(true);
+	const handleCreate = () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(body)
+		};
 
+		fetch(process.env.BACKEND_URL + "/user", options)
+			.then(res => {
+				if (res.status === 201) {
+					alert("ok");
+					actions.setUpStep();
+				} else {
+					alert("failed to fetch");
+				}
+				console.log(status);
+				return res.json();
+			})
+			.then(json => {
+				localStorage.setItem("id_user", json.body.user_id);
+				localStorage.setItem("email", json.body.email);
+				localStorage.setItem("password", json.body._password);
+			})
+			.catch(error => console.log(error));
+	};
 	return (
 		<>
 			<div>
@@ -22,7 +57,7 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100"
+					className="form-group"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -33,7 +68,7 @@ const StudentForm = props => {
 				<br />
 
 				<input
-					className=" margin: 13px 12px 12px 10px w-100 "
+					className=" form-group  "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -41,15 +76,15 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" w-100 "
+					className=" form-group "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
-					onChange={e => setFormData({ ...formData, password: e.target.value })}
+					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 
 				<input
-					className=" w-100 "
+					className=" form-group "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -68,11 +103,11 @@ const StudentForm = props => {
 
 				{props.footer}
 
-				<button className="button_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 
-				<button className="button_white_border_violet_great" onClick={() => actions.setUpStep()}>
+				<button className="button_white_border_violet_great" onClick={handleCreate}>
 					Registro con <img className="google" src={google} />
 				</button>
 			</div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../front/img/Logo-icon.png";
+import logo from "../../../../docs/assets/img/Logo-icon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";
@@ -31,7 +31,7 @@ const NavbarComp = () => {
 						<Nav className="me-auto"> */}
 					<NavDropdown className="navbar-toggler-icon">
 						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/registerformpage")}>
+						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
