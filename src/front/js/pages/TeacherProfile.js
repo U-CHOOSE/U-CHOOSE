@@ -25,15 +25,15 @@ const TeacherProfile = () => {
 			});
 	}, []);
 
-	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
-			.then(res => res.json())
-			.then(json => {
-				console.log("json2", json);
-				setReview(json);
-				// console.log("userTeacher", userTeacher);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
+	// 		.then(res => res.json())
+	// 		.then(json => {
+	// 			console.log("json2", json);
+	// 			setReview(json);
+	// 			// console.log("userTeacher", userTeacher);
+	// 		});
+	// }, []);
 
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/reviews")
@@ -45,16 +45,24 @@ const TeacherProfile = () => {
 			});
 	}, []);
 
-	let dynamsim = 0;
-	let pasion = 0;
-	let near = 0;
-	for (let i = 0; i <= review.length; i++) {
-		if (i.teacher_id === teacher_id) {
-			dynamsim = i.dynamsim + dynamsim;
-			pasion = i.pasion + pasion;
-			near = i.near + near;
+	console.log("review", review);
+	const avgFaces = () => {
+		let dynamsim = 0;
+		let pasion = 0;
+		let near = 0;
+		let practises_example = 0;
+		for (let i = 0; i <= review.length; i++) {
+			if (review[i].teacher_id === teacher_id) {
+				dynamsim = review[i].dynamsim + dynamsim;
+				pasion = review[i].pasion + pasion;
+				near = review[i].near + near;
+				practises_example = review[i].practises_example + practises_example;
+			}
 		}
-	}
+		let sum = dynamsim + passion + near + practises_example;
+		let avg = sum / 4;
+		return avg;
+	};
 
 	// console.log(""pasion);
 	// let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
