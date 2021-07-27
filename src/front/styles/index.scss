@@ -128,8 +128,9 @@ input:focus{
 }
 .button_marino_great{
     @include button( $black
-    ,326px ,56px ,$marino);
+    ,326px ,56px , $marino);
     border: none;
+    text-justify: inherit;
 }
 .button_white_border_marino{
     @include button( $black
@@ -175,4 +176,39 @@ BsBoxArrowInLeft{
 
 .google{
     width: 20px;  
+}
+
+.btnSearch{
+        @include button( rgba(255, 255, 255, 1)
+        ,267px ,56px ,$violet);
+        border: none; 
+}
+
+.button_white_border_violet_small2{
+    @include button( $violet
+    ,100px ,56px ,white);
+    border: 2px solid $violet;
+    box-sizing: border-box;
+}
+
+.button_marino_small2{
+    @include button( $black
+    ,171px ,40px ,$marino);
+    border: none;
+    padding-block-end: 0%;
+}
+
+.button_violet_small4 {
+    @include button( $black
+    ,171px ,40px ,$marino);
+    border: none;
+    padding-block-end: 0%;
+}
+
+.subtitle2{
+font-size: initial;
+}
+
+.principal_container{
+    width: 375px;
 }
