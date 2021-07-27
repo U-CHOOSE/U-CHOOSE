@@ -296,7 +296,7 @@ class Review_teacher(db.Model):
     date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
-    user_teacher = db.relationship(User_teacher)
+    user_teacher = db.relationship("User_teacher")
 
     def __repr__(self):
         return '<Review_teacher %r>' % self.id
@@ -310,6 +310,7 @@ class Review_teacher(db.Model):
             "near": self.near,
             "date_teacher": self.date_teacher,
             "more_info": self.more_info,
+            # "user_teacher": list(map(lambda x: x.serialize(), self.user_teacher))
             # si quiero traer el nombre de teacher??
         }
         

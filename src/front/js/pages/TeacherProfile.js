@@ -10,16 +10,65 @@ import { useHistory } from "react-router-dom";
 const TeacherProfile = () => {
 	const history = useHistory();
 	const [count, setCount] = useState(0);
-	const [data, setData] = useState("");
+	const [data, setData] = useState({});
+	const [review, setReview] = useState([]);
 	const user_id = localStorage.getItem("id_user");
+	const teacher_id = localStorage.getItem("teacher_id");
+	let teacherId = 2;
+	// console.log(user_id.id);
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/user/" + user_id)
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log(json);
+				console.log("json1", json);
 			});
 	}, []);
+
+	// useEffect(() => {
+	// 	fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
+	// 		.then(res => res.json())
+	// 		.then(json => {
+	// 			console.log("json2", json);
+	// 			setReview(json);
+	// 			// console.log("userTeacher", userTeacher);
+	// 		});
+	// }, []);
+
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/reviews")
+			.then(res => res.json())
+			.then(json => {
+				console.log("json2", json);
+				setReview(json);
+				// console.log("userTeacher", userTeacher);
+			});
+	}, []);
+
+	console.log("review", review);
+	const avgFaces = () => {
+		let dynamsim = 0;
+		let pasion = 0;
+		let near = 0;
+		let practises_example = 0;
+		for (let i = 0; i <= review.length; i++) {
+			if (review[i].teacher_id === teacher_id) {
+				dynamsim = review[i].dynamsim + dynamsim;
+				pasion = review[i].pasion + pasion;
+				near = review[i].near + near;
+				practises_example = review[i].practises_example + practises_example;
+			}
+		}
+		let sum = dynamsim + passion + near + practises_example;
+		let avg = sum / 4;
+		return avg;
+	};
+
+	// console.log(""pasion);
+	// let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
+	// let avg = sum / 4;
+	// console.log("avg", avg);
+
 	//Component Faces
 	// <Faces face={number} /> 1-10
 
@@ -41,7 +90,7 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div>
+		<div className="card__teacherprofile">
 			{/* contain 1 */}
 			<div className="contain1 mt-4">
 				<div className="row">
