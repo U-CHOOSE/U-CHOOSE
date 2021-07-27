@@ -68,76 +68,78 @@ const StudentProfile = () => {
 	};
 	return (
 		<div>
-			<div className="student-contain1">
-				<label htmlFor="upload-photo">
-					<img className="img-profile" src={store.userImg} alt="img" />
-				</label>
+			<div className="form_container">
+				<div className="student-contain1">
+					<label htmlFor="upload-photo">
+						<img className="img-profile" src={store.userImg} alt="img" />
+					</label>
 
-				<input
-					type="file"
-					onChange={e => {
-						handlePutImage(e.target.files);
-					}}
-					id="upload-photo"
-				/>
+					<input
+						type="file"
+						onChange={e => {
+							handlePutImage(e.target.files);
+						}}
+						id="upload-photo"
+					/>
 
-				<button className="student-button1" onClick={() => history.push("/mycenters")}>
-					Mis centros
-				</button>
-				<button className="student-button1" onClick={handlePutImage}>
+					<button className="student-button1" onClick={() => history.push("/mycenters")}>
+						Mis centros
+					</button>
+					{/* <button className="student-button1" onClick={handlePutImage}>
 					{" "}
 					Cambiar imagen
-				</button>
-			</div>
-
-			<div className="contain-inputs ml-3">
-				<div className="contain-inp input1">
-					<label>Nombre completo</label>
-					<input
-						type="text"
-						className="form-control input"
-						placeholder={data.full_name}
-						value={formData.fullname}
-						onChange={e => setFormData({ ...formData, fullname: e.target.value })}
-					/>
-				</div>
-				<p className="pstudent">Podrás ocultarlo en tus reviews</p>
-				<div className="contain-inp">
-					<label>Email</label>
-					<input
-						type="email"
-						placeholder={data.email}
-						className="form-control input-email inp"
-						value={formData.email}
-						onChange={e => setFormData({ ...formData, email: e.target.value })}
-					/>
+				</button> */}
 				</div>
 
-				<div className="contain-inp">
-					<label>Contraseña</label>
-					<input
-						type="password"
-						className="form-control input-text inp"
-						placeholder="password"
-						value={formData._password}
-						onChange={e => setFormData({ ...formData, _password: e.target.value })}
-					/>
+				<div className="contain-inputs ml-3">
+					<div className="contain-inp input1">
+						<label>Nombre completo</label>
+						<input
+							type="text"
+							className="form-control input"
+							placeholder={data.full_name}
+							value={formData.fullname}
+							onChange={e => setFormData({ ...formData, fullname: e.target.value })}
+						/>
+					</div>
+					<p className="pstudent">Podrás ocultarlo en tus reviews</p>
+					<div className="contain-inp">
+						<label>Email</label>
+						<input
+							type="email"
+							placeholder={data.email}
+							className="form-control input-email inp"
+							value={formData.email}
+							onChange={e => setFormData({ ...formData, email: e.target.value })}
+						/>
+					</div>
+
+					<div className="contain-inp">
+						<label>Contraseña</label>
+						<input
+							type="password"
+							className="form-control input-text inp"
+							placeholder="password"
+							value={formData._password}
+							onChange={e => setFormData({ ...formData, _password: e.target.value })}
+						/>
+					</div>
+					<div className="contain-inp">
+						<label>Repetir contraseña</label>
+						<input
+							type="password"
+							className="form-control input-password inp"
+							placeholder="passrepeat"
+							value={formData.repeatPassword}
+							onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
+						/>
+					</div>
 				</div>
-				<div className="contain-inp">
-					<label>Repetir contraseña</label>
-					<input
-						type="password"
-						className="form-control input-password inp"
-						placeholder="passrepeat"
-						value={formData.repeatPassword}
-						onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
-					/>
+				<div className="div-button-save ml-3 mt-5">
+					<button className="student-button2" onClick={handlePut}>
+						Guardar
+					</button>
 				</div>
-			</div>
-			<div className="div-button-save ml-3 mt-5">
-				<button className="student-button2" onClick={handlePut}>
-					Guardar
-				</button>
 			</div>
 		</div>
 	);
