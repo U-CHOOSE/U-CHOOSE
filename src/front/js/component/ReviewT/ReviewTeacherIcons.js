@@ -40,13 +40,13 @@ const ReviewTeacherIcons = props => {
 					setState(index + 1);
 					if (steep == 3) {
 						//Se multiplica por 2 porque se valora sobre 10
-						actions.setReview("dynamsim", state * 2);
+						actions.setReview("dynamsim", index + 1);
 					} else if (steep == 4) {
-						actions.setReview("pasion", state * 2);
+						actions.setReview("pasion", index + 1);
 					} else if (steep == 5) {
-						actions.setReview("practises_example", state * 2);
+						actions.setReview("practises_example", index + 1);
 					} else if (steep == 6) {
-						actions.setReview("near", state * 2);
+						actions.setReview("near", index + 1);
 					}
 				}}
 				key={index}>
