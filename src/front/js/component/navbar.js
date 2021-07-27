@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../front/img/Logo-icon.png";
+import imgIcon from "../../img/imgIcon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
 import Modal from "./Modal/Modal1";
@@ -23,7 +23,7 @@ const NavbarComp = () => {
 			<Navbar bg="light" expand="lg">
 				<Container>
 					<Navbar.Brand href="#home">
-						<img onClick={() => history.push("/")} src={logo} alt="" />
+						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
 						{/* <span className="navbar-toggler-icon" />{" "} */}
 					</Navbar.Brand>
 					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />

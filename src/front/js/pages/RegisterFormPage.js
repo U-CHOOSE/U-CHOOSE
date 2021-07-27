@@ -21,7 +21,7 @@ const RegisterFormPage = () => {
 	if (store.step === 0) {
 		return (
 			<>
-				<button onClick={() => setShow(!show)} />
+				{/* <button onClick={() => setShow(!show)} /> */}
 				{show ? (
 					<Modal
 						cross={
@@ -36,7 +36,7 @@ const RegisterFormPage = () => {
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
 
-								<h5>¿Cómo quieres colaborar con u-choose?</h5>
+								<h4 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h4>
 
 								<label className="container" htmlFor="student">
 									<input
@@ -195,6 +195,7 @@ const RegisterFormPage = () => {
 					body={
 						<>
 							<Thanks
+								className="colaborarUchoose"
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<>
