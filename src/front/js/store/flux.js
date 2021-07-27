@@ -14,7 +14,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userId: 0,
 			userImg: "",
 			users: []
-
 		},
 		actions: {
 			login: (mail, pass) => {

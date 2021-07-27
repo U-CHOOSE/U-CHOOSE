@@ -57,7 +57,7 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100"
+					className="form-group"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -68,7 +68,7 @@ const StudentForm = props => {
 				<br />
 
 				<input
-					className=" margin: 13px 12px 12px 10px w-100 "
+					className=" form-group  "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -76,7 +76,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" w-100 "
+					className=" form-group "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
@@ -84,7 +84,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" w-100 "
+					className=" form-group "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
