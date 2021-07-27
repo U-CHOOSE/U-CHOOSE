@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/studentProfile.scss";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const StudentProfile = () => {
+	const history = useHistory();
 	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
@@ -42,7 +44,7 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user", options)
+		fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
 			.then(res => {
 				console.log(res);
 
@@ -61,16 +63,18 @@ const StudentProfile = () => {
 	console.log(data);
 	return (
 		<div>
-			<input
-				type="file"
-				onChange={e => {
-					setImg(e.target.files);
-				}}
-			/>
-			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
-
 			<div className="student-contain1">
-				<img className="img-profile" src={data.img} alt="img" />
+				<label htmlFor="upload-photo">
+					<img className="img-profile" src={data.img} alt="img" />
+				</label>
+
+				<input
+					type="file"
+					onChange={e => {
+						setImg(e.target.files);
+					}}
+					id="upload-photo"
+				/>
 
 				<button className="student-button1">Mis centros</button>
 			</div>

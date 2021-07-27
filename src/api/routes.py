@@ -110,16 +110,15 @@ def add_user():
     
 
     
-# @api.route("/user/<int:id>",methods=['PUT'])
-# # @jwt_required()
-# def update_one_user(id):
-#     json = request.get_json()
-#     user = User.get_by_id(id)
-#     print(user)
-#     user.put_with_json(json)
-#     print(people)
-#     db.session.commit()
-#     return jsonify(user.serialize()) ,201
+@api.route("/user/<int:id>",methods=['PUT'])
+# @jwt_required()
+def update_one_user(id):
+    json = request.get_json()
+    user = User.get_by_id(id)
+    print(user)
+    user.put_with_json(json)
+    db.session.commit()
+    return jsonify(user.serialize()) ,201
 
     
 @api.route('/user/<int:id>', methods=['GET'])

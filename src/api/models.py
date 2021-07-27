@@ -57,13 +57,13 @@ class User(db.Model):
         return user.id
 
 
-    # def put_with_json(self,json):
-    #     if json["full_name"]:
-    #         self.full_name = json["full_name"]
-    #     if json["email"]:
-    #         self.email = json["email"]
-    #     if json["password"]:
-    #         self.password = json["password"]
+    def put_with_json(self,json):
+        if json["full_name"]:
+            self.full_name = json["full_name"]
+        if json["email"]:
+            self.email = json["email"]
+        if json["_password"]:
+            self._password = json["_password"]
 
 
 
