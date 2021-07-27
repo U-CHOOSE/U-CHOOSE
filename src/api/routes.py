@@ -112,14 +112,26 @@ def add_user():
     
 # @api.route("/user/<int:id>",methods=['PUT'])
 # # @jwt_required()
-# def update_one_user(id):
+# def update_one_user_teacher(id):
 #     json = request.get_json()
 #     user = User.get_by_id(id)
 #     print(user)
 #     user.put_with_json(json)
-#     print(people)
 #     db.session.commit()
 #     return jsonify(user.serialize()) ,201
+
+
+
+@api.route("/user/<int:id>",methods=['PUT'])
+# @jwt_required()
+def update_one_user(id):
+    print("dggfd")
+    json = request.get_json()
+    user = User.get_by_id(id)
+    print(user)
+    user.put_with_json(json)
+    db.session.commit()
+    return jsonify(user.serialize()) ,201
 
     
 @api.route('/user/<int:id>', methods=['GET'])
@@ -293,9 +305,10 @@ def update_profile_picture(id):
         # update the user with the given cloudinary image URL
         user.img = result['secure_url']
         print(result['secure_url'], "RESULT")
-        db.session.add(user)
+        # db.session.add(user)
         db.session.commit()
-        return jsonify(user.serialize()), 200
+        
+        return jsonify(user.img), 200
     else:
         raise APIException('Missing profile_image on the FormData')
 

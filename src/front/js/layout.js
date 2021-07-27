@@ -16,12 +16,10 @@ import ReviewTeacher from "./pages/ReviewTeacher";
 import Sass from "./pages/Sass";
 
 import TeacherProfile from "./pages/TeacherProfile";
-
+import MyCenters from "./pages/MyCenters";
 import EditTeacher from "./pages/EditTeacher";
 
 import StudentProfile from "./pages/StudentProfile";
-
-import MyCenters from "./pages/MyCenters";
 
 //components
 import NavbarComp from "./component/navbar";
@@ -60,8 +58,8 @@ const Layout = () => {
 							<ReviewTeacher />
 						</Route>
 
-						<Route exact path="/sass">
-							<Sass />
+						<Route exact path="/mycenters">
+							<MyCenters />
 						</Route>
 						<Route exact path="/teacherprofile">
 							<TeacherProfile />
