@@ -21,7 +21,7 @@ const RegisterFormPage = () => {
 	if (store.step === 0) {
 		return (
 			<>
-				<button onClick={() => setShow(!show)}>Modal</button>
+				<button onClick={() => setShow(!show)} />
 				{show ? (
 					<Modal
 						cross={
@@ -66,7 +66,7 @@ const RegisterFormPage = () => {
 											})
 										}
 									/>
-									Soy professor
+									Soy profesor
 								</label>
 
 								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
@@ -105,6 +105,7 @@ const RegisterFormPage = () => {
 				body={
 					checked.student === true ? (
 						<Search
+							className="btnSearch"
 							title="¿Dónde has estudiado?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
@@ -115,7 +116,7 @@ const RegisterFormPage = () => {
 						/>
 					) : (
 						<Search
-							className="titleSearch"
+							className="btnSearch"
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
@@ -142,10 +143,10 @@ const RegisterFormPage = () => {
 						<>
 							<Thanks
 								className=" Thanks1"
-								subtitle="Has completado tu registro, ya puedes comenzar a escribir reviews"
+								subtitle2="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
-										<span onClick={() => actions.setUpStep()}> Ahora no</span>
+										<span onClick={() => actions.setUpStep()} />
 										<button onClick={() => history.push("/review")} className="button_marino_great">
 											Hacer un review
 										</button>
@@ -155,25 +156,24 @@ const RegisterFormPage = () => {
 						</>
 					) : (
 						<>
-							teacher
 							<Thanks
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<div className="btnGroup">
 										<button
 											onClick={() => history.push("/teacherprofile")}
-											className="button_violet_small">
+											className="button_white_border_violet_small2  w-100">
 											Ver tu perfil
 										</button>
 										<button
 											onClick={() => history.push("/")}
-											className="button_white_border_violet_small w-56 box-sizing:  ">
+											className="button_white_border_violet_small2  w-100">
 											Volver a la home
 										</button>
 									</div>
 								}
 							/>
-							<button onClick={() => actions.setUpStep()} className="button_violet_small ">
+							<button onClick={() => actions.setUpStep()} className="button_marino_small2 ">
 								Siguiente
 							</button>
 						</>
@@ -185,8 +185,13 @@ const RegisterFormPage = () => {
 		return (
 			<>
 				<Modal
-					cross={<div onClick={() => setShow(!show)}> X </div>}
-					arrow={<div onClick={() => actions.setDownStep()}> back </div>}
+					cross={<div onClick={() => setShow(!show)}> </div>}
+					arrow={
+						<div onClick={() => actions.setDownStep()}>
+							{" "}
+							<BsBoxArrowInLeft />
+						</div>
+					}
 					body={
 						<>
 							<Thanks
@@ -201,7 +206,7 @@ const RegisterFormPage = () => {
 										<button
 											onClick={() => history.push("/searchteachers")}
 											className="button_white_border_violet_great">
-											Buscar professores
+											Buscar profesores
 										</button>
 									</>
 								}

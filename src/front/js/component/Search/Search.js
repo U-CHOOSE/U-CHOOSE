@@ -17,7 +17,7 @@ const Search = props => {
 			/>
 			<span> {props.span1}</span>
 
-			<button onClick={() => actions.setUpStep()} className="button_violet_small">
+			<button onClick={() => actions.setUpStep()} className="btnSearch">
 				Siguiente
 			</button>
 			<span className="span_1">{props.span2}</span>
