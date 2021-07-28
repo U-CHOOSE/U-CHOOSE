@@ -49,17 +49,36 @@ const Search = props => {
 // 			</button>
 // 			<span className="span_1">{props.span2}</span> */}
 
-			<div className="container___search">
-				<h1 className="violet_h1 search-title mb-5">{props.title}</h1>
-				<span className="span__"> {props.span_}</span>
-				<input
-					type="text"
-					placeholder={props.placeholder}
-					className="input-searchbar"
-					onChange={e => setSearchItem(e.target.value)}
-					onKeyPress={props.onKeyPress}
-				/>
-				<span> {props.span1}</span>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-12">
+						<h1 className=" search-title mb-5">{props.title}</h1>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<span className=" span__0 mx-auto"> {props.span_}</span>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<input
+							type="text"
+							placeholder={props.placeholder}
+							className="input-searchbar mt-5"
+							onChange={e => setSearchItem(e.target.value)}
+							onKeyPress={props.onKeyPress}
+						/>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<span> {props.span1}</span>
+					</div>
+				</div>
 
 				{data && select === "" && searchItem !== "" ? (
 					data
@@ -96,8 +115,8 @@ const Search = props => {
 					<div>{select}</div>
 				)}
 				{console.log("select", select)}
+				<div className=" cont_bton_search">{props.button}</div>
 
-				{props.button}
 				<span className="span__2">{props.span2}</span>
 			</div>
 		</>
