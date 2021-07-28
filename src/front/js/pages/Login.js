@@ -32,47 +32,60 @@ const Login = () => {
 	);
 
 	return (
-		<div>
-			{/* <navbar/> */}
-			<Link className="links" to={"/"}>
-				<FontAwesomeIcon className="icon-x" icon={faTimes} />
-			</Link>
-
-			<h1 className="title_login">Acceder</h1>
-			<form>
-				<div className="form-group ">
-					<input
-						type="email"
-						className="form-control input__email mt-5"
-						aria-describedby="emailHelp"
-						placeholder="Email"
-						onChange={event => SetEmail(event.target.value)}
-					/>
+		<div className="container">
+			<div className="row">
+				<div className="col-12">
+					<h1 className="title_login mx-auto">Acceder</h1>
 				</div>
-				<div className="form-input contain-input2">
+			</div>
+
+			<div className="row ">
+				<div className="col-12">
+					<div className="form-group mt-5">
+						<input
+							type="email"
+							className="form-control input__email  mx-auto"
+							aria-describedby="emailHelp"
+							placeholder="Email"
+							onChange={event => SetEmail(event.target.value)}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12">
 					<input
 						type="password"
-						className="form-control input-pass mt-3"
+						className="form-control input-pass mt-3 mx-auto ee"
 						id="exampleInputPassword1"
 						placeholder="Contraseña"
 						onChange={event => SetPassword(event.target.value)}
 					/>
 				</div>
-				<a className="link" href="#">
-					¿Olvidaste tu contraseña?
-				</a>
-				<br />
+			</div>
 
-				<button
-					type="submit"
-					className=" btn-login"
-					onClick={event => {
-						event.preventDefault();
-						actions.login(email, password);
-					}}>
-					Iniciar sesión
-				</button>
-			</form>
+			<div className="row">
+				<div className="col-12">
+					<a className="link" href="#">
+						¿Olvidaste tu contraseña?
+					</a>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12">
+					<button
+						type="submit"
+						className=" btn-login"
+						onClick={event => {
+							event.preventDefault();
+							actions.login(email, password);
+						}}>
+						Iniciar sesión
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 };
