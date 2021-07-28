@@ -32,7 +32,7 @@ const Login = () => {
 	);
 
 	return (
-		<div className="container">
+		<div className="container-fluid">
 			<div className="row">
 				<div className="col-12">
 					<h1 className="title_login mx-auto">Acceder</h1>
@@ -44,7 +44,7 @@ const Login = () => {
 					<div className="form-group mt-5">
 						<input
 							type="email"
-							className="form-control input__email  mx-auto"
+							className="form-control input__email  mx-auto input_login"
 							aria-describedby="emailHelp"
 							placeholder="Email"
 							onChange={event => SetEmail(event.target.value)}
@@ -57,7 +57,7 @@ const Login = () => {
 				<div className="col-12">
 					<input
 						type="password"
-						className="form-control input-pass mt-3 mx-auto ee"
+						className="form-control input-pass mt-3 mx-auto input_login"
 						id="exampleInputPassword1"
 						placeholder="Contraseña"
 						onChange={event => SetPassword(event.target.value)}
