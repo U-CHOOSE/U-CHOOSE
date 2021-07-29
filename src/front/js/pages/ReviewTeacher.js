@@ -83,8 +83,7 @@ const ReviewTeacher = () => {
 								actions.setReview("teacher_id", store.idTeacher);
 								setStep(2);
 							}}>
-								
-							Siguiente 
+							Siguiente
 						</button>
 					}
 				/>
