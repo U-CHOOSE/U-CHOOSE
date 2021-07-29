@@ -7,7 +7,7 @@ const CardReviewTeacher = props => {
 		<div className="card_reviewTeacher mx-auto">
 			<div className="d-flex ">
 				<img className="img-teacher" src={props.srcImg} />
-				<div>
+				<div className="cont_name_university">
 					<span>{props.name}</span>
 					<span>{props.nameUniversity}</span>
 				</div>
