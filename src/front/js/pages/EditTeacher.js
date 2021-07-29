@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
 const EditTeacher = () => {
 	const history = useHistory();
-	const { actions } = useContext(Context);
+	const { actions, store } = useContext(Context);
 	const [formData, setFormData] = useState({
 		full_name: "",
 		email: "",
@@ -30,7 +30,9 @@ const EditTeacher = () => {
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
-		_password: formData._password
+		_password: formData._password,
+		linkedin: formData.linkedin,
+		type_of_teacher: formData.typeOfteachers
 	};
 
 	const handlePut = () => {
@@ -48,7 +50,7 @@ const EditTeacher = () => {
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
-					actions.setUpStep();
+					// actions.setUpStep();
 				} else {
 					alert("failed to fetch");
 				}
@@ -59,26 +61,29 @@ const EditTeacher = () => {
 			.catch(error => console.log(error));
 	};
 	console.log(data);
+	const handlePutImage = img => {
+		actions.get_img(img);
+	};
 
 	return (
 		<div>
-			<input
+			{/* <input
 				type="file"
 				onChange={e => {
-					setImg(e.target.files);
+					handlePutImage(e.target.files);
 				}}
 			/>
-			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
+			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
 			<div className="student-contain1">
 				<label htmlFor="upload-photo">
-					<img className="img-profile" src={data.img} alt="img" />
+					<img className="img-profile" src={store.userImg} alt="img" />
 				</label>
 
 				<input
 					type="file"
 					onChange={e => {
-						setImg(e.target.files);
+						handlePutImage(e.target.files);
 					}}
 					id="upload-photo"
 				/>
