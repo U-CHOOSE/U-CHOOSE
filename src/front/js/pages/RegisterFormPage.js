@@ -6,7 +6,6 @@ import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
-import registerDesicionPage from "../../styles/registerDesicionPage.scss";
 import { BsArrowLeft } from "react-icons/bs";
 
 const RegisterFormPage = () => {
@@ -59,15 +58,15 @@ const RegisterFormPage = () => {
 			.catch(error => console.log(error));
 	};
 
-	const isLoged = () => {
-		actions.login(email, password);
-	};
+	// const isLoged = () => {
+	// 	actions.login(email, password);
+	// };
 
 	if (store.step === 0) {
 		return (
 			<>
-				{/* <button onClick={() => setShow(!show)} />
- 				{show ? (
+				{/* <button onClick={() => setShow(!show)} /> */}
+				{show ? (
 					<Modal
 						cross={
 							<div className="text-right w-100" onClick={() => setShow(!show)}>
@@ -80,7 +79,7 @@ const RegisterFormPage = () => {
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
-								<h5>¿Cómo quieres colaborar con u-choose?</h5>
+								<h4 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h4>
 								<label className="container" htmlFor="student">
 									<input
 										type="radio"
@@ -114,44 +113,12 @@ const RegisterFormPage = () => {
 								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
 									Siguiente
 								</button>
-							</> */}
-				{/* <button onClick={() => setShow(!show)}>Modal</button> */}
-				<h1 className="violet_h1_forms">Registro</h1>
-				<h2>¿Cómo quieres colaborar con u-choose?</h2>
-				<label className="container" htmlFor="student">
-					<input
-						type="radio"
-						value={true}
-						id="student"
-						checked={checked.student}
-						onClick={() =>
-							setChecked({
-								teacher: false,
-								student: !checked.student
-							})
+							</>
 						}
 					/>
-					Soy alumno
-				</label>
-				<label className="container" htmlFor="teacher">
-					<input
-						type="radio"
-						value={true}
-						id="teacher"
-						checked={checked.teacher}
-						onClick={() =>
-							setChecked({
-								teacher: !checked.teacher,
-								student: false
-							})
-						}
-					/>
-					Soy professor
-				</label>
-				<button onClick={() => actions.setUpStep()} className="button_violet_small register">
-					Siguiente
-				</button>
-				: ""
+				) : (
+					""
+				)}
 			</>
 		);
 	} else if (store.step === 1) {
