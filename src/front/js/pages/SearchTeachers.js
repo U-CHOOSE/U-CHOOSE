@@ -25,7 +25,7 @@ const SearchTeachers = () => {
 			<Search
 				title="Buscar un professor"
 				placeholder="Search"
-				span1="¿No encuentras tu professor?"
+				span1="¿No encuentras tu profesor?"
 				type="user"
 				data={data}
 				onKeyPress={handleKeyPress}

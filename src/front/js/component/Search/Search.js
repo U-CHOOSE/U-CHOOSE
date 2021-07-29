@@ -76,7 +76,7 @@ const Search = props => {
 
 				<div className="row">
 					<div className="col-12">
-						<span> {props.span1}</span>
+						<span className="span__0"> {props.span1}</span>
 					</div>
 				</div>
 
