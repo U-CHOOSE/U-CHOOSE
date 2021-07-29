@@ -105,14 +105,14 @@ const Search = props => {
 											""
 										)}
 
-										<div className="name_container">{v[attribute]}</div>
+										<div className="name_container mb-1">{v[attribute]}</div>
 									</div>
 									{/* <div>X</div> */}
 								</div>
 							);
 						})
 				) : (
-					<div>{select}</div>
+					<div className="select__search ">{select}</div>
 				)}
 				{console.log("select", select)}
 				<div className=" cont_bton_search">{props.button}</div>

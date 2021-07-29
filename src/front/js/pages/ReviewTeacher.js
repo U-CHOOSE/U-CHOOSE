@@ -93,13 +93,13 @@ const ReviewTeacher = () => {
 		console.log("dateUser", dateUser);
 		return (
 			<div className=" reviewTeacher2">
-				<h1 className="violet_h1 search-title">Buscar profesor</h1>
-				<span className="span__ ">¿En qué centro tuviste clase con {dateUser.full_name}?</span>
-				<div className="cont_name_img d-flex">
+				<h1 className="search-title">Buscar profesor</h1>
+				<span className="span__0 ">¿En qué centro tuviste clase con {dateUser.full_name}?</span>
+				<div className="cont_name_img d-flex mt-5">
 					<img src={dateUser.img} />
 					<div>
-						<span>{dateUser.full_name}</span>
-						<span>{dateUser.type_of_teacher}</span>
+						<div className="teacher__fullname">{dateUser.full_name}</div>
+						<div className="teacher__typeteacher">Profesor@ de {dateUser.type_of_teacher}</div>
 					</div>
 					<div>{/* {dateSchool.name} */}</div>
 				</div>
