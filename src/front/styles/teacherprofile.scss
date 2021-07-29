@@ -1,6 +1,6 @@
 
 .card__teacherprofile {
-    width: 360px ;
+    width: 450px ;
     border: 1px solid red;
     display: block;
     margin: auto;
@@ -53,8 +53,9 @@
     line-height: 28px;
     letter-spacing: 0.75px;
     color: #0C0B1A;
+    white-space: nowrap;
 }
-.title2 {
+.title___2 {
     font-family: Poppins;
     font-style: normal;
     font-weight: bold;
@@ -98,4 +99,14 @@
 }
 .contain-reviews {
     justify-content: space-between;
+}
+.image-valoration {
+    display: block !important;
+    margin: auto !important;
+    text-align: center;
+    
+}
+.contain___2 {
+    display: block;
+    margin: auto;
 }

@@ -107,18 +107,18 @@ const TeacherProfile = () => {
 						</button>
 					</div>
 				</div>
-				<h1 className=" name1 ml-3 mt-4">{data.full_name}</h1>
+				<h1 className=" name1 ml-3 mt-4">maria zaidin</h1>
 				<div className="d-flex ml-3 contain-logo">
 					<h5 className="mr-3">
 						<FontAwesomeIcon className="icon-bag" icon={faSuitcase} />
 					</h5>
-					<span>{data.type_of_teacher}</span>
+					<span>profesor de matematicas</span>
 				</div>
 			</div>
 			{/* contain 2 */}
-			<div className="contain2 mb-5">
-				<h2 className="title2 ml-3">Valoración</h2>
-				<div className="mx-3 mt-3">
+			<div className="contain___2 mb-5">
+				<h2 className="title___2 ">Valoración</h2>
+				<div className="image-valoration mt-3">
 					{/* T = teacher
 					O = others teachers */}
 					<TeacherAssessment
@@ -129,7 +129,7 @@ const TeacherProfile = () => {
 						exampleT={5}
 						exampleO={6}
 						inolvementT={7}
-						inolvementO={9.5}
+						inolvementO={10}
 					/>
 				</div>
 			</div>
