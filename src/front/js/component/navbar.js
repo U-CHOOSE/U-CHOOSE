@@ -4,14 +4,10 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../../docs/assets/img/imgIcon.png";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import barSolid from "../../img/barSolid";
+import imgIcon from "../../img/imgIcon.png";
 import Modal from "./Modal/Modal1";
 
-import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
-
-import { Link } from "react";
+import { Navbar, Nav, NavDropdown, NavLink, NavCollapse, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
 	const history = useHistory();
@@ -20,44 +16,50 @@ const NavbarComp = () => {
 
 	return (
 		<>
-			<Navbar bg="light" expand="lg">
+			<Navbar bg="ligth" expand="lg">
 				<Container>
 					<Navbar.Brand href="#home">
-						<img onClick={() => history.push("/")} src={logo} alt="" />
+						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
 						{/* <span className="navbar-toggler-icon" />{" "} */}
 					</Navbar.Brand>
-					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="me-auto"> */}
-					<NavDropdown className="navbar-toggler-icon">
-						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
-							<h3>Registrate</h3>
-						</NavDropdown.Item>
-						<br />
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/searchschools")}>
-							<div className="d-flex justify-content-around ">
-								<BsBuilding />
-								<h4>Centros</h4>
-							</div>
-						</NavDropdown.Item>
-						<br />
-						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("searchteachers")}>
-							<div className="d-flex justify-content-around ">
-								<BsFillPersonFill />
-								<h4>Profesores</h4>
-							</div>
-						</NavDropdown.Item>
-						<br />
-						<Button className="btnNav" onClick={() => history.push("")}>
-							Mi perfil
-						</Button>
-					</NavDropdown>
-					{/* </Nav>
-					</Navbar.Collapse>{" "} */}
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Collapse id="responsive-navbar-nav">
+						{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" /> */}
+						{/* <Navbar.Collapse id="basic-navbar-nav"> */}
+						<Nav className="me-auto">
+							{/* <Nav.Link href="#features">Centros</Nav.Link>
+							<Nav.Link href="#features">Profesores</Nav.Link> */}
+							{/* <NavDropdown className="  navbar-toggler-icon   "> */}
+							{/* <span className="navbar-toggler-icon" />{" "} */}
+
+							<Navbar>
+								{/* <NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
+									<h3>Registrate</h3>
+								</NavDropdown.Item> */}
+
+								<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/searchschools")}>
+									{/* <BsBuilding /> */}
+									<h4>Centros</h4>
+								</NavDropdown.Item>
+								<br />
+								<NavDropdown.Item href="#action/3.2" onClick={() => history.push("searchteachers")}>
+									{/* <div className="d-flex justify-content "> */}
+									{/* <BsFillPersonFill /> */}
+
+									<h4>Profesores</h4>
+									{/* </div> */}
+								</NavDropdown.Item>
+								<br />
+								<NavDropdown.Item className="btnNav" onClick={() => history.push("/registerformpage")}>
+									<h3>Registrate</h3>
+								</NavDropdown.Item>
+							</Navbar>
+						</Nav>
+						{/* </Nav> */}
+					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-			{/* {show ? <Modal body={screen} /> : ""}{" "}  */}
+			{/* {show ? <Modal body={screen} /> : ""}{" "} */}
 		</>
 	);
 };

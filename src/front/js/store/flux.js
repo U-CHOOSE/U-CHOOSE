@@ -29,14 +29,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ token: responseJson.token });
 							localStorage.setItem("token", responseJson.token);
 							const store = getStore();
-							console.log(store);
+							// console.log(store);
 						} else if (responseJson.error) {
 							setStore({ error: responseJson.error });
-							console.log(responseJson.error);
+							// console.log(responseJson.error);
 						}
 					})
 					.catch(error => {
-						console.error("Error:", error);
+						// console.error("Error:", error);
 					});
 			},
 
@@ -65,14 +65,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			get_all: type => {
 				fetch(process.env.BACKEND_URL + type + "/")
 					.then(res => res.json())
-					.then(data => setStore({ [type]: data }))
-					.catch(error => console.log(error));
+					.then(data => setStore({ [type]: data }));
+				// .catch(error => console.log(error));
 			},
 
 			setUpStep: () => {
 				const store = getStore();
 				setStore({ step: store.step + 1 });
-				console.log("store", store);
+				// console.log("store", store);
 			},
 			setDownStep: () => {
 				const store = getStore();
@@ -82,10 +82,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			exampleFunction: () => {
 				// getActions().changeColor(0, "green");
-				console.log("Esta");
+				// console.log("Esta");
 			},
 			get_img: img => {
-				console.log(img, "image llegando al flux");
+				// console.log(img, "image llegando al flux");
 				// setStore({ userImg: img });
 				let body;
 
@@ -100,14 +100,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							throw Error("I can't upload picture!");
 						}
 						return response.json();
-						console.log(userImg);
+						// console.log(userImg);
 					})
 					.then(data => {
-						console.log("data1", data);
+						// console.log("data1", data);
 						setStore({ userImg: data });
 					})
 					.catch(function(error) {
-						console.log("Looks like there was a problem: \n", error);
+						// console.log("Looks like there was a problem: \n", error);
 					});
 			},
 
@@ -115,8 +115,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
 					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
+					.then(data => setStore({ message: data.message }));
+				// .catch(error => console.log("Error loading message from backend", error));
 			},
 			changeColor: (index, color) => {
 				//get the store

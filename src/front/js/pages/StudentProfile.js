@@ -23,10 +23,10 @@ const StudentProfile = () => {
 			.then(json => {
 				setData(json);
 				actions.setImg(json.img);
-				console.log("json", json);
+				// console.log("json", json);
 			});
 	}, []);
-	console.log(user_id);
+	// console.log(user_id);
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
@@ -45,23 +45,23 @@ const StudentProfile = () => {
 
 		fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
 			.then(res => {
-				console.log(res);
+				// console.log(res);
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
 				} else {
 					alert("failed to fetch");
 				}
-				console.log(status);
+				// console.log(status);
 				return res.json();
 			})
 			.then(json => {
 				setFormData(json);
-			})
-			.catch(error => console.log(error));
+			});
+		// .catch(error => console.log(error));
 		window.location.reload();
 	};
-	console.log(data);
+	// console.log(data);
 
 	const handlePutImage = img => {
 		actions.get_img(img);
