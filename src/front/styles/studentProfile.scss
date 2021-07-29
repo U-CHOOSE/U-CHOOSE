@@ -43,10 +43,10 @@
     // margin-top:45px;
     // align-items: center;
 }
-.student-button1{
+
     
     
-}
+
 .student-button2{
     height: 56px;
     display: block;
@@ -104,4 +104,33 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
 .div-button-save button {
     display: block;
     margin: auto;
+}
+
+
+.img-profile{
+    display: block;
+}
+
+#upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+
+ label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+ }
+
+
+//  .button_img{
+//      display: none;
+//  }
+
+
+
+.form_container{
+    width: 60%;
+    height: fit-content;
+
 }

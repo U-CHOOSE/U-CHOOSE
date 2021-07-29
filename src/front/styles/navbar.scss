@@ -1,14 +1,22 @@
 @import "~bootstrap/scss/bootstrap.scss";
-*
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box ;
+}
 
 .navbar{
-    
+    // display: flex;
+     align-items: right;
+   
     justify-content: space-between;
+   
     width: 100%;
     height: 100px;
     background: linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%); 
-}
+  //  min-inline-size: 100vh;
+   }
 
 
 .footer {
@@ -27,13 +35,20 @@ a{
    
 }
 
+.a dropdown-toggle.nav-link::after{
+  display: none;
+  
+}
+
 .btnNav{   
-     background: rgba(109, 237, 227, 1);
+    background: none;
      margin: 30px;
      padding:5px 15px 5px 15px; 
      color: black;
      text-align: center;
      border: none;
+     cursor: pointer;
+    //  hover
     // border: none;
 }
     
@@ -44,27 +59,22 @@ a{
     // justify-content: space-between;
     // background:rgb(128, 9, 0);
 
-    $media-mobile-sm: "only screen and (max-width : 480px)";
- .dropdown-menu{
-     width:auto;
-    height:auto;
-    overflow-wrap: normal;
+     $media-mobile-sm: "only screen and (max-width : 280px)";
+//  .dropdown-menu{
+//      width:auto;
+//     height:auto;
+//     overflow-wrap: normal;
+//  }
+ $media-mobile-sm: "only screen and (max-width : 180px)";
+ .me-auto{
+   display: flex !important;
+   align-items: center !important;
  }
-
-
-// .NavDropdown.Item{
-//     color: blueviolet;
-//     text-align: center;
-// }
-
-//styles de Modal//
-// .modal-body { 
-//     background: #270ee6;
     
 
 // @media (max-width: 768px) 
     .navbar-toggler-icon {
-      display: block;
+      display: flex;
       
     
   }
@@ -72,60 +82,68 @@ a{
 
   //Responsive
 // @mixin mobile {
-    
-// }
+//   @media only screen and (max-width: 320px) {
+//     @content;
+//     }
+// // }
 //   $media only screen and (max-width : 600px);
 
-  @mixin tablet {
-    @media only screen and (min-width: 768px) {
-      @content;
-    }
-  }
-  
-  @mixin desktop {
-    @media only screen and (min-width: 1000px) {
-      @content;
-      .navbar-toggler-icon,Container,dropdown-menu {
-        display: block;
-        // .dropdown-menu{
-        //     width: 300px;
-        //     height: 400px;
-        // }
-      }
-    }
-
-  }
-  
-  @mixin large {
-    @media only screen and (min-width: 1200px) {
-      @content;
-    }
-  }
-
-
-
-
-
-.navbar-toggler-icon{
-    inline-size: 32px;
-    block-size: 32px;
-    border: none;
-    background-color:transparent;
-    cursor: pointer;
-    // display:block;
-    
-// @media (max-width: 480px){
-//     display: none;
+//   @mixin tablet {
+//     @media only screen and (min-width: 768px) {
+//       @content;
 //     }
-}
+//   }
+  
+//   @mixin desktop {
+//     @media only screen and (min-width: 1000px) {
+//       @content;
+//      dropdown-menu show {
+//         display: block;
+//         // .dropdown-menu{
+//         //     width: 300px;
+//         //     height: 400px;
+//          }
+//       }
+//     }
+
+//   }
+  
+//   @mixin large {
+//     @media only screen and (min-width: 1200px) {
+//       @content;
+//     }
+//   }
+
+
+
+
+
+// .navbar-toggler-icon{
+//     inline-size: 32px;
+//     block-size: 32px;
+//     border: none;
+//     background-color:transparent;
+//     cursor: pointer;
+//     // display:block;
     
-.dropdown-toggle::after{
+// // @media (max-width: 480px){
+// //     display: none;
+// //     }
+// }
+    
+// .dropdown-toggle::after{
  
-    content: "" none;
-}
+//     content: "" none;
+// }
     
-#dropdown-toggle{
-    display:none;
-    content: "" none;
-}
+// #dropdown-toggle{
+//     display:none;
+//     content: "" none;
+// }
+
+
+// #responsive-navbar-nav{
+//   flex-direction: column-reverse;
+
+// }
 

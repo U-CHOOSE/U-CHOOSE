@@ -12,7 +12,7 @@
     align-items: center;
 }
 .contain-inputs {
-    margin-top: 40px;
+    margin-top: 100px;
 }
 .contain-inp label {
     font-family: Poppins;
@@ -88,3 +88,14 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
         
 //     }
 // }
+
+#upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+
+ label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+ }

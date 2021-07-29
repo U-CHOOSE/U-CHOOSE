@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import "../../styles/editTeacher.scss";
 import { Context } from "../store/appContext";
-
+import { useHistory } from "react-router-dom";
 const EditTeacher = () => {
+	const history = useHistory();
 	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		full_name: "",
@@ -32,7 +33,6 @@ const EditTeacher = () => {
 		_password: formData._password
 	};
 
-	// };
 	const handlePut = () => {
 		const options = {
 			method: "PUT",
@@ -71,9 +71,21 @@ const EditTeacher = () => {
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
 
 			<div className="student-contain1">
-				<img className="img-profile" src={data.img} alt="img" />
+				<label htmlFor="upload-photo">
+					<img className="img-profile" src={data.img} alt="img" />
+				</label>
 
-				<button className="student-button1">Mis centros</button>
+				<input
+					type="file"
+					onChange={e => {
+						setImg(e.target.files);
+					}}
+					id="upload-photo"
+				/>
+
+				<button className="student-button1" onClick={() => history.push("/mycenters")}>
+					Mis centros
+				</button>
 			</div>
 
 			<div className="contain-inputs ml-3">
