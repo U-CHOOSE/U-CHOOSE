@@ -8,7 +8,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const TopReview = props => {
 	return (
-		<div className="container-review">
+		<div className="container-review mr-3">
 			<div className="container-puntuation">
 				<Faces face={props.faceTopreview} />
 				<FontAwesomeIcon className="icon-ok" icon={faThumbsUp} />

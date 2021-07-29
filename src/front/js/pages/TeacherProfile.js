@@ -94,8 +94,12 @@ const TeacherProfile = () => {
 			{/* contain 1 */}
 			<div className="contain1 mt-4">
 				<div className="row">
-					<div className="col-5">
-						<img className="img-profile" src={data.img} alt="img" />
+					<div className="col-xs-5 col-lg-4">
+						<img
+							className="img-profile"
+							src="https://rociohernandezcruz.com/wp-content/uploads/2019/11/rocio-hernandez-cruz-2.jpg"
+							alt="img"
+						/>
 					</div>
 					<div className="col-7">
 						<div className="d-flex mt-3 ml-3">

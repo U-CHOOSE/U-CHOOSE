@@ -98,7 +98,12 @@
     margin-bottom: 73px;
 }
 .contain-reviews {
-    justify-content: space-between;
+    overflow-y: scroll; 
+    height: auto;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    
 }
 .image-valoration {
     display: block !important;
@@ -109,4 +114,13 @@
 .contain___2 {
     display: block;
     margin: auto;
+}
+
+@media (min-width: 992px) {
+    .card__teacherprofile {
+        width: 80% ;
+        border: 1px solid red;
+        display: block;
+        margin: auto;
+    }
 }
