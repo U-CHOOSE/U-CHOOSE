@@ -177,7 +177,6 @@ def get_all_users():
 @api.route('/schools',methods=['GET'])
 def get_all_schools():
     schools = School.get_all()
-    print(schools)
     school_dic = []
     for school in schools:
         school_dic.append(school.serialize())

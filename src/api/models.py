@@ -183,7 +183,7 @@ class User_student(db.Model):
         user = User.get_by_id(self.user_id)
         return {
             "id": self.id,
-            "user_id":self.id,
+            "user_id":self.user_id,
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,

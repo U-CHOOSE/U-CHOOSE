@@ -23,7 +23,7 @@ const Search = props => {
 	if (props.type === "schools") {
 		attribute = "name";
 	}
-	console.log(data);
+	console.log(data, props.data);
 
 	return (
 		<>
