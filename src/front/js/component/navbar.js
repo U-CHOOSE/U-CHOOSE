@@ -4,11 +4,7 @@ import { useState } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-
 import imgIcon from "../../img/imgIcon.png";
-
-import logo from "../../../../docs/assets/img/Logo-icon.png";
-
 import Modal from "./Modal/Modal1";
 
 import { Navbar, Nav, NavDropdown, NavLink, NavCollapse, Container, Button } from "react-bootstrap";
