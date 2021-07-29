@@ -34,7 +34,7 @@ const StudentProfile = () => {
 				console.log(json);
 			});
 	}, []);
-	console.log(user_id);
+	// console.log(user_id);
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,

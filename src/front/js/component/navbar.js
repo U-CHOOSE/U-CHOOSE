@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
@@ -16,6 +16,14 @@ const NavbarComp = () => {
 	const history = useHistory();
 
 	const [show, setShow] = useState(false);
+
+	// useEffect(
+	// 	() => {
+	// 		actions.removeToken();
+	// 		history.push("/login");
+	// 	},
+	// 	[actions.removeToken()]
+	// );
 
 	const logout = () => {
 		actions.removeToken();

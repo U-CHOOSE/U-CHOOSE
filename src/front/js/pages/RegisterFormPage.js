@@ -22,7 +22,10 @@ const RegisterFormPage = () => {
 			}
 		})
 			.then(res => res.json())
-			.then(data => setData("schools", data))
+			.then(data => {
+				setData(data);
+				console.log(data);
+			})
 			.catch(err => console.log(err));
 	}, []);
 	const [checked, setChecked] = useState({
@@ -62,10 +65,6 @@ const RegisterFormPage = () => {
 			})
 			.then(json => localStorage.setItem("id_user", json.body.user_id))
 			.catch(error => console.log(error));
-	};
-
-	const isLoged = () => {
-		actions.login(email, password);
 	};
 
 	if (store.step === 0) {
