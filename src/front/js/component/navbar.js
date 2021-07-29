@@ -5,8 +5,6 @@ import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
 import logo from "../../../../docs/assets/img/Logo-icon.png";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import barSolid from "../../img/barSolid";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
@@ -17,20 +15,11 @@ const NavbarComp = () => {
 
 	const [show, setShow] = useState(false);
 
-	// useEffect(
-	// 	() => {
-	// 		actions.removeToken();
-	// 		history.push("/login");
-	// 	},
-	// 	[actions.removeToken()]
-	// );
-
 	const logout = () => {
 		actions.removeToken();
-		history.push("/login");
+		window.location.replace("/login");
 	};
 
-	console.log(actions);
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
