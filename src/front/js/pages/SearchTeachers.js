@@ -23,7 +23,7 @@ const SearchTeachers = () => {
 	return (
 		<>
 			<Search
-				title="Buscar un professor"
+				title="Buscar un profesor"
 				placeholder="Search"
 				span1="¿No encuentras tu profesor?"
 				type="user"
