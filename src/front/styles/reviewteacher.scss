@@ -82,6 +82,9 @@
     color: #4E4B66;
     margin-top: 25px;
 }
+.step-9 img {
+    max-width: 100%;
+}
 
 
 // moviles muy pequeñoas
@@ -191,7 +194,8 @@
     }
     .step-8 textarea {
         width: 400px !important;
-        height: 200px !important;
+        height: 180px !important;
+        margin-bottom: -50px;
         
     }
     .step-9 h1 {
@@ -200,6 +204,9 @@
     .step-9 p {
         font-size: 20px;
         
+    }
+    .step-9 img {
+        width: 400px;
     }
       
 }

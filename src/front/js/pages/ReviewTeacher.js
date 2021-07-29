@@ -5,6 +5,7 @@ import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import Search from "../component/Search/Search";
+import reviewok from "../../../../docs/assets/img/review-ok.png";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
@@ -230,8 +231,12 @@ const ReviewTeacher = () => {
 	} else if (step == 9) {
 		return (
 			<div className="mx-auto step-9">
+				<img src={reviewok} />
 				<h1 className="">¡Gracias!</h1>
-				<p>Tu review se ha registrado correctamente. ¿Por qué hacer una review de otro profesor?</p>
+				<p>
+					Tu review se ha registrado correctamente.{" "}
+					<span className="font-weight-bold">¿Por qué hacer una review de otro profesor?</span>
+				</p>
 			</div>
 		);
 	}
