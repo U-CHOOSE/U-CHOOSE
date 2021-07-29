@@ -68,6 +68,10 @@ const getState = ({ getStore, setStore }) => {
 				const user_id = localStorage.getItem("id_user");
 				setStore({ token: token, user_id: user_id });
 			},
+			removeToken: () => {
+				const removeToken = localStorage.removeItem("token");
+				return removeToken;
+			},
 			getToken: () => {
 				const token = localStorage.getItem("token");
 				return token;

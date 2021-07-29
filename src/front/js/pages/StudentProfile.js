@@ -17,7 +17,7 @@ const StudentProfile = () => {
 
 	const [img, setImg] = useState("");
 	const [data, setData] = useState("");
-	const user_id = localStorage.getItem("id_user");
+	// const user_id = localStorage.getItem("id_user");
 
 	useEffect(() => {
 		const token = actions.getToken();

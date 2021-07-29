@@ -5,7 +5,6 @@ import { Context } from "../../store/appContext";
 const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const { store, actions } = useContext(Context);
-
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
 

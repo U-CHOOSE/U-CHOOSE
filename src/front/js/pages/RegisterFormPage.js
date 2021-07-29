@@ -14,7 +14,13 @@ const RegisterFormPage = () => {
 	const [show, setShow] = useState(true);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/schools")
+		fetch(process.env.BACKEND_URL + "/schools", {
+			method: "GET",
+			mode: "no-cors",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
 			.then(res => res.json())
 			.then(data => setData("schools", data))
 			.catch(err => console.log(err));

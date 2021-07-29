@@ -7,45 +7,49 @@ import "../../styles/navbar.scss";
 import logo from "../../../../docs/assets/img/Logo-icon.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import barSolid from "../../img/barSolid";
-import Modal from "./Modal/Modal1";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
-
-import { Link } from "react";
+import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const history = useHistory();
 
 	const [show, setShow] = useState(false);
+
+	const logout = () => {
+		actions.removeToken();
+		history.push("/login");
+	};
 
 	console.log(actions);
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
 				<Container>
-					<Navbar.Brand href="#home">
+					<Navbar.Brand>
 						<img onClick={() => history.push("/")} src={logo} alt="" />
-						{/* <span className="navbar-toggler-icon" />{" "} */}
 					</Navbar.Brand>
-					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="me-auto"> */}
 					<NavDropdown className="navbar-toggler-icon">
-						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
-							<h3>Registrate</h3>
-						</NavDropdown.Item>
+						{actions.isLogged() ? (
+							<NavDropdown.Item onClick={logout} style={{ color: "red" }}>
+								<h3>Logout</h3>
+							</NavDropdown.Item>
+						) : (
+							<NavDropdown.Item onClick={() => history.push("/registerformpage")}>
+								<h3>Registrate</h3>
+							</NavDropdown.Item>
+						)}
+
 						<br />
-						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("")}>
+						<NavDropdown.Item onClick={() => history.push("")}>
 							<div className="d-flex justify-content-around ">
 								<BsBuilding />
 								<h4>Centros</h4>
 							</div>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item href="#action/3.2" onClick={() => history.push("")}>
+						<NavDropdown.Item onClick={() => history.push("")}>
 							<div className="d-flex justify-content-around ">
 								<BsFillPersonFill />
 								<h4>Profesores</h4>
@@ -57,7 +61,9 @@ const NavbarComp = () => {
 								Mi perfil
 							</Button>
 						) : (
-							<div>login</div>
+							<Button className="btnNav" onClick={() => history.push("/login")}>
+								Login
+							</Button>
 						)}
 					</NavDropdown>
 					{/* </Nav>

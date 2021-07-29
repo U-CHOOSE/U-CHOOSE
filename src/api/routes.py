@@ -115,7 +115,7 @@ def add_user():
 @jwt_required()
 def update_one_user(id):
     identity = get_jwt_identity()
-    json = request.get_json(identity)
+    json = request.get_json()
     user = User.get_by_id(identity)
     print(user)
     user.put_with_json(json)
