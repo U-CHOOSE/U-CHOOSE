@@ -108,7 +108,9 @@
 // moviles muy pequeñoas
 @media (max-width: 360px){
     .search-title {
-        font-size: 32px
+        font-size: 30px;
+        white-space:pre-wrap
+
     }
     .input-searchbar {
         width:95% !important;
