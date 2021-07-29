@@ -176,7 +176,21 @@ def get_all_users():
 # schools
 @api.route('/schools',methods=['GET'])
 def get_all_schools():
+    # user = User.get_by_id
     schools = School.get_all()
+    school_dic = []
+    for school in schools:
+        school_dic.append(school.serialize())
+    return jsonify(school_dic), 200
+
+
+
+@api.route('/users/<int:id>/schools',methods=['GET'])
+def get_all_user_schools(id):
+    user = User.get_by_id(id)
+    if user.is_student:
+        return "Isn't a teacher" , 400
+    schools = user.school
     school_dic = []
     for school in schools:
         school_dic.append(school.serialize())
@@ -193,7 +207,7 @@ def add_school():
 
 
 
-@api.route('/user/school', methods=['POST'])
+@api.route('/user/schools', methods=['POST'])
 def add_school_to_user():
     body = request.get_json()
     print(body)
@@ -213,6 +227,10 @@ def add_school_to_user():
     print("add" , user_add)
     return jsonify(user_add.serialize()),201
 
+
+
+# @api.route('/user/schools', methods=['GET'])
+# def get_my_centers():
 
 @api.route('/review', methods=['POST'])
 def add_review_to_teacher():
@@ -289,10 +307,10 @@ def update_profile_picture():
 #user_school
 
 
-@api.route('/user_schools',methods=['GET'])
-def get_all_user_schools():
-    teachers = User_school.query.all()
-    teacher_dic = []
-    for teacher in teachers:
-        teacher_dic.append(teacher.serialize())
-    return jsonify(teacher_dic), 200
+# @api.route('/user_schools',methods=['GET'])
+# def get_all_user_schools():
+#     teachers = User_school.query.all()
+#     teacher_dic = []
+#     for teacher in teachers:
+#         teacher_dic.append(teacher.serialize())
+#     return jsonify(teacher_dic), 200

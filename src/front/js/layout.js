@@ -67,9 +67,6 @@ const Layout = () => {
 						<Route exact path="/teacherprofile/edit">
 							<EditTeacher />
 						</Route>
-						<Route exact path="/mycenters">
-							<MyCenters />
-						</Route>
 
 						<Route exact path="/searchschools">
 							<SearchSchools />

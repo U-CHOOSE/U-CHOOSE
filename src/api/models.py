@@ -28,10 +28,9 @@ class User(db.Model):
     
 
     def serialize(self):
-        print(self.id, "id")
+        
         user_teacher = User_teacher.get_by_user_id(self.id)
-        print("ffsdfd")
-        print(user_teacher)
+       
         return {
             "id": self.id,
             "full_name":self.full_name,
@@ -41,7 +40,8 @@ class User(db.Model):
             "img":self.img,
             "type_of_teacher": user_teacher.type_of_teacher,
             "linkedin": user_teacher.linkedin,
-            
+
+        
         }
 
     @classmethod

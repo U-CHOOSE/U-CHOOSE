@@ -81,7 +81,9 @@ const StudentProfile = () => {
 			<div className="student-contain1">
 				<img className="img-profile" src={data.img} alt="img" />
 
-				<button className="student-button1">Mis centros</button>
+				<button className="student-button1" onClick={() => history.push("/studentprofile/mycenters")}>
+					Mis centros
+				</button>
 			</div>
 
 			<div className="contain-inputs ml-3">
