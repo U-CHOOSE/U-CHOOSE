@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
@@ -11,11 +10,12 @@ const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
-
+	console.log(store.step);
 	useEffect(
 		() => {
 			if (actions.isLogged()) {
-				history.push("/");
+				store.step = 3;
+				history.push("/registerformpage");
 			}
 		},
 		[actions.isLogged()]

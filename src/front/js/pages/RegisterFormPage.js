@@ -14,7 +14,6 @@ const RegisterFormPage = () => {
 	const [show, setShow] = useState(true);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		console.log("sffsfd");
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
 			.then(data => {
@@ -27,9 +26,12 @@ const RegisterFormPage = () => {
 		student: false,
 		teacher: false
 	});
-
+	const toLogin = () => {
+		alert("You need to login to make a review");
+		history.push("/login");
+	};
 	//
-
+	console.log("is_logged", actions.isLogged());
 	console.log(data);
 	const handlePut = () => {
 		console.log();
@@ -178,25 +180,38 @@ const RegisterFormPage = () => {
 								buttons={
 									<>
 										<span onClick={() => actions.setUpStep()}> Ahora no</span>
-										<button onClick={() => history.push("/review")} className="button_marino_great">
-											Hacer un review
-										</button>
+										{actions.isLogged() === false ? (
+											<button onClick={toLogin} className="button_marino_great">
+												Hacer un review
+											</button>
+										) : (
+											<button
+												onClick={() => history.push("/review")}
+												className="button_marino_great">
+												Hacer un review
+											</button>
+										)}
 									</>
 								}
 							/>
 						</>
 					) : (
 						<>
-							teacher
 							<Thanks
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<div className="btnGroup">
-										<button
-											onClick={() => history.push("/teacherprofile")}
-											className="button_violet_small">
-											Ver tu perfil
-										</button>
+										{actions.isLogged === true ? (
+											<button
+												onClick={() => history.push("/teacherprofile")}
+												className="button_violet_small">
+												Ver tu perfil
+											</button>
+										) : (
+											<button onClick={toLogin} className="button_violet_small">
+												Ver tu perfil no
+											</button>
+										)}
 										<button
 											onClick={() => history.push("/")}
 											className="button_white_border_violet_small w-56 box-sizing:  ">

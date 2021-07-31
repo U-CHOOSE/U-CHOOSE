@@ -184,7 +184,20 @@ def get_all_schools():
     return jsonify(school_dic), 200
 
 
+#to find all the schools of this user 
 
+# @api.route('/users/<int:id>/schools',methods=['GET'])
+# def get_all_user_schools(id):
+#     user = User.get_by_id(id)
+#     if user.is_student:
+#         return "Isn't a teacher" , 400
+#     schools = user.school
+#     school_dic = []
+#     for school in schools:
+#         school_dic.append(school.serialize())
+#     return jsonify(school_dic), 200
+
+#to find all the schools of this teacher 
 @api.route('/users/<int:id>/schools',methods=['GET'])
 def get_all_user_schools(id):
     user = User.get_by_id(id)
