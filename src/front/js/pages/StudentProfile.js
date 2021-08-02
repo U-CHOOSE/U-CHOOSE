@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 const StudentProfile = () => {
 	const history = useHistory();
-	const { actions, store } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",

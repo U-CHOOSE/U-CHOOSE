@@ -10,14 +10,37 @@ import { Context } from "../store/appContext";
 import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
-	const { actions } = useContext(Context);
+	const { actions, store } = useContext(Context);
 	const history = useHistory();
-
+	const [data, setData] = useState({});
 	const [show, setShow] = useState(false);
 
 	const logout = () => {
 		actions.removeToken();
 		window.location.replace("/login");
+	};
+	useEffect(() => {
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				console.log("user", json);
+			});
+	}, []);
+	console.log("is_student", data.is_student);
+	const kindOfProfile = () => {
+		if (data.is_student === true) {
+			history.push("/studentprofile");
+		} else {
+			history.push("/teacherprofile");
+		}
 	};
 
 	return (
@@ -54,7 +77,7 @@ const NavbarComp = () => {
 						</NavDropdown.Item>
 						<br />
 						{actions.isLogged() ? (
-							<Button className="btnNav" onClick={() => history.push("")}>
+							<Button className="btnNav" onClick={kindOfProfile}>
 								Mi perfil
 							</Button>
 						) : (

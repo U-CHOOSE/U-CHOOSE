@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../styles/teacherprofile.scss";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import Faces from "../component/Faces/Faces";
@@ -6,20 +6,39 @@ import TopReview from "../component/TopReview/TopReview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const TeacherProfile = () => {
 	const history = useHistory();
+	const { actions } = useContext(Context);
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState("");
-	const user_id = localStorage.getItem("id_user");
+
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
 				console.log(json);
 			});
 	}, []);
+
+	// const user_id = localStorage.getItem("id_user");
+	// useEffect(() => {
+	// 	fetch(process.env.BACKEND_URL + "/user/" + user_id)
+	// 		.then(res => res.json())
+	// 		.then(json => {
+	// 			setData(json);
+	// 			console.log(json);
+	// 		});
+	// }, []);
 	//Component Faces
 	// <Faces face={number} /> 1-10
 
