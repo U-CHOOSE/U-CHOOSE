@@ -13,15 +13,16 @@ const TeacherProfile = () => {
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
 	const user_id = localStorage.getItem("id_user");
-	const teacher_id = localStorage.getItem("teacher_id");
+	let teacher_id = 0;
+	teacher_id = localStorage.getItem("teacher_id");
 	let teacherId = 2;
-	// console.log(user_id.id);
+	console.log("user.id ", user_id);
+	console.log("teacher_id", teacher_id);
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/user/" + user_id)
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log("json1", json);
 			});
 	}, []);
 
@@ -39,30 +40,32 @@ const TeacherProfile = () => {
 		fetch(process.env.BACKEND_URL + "/reviews")
 			.then(res => res.json())
 			.then(json => {
-				console.log("json2", json);
 				setReview(json);
 				// console.log("userTeacher", userTeacher);
 			});
 	}, []);
+	console.log("data", data);
+	console.log("review", review[0]);
 
-	console.log("review", review);
 	const avgFaces = () => {
 		let dynamsim = 0;
 		let pasion = 0;
 		let near = 0;
 		let practises_example = 0;
 		for (let i = 0; i <= review.length; i++) {
-			if (review[i].teacher_id === teacher_id) {
+			if (review[i].teacher_id === 2) {
 				dynamsim = review[i].dynamsim + dynamsim;
 				pasion = review[i].pasion + pasion;
 				near = review[i].near + near;
 				practises_example = review[i].practises_example + practises_example;
 			}
+			// console.log(review[i].teacher_id);
 		}
 		let sum = dynamsim + passion + near + practises_example;
 		let avg = sum / 4;
 		return avg;
 	};
+	// console.log("avg es:", avgFaces());
 
 	// console.log(""pasion);
 	// let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
@@ -90,16 +93,13 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div className="container-fluid card__teacherprofile">
+		<div className="container-fluid">
+			{/* {avgFaces()} */}
 			{/* contain 1 */}
 			<div className="row">
 				<div className="col-lg-1" />
 				<div className="col-5 col-lg-8">
-					<img
-						className="img-profile"
-						src="https://rociohernandezcruz.com/wp-content/uploads/2019/11/rocio-hernandez-cruz-2.jpg"
-						alt="img"
-					/>
+					<img className="img-profile" src={data.img} alt="img" />
 				</div>
 				<div className="col-7 col-lg-2 mt-2 contain__1">
 					<div className="d-flex mt-5">
@@ -116,14 +116,14 @@ const TeacherProfile = () => {
 			<div className="row">
 				<div className="col-lg-1" />
 				<div className="col-12 mt-4 col-lg-8">
-					<h1 className=" name1">maria zaidin</h1>
+					<h1 className=" name1">{data.full_name}</h1>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-lg-1" />
 				<div className="col-12 col-lg-11">
 					<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
-					<span>profesor@ de matematicas</span>
+					<span>profesor@ de {data.type_of_teacher}</span>
 				</div>
 			</div>
 
