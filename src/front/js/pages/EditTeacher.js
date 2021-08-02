@@ -82,7 +82,7 @@ const EditTeacher = () => {
 			<div className="student-contain1">
 				<img className="img-profile" src={data.img} alt="img" />
 
-				<button className="student-button1" onClick={history.push("/mycenters")}>
+				<button className="student-button1" onClick={() => history.push("/mycenters")}>
 					Mis centros
 				</button>
 			</div>

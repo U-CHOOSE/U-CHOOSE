@@ -72,7 +72,11 @@ const TeacherProfile = () => {
 							<Faces face={10} />
 						</div>
 						<span className="span-reviews">{count} reviews</span>
-						<button className="button1 mt-2" onClick={() => history.push("teacherprofile/edit")}>
+						<button
+							className="button1 mt-2"
+							onClick={() => {
+								history.push("/teacherprofile/edit");
+							}}>
 							Editar perfil
 						</button>
 					</div>

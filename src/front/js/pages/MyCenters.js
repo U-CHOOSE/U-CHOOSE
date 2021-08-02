@@ -3,7 +3,7 @@ import "../../styles/myCenters.scss";
 import Search from "../component/Search/Search";
 
 const MyCenters = () => {
-	const user_id = localStorage.getItem("id_user");
+	// const user_id = localStorage.getItem("id_user");
 
 	useEffect(() => {}, []);
 
