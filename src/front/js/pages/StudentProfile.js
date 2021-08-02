@@ -31,6 +31,7 @@ const StudentProfile = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
+				actions.setImg(json.img);
 				console.log(json);
 			});
 	}, []);

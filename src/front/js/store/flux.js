@@ -1,3 +1,4 @@
+import { data } from "jquery";
 import { Link, useHistory } from "react-router-dom";
 
 const getState = ({ getStore, setStore }) => {
@@ -10,6 +11,8 @@ const getState = ({ getStore, setStore }) => {
 			teachers: [],
 			step: 0,
 			reviews: {},
+			userImg = "",
+			userId: 0,
 			users: []
 		},
 		actions: {
@@ -88,6 +91,18 @@ const getState = ({ getStore, setStore }) => {
 				// getActions().changeColor(0, "green");
 				console.log("Esta");
 			},
+			setId: (idTeacher, userID) => {
+				setStore({
+					idTeacher: idTeacher,
+					userId: userID
+				});
+			},
+
+			setImg: img => {
+				setStore({
+					userImg: img
+				});
+			},
 			get_img: img => {
 				console.log(img, "image llegando al flux");
 				let body;
@@ -97,14 +112,16 @@ const getState = ({ getStore, setStore }) => {
 					body: body,
 					method: "POST"
 				})
-					.then(function(response) {
+					.then(function (response) {
 						if (!response.ok) {
 							throw Error("I can't upload picture!");
 						}
 						return response.json();
 						console.log(response);
 					})
-					.catch(function(error) {
+					.then((data) =>
+						setStore({ userImg: data }))
+					.catch(function (error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
