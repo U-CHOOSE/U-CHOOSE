@@ -90,63 +90,87 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div className="card__teacherprofile">
+		<div className="container-fluid card__teacherprofile">
 			{/* contain 1 */}
-			<div className="contain1 mt-4">
-				<div className="row">
-					<div className="col-xs-5 col-lg-4">
-						<img
-							className="img-profile"
-							src="https://rociohernandezcruz.com/wp-content/uploads/2019/11/rocio-hernandez-cruz-2.jpg"
-							alt="img"
-						/>
-					</div>
-					<div className="col-7">
-						<div className="d-flex mt-3 ml-3">
-							<Faces face={10} />
-						</div>
-						<span className="span-reviews">{count} reviews</span>
-						<button className="button1 mt-2" onClick={() => history.push("teacherprofile/edit")}>
-							Editar perfil
-						</button>
-					</div>
-				</div>
-				<h1 className=" name1 ml-3 mt-4">maria zaidin</h1>
-				<div className="d-flex ml-3 contain-logo">
-					<h5 className="mr-3">
-						<FontAwesomeIcon className="icon-bag" icon={faSuitcase} />
-					</h5>
-					<span>profesor de matematicas</span>
-				</div>
-			</div>
-			{/* contain 2 */}
-			<div className="contain___2 mb-5">
-				<h2 className="title___2 ">Valoración</h2>
-				<div className="image-valoration mt-3">
-					{/* T = teacher
-					O = others teachers */}
-					<TeacherAssessment
-						dinamismoT={0.2}
-						dinamismoO={2}
-						pasionT={3}
-						pasionO={4}
-						exampleT={5}
-						exampleO={6}
-						inolvementT={7}
-						inolvementO={10}
+			<div className="row">
+				<div className="col-lg-1" />
+				<div className="col-5 col-lg-8">
+					<img
+						className="img-profile"
+						src="https://rociohernandezcruz.com/wp-content/uploads/2019/11/rocio-hernandez-cruz-2.jpg"
+						alt="img"
 					/>
 				</div>
+				<div className="col-7 col-lg-2 mt-2 contain__1">
+					<div className="d-flex mt-5">
+						<Faces face={10} />
+					</div>
+					<span className="span-reviews ml-3">{count} reviews</span>
+					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>
+						Editar perfil
+					</button>
+				</div>
+				<div className="col-lg-1" />
 			</div>
-			<div className="mx-auto">
-				<h2 className="title2 mb-5">Reviews destacadas</h2>
-				{/* reviews */}
-				<div className="contain-reviews d-flex">
+
+			<div className="row">
+				<div className="col-lg-1" />
+				<div className="col-12 mt-4 col-lg-8">
+					<h1 className=" name1">maria zaidin</h1>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-lg-1" />
+				<div className="col-12 col-lg-11">
+					<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
+					<span>profesor@ de matematicas</span>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12">
+					<h2 className="title___2 title-2-v ">Valoración</h2>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-12">
+					<div className="image-valoration">
+						{/* T = teacher
+					O = others teachers */}
+						<TeacherAssessment
+							dinamismoT={0.2}
+							dinamismoO={2}
+							pasionT={3}
+							pasionO={4}
+							exampleT={5}
+							exampleO={6}
+							inolvementT={7}
+							inolvementO={10}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12">
+					<h2 className="title___2 mb-5">Reviews destacadas</h2>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-lg-1" />
+				<div className="col-12 col-lg-10 contain-reviews d-flex">
 					<TopReview faceTopreview={10} valorationTopreview={54} opinionTopreview="hola que tal" />
 					<TopReview faceTopreview={10} valorationTopreview={0} />
 					<TopReview faceTopreview={10} valorationTopreview={100} opinionTopreview="hola que tal" />
 				</div>
+				<div className="col-lg-1" />
+			</div>
 
-				<button className="button2">Ver todas las reviews</button>
+			<div className="row">
+				<div className="col-12">
+					<button className="button2 b-2-r">Ver todas las reviews</button>
+				</div>
 			</div>
 		</div>
 	);
