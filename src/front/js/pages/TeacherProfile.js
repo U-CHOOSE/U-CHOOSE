@@ -42,29 +42,37 @@ const TeacherProfile = () => {
 			.then(json => {
 				setReview(json);
 				// console.log("userTeacher", userTeacher);
-			});
+			})
+			.catch(err => console.log("Error:", error));
 	}, []);
-	console.log("data", data);
-	console.log("review", review[0]);
+	// console.log("data", data);
+	console.log(review);
+	console.log(review.length > 0 ? review[0].near : "nooo");
 
-	const avgFaces = () => {
-		let dynamsim = 0;
-		let pasion = 0;
-		let near = 0;
-		let practises_example = 0;
-		for (let i = 0; i <= review.length; i++) {
-			if (review[i].teacher_id === 2) {
-				dynamsim = review[i].dynamsim + dynamsim;
-				pasion = review[i].pasion + pasion;
-				near = review[i].near + near;
-				practises_example = review[i].practises_example + practises_example;
-			}
-			// console.log(review[i].teacher_id);
-		}
-		let sum = dynamsim + passion + near + practises_example;
-		let avg = sum / 4;
-		return avg;
-	};
+	useEffect(
+		() => {
+			const avgFaces = () => {
+				let dynamsim = 0;
+				let pasion = 0;
+				let near = 0;
+				let practises_example = 0;
+				for (let i = 0; i <= review.length; i++) {
+					if (review[i].teacher_id === teacherId) {
+						dynamsim = review[i].dynamsim + dynamsim;
+						pasion = review[i].pasion + pasion;
+						near = review[i].near + near;
+						practises_example = review[i].practises_example + practises_example;
+					}
+					console.log(review[i].teacher_id);
+				}
+				let sum = dynamsim + passion + near + practises_example;
+				avg = sum / 4;
+				return avg;
+			};
+		},
+		[review]
+	);
+
 	// console.log("avg es:", avgFaces());
 
 	// console.log(""pasion);
@@ -94,8 +102,9 @@ const TeacherProfile = () => {
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
 		<div className="container-fluid">
-			{/* {avgFaces()} */}
 			{/* contain 1 */}
+			{/* {review.length > 0 ? avgFaces() : "Nothing to see"} */}
+			{/* {review.length > 0 ? review[0].near : "Nothing to see"} */}
 			<div className="row">
 				<div className="col-lg-1" />
 				<div className="col-5 col-lg-8">
