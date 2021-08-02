@@ -1,9 +1,6 @@
 
-.card__teacherprofile {
-    width: 360px ;
-    border: 1px solid red;
-    display: block;
-    margin: auto;
+.contain__1 {
+    float: left;
 }
 
 .imagen {
@@ -11,17 +8,20 @@
     height: 27px;
     
 }
-.img-profile{
+.img-profile{ 
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    margin-left: 40px;
+    display: block;
+    padding-top: -100px;
+    
 }
-.button1 {
+.butt-on1 {
     width: 171px;
     height: 40px;
-    border-radius: 40px;
     border: 2px solid #7A6FC5;
+    box-sizing: border-box;
+    border-radius: 40px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -30,7 +30,6 @@
     text-align: center;
     letter-spacing: 0.75px;
     color: #7A6FC5;
-    margin-left: 15px;
 }
 .name1 {
     font-family: Poppins;
@@ -40,21 +39,23 @@
     line-height: 36px;
     letter-spacing: 1px;
     color: #0C0B1A;
+    float: left;
 }
-.contain-logo span {
-    width: 216px;
-    height: 28px;
-    left: 56px;
-    top: 371px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 0.75px;
-    color: #0C0B1A;
-}
-.title2 {
+// .contain-logo span {
+//     width: 216px;
+//     height: 28px;
+//     left: 56px;
+//     top: 371px;
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 16px;
+//     line-height: 28px;
+//     letter-spacing: 0.75px;
+//     color: #0C0B1A;
+//     white-space: nowrap;
+// }
+.title___2 {
     font-family: Poppins;
     font-style: normal;
     font-weight: bold;
@@ -62,8 +63,6 @@
     line-height: 36px;
     letter-spacing: 1px;
     color: #7A6FC5;
-    margin-left: 18px;
-    display:inline-block;
     margin-top: 64px;
     text-align: left;
 }
@@ -75,7 +74,7 @@
     line-height: 26px;
     letter-spacing: 0.75px;
     color: #7A6FC5;
-    margin-left: 20px;
+    display: block;
 }
 .button2 {
     background: #7A6FC5;
@@ -97,5 +96,48 @@
     margin-bottom: 73px;
 }
 .contain-reviews {
-    justify-content: space-between;
+    overflow-y: scroll; 
+    height: auto;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+.image-valoration {
+    float: left;
+    
+}
+.contain___2 {
+    display: block;
+    margin: auto;
+}
+
+@media (min-width: 992px) {
+    .img-profile{ 
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 100%;
+        display: block;
+        padding-top: -100px;
+        
+    }
+    .title-2-v {
+        display: none;
+    }
+    .title___2 {
+       text-align: center;
+    }
+    .image-valoration {
+        margin-top: -250px !important;
+        float: none;
+    }
+    .contain-reviews {
+
+       display: flex;
+       justify-content: space-between;
+       overflow-y: auto;
+    }
+    .b-2-r {
+        margin-top: 100px;
+    }
 }

@@ -13,7 +13,7 @@ const TeacherAssessment = props => {
 	const iO = props.inolvementO * 10;
 
 	return (
-		<div className="contain">
+		<div className="contain_tA">
 			<div className="contain1">
 				<div className="d-flex">
 					<span className="color1" />
