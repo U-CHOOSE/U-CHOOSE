@@ -172,7 +172,7 @@ const RegisterFormPage = () => {
 					</div>
 				}
 				body={
-					checked.student === true ? (
+					checked.student ? (
 						<>
 							<Thanks
 								className=" Thanks1"
@@ -180,14 +180,14 @@ const RegisterFormPage = () => {
 								buttons={
 									<>
 										<span onClick={() => actions.setUpStep()}> Ahora no</span>
-										{actions.isLogged() === false ? (
-											<button onClick={toLogin} className="button_marino_great">
-												Hacer un review
-											</button>
-										) : (
+										{actions.isLogged() ? (
 											<button
 												onClick={() => history.push("/review")}
 												className="button_marino_great">
+												Hacer un review
+											</button>
+										) : (
+											<button onClick={toLogin} className="button_marino_great">
 												Hacer un review
 											</button>
 										)}
@@ -201,7 +201,7 @@ const RegisterFormPage = () => {
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<div className="btnGroup">
-										{actions.isLogged === true ? (
+										{actions.isLogged ? (
 											<button
 												onClick={() => history.push("/teacherprofile")}
 												className="button_violet_small">

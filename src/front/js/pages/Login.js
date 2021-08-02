@@ -11,9 +11,17 @@ const Login = () => {
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
 	console.log(store.step);
+
+	// const checkingLogged = () => {
+	// 	if (actions.isLogged && store.is_student) {
+	// 		store.step = 3;
+	// 		history.push("/registerformpage");
+	// 	}
+	// };
+
 	useEffect(
 		() => {
-			if (actions.isLogged()) {
+			if (actions.isLogged() === true && store.is_student) {
 				store.step = 3;
 				history.push("/registerformpage");
 			}
@@ -69,6 +77,7 @@ const Login = () => {
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
+						checkingLogged;
 					}}>
 					Iniciar sesión
 				</button>

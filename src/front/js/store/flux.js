@@ -11,7 +11,8 @@ const getState = ({ getStore, setStore }) => {
 			teachers: [],
 			step: 0,
 			reviews: {},
-			userImg = "",
+			userImg: "",
+			is_student: "",
 			userId: 0,
 			users: []
 		},
@@ -112,16 +113,15 @@ const getState = ({ getStore, setStore }) => {
 					body: body,
 					method: "POST"
 				})
-					.then(function (response) {
+					.then(function(response) {
 						if (!response.ok) {
 							throw Error("I can't upload picture!");
 						}
 						return response.json();
 						console.log(response);
 					})
-					.then((data) =>
-						setStore({ userImg: data }))
-					.catch(function (error) {
+					.then(data => setStore({ userImg: data }))
+					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
@@ -132,6 +132,11 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
+			},
+			setCurrentUser: user => {
+				const store = getStore();
+				setStore({ is_student: user });
+				console.log("store.is_student", store.is_student);
 			},
 			changeColor: (index, color) => {
 				//get the store

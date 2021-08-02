@@ -51,8 +51,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-
-@api.route('/user', methods=['POST' , 'PUT'])
+#TODO creating endpoint to schools
+@api.route('/user', methods=['POST'])
 def add_user():
     
     if request.method == 'POST':
@@ -113,7 +113,7 @@ def add_user():
     
 @api.route("/user",methods=['PUT'])
 @jwt_required()
-def update_one_user(id):
+def update_one_user():
     identity = get_jwt_identity()
     json = request.get_json()
     user = User.get_by_id(identity)

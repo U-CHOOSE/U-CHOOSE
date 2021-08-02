@@ -52,7 +52,7 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
+		fetch(process.env.BACKEND_URL + "/user", options)
 			.then(res => {
 				console.log(res);
 

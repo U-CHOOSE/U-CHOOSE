@@ -29,20 +29,24 @@ class User(db.Model):
 
     def serialize(self):
         
-        user_teacher = User_teacher.get_by_user_id(self.id)
-       
-        return {
+        
+        user = {
             "id": self.id,
             "full_name":self.full_name,
             "email": self.email,
             "is_student":self.is_student,
             "sign_completed":self.sign_completed,
             "img":self.img,
-            "type_of_teacher": user_teacher.type_of_teacher,
-            "linkedin": user_teacher.linkedin,
-
-        
         }
+
+        if not self.is_student :
+            user_teacher = User_teacher.get_by_user_id(self.id)
+                           
+            user["type_of_teacher"] =  user_teacher.type_of_teacher
+            user["linkedin"] =  user_teacher.linkedin
+            
+        return user
+        
 
     @classmethod
     def add(cls,email,_password,is_student,promo,full_name,sign_completed):
@@ -61,16 +65,17 @@ class User(db.Model):
 
 
     def put_with_json(self,json):
-        user_teacher = User_teacher.get_by_id(self.id)
+        print(json)
+        user_teacher = User_teacher.get_by_user_id(self.id)
         if json["full_name"]:
             self.full_name = json["full_name"]
         if json["email"]:
             self.email = json["email"]
         if json["_password"]:
             self._password = json["_password"]
-        if json["type_of_teacher"]:
+        if "type_of_teacher" in json:
             user_teacher.type_of_teacher = json["type_of_teacher"]
-        if json["linkedin"]:
+        if "linkedin" in json :
             user_teacher.linkedin = json["linkedin"]
 
 

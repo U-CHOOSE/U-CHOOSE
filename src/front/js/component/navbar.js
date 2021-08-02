@@ -32,6 +32,7 @@ const NavbarComp = () => {
 			.then(json => {
 				setData(json);
 				console.log("user", json);
+				actions.setCurrentUser(json);
 			});
 	}, []);
 	console.log("is_student", data.is_student);
