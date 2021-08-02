@@ -5,12 +5,14 @@ import Search from "../component/Search/Search";
 const MyCenters = () => {
 	return (
 		<>
-			<Search
-				title="Mis centros"
-				placeholder="Busca un centro"
-				span1="¿No encuentras tu centro?"
-				button="Guardar"
-			/>
+			<div className="container-centers">
+				<Search
+					title="Mis centros"
+					placeholder="Busca un centro"
+					span1="¿No encuentras tu centro?"
+					button={<button className="student-button2">Guardar</button>}
+				/>
+			</div>
 		</>
 	);
 };

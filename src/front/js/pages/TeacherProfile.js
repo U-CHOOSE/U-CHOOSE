@@ -161,19 +161,20 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-12">
+				<div className="col-lg-1" />
+				<div className="col-12 col-lg-10">
 					<h2 className="title___2 mb-5">Reviews destacadas</h2>
 				</div>
 			</div>
 
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 col-lg-10 contain-reviews d-flex">
+				<div className="col-lg-3" />
+				<div className="col-12 col-lg-6 contain-reviews d-flex">
 					<TopReview faceTopreview={10} valorationTopreview={54} opinionTopreview="hola que tal" />
 					<TopReview faceTopreview={10} valorationTopreview={0} />
 					<TopReview faceTopreview={10} valorationTopreview={100} opinionTopreview="hola que tal" />
 				</div>
-				<div className="col-lg-1" />
+				<div className="col-lg-3" />
 			</div>
 
 			<div className="row">
