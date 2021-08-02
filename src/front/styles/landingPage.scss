@@ -7,10 +7,19 @@
     display: block;
     margin: auto;
 }
-.title {
+.title-landing {
     display: block;
     margin: auto;
     font-weight: 700;
+    width: 327px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    align-items: center;
+    letter-spacing: -2px;
+    color: #0C0B1A;
 } 
 p {
     width: 327px;
@@ -103,7 +112,7 @@ p {
         width: 20%;
         display: none;
         }
-    .title {
+    .title-landing {
         width: 514px;
         height: 150px;
         font-family: Poppins;
@@ -112,6 +121,7 @@ p {
         font-size: 48px;
         line-height: 50px;
         letter-spacing: 1px;
+        
     }
     .paragraph1 {
         width: 514px;
