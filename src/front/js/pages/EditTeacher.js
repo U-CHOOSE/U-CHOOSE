@@ -23,7 +23,7 @@ const EditTeacher = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log(json);
+				console.log("data", json);
 			});
 	}, []);
 	console.log(user_id);
@@ -78,12 +78,7 @@ const EditTeacher = () => {
 				<div className="col-md-2" />
 				<div className="col-4 col-md-10">
 					<label htmlFor="upload-photo">
-						{/* <img className="img-profile" src={store.userImg} alt="img" /> */}
-						<img
-							className="img-profilee"
-							src="https://st.depositphotos.com/1017986/1941/i/600/depositphotos_19419591-stock-photo-face-and-hands-of-beautiful.jpg"
-							alt="img"
-						/>
+						<img className="img-profilee" src={store.userImg} alt="img" />
 					</label>
 					<input
 						type="file"

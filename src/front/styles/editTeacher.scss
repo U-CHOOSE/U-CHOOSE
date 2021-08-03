@@ -16,26 +16,7 @@
     margin-bottom: -90px;
 
 }
-// .contain1 {
-//     margin-bottom: 37.14px;
-//     margin-top:45px;
-//     align-items: center;
-// }
-// .contain-inputs {
-//     margin-top: 100px;
-// }
-// .contain-inp label {
-//     font-family: Poppins;
-//     font-style: normal;
-//     font-weight: 500;
-//     font-size: 14px;
-//     line-height: 22px;
-//     letter-spacing: 0.25px;
-//     color: #6E7191;
-//     display: block;
-//     // margin-left: 28px;
-//      margin-left: 47px;
-// }
+
 // input[type=text], input[type=email], input[type=password] {
 //     width:343px;
 //     height: 64px;
@@ -98,11 +79,27 @@
 //     margin-top: -20px;
 // }
 
-// // @media (max-width: 600px) {
-// //     .contain-inputs {
+@media (min-width: 1000px) {
+   input[type=text], input[type=email], input[type=password] {
+     width:420px !important;
+     height: 64px;
+     border-radius:16px;
+     background: #EFF0F7;
+     margin-top: -30px;
+     margin-left: 16px;
+     }
+     .img-profilee{
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        margin-bottom: -100px;
+        cursor: pointer;
+    }
+    .c_s, .c_p {
+        width: 420px;
         
-// //     }
-// // }
+    }
+}
 
 // #upload-photo {
 //     opacity: 0;
