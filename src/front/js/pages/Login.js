@@ -12,12 +12,11 @@ const Login = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.step);
 
-	// const checkingLogged = () => {
-	// 	if (actions.isLogged && store.is_student) {
-	// 		store.step = 3;
-	// 		history.push("/registerformpage");
-	// 	}
-	// };
+	const checkingLogged = () => {
+		if (actions.isLogged && store.is_student) {
+			history.push("/");
+		}
+	};
 
 	useEffect(
 		() => {

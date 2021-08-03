@@ -35,7 +35,7 @@ const NavbarComp = () => {
 				actions.setCurrentUser(json);
 			});
 	}, []);
-	console.log("is_student", data.is_student);
+	console.log("1", data);
 	const kindOfProfile = () => {
 		if (data.is_student === true) {
 			history.push("/studentprofile");

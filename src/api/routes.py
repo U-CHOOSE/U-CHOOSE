@@ -17,7 +17,7 @@ import cloudinary.api
 api = Blueprint('api', __name__)
 
 
-@api.route('/login', methods=['POST'])
+@api.route('/login', methods=['POST','PUT'])
 def login():
     payload =(request.get_json(force=True))
     email = payload.get('email', None)
@@ -29,7 +29,7 @@ def login():
     
     user = User.get_by_email(email)
     # password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
-    print(user._password,password)
+    # print(user._password,password)
     valid_password = check_password_hash(user._password,password) 
     
     # TODO:check password using check_password_hash(user.password, password)
@@ -52,7 +52,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 #TODO creating endpoint to schools
-@api.route('/user', methods=['POST'])
+@api.route('/user', methods=['POST','PUT'])
 def add_user():
     
     if request.method == 'POST':
@@ -111,7 +111,7 @@ def add_user():
     
 
     
-@api.route("/user",methods=['PUT'])
+@api.route("/user_put",methods=['PUT'])
 @jwt_required()
 def update_one_user():
     identity = get_jwt_identity()
