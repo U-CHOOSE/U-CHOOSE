@@ -12,12 +12,14 @@ const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
+	const [media, setMedia] = useState(0);
+	const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
-	let teacher_id = 0;
-	teacher_id = localStorage.getItem("teacher_id");
-	let teacherId = 2;
+
+	let teacherId = localStorage.getItem("teacher_id");
+
 	console.log("user.id ", user_id);
-	console.log("teacher_id", teacher_id);
+	console.log("teacher_id", teacherId);
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/user/" + user_id)
 			.then(res => res.json())
@@ -46,39 +48,71 @@ const TeacherProfile = () => {
 			.catch(err => console.log("Error:", error));
 	}, []);
 	// console.log("data", data);
-	console.log(review);
-	console.log(review.length > 0 ? review[0].near : "nooo");
+	console.log("review", review);
+	// console.log(review.length > 0 ? review[0].near : "nooo");
 
 	useEffect(
 		() => {
 			const avgFaces = () => {
 				let dynamsim = 0;
-				let pasion = 0;
+				let passion = 0;
 				let near = 0;
 				let practises_example = 0;
-				for (let i = 0; i <= review.length; i++) {
-					if (review[i].teacher_id === teacherId) {
+				let contReviews = 0;
+
+				for (let i = 0; i < review.length; i++) {
+					if (review[i].teacher_id === parseInt(teacherId)) {
 						dynamsim = review[i].dynamsim + dynamsim;
-						pasion = review[i].pasion + pasion;
+						passion = review[i].pasion + passion;
 						near = review[i].near + near;
 						practises_example = review[i].practises_example + practises_example;
+						contReviews++;
 					}
-					console.log(review[i].teacher_id);
 				}
-				let sum = dynamsim + passion + near + practises_example;
-				avg = sum / 4;
+				const sum = dynamsim + passion + near + practises_example;
+				const avg = sum / (4 * contReviews);
+				setCount(contReviews);
 				return avg;
 			};
+			if (review.length > 0) {
+				setMedia(avgFaces());
+			}
 		},
 		[review]
 	);
 
-	// console.log("avg es:", avgFaces());
+	useEffect(
+		() => {
+			const valorations = () => {
+				console.log("holaaaaaaaa");
+				let dynamsim = 0;
+				let passion = 0;
+				let near = 0;
+				let practises_example = 0;
+				let contReviews = 0;
 
-	// console.log(""pasion);
-	// let sum = review.dynamsim + review.pasion + review.practises_example + review.near;
-	// let avg = sum / 4;
-	// console.log("avg", avg);
+				for (let i = 0; i < review.length; i++) {
+					if (review[i].teacher_id === parseInt(teacherId)) {
+						dynamsim = review[i].dynamsim + dynamsim;
+						passion = review[i].pasion + passion;
+						near = review[i].near + near;
+						practises_example = review[i].practises_example + practises_example;
+						contReviews++;
+					}
+				}
+				const valorDynamism = dynamsim / contReviews;
+				console.log("valordinam", valorDynamism);
+				const avg = sum / (4 * contReviews);
+				setCount(contReviews);
+				return avg;
+			};
+			if (review.length > 0) {
+				// setAvgDynamism(valorDynamism);
+				// console.log("valordinam", avgDynanism);
+			}
+		},
+		[review]
+	);
 
 	//Component Faces
 	// <Faces face={number} /> 1-10
@@ -102,9 +136,6 @@ const TeacherProfile = () => {
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
 		<div className="container-fluid">
-			{/* contain 1 */}
-			{/* {review.length > 0 ? avgFaces() : "Nothing to see"} */}
-			{/* {review.length > 0 ? review[0].near : "Nothing to see"} */}
 			<div className="row">
 				<div className="col-lg-1" />
 				<div className="col-5 col-lg-8">
@@ -112,7 +143,7 @@ const TeacherProfile = () => {
 				</div>
 				<div className="col-7 col-lg-2 mt-2 contain__1">
 					<div className="d-flex mt-5">
-						<Faces face={10} />
+						<Faces face={media} />
 					</div>
 					<span className="span-reviews ml-3">{count} reviews</span>
 					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>

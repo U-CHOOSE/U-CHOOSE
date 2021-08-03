@@ -67,13 +67,13 @@ const StudentProfile = () => {
 		actions.get_img(img);
 	};
 	return (
-		<div>
-			<div className="form_container">
-				<div className="student-contain1">
+		<div className="container-fluid cP">
+			<div className="row">
+				<div className="col-md-2" />
+				<div className="col-4 col-md-4">
 					<label htmlFor="upload-photo">
-						<img className="img-profile" src={store.userImg} alt="img" />
+						<img className="img-profilee" src={store.userImg} alt="img" />
 					</label>
-
 					<input
 						type="file"
 						onChange={e => {
@@ -81,29 +81,50 @@ const StudentProfile = () => {
 						}}
 						id="upload-photo"
 					/>
-
-					<button className="student-button1" onClick={() => history.push("/mycenters")}>
+					<div className="cBt" />
+					<button className="student-button1R mt-2" onClick={() => history.push("/mycenters")}>
 						Mis centros
 					</button>
-					{/* <button className="student-button1" onClick={handlePutImage}>
-					{" "}
-					Cambiar imagen
-				</button> */}
+					<button className="student-button1R" onClick={handlePutImage}>
+						{" "}
+						Cambiar imagen
+					</button>
 				</div>
+				<div className="col-4">
+					<div className="cBt" />
+					<button className="student-button1 mb-2" onClick={() => history.push("/mycenters")}>
+						Mis centros
+					</button>
+					<button className="student-button1" onClick={handlePutImage}>
+						{" "}
+						Cambiar imagen
+					</button>
+				</div>
+			</div>
 
-				<div className="contain-inputs ml-3">
-					<div className="contain-inp input1">
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="contain-inp">
 						<label>Nombre completo</label>
 						<input
 							type="text"
-							className="form-control input"
+							className="form-control input-text inp "
 							placeholder={data.full_name}
 							value={formData.fullname}
 							onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 						/>
+						<div className="c_p">
+							<p className="pstudent pstudent2">Podrás ocultarlo en tus reviews</p>
+						</div>
 					</div>
-					<p className="pstudent">Podrás ocultarlo en tus reviews</p>
+				</div>
+				<div className="col-md-4" />
+			</div>
 
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
 					<div className="contain-inp">
 						<label>Email</label>
 						<input
@@ -114,7 +135,13 @@ const StudentProfile = () => {
 							onChange={e => setFormData({ ...formData, email: e.target.value })}
 						/>
 					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
 
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
 					<div className="contain-inp">
 						<label>Contraseña</label>
 						<input
@@ -125,6 +152,13 @@ const StudentProfile = () => {
 							onChange={e => setFormData({ ...formData, _password: e.target.value })}
 						/>
 					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
 					<div className="contain-inp">
 						<label>Repetir contraseña</label>
 						<input
@@ -136,11 +170,19 @@ const StudentProfile = () => {
 						/>
 					</div>
 				</div>
-				<div className="div-button-save ml-3 mt-5">
-					<button className="student-button2" onClick={handlePut}>
-						Guardar
-					</button>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="c_s">
+						<button className="button-save" onClick={handlePut}>
+							Guardar
+						</button>
+					</div>
 				</div>
+				<div className="col-md-4" />
 			</div>
 		</div>
 	);
