@@ -66,7 +66,7 @@ const EditTeacher = () => {
 	};
 
 	return (
-		<div className="container-fluid">
+		<div className="container-fluid cP">
 			{/* <input
 				type="file"
 				onChange={e => {

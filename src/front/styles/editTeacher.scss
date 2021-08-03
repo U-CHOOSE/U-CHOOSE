@@ -71,6 +71,11 @@
     float: left;
     margin-bottom: 30px;
 }
+.cP {
+    display: grid;
+    justify-content: center;
+    
+}
 // .div-button-save {
 //     width: 343px;
 // }
@@ -81,7 +86,6 @@
 
 @media (min-width: 1000px) {
    input[type=text], input[type=email], input[type=password] {
-     width:420px;
      height: 64px;
      border-radius:16px;
      background: #EFF0F7;
@@ -95,10 +99,10 @@
         margin-bottom: -100px;
         cursor: pointer;
     }
-    .c_s, .c_p {
-        width: 420px;
-        
+    .cP {
+        justify-content: initial;
     }
+    
 }
 
 // #upload-photo {
