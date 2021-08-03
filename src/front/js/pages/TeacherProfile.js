@@ -13,6 +13,7 @@ const TeacherProfile = () => {
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
 	const [media, setMedia] = useState(0);
+	const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
 
 	let teacherId = localStorage.getItem("teacher_id");
@@ -75,6 +76,39 @@ const TeacherProfile = () => {
 			};
 			if (review.length > 0) {
 				setMedia(avgFaces());
+			}
+		},
+		[review]
+	);
+
+	useEffect(
+		() => {
+			const valorations = () => {
+				console.log("holaaaaaaaa");
+				let dynamsim = 0;
+				let passion = 0;
+				let near = 0;
+				let practises_example = 0;
+				let contReviews = 0;
+
+				for (let i = 0; i < review.length; i++) {
+					if (review[i].teacher_id === parseInt(teacherId)) {
+						dynamsim = review[i].dynamsim + dynamsim;
+						passion = review[i].pasion + passion;
+						near = review[i].near + near;
+						practises_example = review[i].practises_example + practises_example;
+						contReviews++;
+					}
+				}
+				const valorDynamism = dynamsim / contReviews;
+				console.log("valordinam", valorDynamism);
+				const avg = sum / (4 * contReviews);
+				setCount(contReviews);
+				return avg;
+			};
+			if (review.length > 0) {
+				// setAvgDynamism(valorDynamism);
+				// console.log("valordinam", avgDynanism);
 			}
 		},
 		[review]
