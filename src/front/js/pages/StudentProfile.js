@@ -81,6 +81,14 @@ const StudentProfile = () => {
 						}}
 						id="upload-photo"
 					/>
+					<div className="cBt" />
+					<button className="student-button1R mt-2" onClick={() => history.push("/mycenters")}>
+						Mis centros
+					</button>
+					<button className="student-button1R" onClick={handlePutImage}>
+						{" "}
+						Cambiar imagen
+					</button>
 				</div>
 				<div className="col-4">
 					<div className="cBt" />

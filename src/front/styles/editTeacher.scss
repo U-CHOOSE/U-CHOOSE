@@ -74,7 +74,10 @@
 .cP {
     display: grid;
     justify-content: center;
-    
+}
+.student-button1R {
+    display: none;
+
 }
 // .div-button-save {
 //     width: 343px;
@@ -98,11 +101,27 @@
         border-radius: 100%;
         margin-bottom: -100px;
         cursor: pointer;
+        margin-bottom: -51px;
     }
     .cP {
         justify-content: initial;
     }
-    
+    .student-button1 {
+        display: none;
+    }
+    .student-button1R {
+        display: block;
+        margin-top: 10px;
+        background: #7A6FC5;
+        border-radius: 40px;
+        width: 180px;
+        border: none;
+        height: 40px;
+        color: white;
+    }
+    .cBt {
+        margin-top: 100px;
+    }
 }
 
 // #upload-photo {
