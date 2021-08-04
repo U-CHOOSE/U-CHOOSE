@@ -12,8 +12,8 @@ const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
-	const [media, setMedia] = useState(0);
-	const [avgDynanism, setAvgDynamism] = useState(0);
+	const [media, setMedia] = useState({});
+	// const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
 
 	let teacherId = localStorage.getItem("teacher_id");
@@ -53,7 +53,7 @@ const TeacherProfile = () => {
 
 	useEffect(
 		() => {
-			const avgFaces = () => {
+			const avgTeacher = () => {
 				let dynamsim = 0;
 				let passion = 0;
 				let near = 0;
@@ -71,50 +71,23 @@ const TeacherProfile = () => {
 				}
 				const sum = dynamsim + passion + near + practises_example;
 				const avg = sum / (4 * contReviews);
+				const avgDynamism = dynamsim / contReviews;
+				const avgPassion = passion / contReviews;
+				const avgNear = near / contReviews;
+				const avgPractisesExample = practises_example / contReviews;
+				const avgTotal = {
+					avg: avg,
+					avgDynamism: avgDynamism,
+					avgPassion: avgPassion,
+					avgNear: avgNear,
+					avgPractisesExample: avgPractisesExample
+				};
 				setCount(contReviews);
-				return avg;
+				return avgTotal;
 			};
 			if (review.length > 0) {
-				setMedia(avgFaces());
-			}
-		},
-		[review]
-	);
-
-	let dinamismo = 0;
-
-	useEffect(
-		() => {
-			// const valorations = () => {
-			console.log("holaaaaaaaa");
-			let dynamsim = 0;
-			let passion = 0;
-			let near = 0;
-			let practises_example = 0;
-			let contReviews = 0;
-
-			for (let i = 0; i < review.length; i++) {
-				if (review[i].teacher_id === parseInt(teacherId)) {
-					dynamsim = review[i].dynamsim + dynamsim;
-					passion = review[i].pasion + passion;
-					near = review[i].near + near;
-					practises_example = review[i].practises_example + practises_example;
-					contReviews++;
-				}
-			}
-			dinamismo = dynamsim / contReviews;
-			console.log("valordinam1", dinamismo);
-			// setAvgDynamism(valorDynamism);
-			// console.log("valordinam2", avgDynanism);
-			// const avg = sum / (4 * contReviews);
-			// setCount(contReviews);
-			// return avg;
-			// };
-			if (review.length > 0) {
-				// setAvgDynamism(valorDynamism);
-				// console.log("valordinam", avgDynanism);
-				// setAvgDynamism(valorDynamism);
-				// console.log("valordinam2", avgDynanism);
+				setMedia(avgTeacher());
+				console.log("media", media);
 			}
 		},
 		[review]
@@ -149,7 +122,7 @@ const TeacherProfile = () => {
 				</div>
 				<div className="col-7 col-lg-2 mt-2 contain__1">
 					<div className="d-flex mt-5">
-						<Faces face={media} />
+						<Faces face={media.avg} />
 					</div>
 					<span className="span-reviews ml-3">{count} reviews</span>
 					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>
@@ -183,14 +156,15 @@ const TeacherProfile = () => {
 					<div className="image-valoration">
 						{/* T = teacher
 					O = others teachers */}
+						{console.log("mediaaa", media)}
 						<TeacherAssessment
-							dinamismoT={dinamismo}
+							dinamismoT={media.avgDynamism}
 							dinamismoO={2}
-							pasionT={3}
+							pasionT={media.avgPassion}
 							pasionO={4}
-							exampleT={5}
+							exampleT={media.avgPractisesExample}
 							exampleO={6}
-							inolvementT={7}
+							inolvementT={media.avgNear}
 							inolvementO={10}
 						/>
 					</div>
