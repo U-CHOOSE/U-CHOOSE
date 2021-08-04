@@ -13,19 +13,30 @@ const Login = () => {
 	console.log(store.step);
 
 	const checkingLogged = () => {
-		if (actions.isLogged && store.is_student) {
+		if (actions.isLogged() && store.is_student.is_student) {
+			history.push("/review");
+		} else {
 			history.push("/");
 		}
 	};
 
+	// useEffect(
+	// 	() => {
+	// 		if (actions.isLogged() === true && store.is_student) {
+	// 			store.step = 3;
+	// 			history.push("/registerformpage");
+	// 		}
+	// 	},
+	// 	[actions.isLogged()]
+	// );
+
 	useEffect(
 		() => {
-			if (actions.isLogged() === true && store.is_student) {
-				store.step = 3;
-				history.push("/registerformpage");
+			if (store.token != "" && store.token != undefined) {
+				history.push("/");
 			}
 		},
-		[actions.isLogged()]
+		[store.token]
 	);
 
 	useEffect(
@@ -76,7 +87,7 @@ const Login = () => {
 					onClick={event => {
 						event.preventDefault();
 						actions.login(email, password);
-						checkingLogged;
+						// checkingLogged;
 					}}>
 					Iniciar sesión
 				</button>

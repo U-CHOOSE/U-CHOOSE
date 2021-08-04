@@ -21,7 +21,7 @@ const StudentProfile = () => {
 
 	useEffect(() => {
 		const token = actions.getToken();
-		fetch(process.env.BACKEND_URL + "/user", {
+		fetch(process.env.BACKEND_URL + "/user_put", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

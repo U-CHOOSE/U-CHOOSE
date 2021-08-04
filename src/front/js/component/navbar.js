@@ -37,7 +37,7 @@ const NavbarComp = () => {
 	}, []);
 	console.log("1", data);
 	const kindOfProfile = () => {
-		if (data.is_student === true) {
+		if (store.is_student.is_student === true) {
 			history.push("/studentprofile");
 		} else {
 			history.push("/teacherprofile");

@@ -27,7 +27,7 @@ const RegisterFormPage = () => {
 		teacher: false
 	});
 	const toLogin = () => {
-		alert("You need to login to make a review");
+		alert("You need to login");
 		history.push("/login");
 	};
 	//
@@ -201,7 +201,7 @@ const RegisterFormPage = () => {
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<div className="btnGroup">
-										{actions.isLogged ? (
+										{actions.isLogged() ? (
 											<button
 												onClick={() => history.push("/teacherprofile")}
 												className="button_violet_small">
@@ -209,20 +209,17 @@ const RegisterFormPage = () => {
 											</button>
 										) : (
 											<button onClick={toLogin} className="button_violet_small">
-												Ver tu perfil no
+												Ver tu perfil
 											</button>
 										)}
 										<button
-											onClick={() => history.push("/")}
+											onClick={toLogin}
 											className="button_white_border_violet_small w-56 box-sizing:  ">
 											Volver a la home
 										</button>
 									</div>
 								}
 							/>
-							<button onClick={() => actions.setUpStep()} className="button_violet_small ">
-								Siguiente
-							</button>
 						</>
 					)
 				}
