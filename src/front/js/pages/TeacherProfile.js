@@ -14,8 +14,10 @@ const TeacherProfile = () => {
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
-	const [media, setMedia] = useState(0);
-	const [avgDynanism, setAvgDynamism] = useState(0);
+	const [media, setMedia] = useState({});
+	const [mediaOthersTeachers, setMediaOthersTeachers] = useState({});
+
+	// const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
 	let teacherId = localStorage.getItem("teacher_id");
 	useEffect(() => {
@@ -35,32 +37,19 @@ const TeacherProfile = () => {
 			});
 	}, []);
 
-	// useEffect(() => {
-	// 	fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
-	// 		.then(res => res.json())
-	// 		.then(json => {
-	// 			console.log("json2", json);
-	// 			setReview(json);
-	// 			// console.log("userTeacher", userTeacher);
-	// 		});
-	// }, []);
-
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/reviews")
 			.then(res => res.json())
 			.then(json => {
 				setReview(json);
-				// console.log("userTeacher", userTeacher);
 			})
 			.catch(err => console.log("Error:", error));
 	}, []);
-	// console.log("data", data);
 	console.log("review", review);
-	// console.log(review.length > 0 ? review[0].near : "nooo");
 
 	useEffect(
 		() => {
-			const avgFaces = () => {
+			const avgTeacher = () => {
 				let dynamsim = 0;
 				let passion = 0;
 				let near = 0;
@@ -78,11 +67,23 @@ const TeacherProfile = () => {
 				}
 				const sum = dynamsim + passion + near + practises_example;
 				const avg = sum / (4 * contReviews);
+				const avgDynamism = dynamsim / contReviews;
+				const avgPassion = passion / contReviews;
+				const avgNear = near / contReviews;
+				const avgPractisesExample = practises_example / contReviews;
+				const avgTotal = {
+					avg: avg,
+					avgDynamism: avgDynamism,
+					avgPassion: avgPassion,
+					avgNear: avgNear,
+					avgPractisesExample: avgPractisesExample
+				};
 				setCount(contReviews);
-				return avg;
+				return avgTotal;
 			};
 			if (review.length > 0) {
-				setMedia(avgFaces());
+				setMedia(avgTeacher());
+				console.log("media", media);
 			}
 		},
 		[review]
@@ -90,8 +91,8 @@ const TeacherProfile = () => {
 
 	useEffect(
 		() => {
-			const valorations = () => {
-				console.log("holaaaaaaaa");
+			const avgOthersTeacher = () => {
+
 				let dynamsim = 0;
 				let passion = 0;
 				let near = 0;
@@ -99,7 +100,9 @@ const TeacherProfile = () => {
 				let contReviews = 0;
 
 				for (let i = 0; i < review.length; i++) {
-					if (review[i].teacher_id === parseInt(teacherId)) {
+
+					if (review[i].teacher_id != parseInt(teacherId)) {
+
 						dynamsim = review[i].dynamsim + dynamsim;
 						passion = review[i].pasion + passion;
 						near = review[i].near + near;
@@ -107,15 +110,23 @@ const TeacherProfile = () => {
 						contReviews++;
 					}
 				}
-				const valorDynamism = dynamsim / contReviews;
-				console.log("valordinam", valorDynamism);
-				const avg = sum / (4 * contReviews);
-				setCount(contReviews);
-				return avg;
+
+
+				const avgDynamism = dynamsim / contReviews;
+				const avgPassion = passion / contReviews;
+				const avgNear = near / contReviews;
+				const avgPractisesExample = practises_example / contReviews;
+				const avgTotal = {
+					avgDynamism: avgDynamism,
+					avgPassion: avgPassion,
+					avgNear: avgNear,
+					avgPractisesExample: avgPractisesExample
+				};
+				return avgTotal;
 			};
 			if (review.length > 0) {
-				// setAvgDynamism(valorDynamism);
-				// console.log("valordinam", avgDynanism);
+				setMediaOthersTeachers(avgOthersTeacher());
+				console.log("media others", mediaOthersTeachers);
 			}
 		},
 		[review]
@@ -150,7 +161,7 @@ const TeacherProfile = () => {
 				</div>
 				<div className="col-7 col-lg-2 mt-2 contain__1">
 					<div className="d-flex mt-5">
-						<Faces face={media} />
+						<Faces face={media.avg} />
 					</div>
 					<span className="span-reviews ml-3">{count} reviews</span>
 					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>
@@ -184,15 +195,21 @@ const TeacherProfile = () => {
 					<div className="image-valoration">
 						{/* T = teacher
 					O = others teachers */}
+						{console.log("mediaaa", media)}
+						{console.log("media others", mediaOthersTeachers)}
+						{console.log("data", data)}
 						<TeacherAssessment
-							dinamismoT={0.2}
-							dinamismoO={2}
-							pasionT={3}
-							pasionO={4}
-							exampleT={5}
-							exampleO={6}
-							inolvementT={7}
-							inolvementO={10}
+
+							name={data.full_name}
+							dinamismoT={media.avgDynamism}
+							dinamismoO={mediaOthersTeachers.avgDynamism}
+							pasionT={media.avgPassion}
+							pasionO={mediaOthersTeachers.avgPassion}
+							exampleT={media.avgPractisesExample}
+							exampleO={mediaOthersTeachers.avgPractisesExample}
+							inolvementT={media.avgNear}
+							inolvementO={mediaOthersTeachers.avgNear}
+
 						/>
 					</div>
 				</div>

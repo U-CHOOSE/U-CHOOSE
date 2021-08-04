@@ -17,7 +17,7 @@ const TeacherAssessment = props => {
 			<div className="contain1">
 				<div className="d-flex">
 					<span className="color1" />
-					<span className="name">Lucia Gómez</span>
+					<span className="name">{props.name}</span>
 				</div>
 				<div className="d-flex">
 					<span className="color2" />
@@ -71,6 +71,7 @@ const TeacherAssessment = props => {
 };
 
 TeacherAssessment.propTypes = {
+	name: PropTypes.string,
 	dinamismoT: PropTypes.number,
 	dinamismoO: PropTypes.number,
 	pasionT: PropTypes.number,
