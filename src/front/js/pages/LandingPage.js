@@ -16,7 +16,7 @@ const LandingPage = () => {
 			</div>
 			<div className="row">
 				<div className="col-sm-12 col-lg-6 mt-4 col1-desktop ">
-					<h1 className="black_h1 title">Te ayudamos a elegir dónde estudiar </h1>
+					<h3 className="title-landing">Te ayudamos a elegir dónde estudiar </h3>
 					<p className="mt-3 paragraph1">
 						Acertar con tus estudios es difícil.
 						<br />

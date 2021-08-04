@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
-import logo from "../../../../docs/assets/img/Logo-icon.png";
+import imgIcon from "../../img/imgIcon.png";
+import LogoBlack from "../../../../docs/assets/img/Logo-black.jpg";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
+import { Navbar, NavDropdown, Navmenu, Container, Button } from "react-bootstrap";
+
 
 const NavbarComp = () => {
 	const { actions, store } = useContext(Context);
@@ -53,44 +55,49 @@ const NavbarComp = () => {
 		<>
 			<Navbar bg="light" expand="lg">
 				<Container>
+
 					<Navbar.Brand>
 						<img onClick={() => history.push("/")} src={logo} alt="" />
 					</Navbar.Brand>
-					<NavDropdown className="navbar-toggler-icon">
+					<NavDropdown className="navbar-toggler-icon"  drop="left">
 						{actions.isLogged() ? (
-							<NavDropdown.Item onClick={logout} style={{ color: "red" }}>
-								<h3>Logout</h3>
+							<NavDropdown.Item onClick={logout} style={{ color: "red" }} className="d-flex justify-content-around">
+								<h4>Logout</h4>
 							</NavDropdown.Item>
 						) : (
-							<NavDropdown.Item onClick={() => history.push("/registerformpage")}>
-								<h3>Registrate</h3>
+							<NavDropdown.Item onClick={() => history.push("/registerformpage")} className="d-flex justify-content-around">
+								<h4>Registrate</h4>
 							</NavDropdown.Item>
 						)}
 
 						<br />
-						<NavDropdown.Item onClick={() => history.push("")}>
+						<NavDropdown.Item onClick={() => history.push("/searchschools")}>
 							<div className="d-flex justify-content-around ">
+
 								<BsBuilding />
 								<h4>Centros</h4>
 							</div>
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item onClick={() => history.push("/searchteachers")}>
+
 							<div className="d-flex justify-content-around ">
 								<BsFillPersonFill />
 								<h4>Profesores</h4>
 							</div>
 						</NavDropdown.Item>
 						<br />
+
 						{actions.isLogged() ? (
-							<Button className="btnNav" onClick={kindOfProfile}>
+							<Button className="btnNav w-auto" onClick={kindOfProfile}>
 								Mi perfil
 							</Button>
 						) : (
-							<Button className="btnNav" onClick={() => history.push("/login")}>
+							<Button className="btnNav w-auto" onClick={() => history.push("/login")}>
 								Login
 							</Button>
 						)}
+
 					</NavDropdown>
 					{/* </Nav>
 					</Navbar.Collapse>{" "} */}

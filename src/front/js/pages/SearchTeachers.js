@@ -20,17 +20,14 @@ const SearchTeachers = () => {
 		},
 		[!data]
 	);
-	console.log(data);
+	// console.log(data);
 
-	// const handleTeacherFindId = () => {
-	// 	fetch(process.env.BACKEND_URL + "/user_teachers")
-	// }
 	return (
 		<>
 			<Search
-				title="Buscar un professor"
+				title="Buscar un profesor"
 				placeholder="Search"
-				span1="¿No encuentras tu professor?"
+				span1="¿No encuentras tu profesor?"
 				type="user"
 				data={data}
 				onKeyPress={handleKeyPress}

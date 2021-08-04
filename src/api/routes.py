@@ -123,6 +123,20 @@ def update_one_user():
     db.session.commit()
     return jsonify(user.serialize()) ,201
 
+
+
+
+@api.route("/user/<int:id>",methods=['PUT'])
+# @jwt_required()
+def update_one_user(id):
+    print("dggfd")
+    json = request.get_json()
+    user = User.get_by_id(id)
+    print(user)
+    user.put_with_json(json)
+    db.session.commit()
+    return jsonify(user.serialize()) ,201
+
     
 @api.route('/user', methods=['GET'])
 @jwt_required()
@@ -133,15 +147,16 @@ def get_user():
     user_teacher = User_teacher.get_by_user_id(user.id)
     if user.is_student:
 
+
         return jsonify(user_student.serialize()), 200
 
     if user.is_student == False:
 
+
         return jsonify(user_teacher.serialize()), 200
-
-
     return "User didn't exist", 400
 
+    
 
 @api.route('/user', methods=['DELETE']) 
 @jwt_required()
@@ -248,8 +263,6 @@ def add_school_to_user():
 
 
 
-# @api.route('/user/schools', methods=['GET'])
-# def get_my_centers():
 
 @api.route('/review', methods=['POST'])
 def add_review_to_teacher():
@@ -257,7 +270,7 @@ def add_review_to_teacher():
     print(body)
 
     
-    teacher_id = body.get("user_id", None),
+    teacher_id = body.get("teacher_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
     practises_example = body.get("practises_example", None),
@@ -287,7 +300,10 @@ def get_all_review_to_teacher():
 def get_review_to_teacher(teacher_id):
     
     reviews = Review_teacher.get_by_id(teacher_id)
-    return jsonify(reviews.serialize()), 200
+    review_dic = []
+    for review in reviews:
+        review_dic.append(review.serialize())
+    return jsonify(review_dic), 200
 
 # user_teacher
 @api.route('/user_teachers',methods=['GET'])
@@ -319,7 +335,8 @@ def update_profile_picture():
         print(result['secure_url'], "RESULT")
         # db.session.add(user)
         db.session.commit()
-        return jsonify(user.serialize()), 200
+        
+        return jsonify(user.img), 200
     else:
         raise APIException('Missing profile_image on the FormData')
    

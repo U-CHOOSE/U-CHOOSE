@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "../../styles/editTeacher.scss";
 import { Context } from "../store/appContext";
-
+import { useHistory } from "react-router-dom";
 const EditTeacher = () => {
 	const history = useHistory();
 	const { actions, store } = useContext(Context);
@@ -32,7 +32,7 @@ const EditTeacher = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log(json);
+				console.log("data", json);
 			});
 	}, []);
 	console.log(token);
@@ -42,9 +42,9 @@ const EditTeacher = () => {
 		_password: formData._password,
 		type_of_teacher: formData.typeOfteachers,
 		linkedin: formData.linkedin
+
 	};
 
-	// };
 	const handlePut = () => {
 		const token = actions.getToken();
 		const options = {
@@ -78,11 +78,12 @@ const EditTeacher = () => {
 	};
 
 	return (
-		<div>
+
+		<div className="container-fluid cP">
 			{/* <input
 				type="file"
 				onChange={e => {
-					setImg(e.target.files);
+					handlePutImage(e.target.files);
 				}}
 			/>
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
@@ -125,53 +126,89 @@ const EditTeacher = () => {
 						value={formData.email}
 						onChange={e => setFormData({ ...formData, email: e.target.value })}
 					/>
-				</div>
-				<div className="contain-inp">
-					<label>URL de Linkedin</label>
-					<input
-						type="text"
-						placeholder={data.linkedin}
-						className="form-control input-email inp"
-						value={formData.linkedin}
-						onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
-					/>
-				</div>
-				<div className="contain-inp">
-					<label>¿De qué eres profesor?</label>
-					<input
-						type="text"
-						placeholder={data.type_of_teacher}
-						className="form-control input-email inp"
-						value={formData.typeOfteachers}
-						onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
-					/>
-				</div>
 
-				<div className="contain-inp">
-					<label>Contraseña</label>
-					<input
-						type="password"
-						className="form-control input-text inp"
-						placeholder="password"
-						value={formData._password}
-						onChange={e => setFormData({ ...formData, _password: e.target.value })}
-					/>
 				</div>
-				<div className="contain-inp">
-					<label>Repetir contraseña</label>
-					<input
-						type="password"
-						className="form-control input-password inp"
-						placeholder="passrepeat"
-						value={formData.repeatPassword}
-						onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
-					/>
-				</div>
+				<div className="col-md-4" />
 			</div>
-			<div className="div-button-save ml-3 mt-5">
-				<button className="button-save" onClick={handlePut}>
-					Guardar
-				</button>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="contain-inp">
+						<label>URL de Linkedin</label>
+						<input
+							type="text"
+							placeholder={data.linkedin}
+							className="form-control input-email inp"
+							value={formData.linkedin}
+							onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="contain-inp">
+						<label>¿De qué eres profesor?</label>
+						<input
+							type="text"
+							placeholder={data.type_of_teacher}
+							className="form-control input-email inp"
+							value={formData.typeOfteachers}
+							onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="contain-inp">
+						<label>Contraseña</label>
+						<input
+							type="password"
+							className="form-control input-text inp"
+							placeholder="password"
+							value={formData._password}
+							onChange={e => setFormData({ ...formData, _password: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="contain-inp">
+						<label>Repetir contraseña</label>
+						<input
+							type="password"
+							className="form-control input-password inp"
+							placeholder="passrepeat"
+							value={formData.repeatPassword}
+							onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+					<div className="c_s">
+						<button className="button-save" onClick={handlePut}>
+							Guardar
+						</button>
+					</div>
+				</div>
+				<div className="col-md-4" />
 			</div>
 		</div>
 	);

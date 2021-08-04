@@ -9,6 +9,11 @@ const Search = props => {
 	const handelSelect = item => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
 		localStorage.setItem("selected_item", JSON.stringify(item));
+		{
+			console.log("item", item.id);
+
+			props.type === "teacher" ? (actions.setId(item.id, item.user_id), actions.setImg(item.img)) : "";
+		}
 	};
 	//
 	useEffect(
@@ -28,6 +33,7 @@ const Search = props => {
 
 	return (
 		<>
+
 			<h1 className="violet_h1 search-title">{props.title}</h1>
 			<span className="span__"> {props.span_}</span>
 			<input
@@ -63,8 +69,10 @@ const Search = props => {
 											<img src={v.img} alt="img" />
 										</div>
 										<div className="name_container">{v[attribute]}</div>
+
 									</div>
 								</div>
+
 							</li>
 						);
 					})
@@ -84,6 +92,7 @@ const Search = props => {
 				})}
 			{props.button}
 			<span className="span__2">{props.span2}</span>
+
 		</>
 	);
 };

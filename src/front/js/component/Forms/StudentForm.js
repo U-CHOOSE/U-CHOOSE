@@ -40,15 +40,15 @@ const StudentForm = props => {
 				} else {
 					alert("failed to fetch");
 				}
-				console.log(status);
+				// console.log(status);
 				return res.json();
 			})
 			.then(json => {
 				localStorage.setItem("id_user", json.body.user_id);
 				localStorage.setItem("email", json.body.email);
 				localStorage.setItem("password", json.body._password);
-			})
-			.catch(error => console.log(error));
+			});
+		// .catch(error => console.log(error));
 	};
 	return (
 		<>
@@ -57,18 +57,18 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100"
+					className="mx-auto w-100 m-0"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
-				<br />
+
 				<span>Podras ocultarlo en tus reviews</span>
 				<br />
 
 				<input
-					className=" margin: 13px 12px 12px 10px w-100 "
+					className=" mx-auto w-100 m-3 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -76,7 +76,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" w-100 "
+					className="  mx-auto w-100 m-3  "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
@@ -84,7 +84,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" w-100 "
+					className=" mx-auto w-100 m-3 "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -100,9 +100,10 @@ const StudentForm = props => {
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
 				</span>
+				<br />
 
 				{props.footer}
-
+				<br />
 				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>

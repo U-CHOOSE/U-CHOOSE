@@ -37,11 +37,11 @@ const getState = ({ getStore, setStore }) => {
 							}
 						} else if (responseJson.error) {
 							setStore({ error: responseJson.error });
-							console.log(responseJson.error);
+							// console.log(responseJson.error);
 						}
 					})
 					.catch(error => {
-						console.error("Error:", error);
+						// console.error("Error:", error);
 					});
 			},
 
@@ -50,6 +50,19 @@ const getState = ({ getStore, setStore }) => {
 				let updateReviews = { ...reviews, [skill]: value };
 				setStore({ reviews: updateReviews });
 			},
+			//id teacher + id user +
+			setId: (idTeacher, userID) => {
+				setStore({
+					idTeacher: idTeacher,
+					userId: userID
+				});
+			},
+
+			setImg: img => {
+				setStore({
+					userImg: img
+				});
+			},
 
 			setError: error => {
 				setStore({ error: error });
@@ -57,14 +70,14 @@ const getState = ({ getStore, setStore }) => {
 			get_all: type => {
 				fetch(process.env.BACKEND_URL + type + "/")
 					.then(res => res.json())
-					.then(data => setStore({ [type]: data }))
-					.catch(error => console.log(error));
+					.then(data => setStore({ [type]: data }));
+				// .catch(error => console.log(error));
 			},
 
 			setUpStep: () => {
 				const store = getStore();
 				setStore({ step: store.step + 1 });
-				console.log("store", store);
+				// console.log("store", store);
 			},
 			setDownStep: () => {
 				const store = getStore();
@@ -94,7 +107,7 @@ const getState = ({ getStore, setStore }) => {
 
 			exampleFunction: () => {
 				// getActions().changeColor(0, "green");
-				console.log("Esta");
+				// console.log("Esta");
 			},
 			setId: (idTeacher, userID) => {
 				setStore({
@@ -109,7 +122,8 @@ const getState = ({ getStore, setStore }) => {
 				});
 			},
 			get_img: img => {
-				console.log(img, "image llegando al flux");
+				// console.log(img, "image llegando al flux");
+				// setStore({ userImg: img });
 				let body;
 				const store = getStore();
 				body = new FormData();
@@ -127,13 +141,18 @@ const getState = ({ getStore, setStore }) => {
 							throw Error("I can't upload picture!");
 						}
 						return response.json();
-						console.log(response);
+						// console.log(userImg);
+					})
+					.then(data => {
+						// console.log("data1", data);
+						setStore({ userImg: data });
 					})
 					.then(data => setStore({ userImg: data.img }))
 					.catch(function(error) {
-						console.log("Looks like there was a problem: \n", error);
+						// console.log("Looks like there was a problem: \n", error);
 					});
 			},
+
 
 			setCurrentUser: user => {
 				setStore({ is_student: user });

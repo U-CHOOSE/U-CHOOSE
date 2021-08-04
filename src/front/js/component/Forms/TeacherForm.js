@@ -49,11 +49,15 @@ const TeacherForm = props => {
 				} else {
 					alert("failed to fetch");
 				}
-				console.log(status);
+				// console.log(status);
 				return res.json();
 			})
-			.then(json => console.log(json))
-			.catch(error => console.log(error));
+			.then(json => {
+				// console.log(json.teacher.user_id);
+				localStorage.setItem("id_user", json.teacher.user_id);
+				localStorage.setItem("teacher_id", json.teacher.id);
+			});
+		// .catch(error => console.log(error));
 	};
 
 	return (
@@ -74,35 +78,35 @@ const TeacherForm = props => {
 				<span>Podras ocultarlo en tus reviews</span>
 				<br />
 				<input
-					className="mx-auto w-100"
+					className=" mx-auto w-100 m-3 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
 				<input
-					className="mx-auto w-100"
+					className=" mx-auto w-100 m-3 "
 					type="text"
 					placeholder="¿De qué eres profesor?"
 					value={formData.typeOfteachers}
 					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
-					className="mx-auto w-100"
+					className=" mx-auto w-100 m-3 "
 					type="text"
 					placeholder="¿URL Linkedin...?"
 					value={formData.linkedin}
 					onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
 				/>
 				<input
-					className="mx-auto w-100"
+					className=" mx-auto w-100 m-3 "
 					type="password"
 					placeholder="Contraseña"
 					value={formData._password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
-					className="mx-auto w-100"
+					className=" mx-auto w-100 m-3 "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -118,9 +122,10 @@ const TeacherForm = props => {
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
 				</span>
+
 				<br />
 				{props.footer}
-
+				<br />
 				<button className="button_violet_great" onClick={handleCreate}>
 					Crear Cuenta
 				</button>

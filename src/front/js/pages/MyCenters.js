@@ -56,6 +56,7 @@ const MyCenters = () => {
 			.then(json => console.log(json))
 			.catch(error => console.log(error));
 	};
+
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
@@ -80,6 +81,7 @@ const MyCenters = () => {
 				<button className="student-button2" onClick={updateSchools}>
 					Guardar
 				</button>
+
 			</div>
 		</>
 	);

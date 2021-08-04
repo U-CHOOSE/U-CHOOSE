@@ -12,6 +12,30 @@ const StudentProfile = () => {
 		_password: "",
 		repeatPassword: ""
 	});
+
+
+	const [img, setImg] = useState("");
+	const [data, setData] = useState("");
+	const user_id = localStorage.getItem("id_user");
+
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				actions.setImg(json.img);
+				// console.log("json", json);
+			});
+	}, []);
+	// console.log(user_id);
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password
+	};
+
+	// };
+
 	const handlePut = () => {
 		const token = actions.getToken();
 		const options = {
@@ -23,18 +47,21 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
+
 		fetch(process.env.BACKEND_URL + "/user_put", options)
+
 			.then(res => {
-				console.log(res);
+				// console.log(res);
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
 				} else {
 					alert("failed to fetch");
 				}
-				console.log(status);
+				// console.log(status);
 				return res.json();
 			})
+
 			.then(json => setFormData(json));
 		window.location.reload();
 		// .catch(error => console.log(error));
@@ -97,6 +124,7 @@ const StudentProfile = () => {
 	// 	window.location.reload();
 	// };
 	// console.log(data);
+
 
 	const handlePutImage = img => {
 		actions.get_img(img);
@@ -187,6 +215,7 @@ const StudentProfile = () => {
 							onChange={e => setFormData({ ...formData, _password: e.target.value })}
 						/>
 					</div>
+
 				</div>
 				<div className="col-md-4" />
 			</div>
@@ -211,6 +240,25 @@ const StudentProfile = () => {
 			<div className="row">
 				<div className="col-md-4" />
 				<div className="col-12 col-md-4">
+
+					<div className="contain-inp">
+						<label>Repetir contraseña</label>
+						<input
+							type="password"
+							className="form-control input-password inp"
+							placeholder="passrepeat"
+							value={formData.repeatPassword}
+							onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+
 					<div className="c_s">
 						<button className="button-save" onClick={handlePut}>
 							Guardar

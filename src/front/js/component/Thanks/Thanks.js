@@ -6,7 +6,7 @@ const Thanks = props => {
 	return (
 		<>
 			<div>
-				<img className="registroOk" src={registro_ok} />
+				<img className="registroOk img-responsive" src={registro_ok} />
 			</div>
 			<div>
 				{" "}

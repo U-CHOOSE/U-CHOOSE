@@ -6,7 +6,9 @@ import Search from "../component/Search/Search";
 import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
-import { BsBoxArrowInLeft } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
+import "../../styles/index.scss";
+
 
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
@@ -64,46 +66,67 @@ const RegisterFormPage = () => {
 			.catch(error => console.log(error));
 	};
 
+
 	if (store.step === 0) {
 		return (
 			<>
-				{/* <button onClick={() => setShow(!show)}>Modal</button> */}
-				<h1 className="violet_h1_forms">Registro</h1>
-				<h2>¿Cómo quieres colaborar con u-choose?</h2>
-				<label className="container" htmlFor="student">
-					<input
-						type="radio"
-						value={true}
-						id="student"
-						checked={checked.student}
-						onClick={() =>
-							setChecked({
-								teacher: false,
-								student: !checked.student
-							})
+				{/* <button onClick={() => setShow(!show)} /> */}
+				{show ? (
+					<Modal
+						cross={
+							<div className="text-center w-100" onClick={() => setShow(!show)}>
+								{" "}
+								<button type="button" className="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>{" "}
+							</div>
+						}
+						body={
+							<>
+								<h1 className="violet_h1_forms">Registro</h1>
+								<h5 className="colaborarUchoose">
+									¿Cómo quieres colaborar con <br />
+									u-choose?
+								</h5>
+								<label className="container mx-auto" htmlFor="student">
+									<input
+										type="radio"
+										value={true}
+										id="student"
+										checked={checked.student}
+										onClick={() =>
+											setChecked({
+												teacher: false,
+												student: !checked.student
+											})
+										}
+									/>
+									Soy alumno
+								</label>
+								<label className="container" htmlFor="teacher">
+									<input
+										type="radio"
+										value={true}
+										id="teacher"
+										checked={checked.teacher}
+										onClick={() =>
+											setChecked({
+												teacher: !checked.teacher,
+												student: false
+											})
+										}
+									/>
+									Soy profesor
+								</label>
+								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
+									Siguiente
+								</button>
+							</>
 						}
 					/>
-					Soy alumno
-				</label>
-				<label className="container" htmlFor="teacher">
-					<input
-						type="radio"
-						value={true}
-						id="teacher"
-						checked={checked.teacher}
-						onClick={() =>
-							setChecked({
-								teacher: !checked.teacher,
-								student: false
-							})
-						}
-					/>
-					Soy professor
-				</label>
-				<button onClick={() => actions.setUpStep()} className="button_violet_small register">
-					Siguiente
-				</button>
-				: ""
+				) : (
+					""
+				)}
 			</>
 		);
 	} else if (store.step === 1) {
@@ -113,7 +136,7 @@ const RegisterFormPage = () => {
 				arrow={
 					<div onClick={() => actions.setDownStep()}>
 						{" "}
-						<BsBoxArrowInLeft />{" "}
+						<BsArrowLeft />{" "}
 					</div>
 				}
 				body={checked.student === true ? <StudentForm /> : <TeacherForm />}
@@ -125,12 +148,13 @@ const RegisterFormPage = () => {
 				cross={<div onClick={() => setShow(!show)} />}
 				arrow={
 					<div onClick={() => actions.setDownStep()}>
-						<BsBoxArrowInLeft />{" "}
+						<BsArrowLeft />{" "}
 					</div>
 				}
 				body={
 					checked.student === true ? (
 						<Search
+							className="btnSearch"
 							title="¿Dónde has estudiado?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
@@ -145,7 +169,7 @@ const RegisterFormPage = () => {
 						/>
 					) : (
 						<Search
-							className="titleSearch"
+							className="btnSearch"
 							title="¿Dónde has dado clase?"
 							placeholder="Busca un centro"
 							span1="¿No encuentras tu centro?"
@@ -168,7 +192,7 @@ const RegisterFormPage = () => {
 				arrow={
 					<div onClick={() => actions.setDownStep()}>
 						{" "}
-						<BsBoxArrowInLeft />
+						<BsArrowLeft />
 					</div>
 				}
 				body={
@@ -176,9 +200,10 @@ const RegisterFormPage = () => {
 						<>
 							<Thanks
 								className=" Thanks1"
-								subtitle="Has completado tu registro, ya puedes comenzar a escribir reviews"
+								subtitle2="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
+
 										<span onClick={() => actions.setUpStep()}> Ahora no</span>
 										{actions.isLogged() ? (
 											<button
@@ -191,6 +216,7 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										)}
+
 									</>
 								}
 							/>
@@ -204,22 +230,28 @@ const RegisterFormPage = () => {
 										{actions.isLogged() ? (
 											<button
 												onClick={() => history.push("/teacherprofile")}
-												className="button_violet_small">
+												className="button_white_border_violet_small2  w-100">
 												Ver tu perfil
 											</button>
 										) : (
-											<button onClick={toLogin} className="button_violet_small">
+											<button onClick={toLogin} className="button_white_border_violet_small2  w-100">
 												Ver tu perfil
 											</button>
 										)}
+
 										<button
-											onClick={toLogin}
-											className="button_white_border_violet_small w-56 box-sizing:  ">
+											onClick={() => history.push("/")}
+											className="button_white_border_violet_small2  w-100">
 											Volver a la home
 										</button>
 									</div>
 								}
 							/>
+
+							<button onClick={() => actions.setUpStep()} className="button_marino_small2 ">
+								Siguiente
+							</button>
+
 						</>
 					)
 				}
@@ -229,8 +261,13 @@ const RegisterFormPage = () => {
 		return (
 			<>
 				<Modal
-					cross={<div onClick={() => setShow(!show)}> X </div>}
-					arrow={<div onClick={() => actions.setDownStep()}> back </div>}
+					cross={<div onClick={() => setShow(!show)}> </div>}
+					arrow={
+						<div onClick={() => actions.setDownStep()}>
+							{" "}
+							<BsArrowLeft />
+						</div>
+					}
 					body={
 						<>
 							<Thanks
@@ -245,7 +282,7 @@ const RegisterFormPage = () => {
 										<button
 											onClick={() => history.push("/searchteachers")}
 											className="button_white_border_violet_great">
-											Buscar professores
+											Buscar profesores
 										</button>
 									</>
 								}

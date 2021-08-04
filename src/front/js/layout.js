@@ -10,24 +10,19 @@ import SearchTeachers from "./pages/SearchTeachers";
 import Login from "./pages/Login";
 import MyCenters from "./pages/MyCenters";
 import RegisterFormPage from "./pages/RegisterFormPage";
-
 import ReviewTeacher from "./pages/ReviewTeacher";
-
 import Sass from "./pages/Sass";
-
 import TeacherProfile from "./pages/TeacherProfile";
-
+import MyCenters from "./pages/MyCenters";
 import EditTeacher from "./pages/EditTeacher";
-
 import StudentProfile from "./pages/StudentProfile";
-
 //components
 import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
-
 //Scss
 import "../styles/index.scss";
+
 
 //create your first component
 const Layout = () => {
@@ -48,9 +43,6 @@ const Layout = () => {
 						<Route exact path="/searchteachers">
 							<SearchTeachers />
 						</Route>
-						{/* <Route exact path="/searchteachers">
-							<SearchTeachers />
-						</Route> */}
 						<Route exact path="/login">
 							<Login />
 						</Route>
@@ -59,6 +51,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/reviewteacher">
 							<ReviewTeacher />
+						</Route>
+						<Route exact path="/mycenters">
+							<MyCenters />
 						</Route>
 						<Route exact path="/teacherprofile">
 							<TeacherProfile />

@@ -10,34 +10,7 @@ const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
-	console.log(store.step);
 
-	// const checkingLogged = () => {
-	// 	if (actions.isLogged() && store.is_student.is_student) {
-	// 		history.push("/review");
-	// 	} else {
-	// 		history.push("/");
-	// 	}
-	// };
-
-	// useEffect(
-	// 	() => {
-	// 		if (actions.isLogged() === true && store.is_student) {
-	// 			store.step = 3;
-	// 			history.push("/registerformpage");
-	// 		}
-	// 	},
-	// 	[actions.isLogged()]
-	// );
-
-	// useEffect(
-	// 	() => {
-	// 		if (store.token != "" && store.token != undefined) {
-	// 			history.push("/");
-	// 		}
-	// 	},
-	// 	[store.token]
-	// );
 
 	useEffect(
 		() => {
@@ -50,37 +23,38 @@ const Login = () => {
 	);
 
 	return (
-		<div>
-			{/* <navbar/> */}
-			<Link className="links" to={"/"}>
-				<FontAwesomeIcon className="icon-x" icon={faTimes} />
-			</Link>
-
-			<h1 className="title_login">Acceder</h1>
-			<form>
-				<div className="form-group ">
-					<input
-						type="email"
-						className="form-control input__email mt-5"
-						aria-describedby="emailHelp"
-						placeholder="Email"
-						onChange={event => SetEmail(event.target.value)}
-					/>
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-12">
+					<h1 className="title_login mx-auto">Acceder</h1>
 				</div>
-				<div className="form-input contain-input2">
+			</div>
+
+			<div className="row ">
+				<div className="col-12">
+					<div className="form-group mt-5">
+						<input
+							type="email"
+							className="form-control input__email  mx-auto input_login"
+							aria-describedby="emailHelp"
+							placeholder="Email"
+							onChange={event => SetEmail(event.target.value)}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12">
 					<input
 						type="password"
-						className="form-control input-pass mt-3"
+						className="form-control input-pass mt-3 mx-auto input_login"
 						id="exampleInputPassword1"
 						placeholder="Contraseña"
 						onChange={event => SetPassword(event.target.value)}
 					/>
 				</div>
-				<a className="link" href="#">
-					¿Olvidaste tu contraseña?
-				</a>
-				<br />
-
+			</div>
 				<button
 					type="submit"
 					className=" btn-login"
@@ -92,6 +66,7 @@ const Login = () => {
 					Iniciar sesión
 				</button>
 			</form>
+
 		</div>
 	);
 };

@@ -1,54 +1,47 @@
-.button__search {
-    background: #6DEDE3;
-    color: black;
-    margin-top: 50px;
-    margin-bottom:50px;
-}
-.span__ {
-    width: 350px;
-    padding-left: 50px;
-    margin-top: -20px;
-}
-.input-searchbar {
-    margin-top: 70px;
-}
-.input-searchbar::placeholder {
-    width: 80%;
-}
-.reviewTeacher2 span {
-    width: 320px;
-    height: 56px;
+.reviewTeacher2 .span__ {
     text-align: center;
+    display: block;
     margin: auto;
-    margin-left: -30px;
-    margin-top: -30px;
 }
-
-.step-8 textarea {
-    width: 343px;
-    height: 161px;
-    background: #EFF0F7;
-    border: none;
-    border-radius: 16px;
+.cont_name_img {
+    height: 68px;
+}
+.cont_name_img img{
+    border-radius: 50%;
+}
+.teacher__fullname {
     font-family: Poppins;
     font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 28px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
     letter-spacing: 0.75px;
-    color: #A0A3BD;
+    color: #6E7191;
 }
-.reviewTeacher1 span {
-    margin-top: -50px;
+.teacher__typeteacher {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+    color: #6E7191;
 }
-.reviewTeacher1 .input-searchbar {
-    margin-top:40px;
+.button__search {
+    margin-top:-50px;
+    background: #6DEDE3;
+    color:black;
+}
+.reviewTeacher2 button {
+    display: block;
+    margin: auto;
 }
 .dropdown {
     width: 343px;
     height: 56px;
     background: #EFF0F7;
     border-radius: 15px;
+    margin: auto;
 }
 .options {
     width: 100px;
@@ -89,4 +82,217 @@
     color: #4E4B66;
     margin-top: 25px;
 }
+.step-9 img {
+    max-width: 100%;
+}
+
+
+// moviles muy pequeñoas
+@media (max-width: 360px){
+    .cont_name_img {
+        justify-content: center;
+        align-items: center;
+    }
+    .cont_name_img img{
+        width: 70px;
+        height: 70px;
+        margin-left: -40px;
+       
+        
+    }
+    .reviewTeacher2 button {
+        width: 150px;
+        margin-top: 100px;
+    }
+    .step-8 textarea {
+        width: 80% !important;
+    }
+    .step-9 p {
+        font-size: 14px;
+        
+    }
+    
+}
+// moviles pequeños
+@media (min-width: 361px) and (max-width: 667px) {
+    .cont_name_img {
+        justify-content: center;
+        align-items: center;
+    }
+    .cont_name_img img{
+        width: 70px;
+        height: 70px;
+        margin-left: -50px;
+        margin-right: 50px;
+        
+    }
+    .reviewTeacher2 button {
+        width: 170px;
+        margin-top: 100px;
+    }
+    
+
+}
+//moviles grandes
+@media (min-width: 668px) and (max-width: 767px) {
+    .cont_name_img {
+        justify-content: center;
+        align-items: center;
+    }
+    .cont_name_img img{
+        width: 100px;
+        height: 100px;
+        margin-left: -150px;
+        margin-right: 50px;
+    }
+    .reviewTeacher2 button {
+        width: 170px;
+        margin-top: 120px;
+        padding-bottom: -160px
+
+    }
+}
+// tablets
+@media (min-width: 768px) and (max-width: 991px) {
+    .cont_name_img {
+        justify-content: center;
+        align-items: center;
+    }
+    .cont_name_img img{
+        width: 120px;
+        height: 120px;
+        margin-left: -150px;
+        margin-right: 50px;
+    }
+    .reviewTeacher2 button {
+        margin-top: 130px;
+      
+    }
+    .step-9 h1 {
+        font-size: 36px;
+    }
+}
+// ordenadores
+@media (min-width: 992px) {
+    .cont_name_img {
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+    }
+    .cont_name_img img{
+        width: 150px;
+        height: 150px;
+        margin-left: -150px;
+        margin-right: 50px;
+    }
+    .span__0 {
+        margin-top: 50px;
+    }
+    .reviewTeacher2 button {
+        margin-top: 150px;
+        margin-bottom: 60px;
+    }
+    .step-8 textarea {
+        width: 400px !important;
+        height: 180px !important;
+        margin-bottom: -50px;
+        
+    }
+    .step-9 h1 {
+        font-size: 45px;
+    }
+    .step-9 p {
+        font-size: 20px;
+        
+    }
+    .step-9 img {
+        width: 400px;
+    }
+      
+}
+
+
+
+
+
+
+// .button__search {
+//     background: #6DEDE3;
+//     color: black;
+//     margin-top: 50px;
+//     margin-bottom:50px;
+// }
+// .span__ {
+//     width: 350px;
+//     // padding-left: 50px;
+//     margin-top: -20px;
+// }
+// .contain__search .input-searchbar {
+//     margin-top: 70px;
+// }
+// .contain__search .input-searchbar::placeholder {
+//     width: 80%;
+// }
+// .reviewTeacher2 {
+//     width: 360px;
+//     display: block;
+//     margin: auto;
+//     border: 1px solid red;
+// }
+
+// }
+// .reviewTeacher2 .button__search {
+//     display: block;
+//     margin: auto;
+// }
+
+.step-8 textarea {
+    width: 343px;
+    height: 161px;
+    background: #EFF0F7;
+    border: none;
+    border-radius: 16px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color: #A0A3BD;
+}
+// .reviewTeacher1 span {
+//     margin-top: -50px;
+// }
+// .reviewTeacher1 .input-searchbar {
+//     margin-top:40px;
+// }
+
+// .contain__search .search-title {
+//     width: 333px;
+//     height: 36px;
+//     margin-bottom: 24px;
+    
+// }
+// .contain__search  .container___search .span__ {
+//     display: block;
+//     margin-left: -20px !important;
+
+// }
+// .contain__search .container___search .input-searchbar {
+//     margin-top: 80px;
+// }
+// .contain__search .container___search .span__{
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 16px;
+//     line-height: 28px;
+//     text-align: center;
+//     letter-spacing: 0.75px;
+//     color: #4E4B66;
+//     display: block;
+//     margin: auto;
+
+
+// }
 
