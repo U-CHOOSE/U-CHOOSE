@@ -35,14 +35,16 @@ text-align: center;
 letter-spacing: 0.75px;
 }
 
-label{
+label {
+margin: auto;
 font-family: Poppins;
 font-style: normal;
 font-weight: normal;
 font-size: 20px;
 line-height: 32px;
-display: flex;
-align-items: center;
+// display: flex;
+// justify-content: center;
+// align-items: center;
 letter-spacing: 0.75px;
 color: #000000;
 }

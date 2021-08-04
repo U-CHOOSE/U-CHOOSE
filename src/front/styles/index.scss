@@ -213,11 +213,29 @@ font-size: initial;
     width: 375px;}
 
 .colaborarUchoose{
+    text-align: center;
     font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     border-radius: 40px
 
+}
+
+.button_violet_small_register{
+
+        color: white;
+         height: 3em;
+          width: 21em;
+        margin-bottom: 15px;
+        background-color: #7a6fc5;
+        border-radius: 40px;
+        // font-weight: 600;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        border-radius: 40px;
+        border-radius: 40px;
+        border: none;
 }
 
 .dropdown-toggle::after {
@@ -229,4 +247,14 @@ font-size: initial;
     // border-right: 0.3em solid transparent;
     // border-bottom: 0;
     // border-left: 0.3em solid transparent;
+}
+
+.modal-dialog {
+  width:auto;
+ height: auto;
+  margin: 10em;
+  border:1px solid black;
+  display: flex; 
+  justify-content: center;  
+//   flex-flow:row wrap-reverse;
 }

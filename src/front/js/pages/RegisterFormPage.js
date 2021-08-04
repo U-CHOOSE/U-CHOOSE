@@ -81,13 +81,15 @@ const RegisterFormPage = () => {
 						}
 						body={
 							<>
-								<h1 className="violet_h1_forms">Registro</h1>
-								<h5 className="colaborarUchoose">
+								<h1 className="violet_h1_forms mx-auto">Registro</h1>
+								<h5 className="colaborarUchoose mx-auto">
 									¿Cómo quieres colaborar con <br />
 									u-choose?
 								</h5>
-								<label className="container mx-auto" htmlFor="student">
+								<br />{" "}
+								<label className="containerLabel" htmlFor="student">
 									<input
+										className="input mx-auto"
 										type="radio"
 										value={true}
 										id="student"
@@ -101,8 +103,10 @@ const RegisterFormPage = () => {
 									/>
 									Soy alumno
 								</label>
-								<label className="container" htmlFor="teacher">
+								<label className="containerLabel" htmlFor="teacher">
+									<br />{" "}
 									<input
+										className="input mx-auto"
 										type="radio"
 										value={true}
 										id="teacher"
@@ -116,7 +120,8 @@ const RegisterFormPage = () => {
 									/>
 									Soy profesor
 								</label>
-								<button onClick={() => actions.setUpStep()} className="button_violet_small register">
+								<br /> <br />{" "}
+								<button onClick={() => actions.setUpStep()} className="button_violet_small_register ">
 									Siguiente
 								</button>
 							</>

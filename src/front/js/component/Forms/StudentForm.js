@@ -54,10 +54,10 @@ const StudentForm = props => {
 		<>
 			<div>
 				<div>
-					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
+					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100 m-0"
+					className="mx-auto w-100 p-3"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -65,10 +65,9 @@ const StudentForm = props => {
 				/>
 
 				<span>Podras ocultarlo en tus reviews</span>
-				<br />
 
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100  m-3 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
