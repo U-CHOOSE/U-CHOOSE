@@ -28,21 +28,27 @@ class User(db.Model):
     
 
     def serialize(self):
-        print(self.id, "id")
-        user_teacher = User_teacher.get_by_user_id(self.id)
-        print("ffsdfd")
-        print(user_teacher)
-        return {
+
+        
+        
+        user = {
+
             "id": self.id,
             "full_name":self.full_name,
             "email": self.email,
             "is_student":self.is_student,
             "sign_completed":self.sign_completed,
             "img":self.img,
-            "type_of_teacher": user_teacher.type_of_teacher,
-            "linkedin": user_teacher.linkedin,
-            
         }
+
+        if not self.is_student :
+            user_teacher = User_teacher.get_by_user_id(self.id)
+                           
+            user["type_of_teacher"] =  user_teacher.type_of_teacher
+            user["linkedin"] =  user_teacher.linkedin
+            
+        return user
+        
 
     @classmethod
     def add(cls,email,_password,is_student,promo,full_name,sign_completed):
@@ -61,12 +67,21 @@ class User(db.Model):
 
 
     def put_with_json(self,json):
-        if json["full_name"] is not None:
+
+        print(json)
+        user_teacher = User_teacher.get_by_user_id(self.id)
+        if json["full_name"]:
             self.full_name = json["full_name"]
-        if json["email"] is not None:
+        if json["email"]:
             self.email = json["email"]
-        if json["_password"] is not None:
+        if json["_password"]:
             self._password = json["_password"]
+        if "type_of_teacher" in json:
+            user_teacher.type_of_teacher = json["type_of_teacher"]
+        if "linkedin" in json :
+            user_teacher.linkedin = json["linkedin"]
+
+
 
 
 
@@ -184,7 +199,7 @@ class User_student(db.Model):
         user = User.get_by_id(self.user_id)
         return {
             "id": self.id,
-            "user_id":self.id,
+            "user_id":self.user_id,
             "is_student": user.is_student,
             "email": user.email,
             "full_name": user.full_name,
@@ -284,6 +299,11 @@ class User_school(db.Model):
     def add(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def get_by_user_id(cls, user):
+        user_company = cls.query.filter_by(user_id=user).first()
+        return user_company
 
 
 class Review_teacher(db.Model):
