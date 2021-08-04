@@ -307,20 +307,23 @@ def get_all_teachers():
 @jwt_required()
 def update_profile_picture():
     print(request.files,"FILES")
-    if 'profile_picture' in request.files:
-        # upload file to uploadcare
-        identity = get_jwt_identity()
-        result = cloudinary.uploader.upload(request.files['profile_picture'])
-        # fetch for the user
-        user = User.get_by_id(identity)
-        # update the user with the given cloudinary image URL
-        user.img = result['secure_url']
-        print(result['secure_url'], "RESULT")
-        # db.session.add(user)
-        db.session.commit()
-        return jsonify(user.serialize()), 200
-    else:
-        raise APIException('Missing profile_image on the FormData')
+
+    print("fwewefwe")
+    # upload file to uploadcare
+    identity = get_jwt_identity()
+    print("1")
+    result = cloudinary.uploader.upload(request.files['profile_picture'])
+    # fetch for the user
+    print("2")
+    user = User.get_by_id(identity)
+    print("3")# update the user with the given cloudinary image URL
+    user.img = result['secure_url']
+    
+    print(result['secure_url'], "RESULT")
+    # db.session.add(user)
+    db.session.commit()
+    return jsonify(user.serialize()), 200
+   
 
 
 #user_school

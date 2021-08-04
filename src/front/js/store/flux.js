@@ -113,7 +113,8 @@ const getState = ({ getStore, setStore }) => {
 				let body;
 				const store = getStore();
 				body = new FormData();
-				body.append("profile_picture", img[0]);
+				body.append("profile_picture", img);
+				console.log(img);
 				fetch(process.env.BACKEND_URL.concat("/profilepicture"), {
 					body: body,
 					headers: {

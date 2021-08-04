@@ -71,6 +71,9 @@ const EditTeacher = () => {
 		// .catch(error => console.log(error));
 	};
 	console.log(data);
+	const handlePutImage = img => {
+		actions.get_img(img);
+	};
 
 	return (
 		<div>
@@ -83,7 +86,16 @@ const EditTeacher = () => {
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
 			<div className="student-contain1">
-				<img className="img-profile" src={data.img} alt="img" />
+				<label htmlFor="upload-photo">
+					<img className="img-profile" src={store.userImg} alt="img" />
+				</label>
+				<input
+					type="file"
+					onChange={e => {
+						handlePutImage(e.target.files);
+					}}
+					id="upload-photo"
+				/>
 
 				<button className="student-button1" onClick={() => history.push("/mycenters")}>
 					Mis centros

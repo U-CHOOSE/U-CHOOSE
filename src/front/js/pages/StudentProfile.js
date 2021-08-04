@@ -106,7 +106,7 @@ const StudentProfile = () => {
 				<div className="col-md-2" />
 				<div className="col-4 col-md-4">
 					<label htmlFor="upload-photo">
-						<img className="img-profilee" src={store.userImg} alt="img" />
+						<img className="img-profile" src={store.userImg} alt="img" />
 					</label>
 					<input
 						type="file"
