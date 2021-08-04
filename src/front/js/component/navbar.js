@@ -26,8 +26,6 @@ const NavbarComp = () => {
 					<Navbar.Brand href="#home">
 						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
 						{/* <img onClick={() => history.push("/")} src={LogoBlack} alt="" /> */}
-
-						{/* <span className="navbar-toggler-icon" />{" "} */}
 					</Navbar.Brand>
 					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
 					<Navbar.Collapse id="basic-navbar-nav">
