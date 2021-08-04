@@ -7,6 +7,7 @@ import Thanks from "../component/Thanks/Thanks";
 import StudentForm from "../component/Forms/StudentForm";
 import TeacherForm from "../component/Forms/TeacherForm";
 import { BsArrowLeft } from "react-icons/bs";
+import "../../styles/index.scss";
 
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
@@ -69,7 +70,7 @@ const RegisterFormPage = () => {
 				{show ? (
 					<Modal
 						cross={
-							<div className="text-right w-100" onClick={() => setShow(!show)}>
+							<div className="text-center w-100" onClick={() => setShow(!show)}>
 								{" "}
 								<button type="button" className="close" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -79,8 +80,11 @@ const RegisterFormPage = () => {
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
-								<h5 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h5>
-								<label className="container" htmlFor="student">
+								<h5 className="colaborarUchoose">
+									¿Cómo quieres colaborar con <br />
+									u-choose?
+								</h5>
+								<label className="container mx-auto" htmlFor="student">
 									<input
 										type="radio"
 										value={true}

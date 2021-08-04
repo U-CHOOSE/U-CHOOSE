@@ -30,7 +30,7 @@ const NavbarComp = () => {
 					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto"> */}
-					<h5 className="registrate">Registrate</h5>
+					{/* <h5 className="registrate">Registrate</h5> */}
 					<NavDropdown className=" navbar-toggler-icon" drop="left">
 						{/* <span className="navbar-toggler-icon" /> */}
 
@@ -38,7 +38,7 @@ const NavbarComp = () => {
 							className="d-flex justify-content-around"
 							href=""
 							onClick={() => history.push("/registerformpage")}>
-							<h3>Registrate</h3>
+							<h4>Registrate</h4>
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/searchschools")}>
