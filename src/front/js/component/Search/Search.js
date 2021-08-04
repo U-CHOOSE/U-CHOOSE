@@ -24,6 +24,7 @@ const Search = props => {
 		attribute = "name";
 	}
 	console.log(data, props.data);
+	console.log(props.mySchools, "myschools search");
 
 	return (
 		<>
@@ -37,7 +38,6 @@ const Search = props => {
 				onKeyPress={props.onKeyPress}
 			/>
 			<span> {props.span1}</span>
-
 			{data && select === "" && searchItem !== "" ? (
 				data
 					.filter(v => {
@@ -53,7 +53,12 @@ const Search = props => {
 						return (
 							<li key={i}>
 								<div>
-									<div onClick={() => handelSelect(v)} className="image_name_container">
+									<div
+										onClick={() => {
+											handelSelect(v);
+											console.log(v, "select");
+										}}
+										className="image_name_container">
 										<div className="img_container">
 											<img src={v.img} alt="img" />
 										</div>
@@ -65,8 +70,18 @@ const Search = props => {
 					})
 			) : (
 				<div>{select}</div>
-			)}
-
+			)}{" "}
+			{props.mySchools &&
+				props.mySchools.map((v, i) => {
+					return (
+						<div key={i}>
+							<div className="img_container">
+								<img src={v.img} alt="img" />
+							</div>
+							<div className="name_container">{v.name}</div>
+						</div>
+					);
+				})}
 			{props.button}
 			<span className="span__2">{props.span2}</span>
 		</>

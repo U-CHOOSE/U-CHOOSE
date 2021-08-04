@@ -190,7 +190,7 @@ def get_all_schools():
 @jwt_required()
 def get_all_schools_of_user():
     identity = get_jwt_identity()
-    user = User.get_by_id(indentity)
+    user = User.get_by_id(identity)
     if user.school is None:
         return "this user didn't have school" , 400
     schools = user.school

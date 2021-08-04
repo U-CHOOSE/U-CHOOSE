@@ -289,6 +289,11 @@ class User_school(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @classmethod
+    def get_by_user_id(cls, user):
+        user_company = cls.query.filter_by(user_id=user).first()
+        return user_company
+
 
 class Review_teacher(db.Model):
     __tablename__ = 'review_teacher'
