@@ -2,7 +2,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //pages
 import LandingPage from "./pages/LandingPage";
 import SearchSchools from "./pages/SearchSchools";
@@ -10,7 +9,6 @@ import SearchTeachers from "./pages/SearchTeachers";
 import Login from "./pages/Login";
 import RegisterFormPage from "./pages/RegisterFormPage";
 import ReviewTeacher from "./pages/ReviewTeacher";
-import Sass from "./pages/Sass";
 import TeacherProfile from "./pages/TeacherProfile";
 import MyCenters from "./pages/MyCenters";
 import EditTeacher from "./pages/EditTeacher";
