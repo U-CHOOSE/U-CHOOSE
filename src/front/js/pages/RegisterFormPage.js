@@ -9,6 +9,7 @@ import TeacherForm from "../component/Forms/TeacherForm";
 import { BsArrowLeft } from "react-icons/bs";
 import "../../styles/index.scss";
 
+
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
@@ -17,16 +18,22 @@ const RegisterFormPage = () => {
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
 			.then(res => res.json())
-			.then(data => setData(data))
+			.then(data => {
+				setData(data);
+				console.log(data);
+			})
 			.catch(err => console.log(err));
 	}, []);
 	const [checked, setChecked] = useState({
 		student: false,
 		teacher: false
 	});
-
+	const toLogin = () => {
+		alert("You need to login");
+		history.push("/login");
+	};
 	//
-
+	console.log("is_logged", actions.isLogged());
 	console.log(data);
 	const handlePut = () => {
 		console.log();
@@ -59,9 +66,6 @@ const RegisterFormPage = () => {
 			.catch(error => console.log(error));
 	};
 
-	// const isLoged = () => {
-	// 	actions.login(email, password);
-	// };
 
 	if (store.step === 0) {
 		return (
@@ -192,17 +196,27 @@ const RegisterFormPage = () => {
 					</div>
 				}
 				body={
-					checked.student === true ? (
+					checked.student ? (
 						<>
 							<Thanks
 								className=" Thanks1"
 								subtitle2="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
-										<span onClick={() => actions.setUpStep()} />
-										<button onClick={() => history.push("/review")} className="button_marino_great">
-											Hacer un review
-										</button>
+
+										<span onClick={() => actions.setUpStep()}> Ahora no</span>
+										{actions.isLogged() ? (
+											<button
+												onClick={() => history.push("/review")}
+												className="button_marino_great">
+												Hacer un review
+											</button>
+										) : (
+											<button onClick={toLogin} className="button_marino_great">
+												Hacer un review
+											</button>
+										)}
+
 									</>
 								}
 							/>
@@ -213,11 +227,18 @@ const RegisterFormPage = () => {
 								subtitle="Has completado tu registro, ¿Quieres que te ayudemos a tomar una decisión sobre tu futuro?"
 								buttons={
 									<div className="btnGroup">
-										<button
-											onClick={() => history.push("/teacherprofile")}
-											className="button_white_border_violet_small2  w-100">
-											Ver tu perfil
-										</button>
+										{actions.isLogged() ? (
+											<button
+												onClick={() => history.push("/teacherprofile")}
+												className="button_white_border_violet_small2  w-100">
+												Ver tu perfil
+											</button>
+										) : (
+											<button onClick={toLogin} className="button_white_border_violet_small2  w-100">
+												Ver tu perfil
+											</button>
+										)}
+
 										<button
 											onClick={() => history.push("/")}
 											className="button_white_border_violet_small2  w-100">
@@ -226,9 +247,11 @@ const RegisterFormPage = () => {
 									</div>
 								}
 							/>
+
 							<button onClick={() => actions.setUpStep()} className="button_marino_small2 ">
 								Siguiente
 							</button>
+
 						</>
 					)
 				}

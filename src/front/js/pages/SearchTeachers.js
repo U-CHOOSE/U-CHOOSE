@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import Search from "../component/Search/Search";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const SearchTeachers = () => {
 	const { actions } = useContext(Context);
+	const history = useHistory();
 	const [data, setData] = useState("");
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {

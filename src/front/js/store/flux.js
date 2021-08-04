@@ -1,7 +1,7 @@
-import { Link, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
-const getState = ({ getStore, getActions, setStore }) => {
-	const history = useHistory();
+const getState = ({ getStore, setStore }) => {
+	// const history = useHistory();
 	return {
 		store: {
 			token: "",
@@ -10,13 +10,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			teachers: [],
 			step: 0,
 			reviews: {},
-			idTeacher: 0,
-			userId: 0,
 			userImg: "",
+			is_student: "",
+			userId: 0,
 			users: []
 		},
 		actions: {
-			login: (mail, pass) => {
+			login: (mail, pass, history) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
 					body: JSON.stringify({ email: mail, _password: pass }),
@@ -28,8 +28,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (responseJson.token) {
 							setStore({ token: responseJson.token });
 							localStorage.setItem("token", responseJson.token);
+							localStorage.setItem("user", JSON.stringify(responseJson.user));
 							const store = getStore();
-							// console.log(store);
+							if (responseJson.user.is_student) {
+								history.push("/review");
+							} else {
+								history.push("/");
+							}
 						} else if (responseJson.error) {
 							setStore({ error: responseJson.error });
 							// console.log(responseJson.error);
@@ -78,21 +83,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ step: store.step - 1 });
 			},
+
+			loadData: () => {
+				const token = localStorage.getItem("token");
+				const user_id = localStorage.getItem("id_user");
+				setStore({ token: token, user_id: user_id });
+			},
+			removeToken: () => {
+				const removeToken = localStorage.removeItem("token");
+				return removeToken;
+			},
+			getToken: () => {
+				const token = localStorage.getItem("token");
+				return token;
+			},
+			isLogged: () => {
+				const store = getStore();
+				console.log(store);
+				console.log(!!store.token && store.token !== "");
+				return !!store.token && store.token !== "";
+			},
 			// Use getActions to call a function within a fuction
 
 			exampleFunction: () => {
 				// getActions().changeColor(0, "green");
 				// console.log("Esta");
 			},
+			setId: (idTeacher, userID) => {
+				setStore({
+					idTeacher: idTeacher,
+					userId: userID
+				});
+			},
+
+			setImg: img => {
+				setStore({
+					userImg: img
+				});
+			},
 			get_img: img => {
 				// console.log(img, "image llegando al flux");
 				// setStore({ userImg: img });
 				let body;
-
+				const store = getStore();
 				body = new FormData();
 				body.append("profile_picture", img[0]);
-				fetch(process.env.BACKEND_URL.concat("/profilepicture/", localStorage.getItem("id_user")), {
+				console.log(img);
+				fetch(process.env.BACKEND_URL.concat("/profilepicture"), {
 					body: body,
+					headers: {
+						Authorization: "Bearer " + store.token
+					},
 					method: "POST"
 				})
 					.then(function(response) {
@@ -106,17 +147,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// console.log("data1", data);
 						setStore({ userImg: data });
 					})
+					.then(data => setStore({ userImg: data.img }))
 					.catch(function(error) {
 						// console.log("Looks like there was a problem: \n", error);
 					});
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }));
-				// .catch(error => console.log("Error loading message from backend", error));
+
+			setCurrentUser: user => {
+				setStore({ is_student: user });
+				const store = getStore();
+				console.log("store.is_student", store.is_student);
 			},
 			changeColor: (index, color) => {
 				//get the store

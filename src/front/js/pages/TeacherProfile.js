@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../styles/teacherprofile.scss";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import Faces from "../component/Faces/Faces";
@@ -6,8 +6,10 @@ import TopReview from "../component/TopReview/TopReview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const TeacherProfile = () => {
+	const { actions, store } = useContext(Context);
 	const history = useHistory();
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState({});
@@ -15,16 +17,22 @@ const TeacherProfile = () => {
 	const [media, setMedia] = useState(0);
 	const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
-
 	let teacherId = localStorage.getItem("teacher_id");
-
-	// console.log("user.id ", user_id);
-	// console.log("teacher_id", teacherId);
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
+				actions.setImg(json.img);
+				console.log(json);
+
 			});
 	}, []);
 
@@ -81,40 +89,36 @@ const TeacherProfile = () => {
 		[review]
 	);
 
-	let dinamismo = 0;
 
 	useEffect(
 		() => {
-			// const valorations = () => {
-			console.log("holaaaaaaaa");
-			let dynamsim = 0;
-			let passion = 0;
-			let near = 0;
-			let practises_example = 0;
-			let contReviews = 0;
+			const valorations = () => {
+				console.log("holaaaaaaaa");
+				let dynamsim = 0;
+				let passion = 0;
+				let near = 0;
+				let practises_example = 0;
+				let contReviews = 0;
 
-			for (let i = 0; i < review.length; i++) {
-				if (review[i].teacher_id === parseInt(teacherId)) {
-					dynamsim = review[i].dynamsim + dynamsim;
-					passion = review[i].pasion + passion;
-					near = review[i].near + near;
-					practises_example = review[i].practises_example + practises_example;
-					contReviews++;
+				for (let i = 0; i < review.length; i++) {
+					if (review[i].teacher_id === parseInt(teacherId)) {
+						dynamsim = review[i].dynamsim + dynamsim;
+						passion = review[i].pasion + passion;
+						near = review[i].near + near;
+						practises_example = review[i].practises_example + practises_example;
+						contReviews++;
+					}
 				}
-			}
-			dinamismo = dynamsim / contReviews;
-			console.log("valordinam1", dinamismo);
-			// setAvgDynamism(valorDynamism);
-			// console.log("valordinam2", avgDynanism);
-			// const avg = sum / (4 * contReviews);
-			// setCount(contReviews);
-			// return avg;
-			// };
+				const valorDynamism = dynamsim / contReviews;
+				console.log("valordinam", valorDynamism);
+				const avg = sum / (4 * contReviews);
+				setCount(contReviews);
+				return avg;
+			};
 			if (review.length > 0) {
 				// setAvgDynamism(valorDynamism);
 				// console.log("valordinam", avgDynanism);
-				// setAvgDynamism(valorDynamism);
-				// console.log("valordinam2", avgDynanism);
+
 			}
 		},
 		[review]
@@ -163,6 +167,7 @@ const TeacherProfile = () => {
 				<div className="col-lg-1" />
 				<div className="col-12 mt-4 col-lg-8">
 					<h1 className=" name1">{data.full_name}</h1>
+
 				</div>
 			</div>
 			<div className="row">
@@ -172,6 +177,7 @@ const TeacherProfile = () => {
 					<span>profesor@ de {data.type_of_teacher}</span>
 				</div>
 			</div>
+
 
 			<div className="row">
 				<div className="col-12">
@@ -184,7 +190,8 @@ const TeacherProfile = () => {
 						{/* T = teacher
 					O = others teachers */}
 						<TeacherAssessment
-							dinamismoT={dinamismo}
+							dinamismoT={0.2}
+
 							dinamismoO={2}
 							pasionT={3}
 							pasionO={4}

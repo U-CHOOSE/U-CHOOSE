@@ -16,7 +16,7 @@ import cloudinary.api
 
 api = Blueprint('api', __name__)
 
-# TODO: Register using User.create_password_hash(password)
+
 @api.route('/login', methods=['POST'])
 def login():
     payload =(request.get_json(force=True))
@@ -28,14 +28,15 @@ def login():
         return {'error': 'Missing info'}, 400
     
     user = User.get_by_email(email)
-    password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
-    valid_password = check_password_hash(user._password,password_hashed) 
-    print(user._password,valid_password)
+    # password_hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+    # print(user._password,password)
+    valid_password = check_password_hash(user._password,password) 
+    
     # TODO:check password using check_password_hash(user.password, password)
     if valid_password:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
         print(token)
-        return {'token': token}, 200
+        return {'token': token, 'user':user.serialize()}, 200
 
     else:
         return {'error': 'Email o contraseña incorrecta.'}, 400
@@ -50,8 +51,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-
-@api.route('/user', methods=['POST' , 'PUT'])
+#TODO creating endpoint to schools
+@api.route('/user', methods=['POST','PUT'])
 def add_user():
     
     if request.method == 'POST':
@@ -110,15 +111,18 @@ def add_user():
     
 
     
-# @api.route("/user/<int:id>",methods=['PUT'])
-# # @jwt_required()
-# def update_one_user_teacher(id):
-#     json = request.get_json()
-#     user = User.get_by_id(id)
-#     print(user)
-#     user.put_with_json(json)
-#     db.session.commit()
-#     return jsonify(user.serialize()) ,201
+@api.route("/user_put",methods=['PUT'])
+@jwt_required()
+def update_one_user():
+    identity = get_jwt_identity()
+    json = request.get_json()
+    user = User.get_by_id(identity)
+    print(user)
+    user.put_with_json(json)
+    print(user)
+    db.session.commit()
+    return jsonify(user.serialize()) ,201
+
 
 
 
@@ -134,11 +138,11 @@ def update_one_user(id):
     return jsonify(user.serialize()) ,201
 
     
-@api.route('/user/<int:id>', methods=['GET'])
-# @jwt_required()
-def get_user(id):
-    
-    user = User.get_by_id(id)
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    identity = get_jwt_identity()
+    user = User.get_by_id(identity)
     user_student = User_student.get_by_user_id(user.id)
     user_teacher = User_teacher.get_by_user_id(user.id)
     if user.is_student:
@@ -154,15 +158,16 @@ def get_user(id):
 
     
 
-@api.route('/user/<int:id>', methods=['DELETE']) 
-#@jwt_required()
-def delete_one_user(id):
-    user_target = User.query.get(id)
-    user_target = User.delete(id)
+@api.route('/user', methods=['DELETE']) 
+@jwt_required()
+def delete_one_user():
+    identity = get_jwt_identity()
+    user_target = User.query.get(identity)
+    user_target = User.delete(identity)
     return jsonify(user_target.serialize(),"Your profile has been deleted"), 202
 
 @api.route('/users', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_all_users():
     users = User.get_all()
     users_dic = []
@@ -181,24 +186,45 @@ def get_all_users():
     return jsonify(users_dic),200
 
 
-@api.route('/user/<int:id>', methods=['PUT'])
-# @jwt_required()
-def update_users(id):
-    body = request.get_json()
-    user = User.update_single_user(body, id)
-    if user.is_active and user.is_student:
-        user_true = User_student.update_psychologist_user(body, id)
-        return jsonify(user_true.serialize)  
-    if user.is_active and user.is_psychologist == False:
-        user_comp = User_company.update_company_user(body, id)
-        print(user_comp)
-        return jsonify(user_comp.to_dict())
+
 
 # schools
 @api.route('/schools',methods=['GET'])
 def get_all_schools():
+    # user = User.get_by_id
     schools = School.get_all()
-    print(schools)
+    school_dic = []
+    for school in schools:
+        school_dic.append(school.serialize())
+    return jsonify(school_dic), 200
+
+
+#to find all the schools of this user 
+
+@api.route('/user/schools',methods=['GET'])
+@jwt_required()
+def get_all_schools_of_user():
+    identity = get_jwt_identity()
+    user = User.get_by_id(identity)
+    if user.school is None:
+        return "this user didn't have school" , 400
+    schools = user.school
+    school_dic = []
+    for school in schools:
+        school_dic.append(school.serialize())
+    return jsonify(school_dic), 200
+
+#to find all the schools of this teacher 
+
+
+
+
+@api.route('/users/<int:id>/schools',methods=['GET'])
+def get_all_user_schools(id):
+    user = User.get_by_id(id)
+    if user.is_student:
+        return "Isn't a teacher" , 400
+    schools = user.school
     school_dic = []
     for school in schools:
         school_dic.append(school.serialize())
@@ -215,7 +241,7 @@ def add_school():
 
 
 
-@api.route('/user/school', methods=['POST'])
+@api.route('/user/schools', methods=['POST'])
 def add_school_to_user():
     body = request.get_json()
     print(body)
@@ -236,10 +262,6 @@ def add_school_to_user():
     return jsonify(user_add.serialize()),201
 
 
-# @api.route('/school/<int:user_id>', methods=['GET'])
-# def get_school_to_user(user_id):
-#     school = School.get_by_id(user_id)
-#     return jsonify(school.serialize()), 200
 
 
 @api.route('/review', methods=['POST'])
@@ -297,14 +319,17 @@ def get_all_teachers():
 
 # image 
 
-@api.route('/profilepicture/<int:id>', methods=['POST'])
-def update_profile_picture(id):
+@api.route('/profilepicture', methods=['POST'])
+@jwt_required()
+def update_profile_picture():
     print(request.files,"FILES")
     if 'profile_picture' in request.files:
+        print("hola")
         # upload file to uploadcare
+        identity = get_jwt_identity()
         result = cloudinary.uploader.upload(request.files['profile_picture'])
         # fetch for the user
-        user = User.get_by_id(id)
+        user = User.get_by_id(identity)
         # update the user with the given cloudinary image URL
         user.img = result['secure_url']
         print(result['secure_url'], "RESULT")
@@ -314,6 +339,16 @@ def update_profile_picture(id):
         return jsonify(user.img), 200
     else:
         raise APIException('Missing profile_image on the FormData')
+   
 
 
+#user_school
 
+
+# @api.route('/user_schools',methods=['GET'])
+# def get_all_user_schools():
+#     teachers = User_school.query.all()
+#     teacher_dic = []
+#     for teacher in teachers:
+#         teacher_dic.append(teacher.serialize())
+#     return jsonify(teacher_dic), 200

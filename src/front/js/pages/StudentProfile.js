@@ -13,6 +13,7 @@ const StudentProfile = () => {
 		repeatPassword: ""
 	});
 
+
 	const [img, setImg] = useState("");
 	const [data, setData] = useState("");
 	const user_id = localStorage.getItem("id_user");
@@ -34,16 +35,21 @@ const StudentProfile = () => {
 	};
 
 	// };
+
 	const handlePut = () => {
+		const token = actions.getToken();
 		const options = {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
 			},
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
+
+		fetch(process.env.BACKEND_URL + "/user_put", options)
+
 			.then(res => {
 				// console.log(res);
 
@@ -55,13 +61,70 @@ const StudentProfile = () => {
 				// console.log(status);
 				return res.json();
 			})
-			.then(json => {
-				setFormData(json);
-			});
-		// .catch(error => console.log(error));
+
+			.then(json => setFormData(json));
 		window.location.reload();
+		// .catch(error => console.log(error));
 	};
+	console.log(data);
+	const [img, setImg] = useState("");
+	const [data, setData] = useState("");
+	// const user_id = localStorage.getItem("id_user");
+
+	useEffect(() => {
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				console.log(json.img, "image");
+				actions.setImg(json.img);
+				console.log(json);
+			});
+	}, []);
+	// console.log(user_id);
+	const body = {
+		full_name: formData.fullname,
+		email: formData.email,
+		_password: formData._password
+	};
+
+	// };
+	// const handlePut = () => {
+	// 	const options = {
+	// 		method: "PUT",
+	// 		headers: {
+	// 			"Content-Type": "application/json"
+	// 		},
+	// 		body: JSON.stringify(body)
+	// 	};
+
+	// 	fetch(process.env.BACKEND_URL + "/user/" + user_id, options)
+	// 		.then(res => {
+	// 			// console.log(res);
+
+	// 			if (res.status === 201 && _password === repeatPassword) {
+	// 				alert("ok");
+	// 			} else {
+	// 				alert("failed to fetch");
+	// 			}
+	// 			// console.log(status);
+	// 			return res.json();
+	// 		})
+	// 		.then(json => {
+	// 			setFormData(json);
+	// 		});
+	// 	// .catch(error => console.log(error));
+	// 	window.location.reload();
+	// };
 	// console.log(data);
+
 
 	const handlePutImage = img => {
 		actions.get_img(img);
@@ -72,7 +135,7 @@ const StudentProfile = () => {
 				<div className="col-md-2" />
 				<div className="col-4 col-md-4">
 					<label htmlFor="upload-photo">
-						<img className="img-profilee" src={store.userImg} alt="img" />
+						<img className="img-profile" src={store.userImg} alt="img" />
 					</label>
 					<input
 						type="file"
@@ -152,6 +215,7 @@ const StudentProfile = () => {
 							onChange={e => setFormData({ ...formData, _password: e.target.value })}
 						/>
 					</div>
+
 				</div>
 				<div className="col-md-4" />
 			</div>
@@ -176,6 +240,25 @@ const StudentProfile = () => {
 			<div className="row">
 				<div className="col-md-4" />
 				<div className="col-12 col-md-4">
+
+					<div className="contain-inp">
+						<label>Repetir contraseña</label>
+						<input
+							type="password"
+							className="form-control input-password inp"
+							placeholder="passrepeat"
+							value={formData.repeatPassword}
+							onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
+						/>
+					</div>
+				</div>
+				<div className="col-md-4" />
+			</div>
+
+			<div className="row">
+				<div className="col-md-4" />
+				<div className="col-12 col-md-4">
+
 					<div className="c_s">
 						<button className="button-save" onClick={handlePut}>
 							Guardar

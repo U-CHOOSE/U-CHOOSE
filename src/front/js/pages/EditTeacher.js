@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/editTeacher.scss";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
@@ -16,49 +17,60 @@ const EditTeacher = () => {
 
 	const [img, setImg] = useState("");
 	const [data, setData] = useState("");
-	const user_id = localStorage.getItem("id_user");
+
+	const token = store.token;
 
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/user/" + user_id)
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
 				console.log("data", json);
 			});
 	}, []);
-	console.log(user_id);
+	console.log(token);
 	const body = {
-		full_name: formData.fullname,
+		full_name: formData.full_name,
 		email: formData.email,
 		_password: formData._password,
-		linkedin: formData.linkedin,
-		type_of_teacher: formData.typeOfteachers
+		type_of_teacher: formData.typeOfteachers,
+		linkedin: formData.linkedin
+
 	};
 
 	const handlePut = () => {
+		const token = actions.getToken();
 		const options = {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
 			},
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user", options)
+		fetch(process.env.BACKEND_URL + "/user_put", options)
 			.then(res => {
 				console.log(res);
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
-					// actions.setUpStep();
 				} else {
 					alert("failed to fetch");
 				}
 				console.log(status);
 				return res.json();
 			})
-			.then(json => setFormData(json))
-			.catch(error => console.log(error));
+			.then(json => setFormData(json));
+		window.location.reload();
+		// .catch(error => console.log(error));
 	};
 	console.log(data);
 	const handlePutImage = img => {
@@ -66,6 +78,7 @@ const EditTeacher = () => {
 	};
 
 	return (
+
 		<div className="container-fluid cP">
 			{/* <input
 				type="file"
@@ -74,60 +87,46 @@ const EditTeacher = () => {
 				}}
 			/>
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
-			<div className="row">
-				<div className="col-md-2" />
-				<div className="col-4 col-md-10">
-					<label htmlFor="upload-photo">
-						<img className="img-profilee" src={store.userImg} alt="img" />
-					</label>
+
+			<div className="student-contain1">
+				<label htmlFor="upload-photo">
+					<img className="img-profile" src={store.userImg} alt="img" />
+				</label>
+				<input
+					type="file"
+					onChange={e => {
+						handlePutImage(e.target.files);
+					}}
+					id="upload-photo"
+				/>
+
+				<button className="student-button1" onClick={() => history.push("/mycenters")}>
+					Mis centros
+				</button>
+			</div>
+
+			<div className="contain-inputs ml-3">
+				<div className="contain-inp input1">
+					<label>Nombre completo</label>
 					<input
-						type="file"
-						onChange={e => {
-							handlePutImage(e.target.files);
-						}}
-						id="upload-photo"
+						type="text"
+						className="form-control input"
+						placeholder={data.full_name}
+						value={formData.full_name}
+						onChange={e => setFormData({ ...formData, full_name: e.target.value })}
 					/>
 				</div>
-				<div className="col-8" />
-			</div>
+				<p className="pstudent">Podrás ocultarlo en tus reviews</p>
+				<div className="contain-inp">
+					<label>Email</label>
+					<input
+						type="email"
+						placeholder={data.email}
+						className="form-control input-email inp"
+						value={formData.email}
+						onChange={e => setFormData({ ...formData, email: e.target.value })}
+					/>
 
-			{/* <button className="student-button1" onClick={() => history.push("/mycenters")}>
-				Mis centros
-			</button> */}
-
-			<div className="row">
-				<div className="col-md-4" />
-				<div className="col-12 col-md-4">
-					<div className="contain-inp">
-						<label>Nombre completo</label>
-						<input
-							type="text"
-							className="form-control input-text inp "
-							placeholder={data.full_name}
-							value={formData.fullname}
-							onChange={e => setFormData({ ...formData, fullname: e.target.value })}
-						/>
-						<div className="c_p">
-							<p className="pstudent pstudent2">Podrás ocultarlo en tus reviews</p>
-						</div>
-					</div>
-				</div>
-				<div className="col-md-4" />
-			</div>
-
-			<div className="row">
-				<div className="col-md-4" />
-				<div className="col-12 col-md-4">
-					<div className="contain-inp">
-						<label>Email</label>
-						<input
-							type="email"
-							placeholder={data.email}
-							className="form-control input-email inp"
-							value={formData.email}
-							onChange={e => setFormData({ ...formData, email: e.target.value })}
-						/>
-					</div>
 				</div>
 				<div className="col-md-4" />
 			</div>
