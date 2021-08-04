@@ -113,9 +113,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="Dinamismo en sus clases"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={<ReviewTeacherIcons step={3} />}
 					button="Siguiente"
@@ -127,9 +127,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="Pasión por la materia"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={<ReviewTeacherIcons step={4} />}
 					button="Siguiente"
@@ -141,9 +141,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="Utiliza ejemplos prácticos"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={<ReviewTeacherIcons step={5} />}
 					button="Siguiente"
@@ -155,9 +155,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="Implicación y cercanía"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={<ReviewTeacherIcons step={6} />}
 					button="Siguiente"
@@ -186,9 +186,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="¿Cuándo tuviste clase?"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={
 						<div className="dropdown">
@@ -213,9 +213,9 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto step-8">
 				<CardReviewTeacher
-					srcImg="https://static9.depositphotos.com/1016026/1183/i/950/depositphotos_11839092-stock-photo-beautiful-smile.jpg"
+					srcImg={dateUser.img}
 					title="¿Algo más?"
-					name="Marta Diaz"
+					name={dateUser.full_name}
 					nameUniversity="4Geeks Academy"
 					body={<textarea onChange={e => setTMoreInfo(e.target.value)} placeholder={moreInfo} />}
 					button="Enviar Review"
