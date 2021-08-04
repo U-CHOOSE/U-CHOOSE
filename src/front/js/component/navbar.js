@@ -5,9 +5,11 @@ import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
+import LogoBlack from "../../../../docs/assets/img/Logo-black.jpg";
+
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, NavDropdown,Navmenu, Container, Button } from "react-bootstrap";
+import { Navbar, NavDropdown, Navmenu, Container, Button } from "react-bootstrap";
 
 // import { Navbar, Nav, NavDropdown, NavLink, NavCollapse, Container, Button } from "react-bootstrap";
 
@@ -15,6 +17,7 @@ const NavbarComp = () => {
 	const history = useHistory();
 
 	const [show, setShow] = useState(false);
+	// const [dropdown, setDropdown] = useState(false);
 
 	return (
 		<>
@@ -22,20 +25,26 @@ const NavbarComp = () => {
 				<Container>
 					<Navbar.Brand href="#home">
 						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
+						{/* <img onClick={() => history.push("/")} src={LogoBlack} alt="" /> */}
+
 						{/* <span className="navbar-toggler-icon" />{" "} */}
 					</Navbar.Brand>
 					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto"> */}
-					
-					<NavDropdown className="navbar-toggler-icon">
-						{/* <span className="navbar-toggler-icon" />{" "} */}
-						<NavDropdown.Item href="" onClick={() => history.push("/registerformpage")}>
+
+					<NavDropdown className=" navbar-toggler-icon" drop="left">
+						{/* <span className="navbar-toggler-icon" /> */}
+
+						<NavDropdown.Item
+							className="d-flex justify-content-around"
+							href=""
+							onClick={() => history.push("/registerformpage")}>
 							<h3>Registrate</h3>
 						</NavDropdown.Item>
 						<br />
 						<NavDropdown.Item href="#action/3.1" onClick={() => history.push("/searchschools")}>
-							<div className="d-flex justify-content-around ">
+							<div className="d-flex justify-content-around">
 								<BsBuilding />
 								<h4>Centros</h4>
 							</div>
@@ -54,7 +63,6 @@ const NavbarComp = () => {
 					</NavDropdown>
 					{/* </Nav>
 					</Navbar.Collapse>{" "} */}
-				
 				</Container>
 			</Navbar>
 			{/* {show ? <Modal body={screen} /> : ""}{" "}  */}
@@ -63,5 +71,3 @@ const NavbarComp = () => {
 };
 
 export default NavbarComp;
-
-
