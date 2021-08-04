@@ -13,6 +13,8 @@ const TeacherProfile = () => {
 	const [data, setData] = useState({});
 	const [review, setReview] = useState([]);
 	const [media, setMedia] = useState({});
+	const [mediaOthersTeachers, setMediaOthersTeachers] = useState({});
+
 	// const [avgDynanism, setAvgDynamism] = useState(0);
 	const user_id = localStorage.getItem("id_user");
 
@@ -28,28 +30,15 @@ const TeacherProfile = () => {
 			});
 	}, []);
 
-	// useEffect(() => {
-	// 	fetch(process.env.BACKEND_URL + "/review/" + teacher_id)
-	// 		.then(res => res.json())
-	// 		.then(json => {
-	// 			console.log("json2", json);
-	// 			setReview(json);
-	// 			// console.log("userTeacher", userTeacher);
-	// 		});
-	// }, []);
-
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/reviews")
 			.then(res => res.json())
 			.then(json => {
 				setReview(json);
-				// console.log("userTeacher", userTeacher);
 			})
 			.catch(err => console.log("Error:", error));
 	}, []);
-	// console.log("data", data);
 	console.log("review", review);
-	// console.log(review.length > 0 ? review[0].near : "nooo");
 
 	useEffect(
 		() => {
@@ -88,6 +77,45 @@ const TeacherProfile = () => {
 			if (review.length > 0) {
 				setMedia(avgTeacher());
 				console.log("media", media);
+			}
+		},
+		[review]
+	);
+
+	useEffect(
+		() => {
+			const avgOthersTeacher = () => {
+				let dynamsim = 0;
+				let passion = 0;
+				let near = 0;
+				let practises_example = 0;
+				let contReviews = 0;
+
+				for (let i = 0; i < review.length; i++) {
+					if (review[i].teacher_id != parseInt(teacherId)) {
+						dynamsim = review[i].dynamsim + dynamsim;
+						passion = review[i].pasion + passion;
+						near = review[i].near + near;
+						practises_example = review[i].practises_example + practises_example;
+						contReviews++;
+					}
+				}
+
+				const avgDynamism = dynamsim / contReviews;
+				const avgPassion = passion / contReviews;
+				const avgNear = near / contReviews;
+				const avgPractisesExample = practises_example / contReviews;
+				const avgTotal = {
+					avgDynamism: avgDynamism,
+					avgPassion: avgPassion,
+					avgNear: avgNear,
+					avgPractisesExample: avgPractisesExample
+				};
+				return avgTotal;
+			};
+			if (review.length > 0) {
+				setMediaOthersTeachers(avgOthersTeacher());
+				console.log("media others", mediaOthersTeachers);
 			}
 		},
 		[review]
@@ -157,15 +185,18 @@ const TeacherProfile = () => {
 						{/* T = teacher
 					O = others teachers */}
 						{console.log("mediaaa", media)}
+						{console.log("media others", mediaOthersTeachers)}
+						{console.log("data", data)}
 						<TeacherAssessment
+							name={data.full_name}
 							dinamismoT={media.avgDynamism}
-							dinamismoO={2}
+							dinamismoO={mediaOthersTeachers.avgDynamism}
 							pasionT={media.avgPassion}
-							pasionO={4}
+							pasionO={mediaOthersTeachers.avgPassion}
 							exampleT={media.avgPractisesExample}
-							exampleO={6}
+							exampleO={mediaOthersTeachers.avgPractisesExample}
 							inolvementT={media.avgNear}
-							inolvementO={10}
+							inolvementO={mediaOthersTeachers.avgNear}
 						/>
 					</div>
 				</div>
