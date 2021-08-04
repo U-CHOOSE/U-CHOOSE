@@ -153,7 +153,6 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 
-
 			setCurrentUser: user => {
 				setStore({ is_student: user });
 				const store = getStore();

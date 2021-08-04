@@ -11,7 +11,6 @@ const Login = () => {
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
 
-
 	useEffect(
 		() => {
 			if (store.error != "") {
@@ -55,18 +54,16 @@ const Login = () => {
 					/>
 				</div>
 			</div>
-				<button
-					type="submit"
-					className=" btn-login"
-					onClick={event => {
-						event.preventDefault();
-						actions.login(email, password, history);
-						// checkingLogged;
-					}}>
-					Iniciar sesión
-				</button>
-			</form>
-
+			<button
+				type="submit"
+				className=" btn-login"
+				onClick={event => {
+					event.preventDefault();
+					actions.login(email, password, history);
+					// checkingLogged;
+				}}>
+				Iniciar sesión
+			</button>
 		</div>
 	);
 };

@@ -8,7 +8,6 @@ import LandingPage from "./pages/LandingPage";
 import SearchSchools from "./pages/SearchSchools";
 import SearchTeachers from "./pages/SearchTeachers";
 import Login from "./pages/Login";
-import MyCenters from "./pages/MyCenters";
 import RegisterFormPage from "./pages/RegisterFormPage";
 import ReviewTeacher from "./pages/ReviewTeacher";
 import Sass from "./pages/Sass";
@@ -22,7 +21,6 @@ import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 //Scss
 import "../styles/index.scss";
-
 
 //create your first component
 const Layout = () => {

@@ -12,10 +12,6 @@ const StudentProfile = () => {
 		_password: "",
 		repeatPassword: ""
 	});
-
-
-	const [img, setImg] = useState("");
-	const [data, setData] = useState("");
 	const user_id = localStorage.getItem("id_user");
 
 	useEffect(() => {
@@ -47,9 +43,7 @@ const StudentProfile = () => {
 			body: JSON.stringify(body)
 		};
 
-
 		fetch(process.env.BACKEND_URL + "/user_put", options)
-
 			.then(res => {
 				// console.log(res);
 
@@ -89,11 +83,6 @@ const StudentProfile = () => {
 			});
 	}, []);
 	// console.log(user_id);
-	const body = {
-		full_name: formData.fullname,
-		email: formData.email,
-		_password: formData._password
-	};
 
 	// };
 	// const handlePut = () => {
@@ -124,7 +113,6 @@ const StudentProfile = () => {
 	// 	window.location.reload();
 	// };
 	// console.log(data);
-
 
 	const handlePutImage = img => {
 		actions.get_img(img);
@@ -215,7 +203,6 @@ const StudentProfile = () => {
 							onChange={e => setFormData({ ...formData, _password: e.target.value })}
 						/>
 					</div>
-
 				</div>
 				<div className="col-md-4" />
 			</div>
@@ -240,7 +227,6 @@ const StudentProfile = () => {
 			<div className="row">
 				<div className="col-md-4" />
 				<div className="col-12 col-md-4">
-
 					<div className="contain-inp">
 						<label>Repetir contraseña</label>
 						<input
@@ -258,7 +244,6 @@ const StudentProfile = () => {
 			<div className="row">
 				<div className="col-md-4" />
 				<div className="col-12 col-md-4">
-
 					<div className="c_s">
 						<button className="button-save" onClick={handlePut}>
 							Guardar

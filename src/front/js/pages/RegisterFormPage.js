@@ -9,7 +9,6 @@ import TeacherForm from "../component/Forms/TeacherForm";
 import { BsArrowLeft } from "react-icons/bs";
 import "../../styles/index.scss";
 
-
 const RegisterFormPage = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
@@ -65,7 +64,6 @@ const RegisterFormPage = () => {
 			.then(json => localStorage.setItem("id_user", json.body.user_id))
 			.catch(error => console.log(error));
 	};
-
 
 	if (store.step === 0) {
 		return (
@@ -203,7 +201,6 @@ const RegisterFormPage = () => {
 								subtitle2="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
-
 										<span onClick={() => actions.setUpStep()}> Ahora no</span>
 										{actions.isLogged() ? (
 											<button
@@ -216,7 +213,6 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										)}
-
 									</>
 								}
 							/>
@@ -234,7 +230,9 @@ const RegisterFormPage = () => {
 												Ver tu perfil
 											</button>
 										) : (
-											<button onClick={toLogin} className="button_white_border_violet_small2  w-100">
+											<button
+												onClick={toLogin}
+												className="button_white_border_violet_small2  w-100">
 												Ver tu perfil
 											</button>
 										)}
@@ -251,7 +249,6 @@ const RegisterFormPage = () => {
 							<button onClick={() => actions.setUpStep()} className="button_marino_small2 ">
 								Siguiente
 							</button>
-
 						</>
 					)
 				}

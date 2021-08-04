@@ -32,7 +32,6 @@ const TeacherProfile = () => {
 				setData(json);
 				actions.setImg(json.img);
 				console.log(json);
-
 			});
 	}, []);
 
@@ -89,7 +88,6 @@ const TeacherProfile = () => {
 		[review]
 	);
 
-
 	useEffect(
 		() => {
 			const valorations = () => {
@@ -118,7 +116,6 @@ const TeacherProfile = () => {
 			if (review.length > 0) {
 				// setAvgDynamism(valorDynamism);
 				// console.log("valordinam", avgDynanism);
-
 			}
 		},
 		[review]
@@ -167,7 +164,6 @@ const TeacherProfile = () => {
 				<div className="col-lg-1" />
 				<div className="col-12 mt-4 col-lg-8">
 					<h1 className=" name1">{data.full_name}</h1>
-
 				</div>
 			</div>
 			<div className="row">
@@ -177,7 +173,6 @@ const TeacherProfile = () => {
 					<span>profesor@ de {data.type_of_teacher}</span>
 				</div>
 			</div>
-
 
 			<div className="row">
 				<div className="col-12">
@@ -191,7 +186,6 @@ const TeacherProfile = () => {
 					O = others teachers */}
 						<TeacherAssessment
 							dinamismoT={0.2}
-
 							dinamismoO={2}
 							pasionT={3}
 							pasionO={4}

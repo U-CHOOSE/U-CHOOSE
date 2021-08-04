@@ -81,7 +81,6 @@ const MyCenters = () => {
 				<button className="student-button2" onClick={updateSchools}>
 					Guardar
 				</button>
-
 			</div>
 		</>
 	);
