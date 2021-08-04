@@ -92,7 +92,6 @@ const TeacherProfile = () => {
 	useEffect(
 		() => {
 			const avgOthersTeacher = () => {
-
 				let dynamsim = 0;
 				let passion = 0;
 				let near = 0;
@@ -100,9 +99,7 @@ const TeacherProfile = () => {
 				let contReviews = 0;
 
 				for (let i = 0; i < review.length; i++) {
-
 					if (review[i].teacher_id != parseInt(teacherId)) {
-
 						dynamsim = review[i].dynamsim + dynamsim;
 						passion = review[i].pasion + passion;
 						near = review[i].near + near;
@@ -110,7 +107,6 @@ const TeacherProfile = () => {
 						contReviews++;
 					}
 				}
-
 
 				const avgDynamism = dynamsim / contReviews;
 				const avgPassion = passion / contReviews;
@@ -199,7 +195,6 @@ const TeacherProfile = () => {
 						{console.log("media others", mediaOthersTeachers)}
 						{console.log("data", data)}
 						<TeacherAssessment
-
 							name={data.full_name}
 							dinamismoT={media.avgDynamism}
 							dinamismoO={mediaOthersTeachers.avgDynamism}
@@ -209,7 +204,6 @@ const TeacherProfile = () => {
 							exampleO={mediaOthersTeachers.avgPractisesExample}
 							inolvementT={media.avgNear}
 							inolvementO={mediaOthersTeachers.avgNear}
-
 						/>
 					</div>
 				</div>
