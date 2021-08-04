@@ -79,7 +79,7 @@ const RegisterFormPage = () => {
 						body={
 							<>
 								<h1 className="violet_h1_forms">Registro</h1>
-								<h4 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h4>
+								<h5 className="colaborarUchoose">¿Cómo quieres colaborar con u-choose?</h5>
 								<label className="container" htmlFor="student">
 									<input
 										type="radio"
