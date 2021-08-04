@@ -113,12 +113,11 @@ const getState = ({ getStore, setStore }) => {
 				let body;
 				const store = getStore();
 				body = new FormData();
-				body.append("profile_picture", img);
+				body.append("profile_picture", img[0]);
 				console.log(img);
 				fetch(process.env.BACKEND_URL.concat("/profilepicture"), {
 					body: body,
 					headers: {
-						"Content-Type": "application/json",
 						Authorization: "Bearer " + store.token
 					},
 					method: "POST"
@@ -130,19 +129,12 @@ const getState = ({ getStore, setStore }) => {
 						return response.json();
 						console.log(response);
 					})
-					.then(data => setStore({ userImg: data }))
+					.then(data => setStore({ userImg: data.img }))
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
 			setCurrentUser: user => {
 				setStore({ is_student: user });
 				const store = getStore();

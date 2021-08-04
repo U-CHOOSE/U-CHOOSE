@@ -56,6 +56,7 @@ const StudentProfile = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
+				console.log(json.img, "image");
 				actions.setImg(json.img);
 				console.log(json);
 			});

@@ -37,9 +37,11 @@ const EditTeacher = () => {
 	}, []);
 	console.log(token);
 	const body = {
-		full_name: formData.fullname,
+		full_name: formData.full_name,
 		email: formData.email,
-		_password: formData._password
+		_password: formData._password,
+		type_of_teacher: formData.typeOfteachers,
+		linkedin: formData.linkedin
 	};
 
 	// };
@@ -109,8 +111,8 @@ const EditTeacher = () => {
 						type="text"
 						className="form-control input"
 						placeholder={data.full_name}
-						value={formData.fullname}
-						onChange={e => setFormData({ ...formData, fullname: e.target.value })}
+						value={formData.full_name}
+						onChange={e => setFormData({ ...formData, full_name: e.target.value })}
 					/>
 				</div>
 				<p className="pstudent">Podrás ocultarlo en tus reviews</p>
