@@ -58,7 +58,6 @@ const StudentProfile = () => {
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
-					actions.setUpStep();
 				} else {
 					alert("failed to fetch");
 				}
@@ -66,23 +65,27 @@ const StudentProfile = () => {
 				return res.json();
 			})
 			.then(json => setFormData(json))
-			.catch(error => console.log(error));
+		// .catch(error => console.log(error));
+		window.location.reload();
 	};
-	console.log(data);
+	// console.log(data);
+	const handlePutImage = img => {
+		actions.get_img(img);
+	};
 	return (
 		<div>
-			<input
+			{/* <input
 				type="file"
 				onChange={e => {
 					setImg(e.target.files);
 				}}
-			/>
-			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
+			/> */}
+			{/* <button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
 			<div className="student-contain1">
-				<img className="img-profile" src={data.img} alt="img" />
+				<img className="img-profile" src={store.userImg} alt="img" />
 
-				<button className="student-button1" onClick={() => history.push("/studentprofile/mycenters")}>
+				<button className="student-button1" onClick={() => history.push("/mycenters")}>
 					Mis centros
 				</button>
 			</div>
