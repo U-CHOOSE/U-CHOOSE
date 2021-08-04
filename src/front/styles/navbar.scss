@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;600&display=swap');
 
 *{
   margin: 0;
@@ -7,22 +8,24 @@
 }
 
 .navbar{
-    // display: flex;
+
      align-items: right;
-   
     justify-content: space-between;
-   
     width: 100%;
     height: 100px;
     background: linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%); 
-  //  min-inline-size: 100vh;
+ 
    }
 
    NavDropdown.Item{
     margin-right: 0%;
    }
 
-
+registrate{
+  color: #A194FF;
+   text-align: left;
+  font-family: Poppins
+}
 
 //    NavDropdown::before{
 //     position: absolute;
@@ -108,14 +111,17 @@ a{
 width: 50px;
  }
 
-.btnNav{   
-    background: none;
-     margin: 30px;
-     padding:5px 15px 5px 15px; 
-     color: black;
-     text-align: center;
-     border: none;
-     cursor: pointer;
+.btnNav{  
+background: rgba(122, 111, 197, 1);
+color: rgba(255, 255, 255, 1);
+border-radius:40px;
+border: none;
+text-align: center;
+cursor: pointer;
+    // background: none;
+  margin: 30px;
+   padding:5px 15px 5px 15px; 
+    //  color: black;
     //  hover
     // border: none;
 }

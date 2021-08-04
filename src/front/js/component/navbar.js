@@ -30,7 +30,7 @@ const NavbarComp = () => {
 					{/* <Navbar.Toggle aria-controls="basic-nav-dropdown" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto"> */}
-
+					<h5 className="registrate">Registrate</h5>
 					<NavDropdown className=" navbar-toggler-icon" drop="left">
 						{/* <span className="navbar-toggler-icon" /> */}
 
@@ -55,7 +55,7 @@ const NavbarComp = () => {
 							</div>
 						</NavDropdown.Item>
 						<br />
-						<Button className="btnNav" onClick={() => history.push("")}>
+						<Button className="btnNav w-auto" onClick={() => history.push("")}>
 							Mi perfil
 						</Button>
 					</NavDropdown>
