@@ -12,13 +12,13 @@ const Login = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.step);
 
-	const checkingLogged = () => {
-		if (actions.isLogged() && store.is_student.is_student) {
-			history.push("/review");
-		} else {
-			history.push("/");
-		}
-	};
+	// const checkingLogged = () => {
+	// 	if (actions.isLogged() && store.is_student.is_student) {
+	// 		history.push("/review");
+	// 	} else {
+	// 		history.push("/");
+	// 	}
+	// };
 
 	// useEffect(
 	// 	() => {
@@ -30,14 +30,14 @@ const Login = () => {
 	// 	[actions.isLogged()]
 	// );
 
-	useEffect(
-		() => {
-			if (store.token != "" && store.token != undefined) {
-				history.push("/");
-			}
-		},
-		[store.token]
-	);
+	// useEffect(
+	// 	() => {
+	// 		if (store.token != "" && store.token != undefined) {
+	// 			history.push("/");
+	// 		}
+	// 	},
+	// 	[store.token]
+	// );
 
 	useEffect(
 		() => {
@@ -86,7 +86,7 @@ const Login = () => {
 					className=" btn-login"
 					onClick={event => {
 						event.preventDefault();
-						actions.login(email, password);
+						actions.login(email, password, history);
 						// checkingLogged;
 					}}>
 					Iniciar sesión

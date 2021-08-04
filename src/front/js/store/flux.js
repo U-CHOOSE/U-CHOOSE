@@ -1,8 +1,7 @@
-import { data } from "jquery";
-import { Link, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const getState = ({ getStore, setStore }) => {
-	const history = useHistory();
+	// const history = useHistory();
 	return {
 		store: {
 			token: "",
@@ -17,7 +16,7 @@ const getState = ({ getStore, setStore }) => {
 			users: []
 		},
 		actions: {
-			login: (mail, pass) => {
+			login: (mail, pass, history) => {
 				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
 					body: JSON.stringify({ email: mail, _password: pass }),
@@ -29,8 +28,13 @@ const getState = ({ getStore, setStore }) => {
 						if (responseJson.token) {
 							setStore({ token: responseJson.token });
 							localStorage.setItem("token", responseJson.token);
+							localStorage.setItem("user", JSON.stringify(responseJson.user));
 							const store = getStore();
-							console.log(store);
+							if (responseJson.user.is_student) {
+								history.push("/review");
+							} else {
+								history.push("/");
+							}
 						} else if (responseJson.error) {
 							setStore({ error: responseJson.error });
 							console.log(responseJson.error);
@@ -107,10 +111,15 @@ const getState = ({ getStore, setStore }) => {
 			get_img: img => {
 				console.log(img, "image llegando al flux");
 				let body;
+				const store = getStore();
 				body = new FormData();
 				body.append("profile_picture", img[0]);
-				fetch(process.env.BACKEND_URL.concat("/profilepicture/", localStorage.getItem("id_user")), {
+				fetch(process.env.BACKEND_URL.concat("/profilepicture"), {
 					body: body,
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + store.token
+					},
 					method: "POST"
 				})
 					.then(function(response) {
@@ -134,8 +143,8 @@ const getState = ({ getStore, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			setCurrentUser: user => {
-				const store = getStore();
 				setStore({ is_student: user });
+				const store = getStore();
 				console.log("store.is_student", store.is_student);
 			},
 			changeColor: (index, color) => {

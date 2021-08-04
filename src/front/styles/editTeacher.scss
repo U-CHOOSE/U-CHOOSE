@@ -1,62 +1,52 @@
-
-.img-profile{
+.img-profilee{
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    margin-left: 40px;
-    margin-top: 50px;
-}
-.contain1 {
-    margin-bottom: 37.14px;
-    margin-top:45px;
-    align-items: center;
-}
-.contain-inputs {
     margin-top: 40px;
+    cursor: pointer;
+    margin-bottom: 30px;
 }
-.contain-inp label {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: 0.25px;
-    color: #6E7191;
-    display: block;
-    // margin-left: 28px;
-     margin-left: 47px;
+.img-profile:hover {
+    filter: grayscale(20%);
+    border: 1px solid black;
 }
-input[type=text], input[type=email], input[type=password] {
-    width:343px;
-    height: 64px;
-    border-radius:16px;
-    background: #EFF0F7;
-    margin-top: -30px;
-    // margin-left: 16px;
+.pstudent2 {
+    margin-top: -10px;
+    margin-bottom: -90px;
+
 }
-input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
-    color:#14142B;
-    height: 20px;
-    width: 100%;
-    padding-left: 30px; 
-    font-size: 16px;
-    line-height: 28px;
-    font-family: Poppins;
-}
-.contain-inp {
-    margin-bottom: 24px;
-}
-.editP{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 22px;
-    width:343px;;
-}
-.input1 {
-    margin-bottom: 0px;
-}  
+
+// input[type=text], input[type=email], input[type=password] {
+//     width:343px;
+//     height: 64px;
+//     border-radius:16px;
+//     background: #EFF0F7;
+//     margin-top: -30px;
+//     // margin-left: 16px;
+// }
+// input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+//     color:#14142B;
+//     height: 20px;
+//     width: 100%;
+//     padding-left: 30px; 
+//     font-size: 16px;
+//     line-height: 28px;
+//     font-family: Poppins;
+// }
+// .contain-inp {
+//     margin-bottom: 24px;
+// }
+// .editP{
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-weight: 500;
+//     font-size: 14px;
+//     line-height: 22px;
+//     width:343px;;
+// }
+// .input1 {
+//     margin-bottom: 0px;
+// }  
 .button-save {
     width: 171px;
     height: 56px;
@@ -75,16 +65,71 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
     margin: auto;
     margin-bottom: 100px;
 }
-.div-button-save {
+.c_s, .c_p {
     width: 343px;
+    float: left;
+    margin-bottom: 30px;
 }
-.passOk {
-    color: red;
-    margin-top: -20px;
+.cP {
+    display: grid;
+    justify-content: center;
+}
+.student-button1R {
+    display: none;
+
+}
+// .div-button-save {
+//     width: 343px;
+// }
+// .passOk {
+//     color: red;
+//     margin-top: -20px;
+// }
+
+@media (min-width: 1000px) {
+   input[type=text], input[type=email], input[type=password] {
+     height: 64px;
+     border-radius:16px;
+     background: #EFF0F7;
+     margin-top: -30px;
+    
+     }
+     .img-profilee{
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        margin-bottom: -100px;
+        cursor: pointer;
+        margin-bottom: -51px;
+    }
+    .cP {
+        justify-content: initial;
+    }
+    .student-button1 {
+        display: none;
+    }
+    .student-button1R {
+        display: block;
+        margin-top: 10px;
+        background: #7A6FC5;
+        border-radius: 40px;
+        width: 180px;
+        border: none;
+        height: 40px;
+        color: white;
+    }
+    .cBt {
+        margin-top: 100px;
+    }
 }
 
-// @media (max-width: 600px) {
-//     .contain-inputs {
-        
-//     }
-// }
+// #upload-photo {
+//     opacity: 0;
+//     position: absolute;
+//     z-index: -1;
+//  }
+
+//  label {
+//     cursor: pointer;
+//     /* Style as you please, it will become the visible UI component. */
+//  }

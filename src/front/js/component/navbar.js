@@ -35,14 +35,19 @@ const NavbarComp = () => {
 				actions.setCurrentUser(json);
 			});
 	}, []);
+
 	console.log("1", data);
 	const kindOfProfile = () => {
-		if (store.is_student.is_student === true) {
+		const user = JSON.parse(localStorage.getItem("user"));
+		console.log("este", user);
+		if (user.is_student) {
 			history.push("/studentprofile");
 		} else {
 			history.push("/teacherprofile");
 		}
 	};
+
+	console.log("is_student", store.is_student.is_student);
 
 	return (
 		<>
@@ -70,7 +75,7 @@ const NavbarComp = () => {
 							</div>
 						</NavDropdown.Item>
 						<br />
-						<NavDropdown.Item onClick={() => history.push("")}>
+						<NavDropdown.Item onClick={() => history.push("/searchteachers")}>
 							<div className="d-flex justify-content-around ">
 								<BsFillPersonFill />
 								<h4>Profesores</h4>

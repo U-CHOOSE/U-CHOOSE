@@ -17,7 +17,7 @@ import cloudinary.api
 api = Blueprint('api', __name__)
 
 
-@api.route('/login', methods=['POST','PUT'])
+@api.route('/login', methods=['POST'])
 def login():
     payload =(request.get_json(force=True))
     email = payload.get('email', None)
@@ -36,7 +36,7 @@ def login():
     if valid_password:
         token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=100))
         print(token)
-        return {'token': token}, 200
+        return {'token': token, 'user':user.serialize()}, 200
 
     else:
         return {'error': 'Email o contraseña incorrecta.'}, 400

@@ -21,6 +21,7 @@ const EditTeacher = () => {
 	const token = store.token;
 
 	useEffect(() => {
+		const token = actions.getToken();
 		fetch(process.env.BACKEND_URL + "/user", {
 			method: "GET",
 			headers: {
@@ -43,41 +44,43 @@ const EditTeacher = () => {
 
 	// };
 	const handlePut = () => {
+		const token = actions.getToken();
 		const options = {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
 			},
 			body: JSON.stringify(body)
 		};
 
-		fetch(process.env.BACKEND_URL + "/user", options)
+		fetch(process.env.BACKEND_URL + "/user_put", options)
 			.then(res => {
 				console.log(res);
 
 				if (res.status === 201 && _password === repeatPassword) {
 					alert("ok");
-					actions.setUpStep();
 				} else {
 					alert("failed to fetch");
 				}
 				console.log(status);
 				return res.json();
 			})
-			.then(json => setFormData(json))
-			.catch(error => console.log(error));
+			.then(json => setFormData(json));
+		window.location.reload();
+		// .catch(error => console.log(error));
 	};
 	console.log(data);
 
 	return (
 		<div>
-			<input
+			{/* <input
 				type="file"
 				onChange={e => {
 					setImg(e.target.files);
 				}}
 			/>
-			<button onClick={actions.get_img(img)}> Cambiar imagen</button>
+			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
 			<div className="student-contain1">
 				<img className="img-profile" src={data.img} alt="img" />
