@@ -104,11 +104,11 @@ const StudentForm = props => {
 
 				{props.footer}
 				<br />
-				<button className="button_violet_great mx-auto " onClick={handleCreate}>
+				<button className="button_violet_great b_cuenta mx-auto " onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 
-				<button className="button_white_border_violet_great" onClick={handleCreate}>
+				<button className="button_white_border_violet_great b_Google mt-2 " onClick={handleCreate}>
 					Registro con <img className="google" src={google} />
 				</button>
 			</div>

@@ -126,11 +126,11 @@ const TeacherForm = props => {
 				<br />
 				{props.footer}
 				<br />
-				<button className="button_violet_great_teacher" onClick={handleCreate}>
+				<button className="button_violet_great_teacher b_cuenta" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<br />
-				<button className="button_white_border_violet_great" onClick={handleCreate}>
+				<button className="button_white_border_violet_great b_Google" onClick={handleCreate}>
 					Registro con <img className="Linkedin " src={Linkedin} />
 				</button>
 			</div>
