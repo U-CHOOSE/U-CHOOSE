@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 const LandingPage = () => {
 	const history = useHistory();
 	return (
-		<div>
+		<div className="container">
 			<div className="row">
 				<div className="col-sm-12 mt-5 ">
 					<img className="logo " src={logo} />

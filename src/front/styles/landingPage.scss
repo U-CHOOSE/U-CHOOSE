@@ -151,7 +151,7 @@ p {
         color: #000000;
         margin: auto;
         margin-top: 32px;
-        margin-left: 150px;
+      
         padding-bottom: 350px;
     }
     .subtitle2 {
@@ -164,7 +164,7 @@ p {
         letter-spacing: 1px;
         color: #0C0B1A;
         margin-top: 200px ;
-        margin-left: 150px;
+        
     }
     .subtitle3 {
         font-family: Poppins;
@@ -177,7 +177,7 @@ p {
         display: block;
         margin: auto;
         margin-top: 64px;
-        margin-left: 150px;
+        
     }
     .btn-review {
         display: none;
@@ -237,16 +237,14 @@ p {
         flex-direction: row;
         margin-left: 50px;
     }
-    .col1-desktop {
-        margin-left:100px !important ;
-    }
+    
     .subtitle3-desktop {
         padding-top: 70px;
-        padding-left: 30px;
+        
     }
     .paragraph2-desktop {
         padding-top: 80px;
-        margin-left: 50px;
+      
     }
 }
 
