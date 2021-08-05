@@ -114,8 +114,9 @@ input:focus{
     @include button( rgba(255, 255, 255, 1)
     ,326px ,56px ,$violet);
     border-radius:40px;
-    border: none;
+    border: none;   
 }
+
 .button_violet_small{
     @include button( rgba(255, 255, 255, 1)
     ,267px ,56px ,$violet);
@@ -238,6 +239,26 @@ font-size: initial;
         border: none;
 }
 
+
+
+.button_violet_great_teacher{
+    color: white;
+    height: 3em;
+     width: 21em;
+   margin-bottom: 15px;
+   background-color: #7a6fc5;
+   border-radius: 40px;
+   // font-weight: 600;
+   font-family: Poppins;
+   font-size: 16px;
+   font-style: normal;
+   border-radius: 40px;
+   border-radius: 40px;
+   border: none;
+   
+}
+
+
 .dropdown-toggle::after {
     display: solid red;
     // margin-left: 0.255em;
@@ -257,4 +278,17 @@ font-size: initial;
   display: flex; 
   justify-content: center;  
 //   flex-flow:row wrap-reverse;
+}
+
+span {
+ 
+     margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+span1{
+    text-align: center;
+   
 }

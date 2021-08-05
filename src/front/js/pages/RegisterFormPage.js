@@ -121,7 +121,7 @@ const RegisterFormPage = () => {
 									Soy profesor
 								</label>
 								<br /> <br />{" "}
-								<button onClick={() => actions.setUpStep()} className="button_violet_small_register ">
+								<button onClick={() => actions.setUpStep()} className="button_violet_small_register">
 									Siguiente
 								</button>
 							</>

@@ -65,10 +65,10 @@ const TeacherForm = props => {
 			<div>
 				<div>
 					{" "}
-					<h1 className="violet_h1_forms">Detalles de cuenta</h1>
+					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100"
+					className="mx-auto w-100 p-3"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -78,35 +78,35 @@ const TeacherForm = props => {
 				<span>Podras ocultarlo en tus reviews</span>
 				<br />
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3"
 					type="text"
 					placeholder="¿De qué eres profesor?"
 					value={formData.typeOfteachers}
 					onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 				/>
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3 "
 					type="text"
 					placeholder="¿URL Linkedin...?"
 					value={formData.linkedin}
 					onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
 				/>
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3 "
 					type="password"
 					placeholder="Contraseña"
 					value={formData._password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3 "
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -126,7 +126,7 @@ const TeacherForm = props => {
 				<br />
 				{props.footer}
 				<br />
-				<button className="button_violet_great" onClick={handleCreate}>
+				<button className="button_violet_great_teacher" onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 				<br />

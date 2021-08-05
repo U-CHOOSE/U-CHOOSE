@@ -57,7 +57,7 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100 p-3"
+					className="mx-auto w-100 m-3 p-3"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
@@ -67,7 +67,7 @@ const StudentForm = props => {
 				<span>Podras ocultarlo en tus reviews</span>
 
 				<input
-					className=" mx-auto w-100  m-3 "
+					className=" mx-auto w-100  m-3 p-3 "
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -75,7 +75,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className="  mx-auto w-100 m-3  "
+					className="  mx-auto w-100 m-3 p-3  "
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
@@ -83,7 +83,7 @@ const StudentForm = props => {
 				/>
 
 				<input
-					className=" mx-auto w-100 m-3 "
+					className=" mx-auto w-100 m-3 p-3"
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
@@ -95,6 +95,7 @@ const StudentForm = props => {
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
+
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
@@ -103,7 +104,7 @@ const StudentForm = props => {
 
 				{props.footer}
 				<br />
-				<button className="button_violet_great" onClick={handleCreate}>
+				<button className="button_violet_great mx-auto " onClick={handleCreate}>
 					Crear Cuenta
 				</button>
 
