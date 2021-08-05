@@ -165,7 +165,7 @@ const RegisterFormPage = () => {
 							type="schools"
 							span2="Saltar este paso"
 							button={
-								<button onClick={handlePut} className="button_violet_small_register">
+								<button onClick={handlePut} className="button_violet_small_register my-3">
 									Siguiente
 								</button>
 							}
@@ -179,7 +179,7 @@ const RegisterFormPage = () => {
 							data={data}
 							type="schools"
 							button={
-								<button onClick={handlePut} className="button_violet_small">
+								<button onClick={handlePut} className="button_violet_small_register my-3">
 									Siguiente
 								</button>
 							}
@@ -206,7 +206,6 @@ const RegisterFormPage = () => {
 								subtitle2="Has completado tu registro, ya puedes comenzar a escribir reviews"
 								buttons={
 									<>
-										<span onClick={() => actions.setUpStep()}> Ahora no</span>
 										{actions.isLogged() ? (
 											<button
 												onClick={() => history.push("/review")}
@@ -218,6 +217,7 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										)}
+										<span onClick={() => actions.setUpStep()}> Ahora no</span>
 									</>
 								}
 							/>
@@ -231,13 +231,11 @@ const RegisterFormPage = () => {
 										{actions.isLogged() ? (
 											<button
 												onClick={() => history.push("/teacherprofile")}
-												className="button_white_border_violet_small2  w-100">
+												className="button_violet_great  w-100">
 												Ver tu perfil
 											</button>
 										) : (
-											<button
-												onClick={toLogin}
-												className="button_white_border_violet_small2  w-100">
+											<button onClick={toLogin} className="button_violet_great  w-100">
 												Ver tu perfil
 											</button>
 										)}
@@ -250,10 +248,6 @@ const RegisterFormPage = () => {
 									</div>
 								}
 							/>
-
-							<button onClick={() => actions.setUpStep()} className="button_marino_small2 ">
-								Siguiente
-							</button>
 						</>
 					)
 				}

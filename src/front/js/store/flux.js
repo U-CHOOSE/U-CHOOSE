@@ -31,7 +31,7 @@ const getState = ({ getStore, setStore }) => {
 							localStorage.setItem("user", JSON.stringify(responseJson.user));
 							const store = getStore();
 							if (responseJson.user.is_student) {
-								history.push("/review");
+								history.push("/reviewteacher");
 							} else {
 								history.push("/");
 							}

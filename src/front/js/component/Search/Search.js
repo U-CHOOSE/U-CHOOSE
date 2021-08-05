@@ -42,7 +42,7 @@ const Search = props => {
 				onChange={e => setSearchItem(e.target.value)}
 				onKeyPress={props.onKeyPress}
 			/>
-			<span> {props.span1}</span>
+			<span className="span_2"> {props.span1}</span>
 			{data && select === "" && searchItem !== "" ? (
 				data
 					.filter(v => {
@@ -64,9 +64,9 @@ const Search = props => {
 											console.log(v, "select");
 										}}
 										className="image_name_container">
-										<div className="img_container">
+										{/* <div className="img_container">
 											<img src={v.img} alt="img" />
-										</div>
+										</div> */}
 										<div className="name_container">{v[attribute]}</div>
 									</div>
 								</div>
@@ -80,9 +80,9 @@ const Search = props => {
 				props.mySchools.map((v, i) => {
 					return (
 						<div key={i}>
-							<div className="img_container">
+							{/* <div className="img_container">
 								<img src={v.img} alt="img" />
-							</div>
+							</div> */}
 							<div className="name_container">{v.name}</div>
 						</div>
 					);
