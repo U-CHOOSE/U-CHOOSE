@@ -33,8 +33,8 @@ const Search = props => {
 
 	return (
 		<>
-			<h1 className="violet_h1 search-title mx-auto p-3">{props.title}</h1>
-			<span className="span__"> {props.span_}</span>
+			<h1 className="violet_h1 search-title">{props.title}</h1>
+			<p className="span__"> {props.span_}</p>
 			<input
 				className="mx-auto m-3 p-3"
 				type="text"
@@ -42,7 +42,7 @@ const Search = props => {
 				onChange={e => setSearchItem(e.target.value)}
 				onKeyPress={props.onKeyPress}
 			/>
-			<span className="span_2"> {props.span1}</span>
+			<p className="span_2"> {props.span1}</p>
 			{data && select === "" && searchItem !== "" ? (
 				data
 					.filter(v => {

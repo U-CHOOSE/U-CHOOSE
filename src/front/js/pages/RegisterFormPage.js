@@ -121,9 +121,13 @@ const RegisterFormPage = () => {
 									Soy profesor
 								</label>
 								<br /> <br />{" "}
-								<button onClick={() => actions.setUpStep()} className="button_violet_small_register">
-									Siguiente
-								</button>
+								<div className="text-center">
+									<button
+										onClick={() => actions.setUpStep()}
+										className="button_violet_small_register">
+										Siguiente
+									</button>
+								</div>
 							</>
 						}
 					/>
@@ -217,7 +221,7 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										)}
-										<span onClick={() => actions.setUpStep()}> Ahora no</span>
+										<p onClick={() => actions.setUpStep()}> Ahora no</p>
 									</>
 								}
 							/>

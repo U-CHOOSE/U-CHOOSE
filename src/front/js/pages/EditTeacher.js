@@ -78,7 +78,7 @@ const EditTeacher = () => {
 	};
 
 	return (
-		<div>
+		<div className="container">
 			{/* <input
 				type="file"
 				onChange={e => {
@@ -87,7 +87,7 @@ const EditTeacher = () => {
 			/>
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
-			<div className="student-contain1">
+			<div className="col-12 col-lg-8 offset-lg-2">
 				<label htmlFor="upload-photo">
 					<img className="img-profile" src={store.userImg} alt="img" />
 				</label>
@@ -104,7 +104,7 @@ const EditTeacher = () => {
 				</button>
 			</div>
 
-			<div className="contain-inputs ml-3">
+			<div className="col-12 col-lg-8 offset-lg-2">
 				<div className="contain-inp input1">
 					<label>Nombre completo</label>
 					<input
@@ -167,11 +167,11 @@ const EditTeacher = () => {
 						onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
 					/>
 				</div>
-			</div>
-			<div className="div-button-save ml-3 mt-5">
-				<button className="button-save" onClick={handlePut}>
-					Guardar
-				</button>
+				<div className="div-button-save  mt-5 text-center">
+					<button className="button-save" onClick={handlePut}>
+						Guardar
+					</button>
+				</div>
 			</div>
 		</div>
 	);
