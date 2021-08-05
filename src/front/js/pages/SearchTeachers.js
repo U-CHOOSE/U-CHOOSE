@@ -20,7 +20,7 @@ const SearchTeachers = () => {
 		},
 		[!data]
 	);
-	// console.log(data);
+	// console.log(data);;
 
 	return (
 		<>
