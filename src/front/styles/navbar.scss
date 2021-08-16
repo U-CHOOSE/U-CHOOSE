@@ -7,6 +7,27 @@
   box-sizing:border-box ;
 }
 
+
+//Elementos FIJO DEL NAVBAR//
+//*--------MEDIAQUERY-------- *//
+
+
+@media screen and (max-width:780px) {  
+
+}
+
+
+
+@media screen and (max-width:600px) {
+  
+}
+
+
+@media screen and (max-width:440px) {
+  
+}
+
+
 .navbar{
 
      align-items: right;
@@ -67,8 +88,9 @@ Dropdown{
 
 
 .footer {
-    background: black;
+    background: rgb(14, 13, 13);
     text-decoration:none ;
+ 
     
 
     // background: #A194FF;
@@ -79,6 +101,12 @@ a{
            
 
     }
+
+
+  .imgFooter{
+    display: flex;
+    
+  }
    
 .dropdown-menu{
   margin-right: 0%;

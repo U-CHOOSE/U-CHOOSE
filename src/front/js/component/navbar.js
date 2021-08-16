@@ -74,6 +74,7 @@ const NavbarComp = () => {
 
 						<br />
 						<NavDropdown.Item onClick={() => history.push("/searchschools")}>
+							<nav className="flex item" />
 							<div className="d-flex justify-content-around ">
 								<BsBuilding />
 								<h4>Centros</h4>
