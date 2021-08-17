@@ -7,7 +7,7 @@ import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, NavDropdown, Navmenu, Container, Button } from "react-bootstrap";
+import { Navbar, NavItem, NavLink, NavDropdown, Navmenu, Nav, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
 	const { actions, store } = useContext(Context);
@@ -54,7 +54,15 @@ const NavbarComp = () => {
 			<Navbar bg="light" expand="lg">
 				<Container>
 					<Navbar.Brand>
-						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<img className="logoNav" onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<Nav className="justify-content-around">
+							<Nav.Item className="ItemsNav align-self-center">
+								<Nav.Link href="/centros"> Centros </Nav.Link>
+							</Nav.Item>
+							<Nav.Item>
+								<Nav.Link eventKey="link-1">Profesores</Nav.Link>
+							</Nav.Item>
+						</Nav>
 					</Navbar.Brand>
 					<NavDropdown className="navbar-toggler-icon" drop="left">
 						{actions.isLogged() ? (
