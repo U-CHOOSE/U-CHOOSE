@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 
 const SearchSchools = () => {
 	const [data, setData] = useState("");
+	const [mySchools, setMySchools] = useState("");
 	const { actions } = useContext(Context);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
@@ -30,6 +31,7 @@ const SearchSchools = () => {
 				type="schools"
 				data={data}
 				onKeyPress={handleKeyPress}
+				mySchools={mySchools}
 			/>
 		</>
 	);

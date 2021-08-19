@@ -233,6 +233,7 @@ class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     img = db.Column(db.String, unique=False, nullable=False)
+    location = db.Column(db.String, unique=False, nullable=False)
     user = db.relationship("User", secondary="user_school")
 
 
