@@ -1,12 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SchoolPage = () => {
-    return (
-        
-        <div>
-            SchoolPage
-        </div>
-    )
-}
+	return <div>SchoolPage</div>;
+};
 
-export default SchoolPage
+export default SchoolPage;

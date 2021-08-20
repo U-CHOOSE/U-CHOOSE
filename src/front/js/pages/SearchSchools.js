@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import Search from "../component/Search/Search";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const SearchSchools = () => {
+	const history = useHistory();
 	const [data, setData] = useState("");
 	const [mySchools, setMySchools] = useState("");
 	const { actions } = useContext(Context);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
-			alert("Hola");
-			actions.setUpStep();
 		}
 	};
 
