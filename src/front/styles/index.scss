@@ -91,7 +91,7 @@ input::placeholder{
     font-size: 12px;
     line-height: 28px;
     font-family: Poppins;
-    // box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 input:focus{
@@ -244,17 +244,17 @@ font-size: initial;
 .button_violet_great_teacher{
     color: white;
     height: 3em;
-     width: 21em;
-   margin-bottom: 15px;
-   background-color: #7a6fc5;
-   border-radius: 40px;
-   // font-weight: 600;
-   font-family: Poppins;
-   font-size: 16px;
-   font-style: normal;
-   border-radius: 40px;
-   border-radius: 40px;
-   border: none;
+    width: 21em;
+    margin-bottom: 15px;
+    background-color: #7a6fc5;
+    border-radius: 40px;
+    // font-weight: 600;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    border-radius: 40px;
+    border-radius: 40px;
+    border: none;
    
 }
 
