@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import Search from "../component/Search/Search";
 import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SearchSchools = () => {
 	const [data, setData] = useState("");
@@ -22,7 +25,7 @@ const SearchSchools = () => {
 			.catch(err => console.log(err));
 	}, []);
 	return (
-		<>
+		<Container>
 			<Search
 				title="Buscar un centro "
 				placeholder="Escribe el nombre"
@@ -31,7 +34,7 @@ const SearchSchools = () => {
 				data={data}
 				onKeyPress={handleKeyPress}
 			/>
-		</>
+		</Container>
 	);
 };
 

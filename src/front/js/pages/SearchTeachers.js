@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Search from "../component/Search/Search";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Container } from "react-bootstrap";
 
 const SearchTeachers = () => {
 	const { actions } = useContext(Context);
@@ -23,7 +24,7 @@ const SearchTeachers = () => {
 	// console.log(data);;
 
 	return (
-		<>
+		<Container>
 			<Search
 				title="Buscar un profesor"
 				placeholder="Search"
@@ -32,7 +33,7 @@ const SearchTeachers = () => {
 				data={data}
 				onKeyPress={handleKeyPress}
 			/>
-		</>
+		</Container>
 	);
 };
 

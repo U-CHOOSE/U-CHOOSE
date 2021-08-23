@@ -7,14 +7,14 @@
     line-height: 36px;
     text-align: center;
     letter-spacing: 1px;
-     color: #7A6FC5;
+    color: #7A6FC5;
     margin: auto;
     margin-top: 60px;
     // margin-bottom:10px ;
 }
 
 .violet_h1_search-title{
-    Font-family: Poppins;
+    font-family: Poppins;
     font-style: normal;
     font-weight: bold;
     font-size: 32px;
@@ -26,19 +26,8 @@
     margin-top: 60px;
 }
 
-// input[type=text]::placeholder {
-//     font-family: Poppins !important;
-//     font-style: normal;
-//     font-weight: normal;
-//     font-size: 16px;
-//     line-height: 28px;
-//     letter-spacing: 0.75px;
-//     color: #A0A3BD;
-// }
-// .data {
-//     margin-left: 16px;
-// }
-.span__1, .span__2, .span__0 {
+
+.span__1, .span__2, .span__0, .span__{
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
@@ -49,7 +38,7 @@
     margin-bottom: 20px;
     display: block !important;
     margin: auto;
-    text-align: center;
+    // text-align: center;
 }
 .cont_bton_search {
     display: flex;
@@ -68,41 +57,7 @@
     font-size: 20px;
 }
 
-// .button1 {
-//     width: 200px;
-//     height: 56px;
-//     font-family: Poppins;
-//     font-style: normal;
-//     font-weight: 600;
-//     font-size: 14px;
-//     line-height: 24px;
-//     text-align: center;
-//     letter-spacing: 0.75px;
-//     color: #F7F7FC;
-//     background: #7A6FC5;
-//     border: none;
-//     border-radius: 40px;
-//     display: block;
-//     margin: 50px auto;
-// }
-// .button__search {
-//     display: block;
-//     margin: auto;
-// }
-// .container___search {
-//     width: 360px;
-//     height: 500px;
-    
-// }
-// .image_name_container {
-    
-//     width: 343px;
-//     height: 64px;
-//     background: #EFF0F7;
-//     border-radius: 16px;
-//     display: block;
-//     margin: auto;
-// }
+
 .name_container {
     display: flex !important;
     align-items: center;
@@ -112,20 +67,53 @@
     border-radius: 16px;
     height: 68px;
 }
-.input-searchbar:focus{
+.input-search:focus{
     background: white;
     border: 2px solid black;
+    padding-left:25px;
 }
+.input-search[type=text]::placeholder {
+    height: 30px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;  
+    letter-spacing: 0.75px;
+    color: #A0A3BD;
+    text-align: center;
+    background-image: url('https://e7.pngegg.com/pngimages/106/628/png-clipart-magnifying-glass-computer-icons-lens-detective-magnifying-glass-glass-lens.png');
+    background-repeat: no-repeat;
+    background-position: 30px center;
+    background-size: 40px;
+    
+}
+.input-search {
+   
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    padding-left: 20px;
+}
+
 
 // moviles muy pequeñoas
 @media (max-width: 360px){
+    .span__1, .span__2, .span__0, .span__ {
+        width: 50%;
+    }
     .search-title {
-        font-size: 30px;
+        width: 90%;
         white-space:pre-wrap
 
     }
-    .input-searchbar {
+    .input-search {
         width:95% !important;
+        font-size: 16px;
     }
     .name_container {
         width:95% !important;
@@ -147,6 +135,9 @@
     }
     .select__search {
         width: 70% !important;
+    }
+    .input-search {
+        font-size: 20px;
     }
 
 }
@@ -172,7 +163,7 @@
         font-size: 40px;
         white-space:nowrap
     }
-    .span__1, .span__2, .span__0 {
+    .span__1, .span__2, .span__0, .span__ {
         font-size: 16px;
     }
     .input-searchbar {
@@ -189,15 +180,24 @@
 // ordenadores
 @media (min-width: 992px) {
     .search-title {
+        white-space:nowrap;
+        display: flex;
+        justify-content: center;
         font-size: 50px;
-        white-space:nowrap
+        
     }
-    .span__1, .span__2, .span__0 {
+    .span__1, .span__2, .span__0, .span__ {
         font-size: 20px;
         white-space:nowrap
     }
-    .input-searchbar {
-        width: 400px !important;
+    .input-searchbar, .input-search {
+        width: 500px !important;
+        
+    }
+    .input-search[type=text]::placeholder {
+        
+        font-size: 20px;
+        height: 30px;
     }
     .name_container {
         width: 400px;
