@@ -73,7 +73,7 @@ const Search = props => {
 						);
 					})
 			) : (
-				<li className="container">
+				<li className="container" style={{ background: "red" }}>
 					<div className=" row justify-content-md-center">
 						<div className="col-md ">
 							<img src={selectedItem && selectedItem.img} className="container-image-search" />
@@ -81,9 +81,13 @@ const Search = props => {
 						<div className="col-md-6">
 							<p className="">{select}</p>
 						</div>
-						<div className="col-md ">
-							<p className="delete-search">X</p>
-						</div>
+						{select != "" ? (
+							<div className="col-md ">
+								<p className="delete-search">X</p>
+							</div>
+						) : (
+							""
+						)}
 					</div>
 				</li>
 			)}{" "}
