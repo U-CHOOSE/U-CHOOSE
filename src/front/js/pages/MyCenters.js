@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 const MyCenters = () => {
 	const [data, setData] = useState("");
 	const [mySchools, setMySchools] = useState("");
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
 			alert("hola");

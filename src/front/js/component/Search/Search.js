@@ -5,9 +5,11 @@ const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
+	const [selectedItem, setSelectedItem] = useState();
 
 	const handelSelect = item => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
+		setSelectedItem(item);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
 			console.log("item", item.id);
@@ -28,7 +30,6 @@ const Search = props => {
 	if (props.type === "schools") {
 		attribute = "name";
 	}
-	console.log(data, props.data);
 	console.log(props.mySchools, "myschools search");
 
 	return (
@@ -55,8 +56,6 @@ const Search = props => {
 						}
 					})
 					.map((v, i) => {
-						console.log(select);
-						console.log(data.img);
 						return (
 							<li key={i}>
 								<div>
@@ -76,15 +75,27 @@ const Search = props => {
 						);
 					})
 			) : (
-				<div>{select}</div>
+				<li className="container">
+					<div className=" row justify-content-md-center">
+						<div className="col-md ">
+							<img src={selectedItem && selectedItem.img} className="container-image-search" />
+						</div>
+						<div className="col-md-6">
+							<p className="">{select}</p>
+						</div>
+						<div className="col-md ">
+							<p className="delete-search">X</p>
+						</div>
+					</div>
+				</li>
 			)}{" "}
 			{props.mySchools &&
 				props.mySchools.map((v, i) => {
 					return (
 						<div key={i}>
-							{/* <div className="img_container">
+							<div className="img_container">
 								<img src={v.img} alt="img" />
-							</div> */}
+							</div>
 							<div className="name_container">{v.name}</div>
 						</div>
 					);

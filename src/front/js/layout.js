@@ -13,6 +13,7 @@ import TeacherProfile from "./pages/TeacherProfile";
 import MyCenters from "./pages/MyCenters";
 import EditTeacher from "./pages/EditTeacher";
 import StudentProfile from "./pages/StudentProfile";
+import SchoolPage from "./pages/SchoolPage";
 //components
 import NavbarComp from "./component/navbar";
 import Footer from "./component/footer";
@@ -50,6 +51,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/mycenters">
 							<MyCenters />
+						</Route>
+						<Route exact path="/schoolpage">
+							<SchoolPage />
 						</Route>
 						<Route exact path="/teacherprofile">
 							<TeacherProfile />
