@@ -5,13 +5,11 @@ const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
+	const [selectedItem, setSelectedItem] = useState();
 
-	const removeSchool = schoolId => {
-		const updatedSchools = select.filter(school => todo.id !== todoId);
-		setTodos(updatedTodos);
-	};
 	const handelSelect = item => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
+		setSelectedItem(item);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
 			console.log("item", item.id);
@@ -75,10 +73,19 @@ const Search = props => {
 						);
 					})
 			) : (
-				<div>
-					<img src={select} />
-					{select}
-				</div>
+				<li className="container">
+					<div className=" row justify-content-md-center">
+						<div className="col-md ">
+							<img src={selectedItem && selectedItem.img} className="container-image-search" />
+						</div>
+						<div className="col-md-6">
+							<p className="">{select}</p>
+						</div>
+						<div className="col-md ">
+							<p className="delete-search">X</p>
+						</div>
+					</div>
+				</li>
 			)}{" "}
 			{props.mySchools &&
 				props.mySchools.map((v, i) => {
