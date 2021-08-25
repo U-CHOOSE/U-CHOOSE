@@ -207,6 +207,21 @@ def get_all_schools_of_user():
 
 #to find all the schools of this teacher 
 
+# @api.route('/user/schools',methods=['GET'])
+# @jwt_required()
+# def get_all_schools_of_user():
+#     identity = get_jwt_identity()
+#     user = User.get_by_id(identity)
+#     if user.school is None:
+#         return "this user didn't have school" , 400
+#     schools = user.school
+#     school_dic = []
+#     for school in schools:
+#         school_dic.append(school.serialize())
+#     return jsonify(school_dic), 200
+
+# #to find all the schools of this teacher 
+
 
 
 
