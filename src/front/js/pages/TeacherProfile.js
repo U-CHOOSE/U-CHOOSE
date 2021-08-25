@@ -149,22 +149,20 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div className="container-fluid">
+		<div className="container">
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-5 col-lg-8">
-					<img className="img-profile" src={data.img} alt="img" />
+				<div className="col-6">
+					<img className="img__profile" src={data.img} alt="img" />
 				</div>
-				<div className="col-7 col-lg-2 mt-2 contain__1">
+				<div className="col-6  mt-2 contain__1">
 					<div className="d-flex mt-5">
 						<Faces face={media.avg} />
 					</div>
-					<span className="span-reviews ml-3">{count} reviews</span>
-					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>
+					<p className="span-reviews">{count} reviews</p>
+					<button className="butt-on1  " onClick={() => history.push("teacherprofile/edit")}>
 						Editar perfil
 					</button>
 				</div>
-				<div className="col-lg-1" />
 			</div>
 
 			<div className="row">
@@ -190,7 +188,7 @@ const TeacherProfile = () => {
 				<div className="col-12">
 					<div className="image-valoration">
 						{/* T = teacher
-					O = others teachers */}
+						O = others teachers */}
 						{console.log("mediaaa", media)}
 						{console.log("media others", mediaOthersTeachers)}
 						{console.log("data", data)}

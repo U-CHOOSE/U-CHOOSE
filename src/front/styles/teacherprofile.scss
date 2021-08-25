@@ -1,5 +1,6 @@
 .contain__1 {
-    float: left;
+    display: block;
+    text-align: center;
 }
 
 .imagen {
@@ -7,7 +8,7 @@
     height: 27px;
     
 }
-.img-profile{ 
+.img__profile{ 
     width: 120px;
     height: 120px;
     border-radius: 100%;
@@ -63,7 +64,7 @@
     letter-spacing: 1px;
     color: #7A6FC5;
     margin-top: 64px;
-    text-align: left;
+    text-align: center;
 }
 .span-reviews {
     font-family: Poppins;
@@ -73,7 +74,8 @@
     line-height: 26px;
     letter-spacing: 0.75px;
     color: #7A6FC5;
-    display: block;
+    margin-left: -80px;
+   
 }
 .button2 {
     background: #7A6FC5;
@@ -103,8 +105,8 @@
     
 }
 .image-valoration {
-    float: left;
-    margin-top: 200% !important;
+    display: block;
+    margin: auto;
     
 }
 .contain___2 {
@@ -112,30 +114,47 @@
     margin: auto;
 }
 
-@media (min-width: 992px) {
-    .img-profile{ 
-        width: 150px !important;
-        height: 150px !important;
-        border-radius: 100%;
-        display: block;
-        padding-top: -100px;
+// @media (max-width: 992px) {
+//     .img-profile{ 
+//         width: 150px !important;
+//         height: 150px !important;
+//         border-radius: 100%;
+//         display: block;
+//         padding-top: -100px;
         
-    }}
-    .title-2-v {
-        display: none;
-    }
+//     }
+//     .title-2-v {
+//         display: none;
+//         text-align: center;
+//     }
 
-    .image-valoration {
-        margin-top: 75px !important;
-        float: none;
-    }
-    .contain-reviews {
+//     .image-valoration {
+//         margin-top: 75px !important;
+//         float: none;
+//     }
+//     .contain-reviews {
 
-       display: flex;
-       justify-content: space-between;
-       overflow-y: auto;
-    }
-    .b-2-r {
-        margin-top: 100px;
+//        display: flex;
+//        justify-content: space-between;
+//        overflow-y: auto;
+//     }
+//     .b-2-r {
+//         margin-top: 100px;
+//     }
+
+    @media (max-width: 400px) {
+        .img__profile{ 
+            width: 50%;
+            height: 50%;
+            height:50%;
+        }
+       
+        // .butt-on1 {
+        //     width: 50%;
+        // }
+        // .title___2 {
+
+        //     text-align: left;
+        // }
     }
 
