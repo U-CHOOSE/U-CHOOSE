@@ -65,9 +65,6 @@ const Search = props => {
 											console.log(v, "select");
 										}}
 										className="image_name_container">
-										{/* <div className="img_container">
-											<img src={v.img} alt="img" />
-										</div> */}
 										<div className="name_container">{v[attribute]}</div>
 									</div>
 								</div>
