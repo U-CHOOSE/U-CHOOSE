@@ -5,6 +5,7 @@ import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
+import uchooseNav from "../../img/uchooseNav.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar, NavItem, NavLink, NavDropdown, Navmenu, Nav, Container, Button } from "react-bootstrap";
@@ -31,15 +32,15 @@ const NavbarComp = () => {
 			.then(res => res.json())
 			.then(json => {
 				setData(json);
-				console.log("user", json);
+				// console.log("user", json);
 				actions.setCurrentUser(json);
 			});
 	}, []);
 
-	console.log("1", data);
+	// console.log("1", data);
 	const kindOfProfile = () => {
 		const user = JSON.parse(localStorage.getItem("user"));
-		console.log("este", user);
+		// console.log("este", user);
 		if (user.is_student) {
 			history.push("/studentprofile");
 		} else {
@@ -47,71 +48,32 @@ const NavbarComp = () => {
 		}
 	};
 
-	console.log("is_student", store.is_student.is_student);
+	// console.log("is_student", store.is_student.is_student);
 
 	return (
 		<>
-			<Navbar bg="light" expand="lg">
-				<Container>
-					<Navbar.Brand>
-						<img className="logoNav" onClick={() => history.push("/")} src={imgIcon} alt="" />
-						<Nav className="justify-content-around">
-							<Nav.Item className="ItemsNav align-self-center">
-								<Nav.Link href="/centros"> Centros </Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link eventKey="link-1">Profesores</Nav.Link>
-							</Nav.Item>
-						</Nav>
-					</Navbar.Brand>
-					<NavDropdown className="navbar-toggler-icon" drop="left">
-						{actions.isLogged() ? (
-							<NavDropdown.Item
-								onClick={logout}
-								style={{ color: "red" }}
-								className="d-flex justify-content-around">
-								<h4>Logout</h4>
-							</NavDropdown.Item>
-						) : (
-							<NavDropdown.Item
-								onClick={() => history.push("/registerformpage")}
-								className="d-flex justify-content-around">
-								<h4>Registrate</h4>
-							</NavDropdown.Item>
-						)}
-
-						<br />
-						<NavDropdown.Item onClick={() => history.push("/searchschools")}>
-							<nav className="flex item" />
-							<div className="d-flex justify-content-around ">
-								<BsBuilding />
-								<h4>Centros</h4>
-							</div>
-						</NavDropdown.Item>
-						<br />
-						<NavDropdown.Item onClick={() => history.push("/searchteachers")}>
-							<div className="d-flex justify-content-around ">
-								<BsFillPersonFill />
-								<h4>Profesores</h4>
-							</div>
-						</NavDropdown.Item>
-						<br />
-
-						{actions.isLogged() ? (
-							<Button className="btnNav w-auto" onClick={kindOfProfile}>
-								Mi perfil
-							</Button>
-						) : (
-							<Button className="btnNav w-auto" onClick={() => history.push("/login")}>
-								Login
-							</Button>
-						)}
-					</NavDropdown>
-					{/* </Nav>
-					</Navbar.Collapse>{" "} */}
-				</Container>
-			</Navbar>
-			{/* {show ? <Modal body={screen} /> : ""}{" "}  */}
+			<div>
+				<nav>
+					<div className="logonav">
+						<img className="imgNav" onClick={() => history.push("/")} src={imgIcon} />{" "}
+					</div>
+					<img className="imgNav" onClick={() => history.push("/")} src={imgIcon} />
+					<ul className="nav-links">
+						<li>
+							<a>Centros</a>
+						</li>
+						<li>
+							<a>Profesores</a>
+						</li>
+						<li>
+							<a>Acceder</a>
+						</li>
+						<span>
+							<Button className="btnNavre">Registrate </Button>
+						</span>
+					</ul>
+				</nav>
+			</div>
 		</>
 	);
 };

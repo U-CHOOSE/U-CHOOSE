@@ -8,13 +8,66 @@
 }
 
 
+
+ li{
+  list-style-type: none;
+ }
+
+
+a {
+  color:red ;
+  text-decoration: none;      
+  }
+
+  nav{
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%); 
+    min-height: 10vh; 
+    align-items: center;
+    font-family: Poppins;
+    font-size: 30px;
+  }
+
+
+.imgNav{
+font-weight: 100px; 
+}
+
+nav .nav-links{
+  display: flex;
+  justify-content: space-around;
+  width: 30%;  
+}
+
+
+.btnNavre{
+  background: none ;
+  border-color: black;
+    
+}
+ nav  .nav-links {
+  font-size: 18px;
+}
+
 //Elementos FIJO DEL NAVBAR//
 //*--------MEDIAQUERY-------- *//
 
 
-@media screen and (max-width:780px) {  
-
+@media screen and (mini-width:780px) {  
+  .logonav{
+		background-image:(logoNav);
+		margin:auto;
+		width:157px;
+		height:59px;
+	}
+	.uchooseNav img{
+		display:none;
+	}
+	 
 }
+
+
 
 
 
@@ -95,12 +148,7 @@ Dropdown{
 
     // background: #A194FF;
 
-a{
-    color:white ;
-    text-decoration: none; 
-           
-
-    }
+  
 
 
   .imgFooter{
