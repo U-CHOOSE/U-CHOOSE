@@ -151,8 +151,13 @@ const TeacherProfile = () => {
 	return (
 		<div className="container">
 			<div className="row">
-				<div className="col-6">
+				<div className="col-6 cont__img__profile">
 					<img className="img__profile" src={data.img} alt="img" />
+					<h1 className="">{data.full_name}</h1>
+					<div className="d-flex">
+						<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
+						<p>profesor@ de {data.type_of_teacher}</p>
+					</div>
 				</div>
 				<div className="col-6  mt-2 contain__1">
 					<div className="d-flex mt-5">
@@ -165,19 +170,17 @@ const TeacherProfile = () => {
 				</div>
 			</div>
 
-			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 mt-4 col-lg-8">
+			{/* <div className="row">
+				<div className="col-12 mt-4">
 					<h1 className=" name1">{data.full_name}</h1>
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 col-lg-11">
+				<div className="col-12">
 					<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
 					<span>profesor@ de {data.type_of_teacher}</span>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="row">
 				<div className="col-12">
@@ -208,20 +211,17 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 col-lg-10">
+				<div className="col-12 ">
 					<h2 className="title___2 mb-5">Reviews destacadas</h2>
 				</div>
 			</div>
 
 			<div className="row">
-				<div className="col-lg-3" />
-				<div className="col-12 col-lg-6 contain-reviews d-flex">
+				<div className="col-12  contain-reviews d-flex">
 					<TopReview faceTopreview={10} valorationTopreview={54} opinionTopreview="hola que tal" />
 					<TopReview faceTopreview={10} valorationTopreview={0} />
 					<TopReview faceTopreview={10} valorationTopreview={100} opinionTopreview="hola que tal" />
 				</div>
-				<div className="col-lg-3" />
 			</div>
 
 			<div className="row">

@@ -44,7 +44,7 @@ const Search = props => {
 					onKeyPress={props.onKeyPress}
 				/>
 			</div>
-			<p className="span__2"> {props.span1}</p>
+			<p className="span__"> {props.span1}</p>
 			{data && select === "" && searchItem !== "" ? (
 				data
 					.filter(v => {
