@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
 import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
 import uchooseNav from "../../img/uchooseNav.png";
@@ -52,28 +53,29 @@ const NavbarComp = () => {
 
 	return (
 		<>
-			<div>
-				<nav>
-					<div className="logonav">
-						<img className="imgNav" onClick={() => history.push("/")} src={imgIcon} />{" "}
+			<nav>
+				<div className="logonav">
+					<img className="uchooseNav" onClick={() => history.push("/")} src={uchooseNav} />{" "}
+				</div>
+				{/* <img className="imgNav" onClick={() => history.push("/")} src={imgIcon} /> */}
+				<ul className="nav-links">
+					<li>
+						<a>Centros</a>
+					</li>
+					<li>
+						<a>Profesores</a>
+					</li>
+					<div>
+						<li>
+							<a className="acceder"> Acceder</a>
+						</li>
 					</div>
-					<img className="imgNav" onClick={() => history.push("/")} src={imgIcon} />
-					<ul className="nav-links">
-						<li>
-							<a>Centros</a>
-						</li>
-						<li>
-							<a>Profesores</a>
-						</li>
-						<li>
-							<a>Acceder</a>
-						</li>
-						<span>
-							<Button className="btnNavre">Registrate </Button>
-						</span>
-					</ul>
-				</nav>
-			</div>
+					<span>
+						<Button className="btnNavre Bold-text btn-lg  btn-outline-dark">Registrate </Button>
+					</span>
+				</ul>
+				<FaBars className="burger" />
+			</nav>
 		</>
 	);
 };

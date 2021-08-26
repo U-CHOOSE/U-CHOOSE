@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import reviewsImg from "../../../../docs/assets/img/mockups_reviews.jpg";
 import reviewMetrics from "../../../../docs/assets/img/review_metrics.png";
-import logo from "../../../../docs/assets/img/Logo_U-CHOOSE.jpg";
+import { LogoUCHOOSE } from "../../img/LogoUCHOOSE.jpg";
 import "../../styles/landingPage.scss";
 import { useHistory } from "react-router";
 
@@ -11,7 +11,7 @@ const LandingPage = () => {
 		<div>
 			<div className="row">
 				<div className="col-sm-12 mt-5 ">
-					<img className="logo " src={logo} />
+					<img className="logolanding" src={LogoUCHOOSE} />
 				</div>
 			</div>
 			<div className="row">
