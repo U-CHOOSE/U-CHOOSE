@@ -76,6 +76,7 @@ const NavbarComp = () => {
 				</ul>
 				<FaBars className="burger" />
 			</nav>
+			
 		</>
 	);
 };
