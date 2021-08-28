@@ -5,17 +5,26 @@ const Search = props => {
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
-	const [selectedItem, setSelectedItem] = useState();
+	const [selectedItem, setSelectedItem] = useState([]);
 
 	const handelSelect = item => {
 		setSelect(props.type === "schools" ? item.name : item.full_name);
-		setSelectedItem(item);
+		const newArray = selectedItem;
+		newArray.push(item);
+		setSelectedItem(newArray);
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
 			console.log("item", item.id);
 
 			props.type === "teacher" ? (actions.setId(item.id, item.user_id), actions.setImg(item.img)) : "";
 		}
+	};
+
+	const removeItem = itemId => {
+		const updatedItem = selectedItem.filter(selectedItem => selectedItem.id !== itemId);
+		setSelectedItem(updatedItem);
+		setSelect("");
+		setSearchItem("");
 	};
 	//
 	useEffect(
@@ -71,34 +80,46 @@ const Search = props => {
 							</li>
 						);
 					})
-			) : (
-				<li className="container" style={{ background: "red" }}>
-					<div className=" row justify-content-md-center">
-						<div className="col-md ">
-							<img src={selectedItem && selectedItem.img} className="container-image-search" />
-						</div>
-						<div className="col-md-6">
-							<p className="">{select}</p>
-						</div>
-						{select != "" ? (
-							<div className="col-md ">
-								<p className="delete-search">X</p>
+			) : select != "" ? (
+				selectedItem &&
+				selectedItem.map((v, i) => {
+					return (
+						<li className="container" style={{ background: "red" }} key={i}>
+							<div className=" row justify-content-md-center">
+								<div className="col-md ">
+									<img src={v.img} className="container-image-search" />
+								</div>
+								<div className="col-md-6">
+									<p className="">{v[attribute]}</p>
+									<p>subtitle</p>
+								</div>
+								{select != "" ? (
+									<div
+										className="col-md "
+										onClick={() => {
+											removeItem(v.id);
+										}}>
+										<p className="delete-search">X</p>
+									</div>
+								) : (
+									""
+								)}
 							</div>
-						) : (
-							""
-						)}
-					</div>
-				</li>
+						</li>
+					);
+				})
+			) : (
+				<></>
 			)}{" "}
 			{props.mySchools &&
 				props.mySchools.map((v, i) => {
 					return (
-						<div key={i}>
+						<li key={i}>
 							<div className="img_container">
 								<img src={v.img} alt="img" />
 							</div>
 							<div className="name_container">{v.name}</div>
-						</div>
+						</li>
 					);
 				})}
 			{props.button}
