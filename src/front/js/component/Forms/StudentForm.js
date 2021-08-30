@@ -15,8 +15,10 @@ const StudentForm = props => {
 		sign_completed: false
 	});
 	const [errorStyle, setErrorStyle] = useState({
+		full_name: "errorInvisible",
 		email: "errorInvisible",
-		_password: "errorInvisible"
+		_password: "errorInvisible",
+		repeat_password: "errorInvisible"
 	});
 
 	const body = {
@@ -38,8 +40,10 @@ const StudentForm = props => {
 			body: JSON.stringify(body)
 		};
 		const validation = {
+			fullname: formData.fullname.length > 5 && formData.fullname.length > 20 ? "errorInvisible" : "errorVisible",
 			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
-			_password: formData._password.length > 5 ? "errorInvisible" : "errorVisible"
+			_password: formData._password.length > 5 ? "errorInvisible" : "errorVisible",
+			repeat_password: formData.repeatPassword != formData._password ? "errorInvisible" : "errorVisible"
 		};
 		setErrorStyle(validation);
 		if (!Object.values(validation).find(value => value === "errorVisible")) {
@@ -76,9 +80,8 @@ const StudentForm = props => {
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
-				{/* <span className={errorStyle.full_name} /> */}
 				<span>Podras ocultarlo en tus reviews</span>
-
+				<span className={errorStyle.full_name}>Tu nombre debe tener más de 5 caracteres</span>
 				<input
 					className="mx-auto w-100  m-3 p-3"
 					type="text"
@@ -103,7 +106,7 @@ const StudentForm = props => {
 					value={formData.repeat}
 					onChange={e => setFormData({ ...formData, repeat: e.target.value })}
 				/>
-
+				<span className={errorStyle.repeat_password}>Las contraseñas no coinciden</span>
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
 
 				<span>Acepto los terminos y condiciones</span>
