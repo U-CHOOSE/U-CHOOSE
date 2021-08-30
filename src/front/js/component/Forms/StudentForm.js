@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
 import google from "../../../../../docs/assets/img/google.png";
-import { validateEmail, validatePassword } from "../Utils";
+import validateEmail from "../Utils";
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
 	const [formData, setFormData] = useState({
@@ -16,10 +16,7 @@ const StudentForm = props => {
 	});
 	const [errorStyle, setErrorStyle] = useState({
 		email: "errorInvisible",
-		_password: "errorInvisible",
-		full_name: "errorInvisible",
-		repeatPassword: "errorInvisible",
-		conditions: "errorInvisible"
+		_password: "errorInvisible"
 	});
 
 	const body = {
@@ -31,7 +28,6 @@ const StudentForm = props => {
 		sign_completed: formData.sign_completed
 	};
 	const [checked, setChecked] = useState(true);
-	const validations = 0;
 
 	const handleCreate = () => {
 		const options = {
@@ -42,10 +38,8 @@ const StudentForm = props => {
 			body: JSON.stringify(body)
 		};
 		const validation = {
-			// full_name:
-			// 	formData.fullname.length > 4 || formData.fullname.length < 20 ? "errorInvisible" : "errorVisible",
 			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
-			_password: validatePassword(formData._password) ? "errorInvisible" : "errorVisible"
+			_password: formData._password.length > 5 ? "errorInvisible" : "errorVisible"
 		};
 		setErrorStyle(validation);
 		if (!Object.values(validation).find(value => value === "errorVisible")) {
@@ -76,17 +70,17 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className={errorStyle.full_name}
+					className="mx-auto w-100  m-3 p-3"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
-				<span className={errorStyle.full_name} />
+				{/* <span className={errorStyle.full_name} /> */}
 				<span>Podras ocultarlo en tus reviews</span>
 
 				<input
-					className={errorStyle.email}
+					className="mx-auto w-100  m-3 p-3"
 					type="text"
 					placeholder="Email"
 					value={formData.email}
@@ -95,7 +89,7 @@ const StudentForm = props => {
 				<span className={errorStyle.email}>Invalid email</span>
 
 				<input
-					className={errorStyle._password}
+					className="mx-auto w-100  m-3 p-3"
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
