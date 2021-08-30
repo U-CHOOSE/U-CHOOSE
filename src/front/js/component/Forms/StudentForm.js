@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
 import google from "../../../../../docs/assets/img/google.png";
-
+import { validateEmail, validatePassword } from "../Utils";
 const StudentForm = props => {
 	const { store, actions } = useContext(Context);
 	const [formData, setFormData] = useState({
@@ -14,6 +14,14 @@ const StudentForm = props => {
 		is_student: true,
 		sign_completed: false
 	});
+	const [errorStyle, setErrorStyle] = useState({
+		email: "errorInvisible",
+		_password: "errorInvisible",
+		full_name: "errorInvisible",
+		repeatPassword: "errorInvisible",
+		conditions: "errorInvisible"
+	});
+
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
@@ -23,7 +31,8 @@ const StudentForm = props => {
 		sign_completed: formData.sign_completed
 	};
 	const [checked, setChecked] = useState(true);
-	const validations;
+	const validations = 0;
+
 	const handleCreate = () => {
 		const options = {
 			method: "POST",
@@ -32,23 +41,32 @@ const StudentForm = props => {
 			},
 			body: JSON.stringify(body)
 		};
+		const validation = {
+			// full_name:
+			// 	formData.fullname.length > 4 || formData.fullname.length < 20 ? "errorInvisible" : "errorVisible",
+			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
+			_password: validatePassword(formData._password) ? "errorInvisible" : "errorVisible"
+		};
+		setErrorStyle(validation);
+		if (!Object.values(validation).find(value => value === "errorVisible")) {
+			fetch(process.env.BACKEND_URL + "/user", options)
+				.then(res => {
+					if (res.status === 201) {
+						alert("ok");
+						actions.setUpStep();
+					} else {
+						alert("failed to fetch");
+					}
+					// console.log(status);
+					return res.json();
+				})
+				.then(json => {
+					localStorage.setItem("id_user", json.body.user_id);
+					localStorage.setItem("email", json.body.email);
+					localStorage.setItem("password", json.body._password);
+				});
+		}
 
-		fetch(process.env.BACKEND_URL + "/user", options)
-			.then(res => {
-				if (res.status === 201) {
-					alert("ok");
-					actions.setUpStep();
-				} else {
-					alert("failed to fetch");
-				}
-				// console.log(status);
-				return res.json();
-			})
-			.then(json => {
-				localStorage.setItem("id_user", json.body.user_id);
-				localStorage.setItem("email", json.body.email);
-				localStorage.setItem("password", json.body._password);
-			});
 		// .catch(error => console.log(error));
 	};
 	return (
@@ -58,33 +76,34 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100 m-3 p-3"
+					className={errorStyle.full_name}
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
-
+				<span className={errorStyle.full_name} />
 				<span>Podras ocultarlo en tus reviews</span>
 
 				<input
-					className=" mx-auto w-100  m-3 p-3 "
+					className={errorStyle.email}
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
+				<span className={errorStyle.email}>Invalid email</span>
 
 				<input
-					className="  mx-auto w-100 m-3 p-3  "
+					className={errorStyle._password}
 					type="password"
 					placeholder="Contraseña"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
-
+				<span className={errorStyle._password}>Invalid password</span>
 				<input
-					className=" mx-auto w-100 m-3 p-3"
+					className="mx-auto w-100  m-3 p-3"
 					type="password"
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
