@@ -10,6 +10,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import "../../styles/index.scss";
 
 const RegisterFormPage = () => {
+	
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 	const [show, setShow] = useState(true);

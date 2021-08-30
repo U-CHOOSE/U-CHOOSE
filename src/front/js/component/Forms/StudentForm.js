@@ -23,6 +23,7 @@ const StudentForm = props => {
 		sign_completed: formData.sign_completed
 	};
 	const [checked, setChecked] = useState(true);
+	const validations;
 	const handleCreate = () => {
 		const options = {
 			method: "POST",
