@@ -52,62 +52,54 @@ def handle_hello():
     return jsonify(response_body), 200
 
 #TODO creating endpoint to schools
-@api.route('/user', methods=['POST','PUT'])
+@api.route('/school', methods=['POST']
+def add_school:
+    
+    body = request.json()
+    name = body.get("name",None)
+    location = body.get("location",None)
+    img = body.get("img",None)
+
+    if name or location or img is None:
+        return "Missing info ", 400
+    
+    school = School(  
+        name = name,
+        location = location,
+        img = img
+        )
+
+    school.add()
+
+    return jsonify({"school":school.serialize()}), 201
+  
+
+@api.route('/student', methods=['POST'])
 def add_user():
-    
-    if request.method == 'POST':
-        body = request.get_json()
-        print(body)
-        full_name = body.get("full_name", None)
-        email = body.get("email", None)
-        _password = body.get("_password", None)
-        is_student = body.get("is_student", None)
-        promo = body.get("promo", None)
-        sign_completed = body.get("sign_completed", None)
+    body = request.get_json()
+    first_name = body.get("first_name", None)
+    last_name = body.get("last_name", None)
+    email = body.get("email", None)
+    _password = body.get("_password", None)
+    promo = body.get("promo", None)
+
+    if first_name or last_name or email or _password or promo is None:
+        return "Missing info ", 400
+    password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
+
+    user = User(
+        first_name = first_name,
+        last_name = last_name,
+        _password = password_hashed,
+        promo = promo,
+        email = email
+    )
+
+    user.add()
+
+    return jsonify({"student": user.serialize()}), 201
 
 
-        if not email or not _password or is_student is None:
-            return "Missing info", 400
-
-        password_hashed = generate_password_hash( _password, method='pbkdf2:sha256', salt_length=8)
-        user_id = User.add(
-            email, 
-            password_hashed, 
-            is_student, 
-            promo,
-            full_name,
-            sign_completed
-        )
-
-        if is_student:
-            student =  User_student(
-                user_id=user_id
-            )
-            student.add()
-            return jsonify({"body": student.serialize()}), 201
-
-        teacher =  User_teacher(
-            linkedin = body.get("linkedin"),
-            type_of_teacher = body.get("type_of_teacher"),
-            user_id = user_id
-        )
-        teacher.add()
-        return jsonify({"teacher": teacher.serialize()}), 201
-
-    elif request.method == 'PUT':
-        body = request.get_json()
-        img = body.get("img", None)
-        school_id = body.get("school_id", None)
-        user_id = body.get("user_id", None)
-        
-        user_school =  User_school(
-            school_id = school_id,
-            user_id = user_id
-        )
-        user_school.add()
-
-    
-        return jsonify({"school": user_school.serialize()}), 201
     
 
     

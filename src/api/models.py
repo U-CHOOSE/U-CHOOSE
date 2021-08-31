@@ -25,6 +25,11 @@ class BaseModel():
     def delete_all(cls):
         return cls.query.delete()
 
+    @classmethod 
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+
 
 class User(db.Model,BaseModel):
     __tablename__ = 'user'
@@ -38,51 +43,20 @@ class User(db.Model,BaseModel):
     student = db.relationship("Student", back_populates="user")
     teacher = db.relationship("Teacher", back_populates="user")
 
-
-
     def __repr__(self):
         return '<User %r>' % self.email
 
-    
-
     def serialize(self):
 
-        
-        
-        user = {
-
+        return {
             "id": self.id,
             "first_name":self.first_name,
             "last_name":self.last_name,
             "email": self.email,
             "img":self.img,
         }
-
-        if not self.is_student :
-            user_teacher = User_teacher.get_by_user_id(self.id)
-                           
-            user["type_of_teacher"] =  user_teacher.type_of_teacher
-            user["linkedin"] =  user_teacher.linkedin
             
-        return user
         
-
-    @classmethod
-    def add(cls,email,_password,is_student,promo,full_name):
-        user = cls(
-            email=email, 
-            _password=_password,
-            is_student=is_student,
-            promo=promo,
-            full_name = full_name,
-            
-            
-        )
-        db.session.add(user)
-        db.session.commit()
-        return user.id
-
-
     def put_with_json(self,json):
 
         print(json)
