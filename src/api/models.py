@@ -6,20 +6,38 @@ db = SQLAlchemy()
 
 db = SQLAlchemy()
 
+class BaseModel():
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+        
 
-class User(db.Model):
+    @classmethod
+    def get_one_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+
+    @classmethod
+    def get_one_by_id(cls,model_id):
+        return cls.query.filter_by(id = model_id).first()
+
+
+    @classmethod 
+    def delete_all(cls):
+        return cls.query.delete()
+
+
+class User(db.Model,BaseModel):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.VARCHAR, unique=True)
+    first_name = db.Column(db.VARCHAR, unique=True)
+    last_name = db.Column(db.VARCHAR, unique=True)
     email = db.Column(db.VARCHAR, unique=True)
     _password = db.Column(db.VARCHAR)
     img = db.Column(db.VARCHAR,nullable=True,default="https://res.cloudinary.com/braulg/image/upload/v1624454265/airfaohxepd3ncf5tnlf.png")
     promo = db.Column(db.Boolean, default=False)
-    is_student = db.Column(db.Boolean)
-    sign_completed = db.Column(db.Boolean,default=False)
-    user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
-    user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
-    school = db.relationship("School", secondary="user_school")
+    student = db.relationship("Student", back_populates="user")
+    teacher = db.relationship("Teacher", back_populates="user")
+
 
 
     def __repr__(self):
@@ -34,10 +52,9 @@ class User(db.Model):
         user = {
 
             "id": self.id,
-            "full_name":self.full_name,
+            "first_name":self.first_name,
+            "last_name":self.last_name,
             "email": self.email,
-            "is_student":self.is_student,
-            "sign_completed":self.sign_completed,
             "img":self.img,
         }
 
@@ -51,14 +68,14 @@ class User(db.Model):
         
 
     @classmethod
-    def add(cls,email,_password,is_student,promo,full_name,sign_completed):
+    def add(cls,email,_password,is_student,promo,full_name):
         user = cls(
             email=email, 
             _password=_password,
             is_student=is_student,
             promo=promo,
             full_name = full_name,
-            sign_completed = sign_completed
+            
             
         )
         db.session.add(user)
@@ -124,8 +141,19 @@ class User(db.Model):
         db.session.commit()
         return target
         
-        
-class User_teacher(db.Model):
+# tags = db.Table('tags',
+#     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
+#     db.Column('page_id', db.Integer, db.ForeignKey('page.id'), primary_key=True)
+# )
+
+# class Page(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     tags = db.relationship('Tag', secondary=tags, lazy='subquery',
+#         backref=db.backref('pages', lazy=True))
+
+# class Tag(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)        
+class Teacher(db.Model):
     __tablename__ = 'user_teacher'
     id = db.Column(db.Integer, primary_key=True)
     type_of_teacher = db.Column(db.VARCHAR)
@@ -136,7 +164,7 @@ class User_teacher(db.Model):
     # school_teacher = db.relationship("User_teacher_school",back_populates = "user_teacher")
             
     def __repr__(self):
-        return '<User_teacher %r>' % self.id
+        return '<Teacher %r>' % self.id
 
     def serialize(self):
         user = User.get_by_id(self.user_id)
@@ -186,11 +214,10 @@ class User_teacher(db.Model):
         users = cls.query.all()
         return users
 
-class User_student(db.Model):
-    __tablename__ = 'user_student'
+class Student(db.Model):
+    __tablename__ = 'student'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    # school = db.relationship('User_student_school', back_populates="user_student")
             
     def __repr__(self):
         return '<User_teacher %r>' % self.id
