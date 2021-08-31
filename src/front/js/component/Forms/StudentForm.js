@@ -4,7 +4,7 @@ import { Context } from "../../store/appContext";
 import google from "../../../../../docs/assets/img/google.png";
 import validateEmail from "../Utils";
 const StudentForm = props => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
@@ -55,7 +55,6 @@ const StudentForm = props => {
 					} else {
 						alert("failed to fetch");
 					}
-					// console.log(status);
 					return res.json();
 				})
 				.then(json => {
@@ -64,8 +63,6 @@ const StudentForm = props => {
 					localStorage.setItem("password", json.body._password);
 				});
 		}
-
-		// .catch(error => console.log(error));
 	};
 	return (
 		<>
@@ -108,17 +105,14 @@ const StudentForm = props => {
 				/>
 				<span className={errorStyle.repeat_password}>Las contraseñas no coinciden</span>
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-
 				<span>Acepto los terminos y condiciones</span>
 				<br />
 				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-
 				<span>
 					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
 					de diferentes centros
 				</span>
 				<br />
-
 				{props.footer}
 				<br />
 				<button className="button_violet_great b_cuenta mx-auto " onClick={handleCreate}>
