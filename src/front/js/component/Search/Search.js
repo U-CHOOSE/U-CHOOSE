@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Search.scss";
+import { Context } from "../../store/appContext";
 
 const Search = props => {
+	const { store, actions } = useContext(Context);
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
