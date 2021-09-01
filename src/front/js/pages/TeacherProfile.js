@@ -226,8 +226,11 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-12  ">
+				<div className="col-12 col-lg-6  ">
 					<h2 className="title___2 mb-5">Reviews destacadas</h2>
+				</div>
+				<div className=" col-lg-6 no_desktop ">
+					<button className="button__reviews__desktop">Ver todas las reviews</button>
 				</div>
 			</div>
 
@@ -240,7 +243,7 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-12">
+				<div className="col-12 ">
 					<button className="button2 b-2-r">Ver todas las reviews</button>
 				</div>
 			</div>
