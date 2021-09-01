@@ -68,7 +68,7 @@ const NavbarComp = () => {
 							<NavDropdown.Item
 								onClick={() => history.push("/registerformpage")}
 								className="d-flex justify-content-around">
-								<h4>Registrate</h4>
+								<h4>REGISTRATE</h4>
 							</NavDropdown.Item>
 						)}
 
