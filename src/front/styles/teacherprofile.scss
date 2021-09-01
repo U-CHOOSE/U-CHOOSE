@@ -129,6 +129,9 @@
     display: block;
     margin: auto;
 }
+.hola {
+    display: none;
+}
 
 // @media (max-width: 992px) {
 //     .img-profile{ 
@@ -163,6 +166,7 @@
             width: 50%;
             height: 50%;
             height:50%;
+            margin: auto;
         }
         .title-2-v {
             font-size: 200%;
@@ -201,6 +205,35 @@
             line-height: 50px;
             letter-spacing: 1px;
             color: #4E4B66;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .img__profile{ 
+            width: 265px;
+            height: 265px;
+            border-radius: 100%;
+            padding-top: -100px;
+            display: block;
+        }
+       
+       
+    }
+    @media (min-width: 990px){
+        .hola {
+            display: block;
+            margin-top: 20px;
+        }
+        .butt-on1 {
+            margin-top: 20px;
+        }
+        .span-reviews {
+            margin-top: 40px;
+        }
+        .title-2-v, .image-valoration {
+            display: none;
+        }
+        .title___2 {
+            text-align: left;
         }
     }
 

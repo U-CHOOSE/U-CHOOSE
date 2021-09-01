@@ -150,8 +150,8 @@ const TeacherProfile = () => {
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
 		<div className="container">
-			<div className="row">
-				<div className="col-6 cont__img__profile">
+			<div className="row mt-lg-5">
+				<div className="col-6 col-lg-4 cont__img__profile">
 					<img className="img__profile" src={data.img} alt="img" />
 					<h1 className="">{data.full_name}</h1>
 					<div className="d-flex">
@@ -159,7 +159,7 @@ const TeacherProfile = () => {
 						<p>profesor@ de {data.type_of_teacher}</p>
 					</div>
 				</div>
-				<div className="col-6  mt-2 contain__1">
+				<div className="col-6 col-lg-3  mt-2 contain__1">
 					<div className="d-flex mt-5">
 						<Faces face={media.avg} />
 					</div>
@@ -167,6 +167,21 @@ const TeacherProfile = () => {
 					<button className="butt-on1  " onClick={() => history.push("teacherprofile/edit")}>
 						Editar perfil
 					</button>
+				</div>
+				<div className="col-lg-5">
+					<h1 className="hola">
+						<TeacherAssessment
+							name={data.full_name}
+							dinamismoT={media.avgDynamism}
+							dinamismoO={mediaOthersTeachers.avgDynamism}
+							pasionT={media.avgPassion}
+							pasionO={mediaOthersTeachers.avgPassion}
+							exampleT={media.avgPractisesExample}
+							exampleO={mediaOthersTeachers.avgPractisesExample}
+							inolvementT={media.avgNear}
+							inolvementO={mediaOthersTeachers.avgNear}
+						/>
+					</h1>
 				</div>
 			</div>
 
@@ -187,7 +202,7 @@ const TeacherProfile = () => {
 					<h2 className="title___2 title-2-v ">Valoración</h2>
 				</div>
 			</div>
-			<div className="row">
+			<div className="row ">
 				<div className="col-12">
 					<div className="image-valoration">
 						{/* T = teacher
@@ -211,7 +226,7 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-12 ">
+				<div className="col-12  ">
 					<h2 className="title___2 mb-5">Reviews destacadas</h2>
 				</div>
 			</div>
