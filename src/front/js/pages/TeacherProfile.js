@@ -18,8 +18,9 @@ const TeacherProfile = () => {
 	const [mediaOthersTeachers, setMediaOthersTeachers] = useState({});
 
 	// const [avgDynanism, setAvgDynamism] = useState(0);
-	const user_id = localStorage.getItem("id_user");
-	let teacherId = localStorage.getItem("teacher_id");
+	// const user_id = localStorage.getItem("id_user");
+	console.log("store.idteacher", store.idTeacher);
+	let teacherId = store.idTeacher;
 	useEffect(() => {
 		const token = actions.getToken();
 		fetch(process.env.BACKEND_URL + "/user", {
