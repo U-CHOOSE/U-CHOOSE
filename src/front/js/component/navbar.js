@@ -5,9 +5,10 @@ import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
+import logoNav from "../../img/logoNav.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, NavDropdown, Navmenu, Container, Button } from "react-bootstrap";
+import { Navbar, NavDropdown, Navmenu, NavLink, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
 	const { actions, store } = useContext(Context);
@@ -54,8 +55,13 @@ const NavbarComp = () => {
 			<Navbar bg="light" expand="lg">
 				<Container>
 					<Navbar.Brand>
-						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<img className="imgIcon" onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<img className="logoNav" onClick={() => history.push("/")} src={logoNav} alt="" />
+						{/* <NavLink  href="#home">Home</NavLink>
+						<NavLink href="#features">Features</NavLink>
+						<NavLink href="#pricing">Pricing</NavLink> */}
 					</Navbar.Brand>
+
 					<NavDropdown className="navbar-toggler-icon" drop="left">
 						{actions.isLogged() ? (
 							<NavDropdown.Item
