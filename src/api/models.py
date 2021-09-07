@@ -318,7 +318,8 @@ class Review_teacher(db.Model):
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
-
+    
+    
     def __repr__(self):
         return '<Review_teacher %r>' % self.id
     
@@ -352,3 +353,7 @@ class Review_teacher(db.Model):
     def get_by_id(cls, id):
         reviews = cls.query.filter_by(id = id).first_or_404()
         return reviews
+
+
+    # class StudentTeacher(db.model):
+

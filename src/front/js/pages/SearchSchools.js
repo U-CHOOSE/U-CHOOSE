@@ -13,6 +13,18 @@ const SearchSchools = () => {
 		if (e.key === "Enter" && e.target.value !== "") {
 		}
 	};
+	// const handelSelect = item => {
+	// 	setSelect(props.type === "schools" ? item.name : item.full_name);
+	// 	const newArray = selectedItem;
+	// 	newArray.push(item);
+	// 	setSelectedItem(newArray);
+	// 	localStorage.setItem("selected_item", JSON.stringify(item));
+	// 	{
+	// 		console.log("item", item.id);
+
+	// 		props.type === "teacher" ? (actions.setId(item.id, item.user_id), actions.setImg(item.img)) : "";
+	// 	}
+	// };
 
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")

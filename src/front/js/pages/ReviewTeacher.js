@@ -34,6 +34,7 @@ const ReviewTeacher = () => {
 		},
 		[!data]
 	);
+	console.log("data_user", dateUser);
 	const userId = store.userId;
 	console.log("teacher id", userId);
 
