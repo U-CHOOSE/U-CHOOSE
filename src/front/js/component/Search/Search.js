@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Search.scss";
-
+import { Link, useParams } from "react-router-dom";
 const Search = props => {
+	const params = useParams();
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
@@ -90,7 +91,9 @@ const Search = props => {
 									<img src={v.img} className="container-image-search" />
 								</div>
 								<div className="col-md-6">
-									<p className="">{v[attribute]}</p>
+									<Link to={v.name ? "/schoolpage/" + v.id : "/teacherpage/" + v.id}>
+										<p className="">{v[attribute]}</p>
+									</Link>
 									<p>subtitle</p>
 								</div>
 								{select != "" ? (
