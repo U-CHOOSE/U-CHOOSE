@@ -3,8 +3,6 @@ import { Container } from "react-bootstrap";
 import Search from "../component/Search/Search";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SearchSchools = () => {
 	const history = useHistory();

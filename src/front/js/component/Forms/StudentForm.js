@@ -26,9 +26,9 @@ const StudentForm = props => {
 		full_name: "errorInvisible",
 		email: "errorInvisible",
 		_password: "errorInvisible",
-		repeat_password: "errorInvisible",
-		legal: "errorInvisible"
+		repeat_password: "errorInvisible"
 	});
+	const [legalStyle, setLegalStyle] = useState("invisible");
 
 	const body = {
 		full_name: formData.fullname,
@@ -38,7 +38,7 @@ const StudentForm = props => {
 		is_student: formData.is_student,
 		sign_completed: formData.sign_completed
 	};
-	const [legal, setLegal] = useState(true);
+	const [legal, setLegal] = useState(false);
 	const [checked, setChecked] = useState(false);
 	const handleCreate = () => {
 		const options = {
@@ -53,7 +53,7 @@ const StudentForm = props => {
 			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
 			_password: formData._password - length > 5 ? "errorInvisible" : "errorVisible",
 			repeat_password: formData.repeatPassword !== formData._password ? "errorInvisible" : "errorVisible",
-			legal: legal === undefined ? "errorInvisible" : "errorVisible"
+			legalStyle: legal === undefined ? "invisible" : "visible"
 		};
 		setErrorStyle(validation);
 		if (!Object.values(validation).find(value => value === "errorVisible")) {
@@ -156,7 +156,7 @@ const StudentForm = props => {
 
 				<span className={errorStyle.repeat_password}>Las contraseñas no coinciden</span>
 				<div className="checkboxes">
-					<input type="checkbox" className={errorStyle.legal} />
+					<input type="checkbox" onChange={() => setLegal(!legal)} />
 					<span>Acepto los terminos y condiciones</span>
 					<br />
 					<input type="checkbox" onChange={() => setChecked(!checked)} />

@@ -4,8 +4,11 @@ import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment"
 import { useParams } from "react-router-dom";
 const TeacherPage = () => {
 	const params = useParams();
+	const id = params.id;
 	useEffect(() => {
-		console.log("params", params.id);
+		fetch(process.env.BACKEND_URL + "/teacher/" + id)
+			.then(res => res.json())
+			.then(json => console.log("teacher", json));
 	}, []);
 	return (
 		<div>

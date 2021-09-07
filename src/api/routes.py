@@ -236,6 +236,17 @@ def get_all_user_schools(id):
         school_dic.append(school.serialize())
     return jsonify(school_dic), 200
 
+
+@api.route('/school/<int:id>', methods=['GET'])
+def get_one_school(id):
+    school = School.get_by_id(id)
+    return jsonify( school.serialize()) , 200
+
+@api.route('/teacher/<int:id>', methods=['GET'])
+def get_one_teacher(id):
+    teacher = User_teacher.get_by_id(id)
+    return jsonify( teacher.serialize()) , 200
+    
 @api.route('/school', methods=['POST'])
 def add_school():
 
