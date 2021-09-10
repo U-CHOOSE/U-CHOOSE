@@ -7,14 +7,14 @@ import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar, NavDropdown, Navmenu, Container, Button } from "react-bootstrap";
+import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
 
 const NavbarComp = () => {
 	const { actions, store } = useContext(Context);
 	const history = useHistory();
 	const [data, setData] = useState({});
 	const [show, setShow] = useState(false);
-
+	const user = JSON.parse(localStorage.getItem("user"));
 	const logout = () => {
 		actions.removeToken();
 		window.location.replace("/login");
@@ -56,6 +56,13 @@ const NavbarComp = () => {
 					<Navbar.Brand>
 						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
 					</Navbar.Brand>
+					{actions.isLogged() ? (
+						<div onClick={kindOfProfile} style={{ cursor: "pointer" }}>
+							Hola , {user.full_name}
+						</div>
+					) : (
+						""
+					)}
 					<NavDropdown className="navbar-toggler-icon" drop="left">
 						{actions.isLogged() ? (
 							<NavDropdown.Item
@@ -98,11 +105,8 @@ const NavbarComp = () => {
 							</Button>
 						)}
 					</NavDropdown>
-					{/* </Nav>
-					</Navbar.Collapse>{" "} */}
 				</Container>
 			</Navbar>
-			{/* {show ? <Modal body={screen} /> : ""}{" "}  */}
 		</>
 	);
 };
