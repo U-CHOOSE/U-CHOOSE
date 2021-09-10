@@ -15,6 +15,7 @@ const Search = props => {
 		const newArray = selectedItem;
 		newArray.push(item);
 		setSelectedItem(newArray);
+		setSearchItem("");
 		localStorage.setItem("selected_item", JSON.stringify(item));
 		{
 			console.log("item", item.id);
@@ -38,9 +39,10 @@ const Search = props => {
 	);
 
 	let attribute = "full_name";
-
+	let subtitle = "type_of_teacher";
 	if (props.type === "schools") {
 		attribute = "name";
+		subtitle = "location";
 	}
 	console.log(props.mySchools, "myschools search");
 
@@ -54,11 +56,10 @@ const Search = props => {
 					type="text"
 					placeholder={props.placeholder}
 					onChange={e => setSearchItem(e.target.value)}
-					onKeyPress={props.onKeyPress}
 				/>
 			</div>
 			<p className="span__2"> {props.span1}</p>
-			{data && select === "" && searchItem !== "" ? (
+			{data && searchItem !== "" ? (
 				data
 					.filter(v => {
 						if (searchItem === "") {
@@ -71,14 +72,27 @@ const Search = props => {
 						return (
 							<li key={i}>
 								<div>
-									<div
-										onClick={() => {
-											handelSelect(v);
-											console.log(v, "select");
-										}}
-										className="image_name_container">
-										<div className="name_container">{v[attribute]}</div>
-									</div>
+									{props.noSelect ? (
+										<Link to={v.name ? "/schoolpage/" + v.id : "/teacherpage/" + v.id}>
+											<div
+												onClick={() => {
+													handelSelect(v);
+													console.log(v, "select");
+												}}
+												className="image_name_container">
+												<div className="name_container">{v[attribute]}</div>
+											</div>
+										</Link>
+									) : (
+										<div
+											onClick={() => {
+												handelSelect(v);
+												console.log(v, "select");
+											}}
+											className="image_name_container">
+											<div className="name_container">{v[attribute]}</div>
+										</div>
+									)}
 								</div>
 							</li>
 						);
@@ -86,6 +100,7 @@ const Search = props => {
 			) : select != "" ? (
 				selectedItem &&
 				selectedItem.map((v, i) => {
+					console.log(v[subtitle], v, "v sub");
 					return (
 						<li className="container" style={{ background: "red" }} key={i}>
 							<div className=" row justify-content-md-center">
@@ -93,10 +108,8 @@ const Search = props => {
 									<img src={v.img} className="container-image-search" />
 								</div>
 								<div className="col-md-6">
-									<Link to={v.name ? "/schoolpage/" + v.id : "/teacherpage/" + v.id}>
-										<p className="">{v[attribute]}</p>
-									</Link>
-									<p>subtitle</p>
+									<p className="">{v[attribute]}</p>
+									<p>{v[subtitle]}</p>
 								</div>
 								{select != "" ? (
 									<div

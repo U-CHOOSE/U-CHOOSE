@@ -8,11 +8,12 @@ const SearchSchools = () => {
 	const history = useHistory();
 	const [data, setData] = useState("");
 	const [mySchools, setMySchools] = useState("");
-	const { actions } = useContext(Context);
+	const [selectItem, setSelectItem] = useState(false);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
 		}
 	};
+
 	// const handelSelect = item => {
 	// 	setSelect(props.type === "schools" ? item.name : item.full_name);
 	// 	const newArray = selectedItem;
@@ -45,6 +46,7 @@ const SearchSchools = () => {
 				data={data}
 				onKeyPress={handleKeyPress}
 				mySchools={mySchools}
+				noSelect={false}
 			/>
 		</Container>
 	);

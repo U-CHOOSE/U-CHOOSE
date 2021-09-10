@@ -278,15 +278,13 @@ def add_school_to_user():
     print("add" , user_add)
     return jsonify(user_add.serialize()),201
 
-
-
+# 
 
 @api.route('/review', methods=['POST'])
+@jwt_required()
 def add_review_to_teacher():
+    id = get_jwt_identity()    
     body = request.get_json()
-    print(body)
-
-    
     teacher_id = body.get("teacher_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
@@ -294,13 +292,15 @@ def add_review_to_teacher():
     near = body.get("near", None),
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
-    
-    review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
-
-    review.add()
-   
+    mySchool = User_school.get_by_user_id(id) 
+    pepito = School.query.filter_by(id = mySchool.school_id).filter_by(user_id = teacher_id)
+    if pepito  :
+        review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
+        review.add()
+        return jsonify(review.serialize()),201
+    return "Missing info" ,400
  
-    return jsonify(review.serialize()),201
+    
 
 @api.route('/reviews', methods=['GET'])
 def get_all_review_to_teacher():

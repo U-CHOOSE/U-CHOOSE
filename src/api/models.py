@@ -244,7 +244,8 @@ class School(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "img": self.img
+            "img": self.img,
+            "location": self.location
         }
 
     @classmethod
