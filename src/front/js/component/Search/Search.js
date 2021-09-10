@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Search.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../../store/appContext";
 const Search = props => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
+	const history = useHistory();
 	const [searchItem, setSearchItem] = useState("");
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
@@ -73,10 +73,11 @@ const Search = props => {
 							<li key={i}>
 								<div>
 									{props.noSelect ? (
-										<Link to={v.name ? "/schoolpage/" + v.id : "/teacherpage/" + v.id}>
+										<Link
+											to={v.name ? "/schoolpage/" + v.id : "/teacherpage/" + v.id}
+											style={{ textDecoration: "none", color: "grey" }}>
 											<div
 												onClick={() => {
-													handelSelect(v);
 													console.log(v, "select");
 												}}
 												className="image_name_container">

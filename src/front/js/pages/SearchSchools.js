@@ -44,9 +44,7 @@ const SearchSchools = () => {
 				span1="¿No encuentras tu centro?"
 				type="schools"
 				data={data}
-				onKeyPress={handleKeyPress}
-				mySchools={mySchools}
-				noSelect={false}
+				noSelect={true}
 			/>
 		</Container>
 	);
