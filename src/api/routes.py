@@ -293,7 +293,7 @@ def add_review_to_teacher():
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
     mySchool = User_school.get_by_user_id(id) 
-    pepito = School.query.filter_by(id = mySchool.school_id).filter_by(user_id = teacher_id)
+    pepito = School.query.filter_by(id = mySchool.school_id).filter_by(id = teacher_id)
     if pepito  :
         review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
         review.add()
