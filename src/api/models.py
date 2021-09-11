@@ -244,8 +244,7 @@ class School(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "img": self.img,
-            "location": self.location
+            "img": self.img
         }
 
     @classmethod
@@ -306,11 +305,6 @@ class User_school(db.Model):
     def get_by_user_id(cls, user):
         user_company = cls.query.filter_by(user_id=user).first()
         return user_company
-    
-    @classmethod
-    def get_users_by_school_id(cls,school_id):
-        users = cls.query.filter_by(school_id = school_id).all()
-        return users
 
 
 class Review_teacher(db.Model):
@@ -324,8 +318,7 @@ class Review_teacher(db.Model):
     more_info = db.Column(db.String(500), unique=False, nullable=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
-    
-    
+
     def __repr__(self):
         return '<Review_teacher %r>' % self.id
     
@@ -359,7 +352,3 @@ class Review_teacher(db.Model):
     def get_by_id(cls, id):
         reviews = cls.query.filter_by(id = id).first_or_404()
         return reviews
-
-
-    # class StudentTeacher(db.model):
-

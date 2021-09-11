@@ -293,13 +293,18 @@ def add_review_to_teacher():
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
     mySchool = User_school.get_by_user_id(id) 
-    print(mySchool.school_id)
     school_users = User_school.get_users_by_school_id(mySchool.school_id)
-    print(school_users)
-    teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first(), school_users))
+    teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first().serialize(), school_users))
     print("this",teachers)
-    user_teacher = list(map(lambda x : x.is_student == False,teachers))
-    print("a", user_teacher)
+    user_teacher_dic = []
+    for element in teachers:
+        if not element["is_student"]:
+            user_teacher_dic.append(element)
+            
+    print ("user_teacher",user_teacher_dic)
+    return jsonify(user_teacher_dic), 200
+
+    
     # pepito = School.query.filter_by(id = mySchool.school_id).filter_by(id = teacher_id)
     # if pepito  :
     #     review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
