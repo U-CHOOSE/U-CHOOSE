@@ -298,6 +298,8 @@ def add_review_to_teacher():
     print(school_users)
     teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first(), school_users))
     print("this",teachers)
+    user_teacher = list(map(lambda x : x.is_student == False,teachers))
+    print("a", user_teacher)
     # pepito = School.query.filter_by(id = mySchool.school_id).filter_by(id = teacher_id)
     # if pepito  :
     #     review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
