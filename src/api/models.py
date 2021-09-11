@@ -306,6 +306,11 @@ class User_school(db.Model):
     def get_by_user_id(cls, user):
         user_company = cls.query.filter_by(user_id=user).first()
         return user_company
+    
+    @classmethod
+    def get_users_by_school_id(cls,school_id):
+        users = cls.query.filter_by(school_id = school_id).all()
+        return users
 
 
 class Review_teacher(db.Model):

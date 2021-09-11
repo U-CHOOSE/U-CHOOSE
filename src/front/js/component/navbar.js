@@ -58,7 +58,7 @@ const NavbarComp = () => {
 					</Navbar.Brand>
 					{actions.isLogged() ? (
 						<div onClick={kindOfProfile} style={{ cursor: "pointer" }}>
-							Hola , {user.full_name}
+							Hola , {data.full_name}
 						</div>
 					) : (
 						""
