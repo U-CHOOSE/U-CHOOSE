@@ -321,6 +321,7 @@ class Review_teacher(db.Model):
     near = db.Column(db.Integer())
     date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
+    anonymous = db.Column(db.Boolean)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
 
@@ -336,6 +337,8 @@ class Review_teacher(db.Model):
             "near": self.near,
             "date_teacher": self.date_teacher,
             "more_info": self.more_info,
+            "anonymous":self.anonymous,
+            "teacher":self.teacher_id
             # "user_teacher": list(map(lambda x: x.serialize(), self.user_teacher))
             # si quiero traer el nombre de teacher??
         }

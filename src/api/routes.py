@@ -292,19 +292,20 @@ def add_review_to_teacher():
     near = body.get("near", None),
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
-    mySchool = User_school.get_by_user_id(id)
-    print("this", mySchool) 
-    school_users = User_school.get_users_by_school_id(mySchool.school_id)
-    print("second", school_users)
-    teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first().serialize(), school_users))
-    print("this",teachers)
-    user_teacher_dic = []
-    for element in teachers:
-        if not element["is_student"]:
-            user_teacher_dic.append(element)
-            
-    print ("user_teacher",user_teacher_dic)
-    return jsonify(user_teacher_dic), 200
+    anonymous = body.get("anonymous", None)
+
+    review_of_teacher = Review_teacher(
+        teacher_id = teacher_id,
+        dynamsim= dynamsim,
+        pasion = pasion,
+        practises_example = practises_example,
+        near = near,
+        date_teacher= date_teacher,
+        more_info = more_info,
+        anonymous = anonymous
+    )
+    review_of_teacher.add()
+    return jsonify (review_of_teacher.serialize()) , 200
 
 @api.route('/teacher/review', methods=['GET'])
 @jwt_required()
@@ -385,13 +386,4 @@ def update_profile_picture():
    
 
 
-#user_school
 
-
-# @api.route('/user_schools',methods=['GET'])
-# def get_all_user_schools():
-#     teachers = User_school.query.all()
-#     teacher_dic = []
-#     for teacher in teachers:
-#         teacher_dic.append(teacher.serialize())
-#     return jsonify(teacher_dic), 200
