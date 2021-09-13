@@ -354,7 +354,7 @@ class Review_teacher(db.Model):
 
     @classmethod
     def get_by_id(cls,model_id):
-        return cls.query.filter_by(id = model_id).first()
+        return cls.query.filter_by(teacher_id= model_id).first()
     
     @classmethod
     def get_by_id(cls, id):

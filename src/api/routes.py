@@ -342,12 +342,8 @@ def get_all_review_to_teacher():
 
 @api.route('/review/<int:teacher_id>', methods=['GET'])
 def get_review_to_teacher(teacher_id):
-    
-    reviews = Review_teacher.get_by_id(teacher_id)
-    review_dic = []
-    for review in reviews:
-        review_dic.append(review.serialize())
-    return jsonify(review_dic), 200
+    reviews = Review_teacher.get_by_id(teacher_id).serialize()
+    return jsonify(reviews), 200
 
 # user_teacher
 @api.route('/user_teachers',methods=['GET'])
