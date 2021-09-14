@@ -21,18 +21,18 @@
     letter-spacing: -2px;
     color: #0C0B1A;
 } 
-p {
-    width: 327px;
-    height: 112px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 0.75px;
-    color:#0C0B1A;
-    margin: auto;
-}
+// p {
+//     width: 327px;
+//     height: 112px;
+//     font-family: Poppins;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 16px;
+//     line-height: 28px;
+//     letter-spacing: 0.75px;
+//     color:#0C0B1A;
+//     margin: auto;
+// }
 .contain-buttons {
     display: flex;
     flex-direction: column;
@@ -69,7 +69,17 @@ p {
     display: block;
     margin: auto;
 }
-.paragraph {
+.paragraph, .paragraph1, .paragraph2, .paragraph2-desktop {
+    margin: auto;
+    width: 327px;
+    height: 112px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+    color:#0C0B1A;
     margin: auto;
 }
 .img3 {
@@ -77,9 +87,7 @@ p {
     width: 90%;
     margin: auto;
 }
-.paragraph2 {
-    margin: auto;
-}
+
 .logo {
     max-width: 100%;
     width: 80%;

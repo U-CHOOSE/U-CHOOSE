@@ -38,7 +38,7 @@
     margin-bottom: 20px;
     display: block !important;
     margin: auto;
-    // text-align: center;
+    text-align: center;
 }
 .cont_bton_search {
     display: flex;
@@ -108,7 +108,8 @@
     }
     .search-title {
         width: 90%;
-        white-space:pre-wrap
+        white-space:pre-wrap;
+        margin-bottom: 50px;
 
     }
     .input-search {
@@ -126,6 +127,7 @@
 @media (min-width: 361px) and (max-width: 667px) {
     .search-title {
         font-size: 32px;
+        margin-bottom: 70px;
     }
     .input-searchbar {
         width:70% !important;
@@ -145,7 +147,8 @@
 
 @media (min-width: 668px) and (max-width: 767px) {
     .search-title {
-        white-space:nowrap
+        white-space:nowrap;
+        margin-bottom: 70px;
     }
     .input-searchbar {
         width:50% !important;
@@ -160,8 +163,12 @@
 // tablets
 @media (min-width: 768px) and (max-width: 991px) {
     .search-title {
+        white-space:nowrap;
+        display: flex;
+        justify-content: center;
         font-size: 40px;
-        white-space:nowrap
+        margin-bottom: 50px;
+        
     }
     .span__1, .span__2, .span__0, .span__ {
         font-size: 16px;
@@ -184,6 +191,7 @@
         display: flex;
         justify-content: center;
         font-size: 50px;
+        margin-bottom: 70px;
         
     }
     .span__1, .span__2, .span__0, .span__ {
