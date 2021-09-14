@@ -99,9 +99,9 @@ const EditTeacher = () => {
 					id="upload-photo"
 				/>
 
-				<button className="student-button1" onClick={() => history.push("/mycenters")}>
+				{/* <button className="student-button1" onClick={() => history.push("/mycenters")}>
 					Mis centros
-				</button>
+				</button> */}
 			</div>
 
 			<div className="contain-inputs ml-3">
