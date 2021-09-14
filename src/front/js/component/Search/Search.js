@@ -58,7 +58,7 @@ const Search = props => {
 					onChange={e => setSearchItem(e.target.value)}
 				/>
 			</div>
-			<p className="span__"> {props.span1}</p>
+			<p className="span__  pspan__"> {props.span1}</p>
 			{data && searchItem !== "" ? (
 				data
 					.filter(v => {
@@ -103,22 +103,22 @@ const Search = props => {
 				selectedItem.map((v, i) => {
 					console.log(v[subtitle], v, "v sub");
 					return (
-						<li className="container" style={{ background: "red" }} key={i}>
-							<div className=" row justify-content-md-center">
-								<div className="col-md ">
+						<li className="container" style={{ background: "white" }} key={i}>
+							<div className="d-flex row justify-content-center ">
+								<div className="c1 ">
 									<img src={v.img} className="container-image-search" />
 								</div>
-								<div className="col-md-6">
-									<p className="">{v[attribute]}</p>
-									<p>{v[subtitle]}</p>
+								<div className="c2">
+									<span className="">{v[attribute]}</span>
+									<span>{v[subtitle]}</span>
 								</div>
 								{select != "" ? (
 									<div
-										className="col-md "
+										className="c3 "
 										onClick={() => {
 											removeItem(v.id);
 										}}>
-										<p className="delete-search">X</p>
+										<span className="delete-search">X</span>
 									</div>
 								) : (
 									""
