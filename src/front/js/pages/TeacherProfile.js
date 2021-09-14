@@ -165,9 +165,20 @@ const TeacherProfile = () => {
 						<Faces face={media.avg} />
 					</div>
 					<p className="span-reviews">{count} reviews</p>
-					<button className="butt-on1  " onClick={() => history.push("teacherprofile/edit")}>
-						Editar perfil
-					</button>
+					{actions.isLogged() ? (
+						<button className="butt-on1  " onClick={() => history.push("teacherprofile/edit")}>
+							Editar perfil
+						</button>
+					) : (
+						<button
+							className="butt-on1  "
+							onClick={() => {
+								alert("Antes de hacer una review debes logearte");
+								history.push("/login");
+							}}>
+							Hacer review
+						</button>
+					)}
 				</div>
 				<div className="col-lg-5">
 					<h1 className="hola">
