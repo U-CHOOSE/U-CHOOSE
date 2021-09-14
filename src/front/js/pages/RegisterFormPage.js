@@ -181,7 +181,7 @@ const RegisterFormPage = () => {
 							data={data}
 							type="schools"
 							button={
-								<button onClick={handlePut} className="button_violet_small_register">
+								<button onClick={handlePut} className="button_violet_small_register butt_vs">
 									Siguiente
 								</button>
 							}

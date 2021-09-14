@@ -104,7 +104,7 @@ const Search = props => {
 					console.log(v[subtitle], v, "v sub");
 					return (
 						<li className="container" style={{ background: "white" }} key={i}>
-							<div className="d-flex row justify-content-center ">
+							<div className="d-flex row1 justify-content-center ">
 								<div className="c1 ">
 									<img src={v.img} className="container-image-search" />
 								</div>
@@ -133,11 +133,27 @@ const Search = props => {
 			{props.mySchools &&
 				props.mySchools.map((v, i) => {
 					return (
-						<li key={i}>
-							<div className="img_container">
-								<img src={v.img} alt="img" />
+						<li key={i} className="container">
+							<div className="d-flex row1 justify-content-center ">
+								<div className="c1 ">
+									<img src={v.img} className="container-image-search" />
+								</div>
+								<div className="c2">
+									<span className="">{v[attribute]}</span>
+									<span>{v[subtitle]}</span>
+								</div>
+								{select != "" ? (
+									<div
+										className="c3 "
+										onClick={() => {
+											removeItem(v.id);
+										}}>
+										<span className="delete-search">X</span>
+									</div>
+								) : (
+									""
+								)}
 							</div>
-							<div className="name_container">{v.name}</div>
 						</li>
 					);
 				})}
