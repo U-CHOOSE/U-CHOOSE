@@ -34,6 +34,10 @@ const ReviewTeacher = () => {
 	// 	},
 	// 	[!data]
 	// );
+	const [checked, setChecked] = useState({
+		yes: false,
+		no: false
+	});
 	useEffect(
 		() => {
 			fetch(process.env.BACKEND_URL + "/users/" + idOfTeacher + "/schools")
@@ -255,7 +259,7 @@ const ReviewTeacher = () => {
 				/>
 			</div>
 		);
-	} else if (step == 9) {
+	} else if (step == 10) {
 		return (
 			<div className="mx-auto step-9">
 				<img src={reviewok} />
@@ -264,6 +268,61 @@ const ReviewTeacher = () => {
 					Tu review se ha registrado correctamente.{" "}
 					<span className="font-weight-bold">¿Por qué hacer una review de otro profesor?</span>
 				</p>
+			</div>
+		);
+	} else if (step == 9) {
+		return (
+			<div className="mx-auto step-8">
+				<CardReviewTeacher
+					srcImg={data[0].img}
+					title="¿Quieres que tu review sea anónima?"
+					name={data[0].full_name}
+					nameUniversity="4Geeks Academy"
+					body={
+						<>
+							<label className="containerLabel" htmlFor="yes">
+								<input
+									className="input mx-auto"
+									type="radio"
+									value={true}
+									id="yes"
+									checked={checked.yes}
+									onClick={() =>
+										setChecked({
+											no: false,
+											yes: !checked.yes
+										})
+									}
+								/>
+								Si
+							</label>
+							<label className="containerLabel" htmlFor="no">
+								<br />{" "}
+								<input
+									className="input mx-auto"
+									type="radio"
+									value={true}
+									id="no"
+									checked={checked.no}
+									onClick={() =>
+										setChecked({
+											no: !checked.no,
+											yes: false
+										})
+									}
+								/>
+								No
+							</label>
+						</>
+					}
+					button="Enviar Review"
+					// onClick={() => {
+					// 	actions.setReview("more_info", moreInfo);
+					// 	setStep(9);
+					// 	sendReview();
+					// 	console.log(store.reviews);
+					// }}
+				/>
 			</div>
 		);
 	}
