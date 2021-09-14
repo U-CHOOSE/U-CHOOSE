@@ -121,7 +121,9 @@ const RegisterFormPage = () => {
 									Soy profesor
 								</label>
 								<br /> <br />{" "}
-								<button onClick={() => actions.setUpStep()} className="button_violet_small_register">
+								<button
+									onClick={() => actions.setUpStep()}
+									className="button_violet_small_register butt_vs">
 									Siguiente
 								</button>
 							</>
@@ -165,7 +167,7 @@ const RegisterFormPage = () => {
 							type="schools"
 							span2="Saltar este paso"
 							button={
-								<button onClick={handlePut} className="button_violet_small_register my-3">
+								<button onClick={handlePut} className="button_violet_small_register butt_vs">
 									Siguiente
 								</button>
 							}
@@ -179,7 +181,7 @@ const RegisterFormPage = () => {
 							data={data}
 							type="schools"
 							button={
-								<button onClick={handlePut} className="button_violet_small_register my-3">
+								<button onClick={handlePut} className="button_violet_small_register butt_vs">
 									Siguiente
 								</button>
 							}
