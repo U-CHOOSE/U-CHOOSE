@@ -58,7 +58,9 @@ const Search = props => {
 					onChange={e => setSearchItem(e.target.value)}
 				/>
 			</div>
+
 			<p className="span__  pspan__"> {props.span1}</p>
+
 			{data && searchItem !== "" ? (
 				data
 					.filter(v => {

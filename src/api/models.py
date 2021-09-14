@@ -321,7 +321,7 @@ class Review_teacher(db.Model):
     near = db.Column(db.Integer())
     date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
-    anonymous = db.Column(db.Boolean)
+    anonymous = db.Column(db.Boolean,nullable=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
 
@@ -357,6 +357,6 @@ class Review_teacher(db.Model):
         return cls.query.filter_by(teacher_id= model_id).first()
     
     @classmethod
-    def get_by_id(cls, id):
-        reviews = cls.query.filter_by(id = id).first_or_404()
+    def get_by_teacher_id(cls, id):
+        reviews = cls.query.filter_by(teacher_id = id).first()
         return reviews

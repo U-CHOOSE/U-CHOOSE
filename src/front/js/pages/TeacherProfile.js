@@ -44,7 +44,7 @@ const TeacherProfile = () => {
 			.then(json => {
 				setReview(json);
 			})
-			.catch(err => console.log("Error:", error));
+			.catch(err => console.log("Error:", err));
 	}, []);
 	console.log("review", review);
 
