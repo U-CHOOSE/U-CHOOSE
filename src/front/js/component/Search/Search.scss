@@ -215,3 +215,17 @@
     }
       
 }
+.container-item-selected{
+    width: 37%;
+    height: 74%;
+    background-color: grey;
+}
+.container-image-search{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.delete-search{
+    cursor: pointer;
+}

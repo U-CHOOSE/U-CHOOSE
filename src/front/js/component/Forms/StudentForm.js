@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Forms.scss";
 import { Context } from "../../store/appContext";
 import google from "../../../../../docs/assets/img/google.png";
+import validateEmail from "../../utils/validateEmail";
+import validationPassword from "../../utils/validatePassword";
 
 const StudentForm = props => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [formData, setFormData] = useState({
 		fullname: "",
 		email: "",
@@ -14,6 +16,20 @@ const StudentForm = props => {
 		is_student: true,
 		sign_completed: false
 	});
+
+	const [showPassword, setShowPassword] = useState(false);
+	const [showRepeatPassword, setRepeatShowPassword] = useState(false);
+	const [changeIcon, setChangeIcon] = useState(true);
+	const [changeRepeatIcon, setRepeatChangeIcon] = useState(true);
+
+	const [errorStyle, setErrorStyle] = useState({
+		full_name: "errorInvisible",
+		email: "errorInvisible",
+		_password: "errorInvisible",
+		repeat_password: "errorInvisible"
+	});
+	const [legalStyle, setLegalStyle] = useState("invisible");
+
 	const body = {
 		full_name: formData.fullname,
 		email: formData.email,
@@ -22,7 +38,8 @@ const StudentForm = props => {
 		is_student: formData.is_student,
 		sign_completed: formData.sign_completed
 	};
-	const [checked, setChecked] = useState(true);
+	const [legal, setLegal] = useState(false);
+	const [checked, setChecked] = useState(false);
 	const handleCreate = () => {
 		const options = {
 			method: "POST",
@@ -31,24 +48,31 @@ const StudentForm = props => {
 			},
 			body: JSON.stringify(body)
 		};
-
-		fetch(process.env.BACKEND_URL + "/user", options)
-			.then(res => {
-				if (res.status === 201) {
-					alert("ok");
-					actions.setUpStep();
-				} else {
-					alert("failed to fetch");
-				}
-				// console.log(status);
-				return res.json();
-			})
-			.then(json => {
-				localStorage.setItem("id_user", json.body.user_id);
-				localStorage.setItem("email", json.body.email);
-				localStorage.setItem("password", json.body._password);
-			});
-		// .catch(error => console.log(error));
+		const validation = {
+			full_name: formData.fullname.length > 5 ? "errorInvisible" : "errorVisible",
+			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
+			_password: formData._password - length > 5 ? "errorInvisible" : "errorVisible",
+			repeat_password: formData.repeatPassword !== formData._password ? "errorInvisible" : "errorVisible",
+			legalStyle: legal === undefined ? "invisible" : "visible"
+		};
+		setErrorStyle(validation);
+		if (!Object.values(validation).find(value => value === "errorVisible")) {
+			fetch(process.env.BACKEND_URL + "/user", options)
+				.then(res => {
+					if (res.status === 201) {
+						alert("ok");
+						actions.setUpStep();
+					} else {
+						alert("failed to fetch");
+					}
+					return res.json();
+				})
+				.then(json => {
+					localStorage.setItem("id_user", json.body.user_id);
+					localStorage.setItem("email", json.body.email);
+					localStorage.setItem("password", json.body._password);
+				});
+		}
 	};
 	return (
 		<>
@@ -57,51 +81,91 @@ const StudentForm = props => {
 					<h1 className="violet_h1_forms mx-auto">Detalles de cuenta</h1>
 				</div>
 				<input
-					className="mx-auto w-100 m-3 p-3"
+					className="mx-auto w-100  m-3 p-3"
 					type="text"
 					placeholder="Nombre completo"
 					value={formData.fullname}
 					onChange={e => setFormData({ ...formData, fullname: e.target.value })}
 				/>
-
-				<span>Podras ocultarlo en tus reviews</span>
+				{errorStyle.full_name ? (
+					<span className={errorStyle.full_name}>Tu nombre debe tener más de 5 carácteres</span>
+				) : (
+					<span>Podras ocultarlo en tus reviews</span>
+				)}
 
 				<input
-					className=" mx-auto w-100  m-3 p-3 "
+					className="mx-auto w-100  m-3 p-3"
 					type="text"
 					placeholder="Email"
 					value={formData.email}
 					onChange={e => setFormData({ ...formData, email: e.target.value })}
 				/>
+				<span className={errorStyle.email}>Este email no es valido</span>
 
 				<input
-					className="  mx-auto w-100 m-3 p-3  "
-					type="password"
-					placeholder="Contraseña"
+					className="mx-auto w-100  m-3 p-3"
+					type={showPassword ? "password" : "text"}
+					placeholder={
+						"Contraseña" +
+						(
+							<i
+								className={changeIcon ? "fas fa-eye" : "far fa-eye-slash"}
+								onClick={() => {
+									setShowPassword(!showPassword);
+									setChangeIcon(!changeIcon);
+								}}
+							/>
+						)
+					}
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
+				<i
+					className={changeIcon ? "fas fa-eye" : "far fa-eye-slash"}
+					onClick={() => {
+						setShowPassword(!showPassword);
+						setChangeIcon(!changeIcon);
+					}}
+				/>
 
+				<span className={errorStyle._password}>Invalid password</span>
 				<input
-					className=" mx-auto w-100 m-3 p-3"
-					type="password"
+					className="mx-auto w-100  m-3 p-3"
+					type={showRepeatPassword ? "password" : "text"}
 					placeholder="Repetir contraseña"
 					value={formData.repeat}
 					onChange={e => setFormData({ ...formData, repeat: e.target.value })}
 				/>
+				{changeRepeatIcon ? (
+					<i
+						className="fas fa-eye"
+						onClick={() => {
+							setRepeatShowPassword(!showRepeatPassword);
+							setRepeatChangeIcon(!changeRepeatIcon);
+						}}
+					/>
+				) : (
+					<i
+						className="far fa-eye-slash"
+						onClick={() => {
+							setRepeatShowPassword(!showRepeatPassword);
+							setRepeatChangeIcon(!changeRepeatIcon);
+						}}
+					/>
+				)}
 
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-
-				<span>Acepto los terminos y condiciones</span>
+				<span className={errorStyle.repeat_password}>Las contraseñas no coinciden</span>
+				<div className="checkboxes">
+					<input type="checkbox" onChange={() => setLegal(!legal)} />
+					<span>Acepto los terminos y condiciones</span>
+					<br />
+					<input type="checkbox" onChange={() => setChecked(!checked)} />
+					<span>
+						Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con
+						información de diferentes centros
+					</span>
+				</div>
 				<br />
-				<input type="checkbox" onChange={e => setChecked(e.target.checked)} />
-
-				<span>
-					Quiero recibir algún tipo de información sobre mi cuenta y contenidos relacionados con información
-					de diferentes centros
-				</span>
-				<br />
-
 				{props.footer}
 				<br />
 				<button className="button_violet_great b_cuenta mx-auto " onClick={handleCreate}>

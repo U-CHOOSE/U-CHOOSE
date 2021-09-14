@@ -233,6 +233,7 @@ class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
     img = db.Column(db.String, unique=False, nullable=False)
+    location = db.Column(db.String, unique=False, nullable=False)
     user = db.relationship("User", secondary="user_school")
 
 
@@ -305,6 +306,11 @@ class User_school(db.Model):
         user_company = cls.query.filter_by(user_id=user).first()
         return user_company
 
+    @classmethod
+    def get_users_by_school_id(cls, school):
+        user_company = cls.query.filter_by(school_id=school).all()
+        return user_company
+
 
 class Review_teacher(db.Model):
     __tablename__ = 'review_teacher'
@@ -315,6 +321,7 @@ class Review_teacher(db.Model):
     near = db.Column(db.Integer())
     date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
+    anonymous = db.Column(db.Boolean)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
 
@@ -330,6 +337,8 @@ class Review_teacher(db.Model):
             "near": self.near,
             "date_teacher": self.date_teacher,
             "more_info": self.more_info,
+            "anonymous":self.anonymous,
+            "teacher":self.teacher_id
             # "user_teacher": list(map(lambda x: x.serialize(), self.user_teacher))
             # si quiero traer el nombre de teacher??
         }
@@ -345,7 +354,7 @@ class Review_teacher(db.Model):
 
     @classmethod
     def get_by_id(cls,model_id):
-        return cls.query.filter_by(id = model_id).first()
+        return cls.query.filter_by(teacher_id= model_id).first()
     
     @classmethod
     def get_by_id(cls, id):
