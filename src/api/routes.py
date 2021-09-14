@@ -285,6 +285,7 @@ def add_school_to_user():
 def add_review_to_teacher():
     id = get_jwt_identity()    
     body = request.get_json()
+    user = Review_teacher.get_by_user_id(id)
     teacher_id = body.get("teacher_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
@@ -293,7 +294,9 @@ def add_review_to_teacher():
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
     anonymous = body.get("anonymous", None)
-
+    
+   
+    
     review_of_teacher = Review_teacher(
         teacher_id = teacher_id,
         dynamsim= dynamsim,
