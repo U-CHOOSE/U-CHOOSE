@@ -1,3 +1,21 @@
+
+.button_blue_siguiente
+ {
+    display: block;
+    margin: 0 auto;
+    background: #6DEDE3;
+    border-radius: 40px;
+    width: 220px;
+    height: 56px;
+    border: none;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.75px;
+}
+
 .butt_vs {
     margin-left: auto;
         margin-right: auto;
@@ -152,10 +170,11 @@
     .select__search {
         width: 95% !important;
     }
-    .butt_vs {
+    .butt_vs, .button_blue_siguiente {
         width: 50% !important;
         
     }
+    
 }
 // moviles pequeños
 @media (min-width: 361px) and (max-width: 667px) {
@@ -177,6 +196,9 @@
     }
     .input-search {
         font-size: 20px;
+    }
+    .button_blue_siguiente {
+        width: 40%;
     }
 
 }
@@ -239,8 +261,9 @@
         white-space:nowrap
     }
     .input-searchbar,
-     .input-search
-     .row1
+     .input-search,
+     .row1,
+     .name_container
       {
         width: 500px !important;
         

@@ -1,4 +1,9 @@
-
+.i_1 {
+    width: 100% !important;
+}
+.i_2 {
+    width: 40% !important
+}
 .img-profilee{
     width: 120px;
     height: 120px;
@@ -48,6 +53,7 @@
 // .input1 {
 //     margin-bottom: 0px;
 // }  
+
 .button-save {
     width: 171px;
     height: 56px;
@@ -121,6 +127,9 @@
     }
     .cBt {
         margin-top: 100px;
+    }
+    .i_2 {
+        width: 40% !important
     }
 }
 
