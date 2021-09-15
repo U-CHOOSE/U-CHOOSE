@@ -5,6 +5,7 @@ import { BsBuilding } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import "../../styles/navbar.scss";
 import imgIcon from "../../img/imgIcon.png";
+import logoNav from "../../img/logoNav.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
@@ -54,7 +55,8 @@ const NavbarComp = () => {
 			<Navbar bg="light" expand="lg">
 				<Container>
 					<Navbar.Brand>
-						<img onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<img className="imgIcon" onClick={() => history.push("/")} src={imgIcon} alt="" />
+						<img className="logoNav" onClick={() => history.push("/")} src={logoNav} alt="" />
 					</Navbar.Brand>
 					{actions.isLogged() ? (
 						<div onClick={kindOfProfile} style={{ cursor: "pointer" }}>

@@ -46,14 +46,14 @@ const Login = () => {
 				<div className="col-12">
 					<input
 						type={showPassword ? "password" : "text"}
-						className="form-control input-pass mt-3 mx-auto input_login"
+						className="form-control input_login mt-3 mx-auto"
 						id="exampleInputPassword1"
-						placeholder="Contraseña"
+						placeholder="  Contraseña  "
 						onChange={event => SetPassword(event.target.value)}
 					/>
-					<div className="col-12">
+					<div className="col-12 mx-auto ">
 						<i
-							className={changeIcon ? "fas fa-eye" : "far fa-eye-slash"}
+							className={changeIcon ? "fas fa-eye " : "far fa-eye-slash "}
 							onClick={() => {
 								setShowPassword(!showPassword);
 								setChangeIcon(!changeIcon);

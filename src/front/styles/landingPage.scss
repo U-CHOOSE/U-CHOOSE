@@ -105,6 +105,18 @@ p {
     color: #0C0B1A;
 }
 
+.logoFooter{
+    display: none;
+}
+
+.imgIcon{
+   display: block; 
+}
+
+.logoNav{
+     display: none;
+}
+
 
 //Desktop
 @media (min-width: 1000px) {
@@ -248,6 +260,20 @@ p {
         padding-top: 80px;
         margin-left: 50px;
     }
+
+    .logoFooter  {
+        display: block;  
+        background:none ;
+    }
+
+    .imgIcon{
+        display: none; 
+     }
+
+   .logoNav{
+       display: block;
+   }
+
 }
 
 
