@@ -9,8 +9,11 @@ const Search = props => {
 	const [data, setData] = useState([]);
 	const [select, setSelect] = useState("");
 	const [selectedItem, setSelectedItem] = useState([]);
-
+	const [detail, setDetail] = useState("");
 	const handelSelect = item => {
+		if (props.type !== "schools") {
+			setDetail(item);
+		}
 		setSelect(props.type === "schools" ? item.name : item.full_name);
 		const newArray = selectedItem;
 		newArray.push(item);
@@ -157,7 +160,13 @@ const Search = props => {
 						</li>
 					);
 				})}
-			{props.button}
+			<button
+				className="button_blue_siguiente"
+				onClick={() => {
+					props.button(detail);
+				}}>
+				Siguiente
+			</button>
 			<p className="span__2">{props.span2}</p>
 		</>
 	);

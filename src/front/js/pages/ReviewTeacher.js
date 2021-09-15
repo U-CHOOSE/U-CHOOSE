@@ -14,6 +14,7 @@ const ReviewTeacher = () => {
 	const [dataUser, setDateUser] = useState({});
 	const [dateSchool, setDateSchool] = useState({});
 	const [userSchools, setUserSchools] = useState("");
+	const [detail, setDetail] = useState("");
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
 	//textaerea
@@ -62,14 +63,14 @@ const ReviewTeacher = () => {
 				console.log(json);
 			});
 	}, []);
-	console.log("data_user", data[0]);
+	console.log("data_user", detail);
 	const userId = store.userId;
 	console.log("teacher id", userId);
 
 	const getUser = () => {
 		fetch(process.env.BACKEND_URL + "/user/" + userId)
 			.then(res => res.json())
-			.then(request => setdata[0](request));
+			.then(request => setdetail(request));
 	};
 	console.log(data, "data");
 	console.log(store.userId);
@@ -80,11 +81,13 @@ const ReviewTeacher = () => {
 	// };
 
 	const sendReview = () => {
+		const token = actions.getToken();
 		fetch(process.env.BACKEND_URL + "/review", {
 			method: "POST",
 			body: JSON.stringify(store.reviews), // data can be `string` or {object}!
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
 			}
 		})
 			.then(res => res.json())
@@ -103,19 +106,12 @@ const ReviewTeacher = () => {
 					type="teacher"
 					data={data}
 					onKeyPress={handleKeyPress}
-					button={
-						<button
-							className="button_blue_siguiente"
-							onClick={() => {
-								console.log("userID", store.userId);
-								console.log("idtecher", store.idTeacher);
-								getUser();
-								actions.setReview("teacher_id", store.idTeacher);
-								setStep(2);
-							}}>
-							Siguiente
-						</button>
-					}
+					button={x => {
+						actions.setReview("teacher_id", store.idTeacher);
+						setStep(2);
+						setDetail(x);
+						console.log(x, "fsdsffdfsd");
+					}}
 				/>
 			</div>
 		);
@@ -126,12 +122,12 @@ const ReviewTeacher = () => {
 		return (
 			<div className=" reviewTeacher2">
 				<h1 className="search-title">Buscar profesor</h1>
-				<span className="span__0 ">¿En qué centro tuviste clase con {data[0].full_name}?</span>
+				<span className="span__0 ">¿En qué centro tuviste clase con {detail.full_name}?</span>
 				<div className="cont_name_img d-flex mt-5">
-					<img src={data[0].img} />
+					<img src={detail.img} />
 					<div>
-						<div className="teacher__fullname">{data[0].full_name}</div>
-						<div className="teacher__typeteacher">Profesor@ de {data[0].type_of_teacher}</div>
+						<div className="teacher__fullname">{detail.full_name}</div>
+						<div className="teacher__typeteacher">Profesor@ de {detail.type_of_teacher}</div>
 					</div>
 					<div>{/* {dateSchool.name} */}</div>
 				</div>
@@ -144,10 +140,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="Dinamismo en sus clases"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={3} />}
 					button="Siguiente"
 					onClick={() => setStep(4)}
@@ -158,10 +154,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="Pasión por la materia"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={4} />}
 					button="Siguiente"
 					onClick={() => setStep(5)}
@@ -172,10 +168,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="Utiliza ejemplos prácticos"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={5} />}
 					button="Siguiente"
 					onClick={() => setStep(6)}
@@ -186,10 +182,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="Implicación y cercanía"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={6} />}
 					button="Siguiente"
 					onClick={() => setStep(7)}
@@ -217,10 +213,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="¿Cuándo tuviste clase?"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={
 						<div className="dropdown">
 							<select name="year" className="options" onChange={captureYear}>
@@ -244,16 +240,17 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto step-8">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="¿Algo más?"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<textarea onChange={e => setTMoreInfo(e.target.value)} placeholder={moreInfo} />}
-					button="Enviar Review"
+					button="
+					Siguiente"
 					onClick={() => {
 						actions.setReview("more_info", moreInfo);
 						setStep(9);
-						sendReview();
+						// sendReview();
 						console.log(store.reviews);
 					}}
 				/>
@@ -274,10 +271,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto step-8">
 				<CardReviewTeacher
-					srcImg={data[0].img}
+					srcImg={detail.img}
 					title="¿Quieres que tu review sea anónima?"
-					name={data[0].full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={
 						<>
 							<label className="containerLabel" htmlFor="yes">
@@ -317,10 +314,10 @@ const ReviewTeacher = () => {
 					}
 					button="Enviar Review"
 					onClick={() => {
-						// 	actions.setReview("more_info", moreInfo);
-						setStep(9);
-						// 	sendReview();
-						// 	console.log(store.reviews);
+						actions.setReview("anonymous", checked);
+						setStep(10);
+						sendReview();
+						console.log(store.reviews);
 					}}
 				/>
 			</div>

@@ -206,7 +206,12 @@ def get_all_schools_of_user():
     return jsonify(school_dic), 200
 
 #to find all the schools of this teacher 
-
+# @api.route('/teachers/schools',methods=['GET'])
+# def teachers_of_school():
+#     teacher = User.get_all()
+#     if user.is_student:
+#         return "That's not a teacher"
+    
 # @api.route('/user/schools',methods=['GET'])
 # @jwt_required()
 # def get_all_schools_of_user():
@@ -321,8 +326,10 @@ def teachers_in_mySchool():
     teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first().serialize(), school_users))
     print("this",teachers)
     user_teacher_dic = []
+    school = School.get_by_id(mySchool.id)
     for element in teachers:
         if not element["is_student"]:
+            element["mySchool"] = school.serialize()
             user_teacher_dic.append(element)
             
     print ("user_teacher",user_teacher_dic)
