@@ -26,7 +26,8 @@ const SchoolPage = () => {
 			</div>
 			{/*  */}
 			<div className="row px-0">
-				<div className="col-12 text-center">
+				<div className="col-md-4 col-sm-4 col-2 col-lg-5" />
+				<div className="col-8 col-md-4 col-sm-4 col-lg-3 text-center">
 					<button className="button_marino_great ba_1 mt-5" onClick={() => alert("Funcion no disponible")}>
 						Hacer una review
 					</button>
