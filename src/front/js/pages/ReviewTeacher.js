@@ -316,12 +316,12 @@ const ReviewTeacher = () => {
 						</>
 					}
 					button="Enviar Review"
-					// onClick={() => {
-					// 	actions.setReview("more_info", moreInfo);
-					// 	setStep(9);
-					// 	sendReview();
-					// 	console.log(store.reviews);
-					// }}
+					onClick={() => {
+						// 	actions.setReview("more_info", moreInfo);
+						setStep(9);
+						// 	sendReview();
+						// 	console.log(store.reviews);
+					}}
 				/>
 			</div>
 		);

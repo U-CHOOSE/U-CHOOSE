@@ -108,8 +108,7 @@ const StudentForm = props => {
 				<input
 					className="mx-auto w-100  m-3 p-3"
 					type={showPassword ? "password" : "text"}
-					placeholder=
-					"Contraseña"
+					placeholder="Contraseña"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
