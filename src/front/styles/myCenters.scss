@@ -68,3 +68,31 @@
 .container-centers .container-fluid .search-title {
     margin-bottom: -50px !important;
 }
+.caja {
+    position: relative;
+}
+.img_center {
+    width: 100%;
+    background-size: cover;
+    min-height: 350px;
+    
+}
+.school_name {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+}
+.ba_1 {
+    width: 80%;
+    
+}
+.span_rev {
+    color: #7A6FC5;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: 0.75px;
+
+}
