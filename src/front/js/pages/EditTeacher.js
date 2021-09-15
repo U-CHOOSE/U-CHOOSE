@@ -116,7 +116,7 @@ const EditTeacher = () => {
 			<div className="row">
 				<div className="col-1 col-lg-4 col-md-3 " />
 				<div className="col-9 col-lg-4 col-md-5 ">
-					<label>Nombre completo</label>
+					<label className="label_1">Nombre completo</label>
 					<input
 						type="text"
 						className="form-control input i_1 "

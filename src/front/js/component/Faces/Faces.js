@@ -23,7 +23,7 @@ const Faces = props => {
 	switch (faces) {
 		case 0:
 			return (
-				<div className="cont ">
+				<div className="cont f_1 ">
 					<img className="img__faces" src={img1empty} />
 					<img className="img__faces" src={img2empty} />
 					<img className="img__faces" src={img3empty} />
@@ -33,7 +33,7 @@ const Faces = props => {
 			);
 		case 1:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1half} />
 					<img className="img__faces" src={img2empty} />
 					<img className="img__faces" src={img3empty} />
@@ -43,7 +43,7 @@ const Faces = props => {
 			);
 		case 2:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2empty} />
 					<img className="img__faces" src={img3empty} />
@@ -53,7 +53,7 @@ const Faces = props => {
 			);
 		case 3:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2half} />
 					<img className="img__faces" src={img3empty} />
@@ -63,7 +63,7 @@ const Faces = props => {
 			);
 		case 4:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3empty} />
@@ -73,7 +73,7 @@ const Faces = props => {
 			);
 		case 5:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3half} />
@@ -83,7 +83,7 @@ const Faces = props => {
 			);
 		case 6:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3full} />
@@ -93,7 +93,7 @@ const Faces = props => {
 			);
 		case 7:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3full} />
@@ -103,7 +103,7 @@ const Faces = props => {
 			);
 		case 8:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3full} />
@@ -113,7 +113,7 @@ const Faces = props => {
 			);
 		case 9:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3full} />
@@ -123,7 +123,7 @@ const Faces = props => {
 			);
 		case 10:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3full} />
@@ -133,7 +133,7 @@ const Faces = props => {
 			);
 		default:
 			return (
-				<div className="cont">
+				<div className="cont f_1">
 					<img className="img__faces" src={img1full} />
 					<img className="img__faces" src={img2full} />
 					<img className="img__faces" src={img3half} />

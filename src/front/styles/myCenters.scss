@@ -1,49 +1,4 @@
-// .contain{
-//     display: block;
-//     justify-content: center;
-//     margin-left: 50% ;
 
-// }
-
-// .title1 {
-//     font-family: Poppins;
-//     font-style: normal;
-//     font-weight: bold;
-//     font-size: 32px;
-//     line-height: 36px;
-//     text-align: center;
-//     letter-spacing: 1px;
-//     color: #7A6FC5;
-//     margin: auto;
-//     margin-top: 60px;
-//     margin-bottom:20px ;
-// }
-// input[type=text]::placeholder {
-//     font-family: Poppins;
-//     font-style: normal;
-//     font-weight: normal;
-//     font-size: 16px;
-//     line-height: 28px;
-//     letter-spacing: 0.75px;
-//     color: #A0A3BD;
-//     padding-left: 20px;
-// }
-// .data {
-//     margin-left: 16px;
-// }
-// .span1 {
-//     font-family: Poppins;
-//     font-style: normal;
-//     font-weight: 500;
-//     font-size: 14px;
-//     line-height: 22px;
-//     display: flex;
-//     align-items: center;
-//     letter-spacing: 0.25px;
-//     color: #6E7191;
-//     margin-left: 16px;
-//     margin-bottom: 20px;
-// }
 .input-searchbar {
     display: block;
     margin: auto;
@@ -67,4 +22,50 @@
 }
 .container-centers .container-fluid .search-title {
     margin-bottom: -50px !important;
+}
+.caja {
+    position: relative;
+}
+.img_center {
+    width: 100%;
+    background-size: cover;
+    min-height: 350px;
+    
+    
+}
+.school_name {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+}
+.ba_1 {
+    width: 80%;
+    
+}
+.span_rev {
+    color: #7A6FC5;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: 0.75px;
+}
+.contain-reviews {
+    overflow-y: scroll; 
+    height: auto;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    
+}
+
+@media (min-width: 950px) {
+    .school_name {
+        font-size: 40px;
+    }
+    .ba_1 {
+        margin-bottom: 70px;
+    }
 }
