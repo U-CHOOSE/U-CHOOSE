@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import { useParams } from "react-router-dom";
 import Faces from "../component/Faces/Faces";
+import TopRated from "../component/TopRated/TopRated";
 const SchoolPage = () => {
 	const params = useParams();
 	const id = params.id;
@@ -60,6 +61,7 @@ const SchoolPage = () => {
 			<div className="row">
 				<div className="col-12 mt-5">
 					<h4 className="top_rated">Top rated</h4>
+					<TopRated />
 				</div>
 			</div>
 
