@@ -95,7 +95,7 @@ const ReviewTeacher = () => {
 	if (step == 1) {
 		console.log("data", data);
 		return (
-			<div className="container-fluid mx-auto">
+			<div className="container-fluid mx-auto ">
 				<Search
 					title="Buscar un profesor"
 					placeholder="Buscar un profesor"
@@ -105,7 +105,7 @@ const ReviewTeacher = () => {
 					onKeyPress={handleKeyPress}
 					button={
 						<button
-							className="button_violet_small_button__search"
+							className="button_blue_siguiente"
 							onClick={() => {
 								console.log("userID", store.userId);
 								console.log("idtecher", store.idTeacher);
