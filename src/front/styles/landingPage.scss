@@ -40,6 +40,7 @@
 .btn-school {
     margin: auto;
     border: none;
+    width: 326px;
 }
 .btn-teacher {
     margin: auto;
@@ -240,10 +241,14 @@
     
     }
     .contain-buttons {
-        width: 450px;
+        // width: 450px;
         display: flex;
         flex-direction: row;
-        margin-left: 50px;
+       justify-content: center;
+        margin-left: 80px;
+        margin-right: 80px;
+        
+        // margin-left: 50px;
     }
     .col1-desktop {
         margin-left:100px !important ;

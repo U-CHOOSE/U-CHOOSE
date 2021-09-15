@@ -87,91 +87,130 @@ const EditTeacher = () => {
 			/>
 			<button onClick={actions.get_img(img)}> Cambiar imagen</button> */}
 
-			<div className="student-contain1">
-				<label htmlFor="upload-photo">
-					<img className="img-profile" src={store.userImg} alt="img" />
-				</label>
-				<input
-					type="file"
-					onChange={e => {
-						handlePutImage(e.target.files);
-					}}
-					id="upload-photo"
-				/>
+			<div className="container student-contain1">
+				<div className="row">
+					<div className="col-12">
+						<label htmlFor="upload-photo">
+							<img className="img-profile" src={store.userImg} alt="img" />
+						</label>
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<input
+							type="file"
+							onChange={e => {
+								handlePutImage(e.target.files);
+							}}
+							id="upload-photo"
+						/>
+					</div>
+				</div>
 
 				{/* <button className="student-button1" onClick={() => history.push("/mycenters")}>
 					Mis centros
 				</button> */}
 			</div>
 
-			<div className="contain-inputs ml-3">
-				<div className="contain-inp input1">
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>Nombre completo</label>
 					<input
 						type="text"
-						className="form-control input"
+						className="form-control input i_1 "
 						placeholder={data.full_name}
 						value={formData.full_name}
 						onChange={e => setFormData({ ...formData, full_name: e.target.value })}
 					/>
 				</div>
-				<p className="pstudent">Podrás ocultarlo en tus reviews</p>
-				<div className="contain-inp">
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
+					<p className="pstudent">Podrás ocultarlo en tus reviews</p>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>Email</label>
 					<input
 						type="email"
 						placeholder={data.email}
-						className="form-control input-email inp"
+						className="form-control input-email inp i_1"
 						value={formData.email}
 						onChange={e => setFormData({ ...formData, email: e.target.value })}
 					/>
 				</div>
-				<div className="contain-inp">
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>URL de Linkedin</label>
 					<input
 						type="text"
 						placeholder={data.linkedin}
-						className="form-control input-email inp"
+						className="form-control input-email inp i_1"
 						value={formData.linkedin}
 						onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
 					/>
 				</div>
-				<div className="contain-inp">
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>¿De qué eres profesor?</label>
 					<input
 						type="text"
 						placeholder={data.type_of_teacher}
-						className="form-control input-email inp"
+						className="form-control input-email inp i_1"
 						value={formData.typeOfteachers}
 						onChange={e => setFormData({ ...formData, typeOfteachers: e.target.value })}
 					/>
 				</div>
-
-				<div className="contain-inp">
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>Contraseña</label>
 					<input
 						type="password"
-						className="form-control input-text inp"
+						className="form-control input-text inp i_1"
 						placeholder="password"
 						value={formData._password}
 						onChange={e => setFormData({ ...formData, _password: e.target.value })}
 					/>
 				</div>
-				<div className="contain-inp">
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
 					<label>Repetir contraseña</label>
 					<input
 						type="password"
-						className="form-control input-password inp"
+						className="form-control input-password inp i_1"
 						placeholder="passrepeat"
 						value={formData.repeatPassword}
 						onChange={e => setFormData({ ...formData, repeatPassword: e.target.value })}
 					/>
 				</div>
 			</div>
-			<div className="div-button-save ml-3 mt-5">
-				<button className="button-save" onClick={handlePut}>
-					Guardar
-				</button>
+
+			<div className="row mt-5">
+				<div className="col-1 col-lg-4 col-md-3 " />
+				<div className="col-9 col-lg-4 col-md-5 ">
+					<button className="button-save i_2" onClick={handlePut}>
+						Guardar
+					</button>
+				</div>
 			</div>
 		</div>
 	);
