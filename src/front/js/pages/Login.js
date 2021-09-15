@@ -53,7 +53,7 @@ const Login = () => {
 					/>
 					<div className="col-12 mx-auto ">
 						<i
-							className={changeIcon ? "fas fa-eye " : "far fa-eye-slash "}
+							className={changeIcon ? "fas fa-eye " : "far fa-eye-slash "}
 							onClick={() => {
 								setShowPassword(!showPassword);
 								setChangeIcon(!changeIcon);
