@@ -117,6 +117,11 @@ input[type=checkbox].visible{
 }
 
 
-i .fa-eye   { 
-   background: red; 
+.fa-eye:before {
+    content: "\f06e";
+
+    margin: 35px;
+    margin-top: 0px;
+    margin: inline 35px;
+	position: absolute;
 }
