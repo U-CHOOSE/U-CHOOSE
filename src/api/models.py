@@ -193,7 +193,7 @@ class User_student(db.Model):
     # school = db.relationship('User_student_school', back_populates="user_student")
             
     def __repr__(self):
-        return '<User_teacher %r>' % self.id
+        return '<User_student %r>' % self.id
 
     def serialize(self):
         user = User.get_by_id(self.user_id)
@@ -341,7 +341,7 @@ class Review_teacher(db.Model):
             "more_info": self.more_info,
             "anonymous":self.anonymous,
             "teacher":self.teacher_id,
-            "user":self.user_id
+            "student_id":self.user_id
             # "user_teacher": list(map(lambda x: x.serialize(), self.user_teacher))
             # si quiero traer el nombre de teacher??
         }

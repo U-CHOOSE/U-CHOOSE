@@ -35,18 +35,15 @@ const ReviewTeacher = () => {
 	// 	},
 	// 	[!data]
 	// );
-	const [checked, setChecked] = useState({
-		yes: false,
-		no: false
-	});
-	useEffect(
-		() => {
-			fetch(process.env.BACKEND_URL + "/users/" + idOfTeacher + "/schools")
-				.then(res => res.json())
-				.then(data => setUserSchools(data));
-		},
-		[!data]
-	);
+	const [isAnonymous, setIsAnonymous] = useState(false);
+	// useEffect(
+	// 	() => {
+	// 		fetch(process.env.BACKEND_URL + "/users/" + idOfTeacher + "/schools")
+	// 			.then(res => res.json())
+	// 			.then(data => setUserSchools(data));
+	// 	},
+	// 	[!data]
+	// );
 	console.log("teacherId", idOfTeacher);
 	useEffect(() => {
 		const token = actions.getToken();
@@ -65,7 +62,7 @@ const ReviewTeacher = () => {
 	}, []);
 	console.log("data_user", detail);
 	const userId = store.userId;
-	console.log("teacher id", userId);
+	console.log("teacher id", store.idTeacher);
 
 	const getUser = () => {
 		fetch(process.env.BACKEND_URL + "/user/" + userId)
@@ -107,7 +104,7 @@ const ReviewTeacher = () => {
 					data={data}
 					onKeyPress={handleKeyPress}
 					button={x => {
-						actions.setReview("teacher_id", store.idTeacher);
+						actions.setReview("teacher_user_id", x.id);
 						setStep(2);
 						setDetail(x);
 						console.log(x, "fsdsffdfsd");
@@ -283,13 +280,8 @@ const ReviewTeacher = () => {
 									type="radio"
 									value={true}
 									id="yes"
-									checked={checked.yes}
-									onClick={() =>
-										setChecked({
-											no: false,
-											yes: !checked.yes
-										})
-									}
+									checked={isAnonymous}
+									onClick={() => setIsAnonymous(true)}
 								/>
 								Si
 							</label>
@@ -300,13 +292,8 @@ const ReviewTeacher = () => {
 									type="radio"
 									value={true}
 									id="no"
-									checked={checked.no}
-									onClick={() =>
-										setChecked({
-											no: !checked.no,
-											yes: false
-										})
-									}
+									checked={!isAnonymous}
+									onClick={() => setIsAnonymous(false)}
 								/>
 								No
 							</label>
@@ -314,7 +301,7 @@ const ReviewTeacher = () => {
 					}
 					button="Enviar Review"
 					onClick={() => {
-						actions.setReview("anonymous", checked);
+						actions.setReview("anonymous", isAnonymous);
 						setStep(10);
 						sendReview();
 						console.log(store.reviews);

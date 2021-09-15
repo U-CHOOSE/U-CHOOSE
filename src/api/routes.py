@@ -290,8 +290,11 @@ def add_school_to_user():
 def add_review_to_teacher():
     id = get_jwt_identity()    
     body = request.get_json()
-    user = Review_teacher.get_by_user_id(id)
-    teacher_id = body.get("teacher_id", None),
+    user = User.get_by_id(id)
+    if not user.is_student:
+        return "Isn't a student",400
+    
+    teacher_user_id = body.get("teacher_user_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
     practises_example = body.get("practises_example", None),
@@ -299,11 +302,14 @@ def add_review_to_teacher():
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
     anonymous = body.get("anonymous", None)
+    user_teacher = User_teacher.get_by_user_id(teacher_user_id)
+    if user_teacher is None:
+        return "Didn't exist",400
     
-   
     
     review_of_teacher = Review_teacher(
-        teacher_id = teacher_id,
+        user_id = user.id,
+        teacher_id = user_teacher.id,
         dynamsim= dynamsim,
         pasion = pasion,
         practises_example = practises_example,
@@ -320,13 +326,12 @@ def add_review_to_teacher():
 def teachers_in_mySchool():
     id = get_jwt_identity()
     mySchool = User_school.get_by_user_id(id)
-    print("this", mySchool) 
     school_users = User_school.get_users_by_school_id(mySchool.school_id)
-    print("second", school_users)
     teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first().serialize(), school_users))
-    print("this",teachers)
+
+    print(teachers,"fsd")
     user_teacher_dic = []
-    school = School.get_by_id(mySchool.id)
+    school = School.get_by_id(mySchool.school_id)
     for element in teachers:
         if not element["is_student"]:
             element["mySchool"] = school.serialize()
