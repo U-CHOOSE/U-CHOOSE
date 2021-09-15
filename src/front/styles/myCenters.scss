@@ -76,6 +76,7 @@
     background-size: cover;
     min-height: 350px;
     
+    
 }
 .school_name {
     position: absolute;
@@ -94,5 +95,13 @@
     font-size: 14px;
     line-height: 26px;
     letter-spacing: 0.75px;
-
+}
+.contain-reviews {
+    overflow-y: scroll; 
+    height: auto;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    
 }

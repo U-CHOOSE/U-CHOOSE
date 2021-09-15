@@ -3,6 +3,8 @@ import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment"
 import { useParams } from "react-router-dom";
 import Faces from "../component/Faces/Faces";
 import TopRated from "../component/TopRated/TopRated";
+import TopReview from "../component/TopReview/TopReview";
+
 const SchoolPage = () => {
 	const params = useParams();
 	const id = params.id;
@@ -60,22 +62,57 @@ const SchoolPage = () => {
 			{/*  */}
 			<div className="row">
 				<div className="col-12 mt-5">
-					<h4 className="top_rated">Top rated</h4>
-					<TopRated />
+					<h4 className="top_rated ">Top rated</h4>
 				</div>
 			</div>
-
+			{/*  */}
 			<div className="row">
-				<div col-md-12 />
-				<div className="col-md-8">review card</div>
-				<div className="row">
-					<div className="col-md-12">
-						<h2 className="highlight_reviews">Reviews Destacadas</h2>
+				<div className="col-12">
+					<div className="contain-reviews d-flex mx-3">
+						<span className="ml-2">
+							<TopRated />
+						</span>
+						<span className="ml-2">
+							<TopRated />
+						</span>
+						<span className="ml-2">
+							<TopRated />
+						</span>
 					</div>
-					<div className="col-md-12">Reviews card (img)</div>
-					<button className="button_white_border_violet_great" onClick={() => alert("Funcion no disponible")}>
-						Ver todas las reviews
-					</button>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-5">
+				<div className="col-12">
+					<h4 className="top_rated ">Reviews destacadas</h4>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-4">
+				<div className="col-12">
+					<div className="contain-reviews d-flex">
+						<TopReview
+							faceTopreview={10}
+							valorationTopreview={54}
+							opinionTopreview="El campus es increible"
+						/>
+						<TopReview
+							faceTopreview={9.4}
+							valorationTopreview={85}
+							opinionTopreview="Gran centro, lo recomiendo a todo el mundo "
+						/>
+						<TopReview
+							faceTopreview={9}
+							valorationTopreview={92}
+							opinionTopreview="Centro publico y mejor que otros de pago que he estado"
+						/>
+					</div>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-5 mb-5">
+				<div className="col-12 text-center ">
+					<button className="button_white_border_violet_great mb-5"> Ver todas las reviews</button>
 				</div>
 			</div>
 		</div>
