@@ -3,22 +3,23 @@ import "../../styles/reviewteacher.scss";
 import ReviewTeacherIcons from "../component/ReviewT/ReviewTeacherIcons";
 import CardReviewTeacher from "../component/ReviewT/CardReviewTeacher";
 import { Context } from "../store/appContext";
-import PropTypes from "prop-types";
 import Search from "../component/Search/Search";
 import reviewok from "../../../../docs/assets/img/review-ok.png";
+import { useParams } from "react-router-dom";
 
 const ReviewTeacher = () => {
 	const { store, actions } = useContext(Context);
-
+	const params = useParams();
 	const [step, setStep] = useState(1);
-	const [dateUser, setDateUser] = useState({});
+	const [dataUser, setDateUser] = useState({});
 	const [dateSchool, setDateSchool] = useState({});
-
+	const [userSchools, setUserSchools] = useState("");
+	const [detail, setDetail] = useState("");
 	//dropdown date_teacher=selectOption
 	const [selectOption, setTSelectOption] = useState(0);
 	//textaerea
 	const [moreInfo, setTMoreInfo] = useState("Comienza a escribir");
-
+	const idOfTeacher = params.id;
 	//search
 	const [data, setData] = useState("");
 	const handleKeyPress = e => {
@@ -26,22 +27,47 @@ const ReviewTeacher = () => {
 			alert("Hola");
 		}
 	};
-	useEffect(
-		() => {
-			fetch(process.env.BACKEND_URL + "/user_teachers")
-				.then(res => res.json())
-				.then(data => setData(data));
-		},
-		[!data]
-	);
-	console.log("data_user", dateUser);
+	// useEffect(
+	// 	() => {
+	// 		fetch(process.env.BACKEND_URL + "/teacher/review")
+	// 			.then(res => res.json())
+	// 			.then(data => setData(data));
+	// 	},
+	// 	[!data]
+	// );
+	const [isAnonymous, setIsAnonymous] = useState(false);
+	// useEffect(
+	// 	() => {
+	// 		fetch(process.env.BACKEND_URL + "/users/" + idOfTeacher + "/schools")
+	// 			.then(res => res.json())
+	// 			.then(data => setUserSchools(data));
+	// 	},
+	// 	[!data]
+	// );
+	console.log("teacherId", idOfTeacher);
+	useEffect(() => {
+		const token = actions.getToken();
+		fetch(process.env.BACKEND_URL + "/teacher/review", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
+			}
+		})
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				console.log(json);
+			});
+	}, []);
+	console.log("data_user", detail);
 	const userId = store.userId;
-	console.log("teacher id", userId);
+	console.log("teacher id", store.idTeacher);
 
 	const getUser = () => {
 		fetch(process.env.BACKEND_URL + "/user/" + userId)
 			.then(res => res.json())
-			.then(request => setDateUser(request));
+			.then(request => setdetail(request));
 	};
 	console.log(data, "data");
 	console.log(store.userId);
@@ -52,11 +78,13 @@ const ReviewTeacher = () => {
 	// };
 
 	const sendReview = () => {
+		const token = actions.getToken();
 		fetch(process.env.BACKEND_URL + "/review", {
 			method: "POST",
 			body: JSON.stringify(store.reviews), // data can be `string` or {object}!
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token
 			}
 		})
 			.then(res => res.json())
@@ -67,7 +95,7 @@ const ReviewTeacher = () => {
 	if (step == 1) {
 		console.log("data", data);
 		return (
-			<div className="container-fluid mx-auto">
+			<div className="container-fluid mx-auto ">
 				<Search
 					title="Buscar un profesor"
 					placeholder="Buscar un profesor"
@@ -75,33 +103,28 @@ const ReviewTeacher = () => {
 					type="teacher"
 					data={data}
 					onKeyPress={handleKeyPress}
-					button={
-						<button
-							className="button_violet_small_button__search"
-							onClick={() => {
-								console.log("userID" + store.userId);
-								console.log("idtecher", store.idTeacher);
-								getUser();
-								actions.setReview("teacher_id", store.idTeacher);
-								setStep(2);
-							}}>
-							Siguiente
-						</button>
-					}
+					button={x => {
+						actions.setReview("teacher_user_id", x.id);
+						setStep(2);
+						setDetail(x);
+						console.log(x, "fsdsffdfsd");
+					}}
 				/>
 			</div>
 		);
 	} else if (step == 2) {
-		console.log("dateUser", dateUser);
+		{
+			data && data.map((v, i) => {});
+		}
 		return (
 			<div className=" reviewTeacher2">
 				<h1 className="search-title">Buscar profesor</h1>
-				<span className="span__0 ">¿En qué centro tuviste clase con {dateUser.full_name}?</span>
+				<span className="span__0 ">¿En qué centro tuviste clase con {detail.full_name}?</span>
 				<div className="cont_name_img d-flex mt-5">
-					<img src={dateUser.img} />
+					<img src={detail.img} />
 					<div>
-						<div className="teacher__fullname">{dateUser.full_name}</div>
-						<div className="teacher__typeteacher">Profesor@ de {dateUser.type_of_teacher}</div>
+						<div className="teacher__fullname">{detail.full_name}</div>
+						<div className="teacher__typeteacher">Profesor@ de {detail.type_of_teacher}</div>
 					</div>
 					<div>{/* {dateSchool.name} */}</div>
 				</div>
@@ -114,10 +137,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="Dinamismo en sus clases"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={3} />}
 					button="Siguiente"
 					onClick={() => setStep(4)}
@@ -128,10 +151,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="Pasión por la materia"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={4} />}
 					button="Siguiente"
 					onClick={() => setStep(5)}
@@ -142,10 +165,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="Utiliza ejemplos prácticos"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={5} />}
 					button="Siguiente"
 					onClick={() => setStep(6)}
@@ -156,10 +179,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="Implicación y cercanía"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<ReviewTeacherIcons step={6} />}
 					button="Siguiente"
 					onClick={() => setStep(7)}
@@ -187,10 +210,10 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="¿Cuándo tuviste clase?"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={
 						<div className="dropdown">
 							<select name="year" className="options" onChange={captureYear}>
@@ -214,22 +237,23 @@ const ReviewTeacher = () => {
 		return (
 			<div className="mx-auto step-8">
 				<CardReviewTeacher
-					srcImg={dateUser.img}
+					srcImg={detail.img}
 					title="¿Algo más?"
-					name={dateUser.full_name}
-					nameUniversity="4Geeks Academy"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
 					body={<textarea onChange={e => setTMoreInfo(e.target.value)} placeholder={moreInfo} />}
-					button="Enviar Review"
+					button="
+					Siguiente"
 					onClick={() => {
 						actions.setReview("more_info", moreInfo);
 						setStep(9);
-						sendReview();
+						// sendReview();
 						console.log(store.reviews);
 					}}
 				/>
 			</div>
 		);
-	} else if (step == 9) {
+	} else if (step == 10) {
 		return (
 			<div className="mx-auto step-9">
 				<img src={reviewok} />
@@ -238,6 +262,51 @@ const ReviewTeacher = () => {
 					Tu review se ha registrado correctamente.{" "}
 					<span className="font-weight-bold">¿Por qué hacer una review de otro profesor?</span>
 				</p>
+			</div>
+		);
+	} else if (step == 9) {
+		return (
+			<div className="mx-auto step-8">
+				<CardReviewTeacher
+					srcImg={detail.img}
+					title="¿Quieres que tu review sea anónima?"
+					name={detail.full_name}
+					nameUniversity={detail.mySchool.name}
+					body={
+						<>
+							<label className="containerLabel" htmlFor="yes">
+								<input
+									className="input mx-auto"
+									type="radio"
+									value={true}
+									id="yes"
+									checked={isAnonymous}
+									onClick={() => setIsAnonymous(true)}
+								/>
+								Si
+							</label>
+							<label className="containerLabel" htmlFor="no">
+								<br />{" "}
+								<input
+									className="input mx-auto"
+									type="radio"
+									value={true}
+									id="no"
+									checked={!isAnonymous}
+									onClick={() => setIsAnonymous(false)}
+								/>
+								No
+							</label>
+						</>
+					}
+					button="Enviar Review"
+					onClick={() => {
+						actions.setReview("anonymous", isAnonymous);
+						setStep(10);
+						sendReview();
+						console.log(store.reviews);
+					}}
+				/>
 			</div>
 		);
 	}

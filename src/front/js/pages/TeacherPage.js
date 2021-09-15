@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import Faces from "../component/Faces/Faces";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
 const TeacherPage = () => {
+	const { actions } = useContext(Context);
 	const [teacher, setTeacher] = useState("");
 	const params = useParams();
 	const id = params.id;
+	const history = useHistory();
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/teacher/" + id)
 			.then(res => res.json())
@@ -25,7 +28,24 @@ const TeacherPage = () => {
 						<Faces />
 					</div>
 					<span className="span-reviews ml-3">126 reviews</span>
-					<button className="butt-on1 mt-2 mr-5">Hacer review</button>
+					{actions.isLogged() ? (
+						<button
+							className="butt-on1 mt-2 mr-5"
+							onClick={() => {
+								history.push("/reviewteacher");
+							}}>
+							Hacer review
+						</button>
+					) : (
+						<button
+							className="butt-on1 mt-2 mr-5"
+							onClick={() => {
+								alert("Necessitas estar loggeado para hacer una review");
+								history.push("/login");
+							}}>
+							Hacer review
+						</button>
+					)}
 				</div>
 				<div className="col-lg-1" />
 			</div>

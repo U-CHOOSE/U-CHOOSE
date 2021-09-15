@@ -4,6 +4,7 @@ import { Context } from "../../store/appContext";
 import google from "../../../../../docs/assets/img/google.png";
 import validateEmail from "../../utils/validateEmail";
 import validationPassword from "../../utils/validatePassword";
+import GoogleLogin from "react-google-login";
 
 const StudentForm = props => {
 	const { actions } = useContext(Context);
@@ -16,7 +17,9 @@ const StudentForm = props => {
 		is_student: true,
 		sign_completed: false
 	});
-
+	const responseGoogle = responseGoogle => {
+		console.log("responsegoogle", responseGoogle);
+	};
 	const [showPassword, setShowPassword] = useState(false);
 	const [showRepeatPassword, setRepeatShowPassword] = useState(false);
 	const [changeIcon, setChangeIcon] = useState(true);
@@ -105,18 +108,7 @@ const StudentForm = props => {
 				<input
 					className="mx-auto w-100  m-3 p-3"
 					type={showPassword ? "password" : "text"}
-					placeholder={
-						"Contraseña" +
-						(
-							<i
-								className={changeIcon ? "fas fa-eye" : "far fa-eye-slash"}
-								onClick={() => {
-									setShowPassword(!showPassword);
-									setChangeIcon(!changeIcon);
-								}}
-							/>
-						)
-					}
+					placeholder="Contraseña"
 					value={formData.password}
 					onChange={e => setFormData({ ...formData, _password: e.target.value })}
 				/>
@@ -171,10 +163,21 @@ const StudentForm = props => {
 				<button className="button_violet_great b_cuenta mx-auto " onClick={handleCreate}>
 					Crear Cuenta
 				</button>
-
-				<button className="button_white_border_violet_great b_Google mt-2 " onClick={handleCreate}>
-					Registro con <img className="google" src={google} />
-				</button>
+				<GoogleLogin
+					clientId="509130701685-p3n58k0ibue49e8h6lo9c1vr4qkpg8sk.apps.googleusercontent.com"
+					buttonText="Login"
+					render={renderProps => (
+						<button
+							onClick={renderProps.onClick}
+							disabled={renderProps.disabled}
+							className="button_white_border_violet_great b_Google mt-2 ">
+							Registro con <img className="google" src={google} />
+						</button>
+					)}
+					onSuccess={responseGoogle}
+					onFailure={responseGoogle}
+					cookiePolicy={"single_host_origin"}
+				/>
 			</div>
 		</>
 	);

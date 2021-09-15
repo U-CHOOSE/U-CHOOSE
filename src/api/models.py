@@ -20,7 +20,7 @@ class User(db.Model):
     user_student = db.relationship('User_student', cascade="all, delete", lazy=True)
     user_teacher = db.relationship("User_teacher", cascade="all, delete", lazy=True)
     school = db.relationship("School", secondary="user_school")
-
+    review_teacher = db.relationship("Review_teacher")
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -193,7 +193,7 @@ class User_student(db.Model):
     # school = db.relationship('User_student_school', back_populates="user_student")
             
     def __repr__(self):
-        return '<User_teacher %r>' % self.id
+        return '<User_student %r>' % self.id
 
     def serialize(self):
         user = User.get_by_id(self.user_id)
@@ -321,9 +321,11 @@ class Review_teacher(db.Model):
     near = db.Column(db.Integer())
     date_teacher = db.Column(db.Integer(), unique=False, nullable=False)
     more_info = db.Column(db.String(500), unique=False, nullable=True)
-    anonymous = db.Column(db.Boolean)
+    anonymous = db.Column(db.Boolean,nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     teacher_id = db.Column(db.Integer, db.ForeignKey('user_teacher.id'))
     user_teacher = db.relationship("User_teacher")
+    user = db.relationship("User")
 
     def __repr__(self):
         return '<Review_teacher %r>' % self.id
@@ -338,7 +340,8 @@ class Review_teacher(db.Model):
             "date_teacher": self.date_teacher,
             "more_info": self.more_info,
             "anonymous":self.anonymous,
-            "teacher":self.teacher_id
+            "teacher":self.teacher_id,
+            "student_id":self.user_id
             # "user_teacher": list(map(lambda x: x.serialize(), self.user_teacher))
             # si quiero traer el nombre de teacher??
         }
@@ -357,6 +360,11 @@ class Review_teacher(db.Model):
         return cls.query.filter_by(teacher_id= model_id).first()
     
     @classmethod
-    def get_by_id(cls, id):
-        reviews = cls.query.filter_by(id = id).first_or_404()
+    def get_by_teacher_id(cls, id):
+        reviews = cls.query.filter_by(teacher_id = id).first()
+        return reviews
+
+    @classmethod
+    def get_by_user_id(cls, id):
+        reviews = cls.query.filter_by(user_id = id).first()
         return reviews

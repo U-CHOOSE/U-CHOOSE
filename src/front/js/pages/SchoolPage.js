@@ -2,6 +2,10 @@ import React, { useEffect, useState, useContext } from "react";
 import TeacherAssessment from "../component/TeacherAssessment/TeacherAssessment";
 import { useParams } from "react-router-dom";
 import Faces from "../component/Faces/Faces";
+import TopRated from "../component/TopRated/TopRated";
+import TopReview from "../component/TopReview/TopReview";
+import "../../styles/myCenters.scss";
+
 const SchoolPage = () => {
 	const params = useParams();
 	const id = params.id;
@@ -14,44 +18,105 @@ const SchoolPage = () => {
 	}, []);
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-12">
-					<img src={school.img} />
-					<h3>{school.name}</h3>
+		<div className="container-fluid">
+			<div className="row px-0">
+				<div className="col-12 px-0 caja">
+					<img className="img_center" src={school.img} />
+					<h3 className="school_name">{school.name}</h3>
 				</div>
-				<div className="col-md-10">
+			</div>
+			{/*  */}
+			<div className="row px-0">
+				<div className="col-md-4 col-sm-4 col-2 col-lg-4" />
+				<div className="col-8 col-md-4 col-sm-4 col-lg-4 text-center">
+					<button className="button_marino_great ba_1 mt-5" onClick={() => alert("Funcion no disponible")}>
+						Hacer una review
+					</button>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row px-0">
+				<div className="col-7 ">
 					<Faces />
 				</div>
-				<div className="col-md-2">
-					<span>126 reviews de sus profesores</span>
+				<div className="col-5 ">
+					<span className="span_rev">126 reviews de sus profesores</span>
 				</div>
 			</div>
-
-			<button className="button_marino_great" onClick={() => alert("Funcion no disponible")}>
-				Hacer una review
-			</button>
+			{/*  */}
 			<div className="row">
-				<div className="col-md-12">
-					<h1 className="title_teachers">Evaluación de su professores</h1>
+				<div className="col-12 ">
+					<h1 className="title_teachers mt-5">Evaluación de su profesores</h1>
 				</div>
 			</div>
-
-			<TeacherAssessment name="Kilian Mbappe" />
-			<button className="button_white_border_violet_great"> Ver listado de professores</button>
+			{/*  */}
 			<div className="row">
-				<div col-md-12>
-					<h4 className="top_rated">Top rated</h4>
+				<div className="col-12 mt-5">
+					<TeacherAssessment name={school.name} name_others="Media otros centros" />
 				</div>
-				<div className="col-md-8">review card</div>
-				<div className="row">
-					<div className="col-md-12">
-						<h2 className="highlight_reviews">Reviews Destacadas</h2>
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-12 mt-5 text-center">
+					<button className="button_white_border_violet_great"> Ver listado de professores</button>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-lg-2" />
+				<div className="col-12 col-lg-10 mt-5">
+					<h4 className="top_rated ">Top rated</h4>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row">
+				<div className="col-12">
+					<div className="contain-reviews d-flex mx-3">
+						<span className="ml-2">
+							<TopRated />
+						</span>
+						<span className="ml-2">
+							<TopRated />
+						</span>
+						<span className="ml-2">
+							<TopRated />
+						</span>
 					</div>
-					<div className="col-md-12">Reviews card (img)</div>
-					<button className="button_white_border_violet_great" onClick={() => alert("Funcion no disponible")}>
-						Ver todas las reviews
-					</button>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-5">
+				<div className="col-lg-2" />
+				<div className="col-12 col-lg-10">
+					<h4 className="top_rated ">Reviews destacadas</h4>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-4">
+				<div className="col-12">
+					<div className="contain-reviews d-flex">
+						<TopReview
+							faceTopreview={10}
+							valorationTopreview={54}
+							opinionTopreview="El campus es increible"
+						/>
+						<TopReview
+							faceTopreview={9.4}
+							valorationTopreview={85}
+							opinionTopreview="Gran centro, lo recomiendo a todo el mundo "
+						/>
+						<TopReview
+							faceTopreview={9}
+							valorationTopreview={92}
+							opinionTopreview="Centro publico y mejor que otros de pago que he estado"
+						/>
+					</div>
+				</div>
+			</div>
+			{/*  */}
+			<div className="row mt-5 mb-5">
+				<div className="col-12 text-center ">
+					<button className="button_white_border_violet_great mb-5"> Ver todas las reviews</button>
 				</div>
 			</div>
 		</div>
