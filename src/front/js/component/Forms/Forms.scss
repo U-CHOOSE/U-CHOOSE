@@ -113,6 +113,16 @@ input[type=checkbox].visible{
     background-color: red;
     width: 300px;
 }
-.checkboxes{
+.custom_checkbox{
+    background-color: red;
     margin-top: 4%;
+}
+
+
+.fa-eye:before {
+    content: "\f06e";
+    margin: 35px;
+    margin-top: 0px;
+    margin: inline 35px;
+	position: absolute;
 }
