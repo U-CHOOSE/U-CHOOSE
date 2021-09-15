@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Faces from "../component/Faces/Faces";
 import TopRated from "../component/TopRated/TopRated";
 import TopReview from "../component/TopReview/TopReview";
+import "../../styles/myCenters.scss";
 
 const SchoolPage = () => {
 	const params = useParams();
@@ -26,8 +27,8 @@ const SchoolPage = () => {
 			</div>
 			{/*  */}
 			<div className="row px-0">
-				<div className="col-md-4 col-sm-4 col-2 col-lg-5" />
-				<div className="col-8 col-md-4 col-sm-4 col-lg-3 text-center">
+				<div className="col-md-4 col-sm-4 col-2 col-lg-4" />
+				<div className="col-8 col-md-4 col-sm-4 col-lg-4 text-center">
 					<button className="button_marino_great ba_1 mt-5" onClick={() => alert("Funcion no disponible")}>
 						Hacer una review
 					</button>
@@ -56,13 +57,14 @@ const SchoolPage = () => {
 			</div>
 			{/*  */}
 			<div className="row">
-				<div className="col-12 mt-5">
+				<div className="col-12 mt-5 text-center">
 					<button className="button_white_border_violet_great"> Ver listado de professores</button>
 				</div>
 			</div>
 			{/*  */}
 			<div className="row">
-				<div className="col-12 mt-5">
+				<div className="col-lg-2" />
+				<div className="col-12 col-lg-10 mt-5">
 					<h4 className="top_rated ">Top rated</h4>
 				</div>
 			</div>
@@ -84,7 +86,8 @@ const SchoolPage = () => {
 			</div>
 			{/*  */}
 			<div className="row mt-5">
-				<div className="col-12">
+				<div className="col-lg-2" />
+				<div className="col-12 col-lg-10">
 					<h4 className="top_rated ">Reviews destacadas</h4>
 				</div>
 			</div>
