@@ -123,7 +123,7 @@ const RegisterFormPage = () => {
 								<br /> <br />{" "}
 								<button
 									onClick={() => actions.setUpStep()}
-									className="button_violet_small_register mx-auto ">
+									className="button_violet_small_register mx-auto w-100 ">
 									Siguiente
 								</button>
 							</>
@@ -207,7 +207,7 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										) : (
-											<button onClick={toLogin} className="button_marino_great">
+											<button onClick={toLogin} className="button_marino_great w-100  ">
 												Hacer un review
 											</button>
 										)}

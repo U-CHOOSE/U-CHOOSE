@@ -246,7 +246,7 @@ const TeacherProfile = () => {
 
 			<div className="row">
 				<div className="col-12 ">
-					<button className="button2 b-2-r">Ver todas las reviews</button>
+					<button className="button  w-100">Ver todas las reviews</button>
 				</div>
 			</div>
 		</div>

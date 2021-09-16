@@ -149,7 +149,7 @@ const ReviewTeacher = () => {
 		);
 	} else if (step == 4) {
 		return (
-			<div className="mx-auto">
+			<div className="mx-auto w-100">
 				<CardReviewTeacher
 					srcImg={detail.img}
 					title="Pasión por la materia"
@@ -259,14 +259,14 @@ const ReviewTeacher = () => {
 				<img src={reviewok} />
 				<h1 className="">¡Gracias!</h1>
 				<p>
-					Tu review se ha registrado correctamente.{" "}
+					<span>Tu review se ha registrado correctamente.</span> <p />
 					<span className="font-weight-bold">¿Por qué hacer una review de otro profesor?</span>
 				</p>
 			</div>
 		);
 	} else if (step == 9) {
 		return (
-			<div className="mx-auto step-8">
+			<div className="mx-auto w-100  step-8">
 				<CardReviewTeacher
 					srcImg={detail.img}
 					title="¿Quieres que tu review sea anónima?"

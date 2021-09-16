@@ -11,7 +11,7 @@ const Thanks = props => {
 			<div>
 				{" "}
 				<h1 className="violet_h1 mx-auto p-3 w-100"> ¡Gracias!</h1>
-				<h2 className="colaborarUchoose mx-auto mx-auto p-3">{props.subtitle}</h2>
+				<h2 className="colaborarUchoose mx-auto mx-auto p-3  w-100">{props.subtitle}</h2>
 			</div>
 			<div>{props.buttons}</div>
 		</>

@@ -51,8 +51,9 @@ const Login = () => {
 						placeholder="  Contraseña  "
 						onChange={event => SetPassword(event.target.value)}
 					/>
-					<div className="col-12 mx-auto ">
+					<div className="col-12 mx-auto">
 						<i
+							id="eyesfa"
 							className={changeIcon ? "fas fa-eye " : "far fa-eye-slash "}
 							onClick={() => {
 								setShowPassword(!showPassword);
