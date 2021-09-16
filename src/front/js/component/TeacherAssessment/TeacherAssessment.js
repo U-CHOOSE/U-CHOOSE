@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../TeacherAssessment/TeacherAssessment.scss";
 import PropTypes from "prop-types";
-import { propTypes } from "react-bootstrap/esm/Image";
 const TeacherAssessment = props => {
 	const dT = props.dinamismoT * 10;
 	const dO = props.dinamismoO * 10;

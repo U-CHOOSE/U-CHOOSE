@@ -22,7 +22,7 @@ const TeacherPage = () => {
 		fetch(process.env.BACKEND_URL + "/review/" + id)
 			.then(res => res.json())
 			.then(json => {
-				console.log(json);
+				console.log("review", json);
 				setReview(json);
 			});
 	}, []);
@@ -74,7 +74,7 @@ const TeacherPage = () => {
 				<h1>Valoración</h1>
 			</div>
 			<div className="container-fluid" />
-			<TeacherAssessment name="Kilian Mbappe" />
+			<TeacherAssessment name={teacher.full_name} name_others="Otros professores" />
 			<div className="row">
 				<div className="col-12  contain-reviews d-flex">
 					{review &&
