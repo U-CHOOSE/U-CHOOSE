@@ -26,6 +26,7 @@ const TeacherPage = () => {
 				setReview(json);
 			});
 	}, []);
+
 	return (
 		<div>
 			<div className="row">

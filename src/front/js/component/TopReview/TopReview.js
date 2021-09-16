@@ -7,11 +7,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const TopReview = props => {
+	const [counter, setCounter] = useState(0);
+
 	return (
 		<div className="container-review mr-3">
 			<div className="container-puntuation">
 				<Faces face={props.faceTopreview} />
-				<FontAwesomeIcon className="icon-ok" icon={faThumbsUp} />
+
+				<div>
+					<span>{counter}</span>
+
+					<FontAwesomeIcon
+						className="icon-ok"
+						icon={faThumbsUp}
+						onClick={() => {
+							if (counter >= 1) {
+								setCounter(1);
+							} else {
+								setCounter(counter + 1);
+							}
+						}}
+					/>
+				</div>
 			</div>
 			<span>{props.valorationTopreview}</span>
 			<p className="mx-auto">{props.opinionTopreview}</p>
