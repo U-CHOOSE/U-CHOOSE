@@ -5,9 +5,11 @@ import Faces from "../component/Faces/Faces";
 import { useParams, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
+import TopReview from "../component/TopReview/TopReview";
 const TeacherPage = () => {
 	const { actions } = useContext(Context);
 	const [teacher, setTeacher] = useState("");
+	const [review, setReview] = useState("");
 	const params = useParams();
 	const id = params.id;
 	const history = useHistory();
@@ -15,6 +17,14 @@ const TeacherPage = () => {
 		fetch(process.env.BACKEND_URL + "/teacher/" + id)
 			.then(res => res.json())
 			.then(json => setTeacher(json));
+	}, []);
+	useEffect(() => {
+		fetch(process.env.BACKEND_URL + "/review/" + id)
+			.then(res => res.json())
+			.then(json => {
+				console.log(json);
+				setReview(json);
+			});
 	}, []);
 	return (
 		<div>
@@ -64,6 +74,20 @@ const TeacherPage = () => {
 			</div>
 			<div className="container-fluid" />
 			<TeacherAssessment name="Kilian Mbappe" />
+			<div className="row">
+				<div className="col-12  contain-reviews d-flex">
+					{review &&
+						review.map((v, i) => {
+							return <TopReview key={i} opinionTopreview={v.more_info} />;
+						})}
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-12 ">
+					<button className="button2 b-2-r">Ver todas las reviews</button>
+				</div>
+			</div>
 		</div>
 	);
 };

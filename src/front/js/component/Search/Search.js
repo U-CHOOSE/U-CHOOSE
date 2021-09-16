@@ -160,13 +160,17 @@ const Search = props => {
 						</li>
 					);
 				})}
-			<button
-				className="button_blue_siguiente"
-				onClick={() => {
-					props.button(detail);
-				}}>
-				Siguiente
-			</button>
+			{props.button ? (
+				<button
+					className="button_blue_siguiente"
+					onClick={() => {
+						props.button(detail);
+					}}>
+					{props.buttonName ? props.buttonName : "Siguiente"}
+				</button>
+			) : (
+				""
+			)}
 			<p className="span__2">{props.span2}</p>
 		</>
 	);

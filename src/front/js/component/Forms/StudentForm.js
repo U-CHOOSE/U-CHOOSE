@@ -54,7 +54,7 @@ const StudentForm = props => {
 		const validation = {
 			full_name: formData.fullname.length > 5 ? "errorInvisible" : "errorVisible",
 			email: validateEmail(formData.email) ? "errorInvisible" : "errorVisible",
-			_password: formData._password - length > 5 ? "errorInvisible" : "errorVisible",
+			_password: formData._password.length > 5 ? "errorInvisible" : "errorVisible",
 			repeat_password: formData.repeatPassword !== formData._password ? "errorInvisible" : "errorVisible",
 			legalStyle: legal === undefined ? "invisible" : "visible"
 		};

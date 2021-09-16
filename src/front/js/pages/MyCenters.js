@@ -77,10 +77,9 @@ const MyCenters = () => {
 					data={data}
 					onKeyPress={handleKeyPress}
 					mySchools={mySchools}
+					button={updateSchools}
+					buttonName="Guardar"
 				/>
-				<button className="student-button2" onClick={updateSchools}>
-					Guardar
-				</button>
 			</div>
 		</>
 	);

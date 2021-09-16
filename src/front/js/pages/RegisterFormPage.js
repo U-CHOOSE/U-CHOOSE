@@ -123,11 +123,7 @@ const RegisterFormPage = () => {
 								<br /> <br />{" "}
 								<button
 									onClick={() => actions.setUpStep()}
-
 									className="button_violet_small_register mx-auto ">
-
-									
-
 									Siguiente
 								</button>
 							</>
@@ -170,11 +166,7 @@ const RegisterFormPage = () => {
 							data={data}
 							type="schools"
 							span2="Saltar este paso"
-							button={
-								<button onClick={handlePut} className="button_violet_small_register butt_vs">
-									Siguiente
-								</button>
-							}
+							button={handlePut}
 						/>
 					) : (
 						<Search
@@ -184,13 +176,7 @@ const RegisterFormPage = () => {
 							span1="¿No encuentras tu centro?"
 							data={data}
 							type="schools"
-							button={
-
-								<button onClick={handlePut} className="button_violet_small_register my-3 w-100">
-
-									Siguiente
-								</button>
-							}
+							button={handlePut}
 						/>
 					)
 				}

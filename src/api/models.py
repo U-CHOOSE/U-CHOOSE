@@ -356,6 +356,11 @@ class Review_teacher(db.Model):
         return review_teachers
 
     @classmethod
+    def get_all_reviews_by_teacher(cls,id):
+        reviews = cls.query.filter_by(teacher_id=id).all()
+        return reviews
+
+    @classmethod
     def get_by_id(cls,model_id):
         return cls.query.filter_by(teacher_id= model_id).first()
     

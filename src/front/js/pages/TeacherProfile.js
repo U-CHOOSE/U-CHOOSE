@@ -42,6 +42,7 @@ const TeacherProfile = () => {
 		fetch(process.env.BACKEND_URL + "/reviews")
 			.then(res => res.json())
 			.then(json => {
+				console.log(json, "review");
 				setReview(json);
 			})
 			.catch(err => console.log("Error:", err));
