@@ -8,7 +8,9 @@ import imgIcon from "../../img/imgIcon.png";
 import logoNav from "../../img/logoNav.png";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
+
 import { Navbar, NavDropdown, Container, Button } from "react-bootstrap";
+
 
 const NavbarComp = () => {
 	const { actions, store } = useContext(Context);
@@ -65,6 +67,7 @@ const NavbarComp = () => {
 					) : (
 						""
 					)}
+
 					<NavDropdown className="navbar-toggler-icon" drop="left">
 						{actions.isLogged() ? (
 							<NavDropdown.Item
