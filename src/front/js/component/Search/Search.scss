@@ -25,7 +25,12 @@
     margin: auto;
     margin-top: 60px;
 }
-
+.buttonSearch {
+         background: #6DEDE3;
+         color: black;
+         margin-top: 50px;
+          margin-bottom:50px;
+    }
 
 .span__1, .span__2, .span__0, .span__{
     font-family: Poppins;
@@ -68,7 +73,7 @@
     height: 68px;
 }
 .input-search:focus{
-    background: white;
+    background: rgb(241, 237, 237);
     border: 2px solid black;
     padding-left:25px;
 }

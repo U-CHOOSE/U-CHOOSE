@@ -47,7 +47,7 @@ const Search = props => {
 			<p className="span__"> {props.span_}</p>
 			<div className="text-center">
 				<input
-					className="mx-auto input-search "
+					className="mx-auto input-search"
 					type="text"
 					placeholder={props.placeholder}
 					onChange={e => setSearchItem(e.target.value)}

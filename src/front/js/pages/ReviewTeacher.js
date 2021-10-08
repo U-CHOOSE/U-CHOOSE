@@ -201,6 +201,7 @@ const ReviewTeacher = () => {
 						</div>
 					}
 					button="Siguiente"
+					className="buttonSearch"
 					onClick={() => {
 						actions.setReview("date_teacher", selectOption);
 						setStep(8);
