@@ -122,11 +122,6 @@ input:focus{
     ,267px ,56px ,$violet);
     border: none;
 }
-.button_violet_small{
-    @include button( rgba(255, 255, 255, 1)
-    ,267px ,56px ,$violet);
-    border: none;     
-}
 .button_marino_great{
     @include button( $black
     ,326px ,56px , $marino);

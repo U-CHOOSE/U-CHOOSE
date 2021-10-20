@@ -76,7 +76,7 @@ const ReviewTeacher = () => {
 					onKeyPress={handleKeyPress}
 					button={
 						<button
-							className="button_violet_small_button__search"
+							className="button_violet_small"
 							onClick={() => {
 								console.log("userID" + store.userId);
 								console.log("idtecher", store.idTeacher);
