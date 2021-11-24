@@ -1,159 +1,189 @@
+:root {
+  //fuentes mobile
+  --fuenteDisplay:font-size: 64px;
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  
+  // colors
+  --black: #0c0b1a;
+  --SecondaryDark: #7a6fc5;
+  --backgroundInput: #EFF0F6;
+  --secondaryGradient: gradient(114.44deg, #624AF2 0%, #50DDC3 100%);
+  --primaryDefault:#6DEDE3;
+  --buttonWhite:border: 2px solid #7A6FC5;
+/* Gradient para el nav / Primary Marino */
+  background: linear-gradient(270deg, #a194ff -6.35%, #6dede3 34.24%);
+}
+
+
+/* Estos bordes no afectaran en el padding */
+html {
+	box-sizing: border-box;
+	font-size: 62.5%;
+}
+
+/* Herencias de selectores */
+*,
+* :before,
+*:after {
+	box-sizing: inherit;
+}
+
+
+
+
+
+
+// ******************************* a partir de aqui cambiar todo*******************************************************
+
+
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-// colors 
+// colors
 
-$violet : rgba(122, 111, 197, 1);
-$marino : rgba(109, 237, 227, 1);
-$secondaryViolet : rgba(207, 200, 254, 1);
-$greyInputs :  rgba(239, 240, 246, 1);
-$black :  rgba(12, 11, 26, 1);
-$darkgrey :  rgba(78, 75, 102, 1);
-$gradientVioletMarino : linear-gradient(270deg, #A194FF -6.35%, #6DEDE3 34.24%);
+$violet: rgba(122, 111, 197, 1);
+$marino: rgba(109, 237, 227, 1);
+$secondaryViolet: rgba(207, 200, 254, 1);
+$greyInputs: rgba(239, 240, 246, 1);
+$black: rgba(12, 11, 26, 1);
+$darkgrey: rgba(78, 75, 102, 1);
+$gradientVioletMarino: linear-gradient(270deg, #a194ff -6.35%, #6dede3 34.24%);
 
-// Default tags: 
-
-// h1
-
-@mixin  h1 ($color) {
-    color : $color;
-    width: 327px;
-    height: 72px;
-    font-style: normal;
-    font-family: Poppins;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 36px;
-    letter-spacing: -2px;  
-}
-
-.black_h1{
-@include h1 ($black)
-}
-
-.violet_h1{
-@include h1 ($violet)
-}
-
-@mixin   h2 ($color) {
-    color : $color;
-    width: 320px;
-    height: 32px;
-    font-style:normal;
-    font-family: Poppins;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 1px;
-}
-
-.black_h2{
-    @include h2 ($black)
-}
-
-.violet_h2{
-    @include h2($violet)
-}
+// Default tags:
 
 
-input[type=text]{
-    font-style:normal;
-    margin-bottom: 15px;
-    background: $greyInputs;
-    height: 64px;
-    width: 343px;
-    box-sizing: border-box;
-    border-radius: 16px;
-    border: none
-}
-input[type=password]{
-    background: $greyInputs;
-    margin-bottom: 15px;
-    height: 64px;
-    width: 343px;
-    box-sizing: border-box;
-    border-radius: 16px;
-    border: none
-}
-input[type=email]{
-    background: $greyInputs;
-    margin-bottom: 15px;
-    height: 64px;
-    width: 343px;
-    border-radius: 16px;
-    border: none
-}
-input::placeholder{
-    color:red;
-    height: 28px;
-    width: 141px;
-    padding-left: 100px; 
-    font-size: 12px;
-    line-height: 28px;
-    font-family: Poppins;
-    box-sizing: content-box;
+@mixin h1($color) {
+  color: $color;
+  width: 327px;
+  height: 72px;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -2px;
 }
 
-input:focus{
-    outline: none;
-}
-@mixin  button ($color,$width,$height,$background-color){
-    color: $color;
-    height: $height;
-    width:$width;
-    margin-bottom: 15px;
-    background-color: $background-color;
-    border-radius: 40px;
-    font-weight: 600;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    border-radius: 40px
-}
-.button_violet_great{
-    @include button( rgba(255, 255, 255, 1)
-    ,326px ,56px ,$violet);
-    border-radius:40px;
-    border: none;   
+.black_h1 {
+  @include h1($black);
 }
 
-.button_violet_small{
-    @include button( rgba(255, 255, 255, 1)
-    ,267px ,56px ,$violet);
-    border: none;
-}
-.button_marino_great{
-    @include button( $black
-    ,326px ,56px , $marino);
-    border: none;
-    text-justify: inherit;
-}
-.button_white_border_marino{
-    @include button( $black
-    ,311px ,40px ,white);
-    border: 2px solid $marino;
-    box-sizing: border-box;
-}
-.button_marino_small{
-    @include button( $black
-    ,171px ,40px ,$marino);
-    border: none;
-}
-.button_white_border_violet_great{   
-    @include button( $violet
-    ,343px ,56px ,white);
-    border: 2px solid $violet;
-    box-sizing: border-box;
-}
-.button_white_border_violet_small{
-    @include button( $violet
-    ,267px ,56px ,white);
-    border: 2px solid $violet;
-    box-sizing: border-box;
+.violet_h1 {
+  @include h1($violet);
 }
 
-.btnGroup{  
-    align-content: center;
+@mixin h2($color) {
+  color: $color;
+  width: 320px;
+  height: 32px;
+  font-style: normal;
+  font-family: Poppins;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 1px;
+}
+
+.black_h2 {
+  @include h2($black);
+}
+
+.violet_h2 {
+  @include h2($violet);
+}
+
+input[type="text"] {
+  font-style: normal;
+  margin-bottom: 15px;
+  background: $greyInputs;
+  height: 64px;
+  width: 343px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: none;
+}
+input[type="password"] {
+  background: $greyInputs;
+  margin-bottom: 15px;
+  height: 64px;
+  width: 343px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: none;
+}
+input[type="email"] {
+  background: $greyInputs;
+  margin-bottom: 15px;
+  height: 64px;
+  width: 343px;
+  border-radius: 16px;
+  border: none;
+}
+input::placeholder {
+  color: red;
+  height: 28px;
+  width: 141px;
+  padding-left: 100px;
+  font-size: 12px;
+  line-height: 28px;
+  font-family: Poppins;
+  box-sizing: content-box;
+}
+
+input:focus {
+  outline: none;
+}
+@mixin button($color, $width, $height, $background-color) {
+  color: $color;
+  height: $height;
+  width: $width;
+  margin-bottom: 15px;
+  background-color: $background-color;
+  border-radius: 40px;
+  font-weight: 600;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 40px;
+}
+.button_violet_great {
+  @include button(rgba(255, 255, 255, 1), 326px, 56px, $violet);
+  border-radius: 40px;
+  border: none;
+}
+
+.button_violet_small {
+  @include button(rgba(255, 255, 255, 1), 267px, 56px, $violet);
+  border: none;
+}
+.button_marino_great {
+  @include button($black, 326px, 56px, $marino);
+  border: none;
+  text-justify: inherit;
+}
+.button_white_border_marino {
+  @include button($black, 311px, 40px, white);
+  border: 2px solid $marino;
+  box-sizing: border-box;
+}
+.button_marino_small {
+  @include button($black, 171px, 40px, $marino);
+  border: none;
+}
+.button_white_border_violet_great {
+  @include button($violet, 343px, 56px, white);
+  border: 2px solid $violet;
+  box-sizing: border-box;
+}
+.button_white_border_violet_small {
+  @include button($violet, 267px, 56px, white);
+  border: 2px solid $violet;
+  box-sizing: border-box;
+}
+
+.btnGroup {
+  align-content: center;
 }
 
 // .titleSearch{
@@ -161,135 +191,122 @@ input:focus{
 //     font-size: 50px;
 // }
 
-
-.Linkedin{
-    width: 20px;
+.Linkedin {
+  width: 20px;
 }
 
-BsBoxArrowInLeft{
-    width: 100px;
+BsBoxArrowInLeft {
+  width: 100px;
 }
 
-.google{
-    width: 20px;  
+.google {
+  width: 20px;
 }
 
-.btnSearch{
-        @include button( rgba(255, 255, 255, 1)
-        ,267px ,56px ,$violet);
-        border: none; 
+.btnSearch {
+  @include button(rgba(255, 255, 255, 1), 267px, 56px, $violet);
+  border: none;
 }
 
-.button_white_border_violet_small2{
-    @include button( $violet
-    ,100px ,56px ,white);
-    border: 2px solid $violet;
-    box-sizing: border-box;
+.button_white_border_violet_small2 {
+  @include button($violet, 100px, 56px, white);
+  border: 2px solid $violet;
+  box-sizing: border-box;
 }
 
-.button_marino_small2{
-    @include button( $black
-    ,171px ,40px ,$marino);
-    border: none;
-    padding-block-end: 0%;
+.button_marino_small2 {
+  @include button($black, 171px, 40px, $marino);
+  border: none;
+  padding-block-end: 0%;
 }
 
 .button_violet_small4 {
-    @include button( $black
-    ,171px ,40px ,$marino);
-    border: none;
-    padding-block-end: 0%;
+  @include button($black, 171px, 40px, $marino);
+  border: none;
+  padding-block-end: 0%;
 }
 
-.subtitle2{
-font-size: initial;
+.subtitle2 {
+  font-size: initial;
 }
 
-.principal_container{
-    width: 375px;}
-
-.colaborarUchoose{
-    text-align: center;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    border-radius: 40px
-
+.principal_container {
+  width: 375px;
 }
 
-.button_violet_small_register{
-
-        color:white;
-         height: 3em;
-          width: 21em;
-        margin-bottom: 15px;
-        background-color: #7a6fc5;
-        border-radius: 40px;
-        // font-weight: 600;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        border-radius: 40px;
-        border-radius: 40px;
-        border: none;
+.colaborarUchoose {
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 40px;
 }
 
-
-
-.button_violet_great_teacher{
-    color: white;
-    height: 3em;
-    width: 21em;
-    margin-bottom: 15px;
-    background-color: #7a6fc5;
-    border-radius: 40px;
-    // font-weight: 600;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    border-radius: 40px;
-    border-radius: 40px;
-    border: none;
-   
+.button_violet_small_register {
+  color: white;
+  height: 3em;
+  width: 21em;
+  margin-bottom: 15px;
+  background-color: #7a6fc5;
+  border-radius: 40px;
+  // font-weight: 600;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 40px;
+  border-radius: 40px;
+  border: none;
 }
 
+.button_violet_great_teacher {
+  color: white;
+  height: 3em;
+  width: 21em;
+  margin-bottom: 15px;
+  background-color: #7a6fc5;
+  border-radius: 40px;
+  // font-weight: 600;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  border-radius: 40px;
+  border-radius: 40px;
+  border: none;
+}
 
 .dropdown-toggle::after {
-    display: solid red;
-    // margin-left: 0.255em;
-    // vertical-align: 0.255em;
-    // content: "";
-    // border-top: 0.3em solid;
-    // border-right: 0.3em solid transparent;
-    // border-bottom: 0;
-    // border-left: 0.3em solid transparent;
+  display: solid red;
+  // margin-left: 0.255em;
+  // vertical-align: 0.255em;
+  // content: "";
+  // border-top: 0.3em solid;
+  // border-right: 0.3em solid transparent;
+  // border-bottom: 0;
+  // border-left: 0.3em solid transparent;
 }
 
 .modal-dialog {
-  width:auto;
- height: auto;
+  width: auto;
+  height: auto;
   margin: 10em;
-  border:1px solid black;
-  display: flex; 
-  justify-content: center;  
-//   flex-flow:row wrap-reverse;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  //   flex-flow:row wrap-reverse;
 }
 
 span {
- 
-     margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
 }
 
-.span1{
-    text-align: center;
-    height: 3em;
-    width: 21em; 
-   
-    
+.span1 {
+  text-align: center;
+  height: 3em;
+  width: 21em;
 }
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
