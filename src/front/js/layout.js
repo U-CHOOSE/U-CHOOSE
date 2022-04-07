@@ -20,7 +20,7 @@ import Footer from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 //Scss
 import "../styles/index.scss";
-
+import TeacherPage from "./pages/TeacherPage";
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -52,8 +52,11 @@ const Layout = () => {
 						<Route exact path="/mycenters">
 							<MyCenters />
 						</Route>
-						<Route exact path="/schoolpage">
+						<Route exact path="/schoolpage/:id">
 							<SchoolPage />
+						</Route>
+						<Route exact path="/teacherpage/:id">
+							<TeacherPage />
 						</Route>
 						<Route exact path="/teacherprofile">
 							<TeacherProfile />

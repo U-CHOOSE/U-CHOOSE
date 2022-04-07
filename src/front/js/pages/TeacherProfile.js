@@ -18,8 +18,9 @@ const TeacherProfile = () => {
 	const [mediaOthersTeachers, setMediaOthersTeachers] = useState({});
 
 	// const [avgDynanism, setAvgDynamism] = useState(0);
-	const user_id = localStorage.getItem("id_user");
-	let teacherId = localStorage.getItem("teacher_id");
+	// const user_id = localStorage.getItem("id_user");
+	console.log("store.idteacher", store.idTeacher);
+	let teacherId = store.idTeacher;
 	useEffect(() => {
 		const token = actions.getToken();
 		fetch(process.env.BACKEND_URL + "/user", {
@@ -41,9 +42,10 @@ const TeacherProfile = () => {
 		fetch(process.env.BACKEND_URL + "/reviews")
 			.then(res => res.json())
 			.then(json => {
+				console.log(json, "review");
 				setReview(json);
 			})
-			.catch(err => console.log("Error:", error));
+			.catch(err => console.log("Error:", err));
 	}, []);
 	console.log("review", review);
 
@@ -149,48 +151,64 @@ const TeacherProfile = () => {
 	//Component TopReview
 	// <TopReview faceTopreview={number}1-10 valorationTopreview={number} opinionTopreview = text
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-5 col-lg-8">
-					<img className="img-profile" src={data.img} alt="img" />
+		<div className="container">
+			<div className="row mt-lg-5">
+				<div className="col-6 col-lg-4 cont__img__profile">
+					<img className="img__profile" src={data.img} alt="img" />
+					<h1 className="">{data.full_name}</h1>
+					<div className="d-flex">
+						<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
+						<p>profesor@ de {data.type_of_teacher}</p>
+					</div>
 				</div>
-				<div className="col-7 col-lg-2 mt-2 contain__1">
+				<div className="col-6 col-lg-3  mt-2 contain__1">
 					<div className="d-flex mt-5">
 						<Faces face={media.avg} />
 					</div>
-					<span className="span-reviews ml-3">{count} reviews</span>
-					<button className="butt-on1 mt-2 mr-5" onClick={() => history.push("teacherprofile/edit")}>
+					<p className="span-reviews">{count} reviews</p>
+					<button className="butt-on1  " onClick={() => history.push("teacherprofile/edit")}>
 						Editar perfil
 					</button>
 				</div>
-				<div className="col-lg-1" />
+				<div className="col-lg-5">
+					<h1 className="hola">
+						<TeacherAssessment
+							name={data.full_name}
+							dinamismoT={media.avgDynamism}
+							dinamismoO={mediaOthersTeachers.avgDynamism}
+							pasionT={media.avgPassion}
+							pasionO={mediaOthersTeachers.avgPassion}
+							exampleT={media.avgPractisesExample}
+							exampleO={mediaOthersTeachers.avgPractisesExample}
+							inolvementT={media.avgNear}
+							inolvementO={mediaOthersTeachers.avgNear}
+						/>
+					</h1>
+				</div>
 			</div>
 
-			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 mt-4 col-lg-8">
+			{/* <div className="row">
+				<div className="col-12 mt-4">
 					<h1 className=" name1">{data.full_name}</h1>
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 col-lg-11">
+				<div className="col-12">
 					<FontAwesomeIcon className="icon-bag mr-2" icon={faSuitcase} />
 					<span>profesor@ de {data.type_of_teacher}</span>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="row">
 				<div className="col-12">
 					<h2 className="title___2 title-2-v ">Valoración</h2>
 				</div>
 			</div>
-			<div className="row">
+			<div className="row ">
 				<div className="col-12">
 					<div className="image-valoration">
 						{/* T = teacher
-					O = others teachers */}
+						O = others teachers */}
 						{console.log("mediaaa", media)}
 						{console.log("media others", mediaOthersTeachers)}
 						{console.log("data", data)}
@@ -210,25 +228,25 @@ const TeacherProfile = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-lg-1" />
-				<div className="col-12 col-lg-10">
+				<div className="col-12 col-lg-6  ">
 					<h2 className="title___2 mb-5">Reviews destacadas</h2>
+				</div>
+				<div className=" col-lg-6 no_desktop ">
+					<button className="button__reviews__desktop">Ver todas las reviews</button>
 				</div>
 			</div>
 
 			<div className="row">
-				<div className="col-lg-3" />
-				<div className="col-12 col-lg-6 contain-reviews d-flex">
+				<div className="col-12  contain-reviews d-flex">
 					<TopReview faceTopreview={10} valorationTopreview={54} opinionTopreview="hola que tal" />
 					<TopReview faceTopreview={10} valorationTopreview={0} />
 					<TopReview faceTopreview={10} valorationTopreview={100} opinionTopreview="hola que tal" />
 				</div>
-				<div className="col-lg-3" />
 			</div>
 
 			<div className="row">
-				<div className="col-12">
-					<button className="button2 b-2-r">Ver todas las reviews</button>
+				<div className="col-12 ">
+					<button className="button  w-100">Ver todas las reviews</button>
 				</div>
 			</div>
 		</div>

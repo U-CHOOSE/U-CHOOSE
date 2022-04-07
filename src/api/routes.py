@@ -206,7 +206,12 @@ def get_all_schools_of_user():
     return jsonify(school_dic), 200
 
 #to find all the schools of this teacher 
-
+# @api.route('/teachers/schools',methods=['GET'])
+# def teachers_of_school():
+#     teacher = User.get_all()
+#     if user.is_student:
+#         return "That's not a teacher"
+    
 # @api.route('/user/schools',methods=['GET'])
 # @jwt_required()
 # def get_all_schools_of_user():
@@ -236,6 +241,17 @@ def get_all_user_schools(id):
         school_dic.append(school.serialize())
     return jsonify(school_dic), 200
 
+
+@api.route('/school/<int:id>', methods=['GET'])
+def get_one_school(id):
+    school = School.get_by_id(id)
+    return jsonify( school.serialize()) , 200
+
+@api.route('/teacher/<int:id>', methods=['GET'])
+def get_one_teacher(id):
+    teacher = User_teacher.get_by_id(id)
+    return jsonify( teacher.serialize()) , 200
+    
 @api.route('/school', methods=['POST'])
 def add_school():
 
@@ -267,29 +283,66 @@ def add_school_to_user():
     print("add" , user_add)
     return jsonify(user_add.serialize()),201
 
-
-
+# 
 
 @api.route('/review', methods=['POST'])
+@jwt_required()
 def add_review_to_teacher():
+    id = get_jwt_identity()    
     body = request.get_json()
-    print(body)
-
+    user = User.get_by_id(id)
+    if not user.is_student:
+        return "Isn't a student",400
     
-    teacher_id = body.get("teacher_id", None),
+    teacher_user_id = body.get("teacher_user_id", None),
     dynamsim = body.get("dynamsim", None),
     pasion = body.get("pasion", None),
     practises_example = body.get("practises_example", None),
     near = body.get("near", None),
     date_teacher = body.get("date_teacher", None),
     more_info = body.get("more_info", None)
+    anonymous = body.get("anonymous", None)
+    user_teacher = User_teacher.get_by_user_id(teacher_user_id)
+    if user_teacher is None:
+        return "Didn't exist",400
     
-    review = Review_teacher( teacher_id=teacher_id, dynamsim=dynamsim, pasion=pasion, practises_example=practises_example, near=near, date_teacher=date_teacher, more_info=more_info)
+    
+    review_of_teacher = Review_teacher(
+        user_id = user.id,
+        teacher_id = user_teacher.id,
+        dynamsim= dynamsim,
+        pasion = pasion,
+        practises_example = practises_example,
+        near = near,
+        date_teacher= date_teacher,
+        more_info = more_info,
+        anonymous = anonymous
+    )
+    review_of_teacher.add()
+    return jsonify (review_of_teacher.serialize()) , 200
 
-    review.add()
-   
+@api.route('/teacher/review', methods=['GET'])
+@jwt_required()
+def teachers_in_mySchool():
+    id = get_jwt_identity()
+    mySchool = User_school.get_by_user_id(id)
+    school_users = User_school.get_users_by_school_id(mySchool.school_id)
+    teachers = list(map(lambda x:User.query.filter_by(id = x.user_id).first().serialize(), school_users))
+
+    print(teachers,"fsd")
+    user_teacher_dic = []
+    school = School.get_by_id(mySchool.school_id)
+    for element in teachers:
+        if not element["is_student"]:
+            element["mySchool"] = school.serialize()
+            user_teacher_dic.append(element)
+            
+    print ("user_teacher",user_teacher_dic)
+    return jsonify(user_teacher_dic), 200
+
+    
  
-    return jsonify(review.serialize()),201
+    
 
 @api.route('/reviews', methods=['GET'])
 def get_all_review_to_teacher():
@@ -304,12 +357,10 @@ def get_all_review_to_teacher():
 
 @api.route('/review/<int:teacher_id>', methods=['GET'])
 def get_review_to_teacher(teacher_id):
-    
-    reviews = Review_teacher.get_by_id(teacher_id)
-    review_dic = []
-    for review in reviews:
-        review_dic.append(review.serialize())
-    return jsonify(review_dic), 200
+    reviews = Review_teacher.get_all_reviews_by_teacher(teacher_id)
+    print(reviews,"########################################################")
+    review_teacher = list(map(lambda review: review.serialize(),reviews))
+    return jsonify(review_teacher), 200
 
 # user_teacher
 @api.route('/user_teachers',methods=['GET'])
@@ -348,13 +399,4 @@ def update_profile_picture():
    
 
 
-#user_school
 
-
-# @api.route('/user_schools',methods=['GET'])
-# def get_all_user_schools():
-#     teachers = User_school.query.all()
-#     teacher_dic = []
-#     for teacher in teachers:
-#         teacher_dic.append(teacher.serialize())
-#     return jsonify(teacher_dic), 200

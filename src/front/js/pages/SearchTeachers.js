@@ -32,6 +32,7 @@ const SearchTeachers = () => {
 				type="user"
 				data={data}
 				onKeyPress={handleKeyPress}
+				noSelect={true}
 			/>
 		</Container>
 	);

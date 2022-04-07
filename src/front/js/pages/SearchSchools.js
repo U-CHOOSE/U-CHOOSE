@@ -3,18 +3,29 @@ import { Container } from "react-bootstrap";
 import Search from "../component/Search/Search";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SearchSchools = () => {
 	const history = useHistory();
 	const [data, setData] = useState("");
 	const [mySchools, setMySchools] = useState("");
-	const { actions } = useContext(Context);
+	const [selectItem, setSelectItem] = useState(false);
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
 		}
 	};
+
+	// const handelSelect = item => {
+	// 	setSelect(props.type === "schools" ? item.name : item.full_name);
+	// 	const newArray = selectedItem;
+	// 	newArray.push(item);
+	// 	setSelectedItem(newArray);
+	// 	localStorage.setItem("selected_item", JSON.stringify(item));
+	// 	{
+	// 		console.log("item", item.id);
+
+	// 		props.type === "teacher" ? (actions.setId(item.id, item.user_id), actions.setImg(item.img)) : "";
+	// 	}
+	// };
 
 	useEffect(() => {
 		fetch(process.env.BACKEND_URL + "/schools")
@@ -33,8 +44,7 @@ const SearchSchools = () => {
 				span1="¿No encuentras tu centro?"
 				type="schools"
 				data={data}
-				onKeyPress={handleKeyPress}
-				mySchools={mySchools}
+				noSelect={true}
 			/>
 		</Container>
 	);

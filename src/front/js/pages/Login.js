@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
 
@@ -10,7 +8,8 @@ const Login = () => {
 	const [email, SetEmail] = useState("");
 	const [password, SetPassword] = useState("");
 	const { store, actions } = useContext(Context);
-
+	const [changeIcon, setChangeIcon] = useState(true);
+	const [showPassword, setShowPassword] = useState(false);
 	useEffect(
 		() => {
 			if (store.error != "") {
@@ -46,12 +45,22 @@ const Login = () => {
 			<div className="row">
 				<div className="col-12">
 					<input
-						type="password"
-						className="form-control input-pass mt-3 mx-auto input_login"
+						type={showPassword ? "password" : "text"}
+						className="form-control input_login mt-3 mx-auto"
 						id="exampleInputPassword1"
-						placeholder="Contraseña"
+						placeholder="  Contraseña  "
 						onChange={event => SetPassword(event.target.value)}
 					/>
+					<div className="col-12 mx-auto">
+						<i
+							id="eyesfa"
+							className={changeIcon ? "fas fa-eye " : "far fa-eye-slash "}
+							onClick={() => {
+								setShowPassword(!showPassword);
+								setChangeIcon(!changeIcon);
+							}}
+						/>
+					</div>
 				</div>
 			</div>
 			<button

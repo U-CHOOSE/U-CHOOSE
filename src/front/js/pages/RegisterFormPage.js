@@ -121,7 +121,9 @@ const RegisterFormPage = () => {
 									Soy profesor
 								</label>
 								<br /> <br />{" "}
-								<button onClick={() => actions.setUpStep()} className="button_violet_small_register">
+								<button
+									onClick={() => actions.setUpStep()}
+									className="button_violet_small_register mx-auto w-100 ">
 									Siguiente
 								</button>
 							</>
@@ -164,11 +166,7 @@ const RegisterFormPage = () => {
 							data={data}
 							type="schools"
 							span2="Saltar este paso"
-							button={
-								<button onClick={handlePut} className="button_violet_small_register my-3">
-									Siguiente
-								</button>
-							}
+							button={handlePut}
 						/>
 					) : (
 						<Search
@@ -178,11 +176,7 @@ const RegisterFormPage = () => {
 							span1="¿No encuentras tu centro?"
 							data={data}
 							type="schools"
-							button={
-								<button onClick={handlePut} className="button_violet_small_register my-3">
-									Siguiente
-								</button>
-							}
+							button={handlePut}
 						/>
 					)
 				}
@@ -213,7 +207,7 @@ const RegisterFormPage = () => {
 												Hacer un review
 											</button>
 										) : (
-											<button onClick={toLogin} className="button_marino_great">
+											<button onClick={toLogin} className="button_marino_great w-100  ">
 												Hacer un review
 											</button>
 										)}

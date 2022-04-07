@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../TeacherAssessment/TeacherAssessment.scss";
 import PropTypes from "prop-types";
-import { propTypes } from "react-bootstrap/esm/Image";
 const TeacherAssessment = props => {
 	const dT = props.dinamismoT * 10;
 	const dO = props.dinamismoO * 10;
@@ -21,7 +20,7 @@ const TeacherAssessment = props => {
 				</div>
 				<div className="d-flex">
 					<span className="color2" />
-					<span className="name others">Otros profesores</span>
+					<span className="name others">{props.name_others}</span>
 				</div>
 			</div>
 
@@ -72,6 +71,7 @@ const TeacherAssessment = props => {
 
 TeacherAssessment.propTypes = {
 	name: PropTypes.string,
+	name_others: PropTypes.string,
 	dinamismoT: PropTypes.number,
 	dinamismoO: PropTypes.number,
 	pasionT: PropTypes.number,

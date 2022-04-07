@@ -150,6 +150,15 @@ input:focus{
     border: 2px solid $violet;
     box-sizing: border-box;
 }
+.title_teachers{
+    font-family: Poppins;
+font-style: normal;
+font-weight: bold;
+font-size: 32px;
+line-height: 36px;
+color:  rgba(122, 111, 197, 1);
+letter-spacing: 1px;
+}
 .button_white_border_violet_small{
     @include button( $violet
     ,267px ,56px ,white);
@@ -159,6 +168,35 @@ input:focus{
 
 .btnGroup{  
     align-content: center;
+}
+.top_rated{
+    
+.highlight_reviews{
+    font-family: Poppins;
+font-style: normal;
+font-weight: bold;
+font-size: 32px;
+line-height: 36px;
+/* or 112% */
+
+letter-spacing: 1px;
+
+/* Secondary / Dark */
+
+color: #7A6FC5;
+}
+font-family: Poppins;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 32px;
+/* identical to box height, or 133% */
+
+letter-spacing: 1px;
+
+/* Secondary / Dark */
+
+color: #7A6FC5;
 }
 
 // .titleSearch{
@@ -298,3 +336,11 @@ span {
 li {
     list-style-type: none;
 }
+
+
+#exampleInputPassword1::placeholder{
+    font-family: "Font Awesome 5 Free";
+     font-weight: 400; 
+     
+}
+

@@ -26,6 +26,7 @@ const getState = ({ getStore, setStore }) => {
 
 					.then(responseJson => {
 						if (responseJson.token) {
+							console.log("respuesta", responseJson);
 							setStore({ token: responseJson.token });
 							localStorage.setItem("token", responseJson.token);
 							localStorage.setItem("user", JSON.stringify(responseJson.user));
